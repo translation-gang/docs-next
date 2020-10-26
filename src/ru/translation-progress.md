@@ -25,8 +25,8 @@
 * [ ] Refs
 * [ ] Special Attributes
 
-# [ ] COC
-* [ ] README.md
+# [ ] COC (@gbezyuk)
+* [x] README.md (@gbezyuk)
 
 # [ ] Community
 * [ ] join
