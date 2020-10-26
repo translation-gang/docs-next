@@ -25,7 +25,7 @@
 * [ ] Refs
 * [ ] Special Attributes
 
-# [ ] COC (@gbezyuk)
+# [x] COC (@gbezyuk)
 * [x] README.md (@gbezyuk)
 
 # [ ] Community
@@ -34,7 +34,7 @@
 * [ ] team
 * [ ] themes
 
-# [ ] Cookbook
+# [x] Cookbook
 * [x] Editable SVG Icons (@Alex-Sokolov)
 * [x] index.md (@Alex-Sokolov)
 
