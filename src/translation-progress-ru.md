@@ -18,4 +18,4 @@
 
 # [ ] Support-VueJs
 
-# [ ] README.md
+# [x] README.md (@gbezyuk)
