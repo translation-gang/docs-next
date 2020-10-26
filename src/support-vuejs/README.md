@@ -3,29 +3,27 @@ supportvue: true
 sidebar: auto
 ---
 
-# Станьте спонсором разработки Vue.js
+# Sponsor Vue.js Development
 
-Vue.js — полностью бесплатный для использования продукт с открытым исходным кодом, выпускаемый по лицензии MIT.
-Но его устойчивая поддержка и разработка новых фич невозможна без должной финансовой поддержки.
-Вы можете поддержать разработку Vue.js одним из следующих способов:
+Vue.js is an MIT licensed open source project and completely free to use.
+However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
 
-## Однократное пожертвование
+## One-time Donations
 
-Мы принимаем следующие пожертвования:
+We accept donations through these channels:
 
 <support-Coins />
 
-## Регулярные пожертвования
+## Recurring Pledges
 
-За регулярные пожертвования полагаются эксклюзивные привелегии. Например, Ваше имя может быть указано в репозитории,
-или мы можем поместить логотип вашей компании на этом сайте.
+Recurring pledges come with exclusive perks, e.g. having your name listed in the Vue GitHub repository, or have your company logo placed on this website.
 
-- [Поддержать через Patreon](https://www.patreon.com/evanyou) (эти средства идут напрямую Эвану Ю на поддержку его фуллтайм-работы над Vue.js)
-- [Поддержать через OpenCollective](https://opencollective.com/vuejs) (эти средства поступают в фонд сообщества, с прозрачным механизмом трат на поддержку и организацию событий)
+- [Become a backer or sponsor via Patreon](https://www.patreon.com/evanyou) (goes directly to support Evan You's full-time work on Vue)
+- [Become a backer or sponsor via OpenCollective](https://opencollective.com/vuejs) (goes into a fund with transparent expense models supporting community efforts and events)
 
-## Текущей Премиальные Спонсоры
+## Current Premium Sponsors
 
-### Особые Спонсоры
+### Special Sponsors
 
 <support-SponsorGroup group="special_sponsors" class="platinum" />
 
@@ -37,7 +35,7 @@ Vue.js — полностью бесплатный для использова�
 
 <support-OpenCollectiveGroup group="platinum" />
 
-### Особые Спонсоры (Китай)
+### Special Sponsors (China)
 
 <support-SponsorGroup group="platinum_sponsors_china" class="platinum" />
 
@@ -57,8 +55,6 @@ Vue.js — полностью бесплатный для использова�
 
 <support-OpenCollectiveGroup group="silver" />
 
-Если Вы — владелец бизнеса, использующего Vue в проекте, приносящем прибыль, финансовая поддержка разработки Vue — в ваших коммерческих интересах:
-**таким образом вы удостоверяетесь, что инструмент, на который полагается ваш проект, остаётся здоровым и активно поддерживается.**
-Кроме того, статус спонсора может помочь вам стать более видимыми в сообществе Vue, упрощая привлечение разработчиков.
+If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: **it ensures the project that your product relies on stays healthy and actively maintained.** It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
 
-Если Вы — частное лицо, и вам нравится продуктивность, достижимая с Vue, рассмотрите пожертвование как символ признания — как будто бы вы меня изредка кофе угощали.
+If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while.
