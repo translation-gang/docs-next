@@ -1,42 +1,44 @@
-# Code Of Conduct
+# Кодекс поведения
 
-## Our Pledge
+## Наши добровольные обязательства
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, political party, or sexual identity and orientation. Note, however, that religion, political party, or other ideological affiliation provide no exemptions for the behavior we outline as unacceptable in this Code of Conduct.
+В интересах создания открытой и доброжелательной среды, мы, как участники и сопровождающие, обязуемся сделать участие в нашем проекте и нашем сообществе свободным от преследований для всех, независимо от возраста, размера тела, ограничений физических возможностей, этнической принадлежности, половых характеристик, гендерной идентичности и её выражения, уровня опыта, образования, социально-экономического статуса, национальности, внешности, расы, религии, принадлежности политическим партиям или сексуальной идентичности и ориентации. Однако обратите внимание, что религия, политическая партия или другая идеологическая принадлежность не предоставляет никаких исключений для поведения, которое мы обозначаем как неприемлемое в данном Кодексе.
 
-## Our Standards
+## Наши стандарты
 
-Examples of behavior that contributes to creating a positive environment include:
+Примеры поведения, помогающего создать позитивное окружение, включают в себя:
 
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints and experiences
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
+- Использование приветливого и инклюзивного языка
+- Уважительное отношение к различным точкам зрения и опыту
+- Изящное принятие конструктивной критики
+- Сосредоточение внимания на том, что лучше всего для сообщества
+- Проявление сочувствия к другим членам сообщества
 
-Examples of unacceptable behavior by participants include:
+Примеры неприемлемого поведения участников включают в себя:
 
-- The use of sexualized language or imagery and unwelcome sexual attention or advances
-- Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or electronic address, without explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+- Использование сексуализированного языка или образов, нежелательное сексуальное внимание или заигрывания
+- Троллинг, оскорбительные/уничижительные комментарии, а также личные или политические нападки
+- Публичное или частное преследование (harassment)
+- Публикация частной информации других лиц, такой как их физический или электронный адрес, без их явного на то разрешения
+- Другое поведение, которое можно обоснованно считать неуместным в профессиональной среде
 
-## Our Responsibilities
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+## Наша ответственность
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+Сопровождающие проекта несут ответственность за разъяснение стандартов приемлемого поведения, и от них ожидают
+принятия соответствующих и справедливых корректирующих действий в ответ на любые случаи неприемлемого поведения.
 
-## Scope
+Сопровождающие проекта имеют право и обязаны удалять, редактировать или отклонять комментарии, коммиты, код, правки вики, issues и другие материалы, которые не соответствуют настоящему Кодексу поведения, или временно или навсегда заблокировать любого участника за иное поведение, которое они сочтут неуместным, угрожающим, оскорбительным или вредным.
+
+## Область применения
 
 This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
 
-## Enforcement
+## Контроль за исполнением
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at community@vuejs.org. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+О случаях оскорбления, преследования или иного неприемлемого поведения можно сообщить, связавшись с командой проекта по адресу community@vuejs.org. Все жалобы будут рассмотрены и расследованы, и в результате будет произведена необходимая реакция, в соответствии с обстоятельствами. Команда проекта обязана сохранять конфиденциальность в отношении лица, сообщившего об инциденте. Дополнительные сведения о конкретных правилах применения могут быть опубликованы отдельно.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+Сопровождающие проект лица, не соблюдающие Кодекс поведения добросовестно, могут столкнуться с временными или постоянными последствиями, определяемыми другими членами руководства проекта.
 
 ## Attribution
 
