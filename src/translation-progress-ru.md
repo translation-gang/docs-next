@@ -16,6 +16,6 @@
 
 # [ ] Style-Guide
 
-# [ ] Support-VueJs
+# [x] Support-VueJs (@gbezyuk)
 
 # [x] README.md (@gbezyuk)
