@@ -32,7 +32,7 @@
 
 ## Область применения
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+Этот Кодекс поведения применяется как в проектных, так и в общественных местах, когда человек представляет проект или его сообщество. Примеры представления проекта или сообщества включают использование официального адреса электронной почты проекта, размещение сообщений через официальную учетную запись в социальных сетях или выполнение функций назначенного представителя на онлайн- или офлайн-мероприятии. Представление проекта может быть дополнительно определено и уточнено сопровождающими проекта.
 
 ## Контроль за исполнением
 
