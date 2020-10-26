@@ -17,16 +17,16 @@ actionButtons:
     target: _blank
 features:
   - title: Доступный
-    details: Уже знаете HTML, CSS и JavaScript? Освойте короткое руководство — и вперёд!
-  - title: Разносторонний
-    details: Постепенно внедряемая экосистема, которая масштабируется из библиотеки в полнофункциональный фреймворк.
+    details: Уже владеете HTML, CSS и JavaScript? Освойте короткое руководство — и вперёд!
+  - title: Гибкий
+    details: Постепенно внедряемая экосистема, которая масштабируется от библиотеки до полнофункционального фреймворка.
   - title: Производительный
     details: |
       Всего 20KB (min+gzip)<br>
-      Быстрый виртуальный DOM<br>
-      Оптимизация без сложностей
+      Молниеносный Виртуальный DOM<br>
+      Минимальная необходимость в оптимизации
 footer: |
-  Released under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a><br>
+  Выпускается под <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">Лицензией MIT</a><br>
   Copyright © 2014-2020 Evan You
 socialIcons:
   - type: GitHub
