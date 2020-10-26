@@ -14,17 +14,19 @@
 * *progressive* — прогрессивный
 * *framework* - фреймворк
 * *runtime* - рантайм
+* *feature* — фича
 
 ## Переводимая неспецифическая лексика
-* *feature* — возможность
 * *template* — шаблон
 * *order-sensitive* — чувствительный к порядку (аргументов etc.)
 * *array* — массив
 * *reference* - ссылка
 * *approachable* — доступный
 * *versatile* — гибкий
+* *development* - разработка
 
 ## Переводимая специфическая лексика
+* *open source* — с открытым исходным кодом
 * *incrementally adoptable* — поступенно-внедримый
 * *pure function* — чистая функция
 * *plain function* — обыкновенная функция
