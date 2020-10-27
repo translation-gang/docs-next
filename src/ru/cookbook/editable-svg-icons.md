@@ -162,7 +162,7 @@ export default {
 
 Мы применяем `refs` для группы путей, которые нам нужно переместить, и по мере того, как обе стороны ножниц должны перемещаться вместе, мы создаём функцию, которую повторно используем при обращении к `refs`. Использование GreenSock помогает разрешить поддержку анимации и проблемы с `transform-origin` во всех браузерах.
 
-<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">Смотрите Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) на сайте <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Editable SVG Icon System: Animated icon" slug="dJRpgY" :preview="false" :editable="false" version="2" theme="0" />
 
 <p style="margin-top:-30px">Довольно легко сделано! И легко обновлять «на лету».</p>
 

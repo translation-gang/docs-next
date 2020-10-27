@@ -38,12 +38,7 @@ app.component('button-counter', {
 app.mount('#components-demo')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="abORVEJ" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Component basics">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/abORVEJ">
-  Component basics</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Component basics" slug="abORVEJ" tab="js,result" :preview="false" />
 
 Так как компоненты это переиспользуемые экземпляры, то они принимают те же опции что и корневой экземпляр, такие как `data`, `computed`, `watch`, `methods`, хуки жизненного цикла. Единственными исключениями будут несколько специфичных для корневого экземпляра опций, например `el`.
 
@@ -59,12 +54,7 @@ app.mount('#components-demo')
 </div>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="html,result" data-user="Vue" data-slug-hash="rNVqYvM" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Component basics: reusing components">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/rNVqYvM">
-  Component basics: reusing components</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Component basics: reusing components" slug="rNVqYvM" tab="html,result" :preview="false" />
 
 Обратите внимание, при нажатиях на кнопки, каждая изменяет свой собственный, отдельный `count`. Это потому, что каждый раз когда вы используете компонент будет создан его новый **экземпляр**.
 
@@ -119,12 +109,7 @@ app.mount('#blog-post-demo')
 </div>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="html,result" data-user="Vue" data-slug-hash="PoqyOaX" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Component basics: passing props">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/PoqyOaX">
-  Component basics: passing props</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Component basics: passing props" slug="PoqyOaX" tab="html,result" :preview="false" />
 
 Однако, в типичном приложении у вас наверняка будет массив записей в `data`:
 
@@ -236,12 +221,7 @@ app.component('blog-post', {
 
 Благодаря прослушиванию события `@enlarge-text="postFontSize += 0.1"`, родительский компонент отследит событие и обновит значение `postFontSize`.
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="html,result" data-user="Vue" data-slug-hash="KKpGyrp" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Component basics: emitting events">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/KKpGyrp">
-  Component basics: emitting events</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Component basics: emitting events" slug="KKpGyrp" tab="html,result" :preview="false" />
 
 Можно перечислить все генерируемые компонентом события в опции `emits`.
 
@@ -377,12 +357,7 @@ app.component('custom-input', {
 
 Что может выглядеть примерно так:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="jOPeaob" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Component basics: slots">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/jOPeaob">
-  Component basics: slots</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Component basics: slots" slug="jOPeaob" :preview="false" />
 
 К счастью, эта задача легко решается с помощью пользовательского элемента `<slot>` у Vue:
 
@@ -405,12 +380,7 @@ app.component('alert-box', {
 
 Иногда бывает полезно динамически переключаться между компонентами, например в интерфейсе с вкладками:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="oNXaoKy" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Component basics: dynamic components">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/oNXaoKy">
-  Component basics: dynamic components</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Component basics: dynamic components" slug="oNXaoKy" :preview="false" />
 
 Показанное выше стало возможным с помощью элемента Vue `<component>` со специальным атрибутом `is`:
 
