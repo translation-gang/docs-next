@@ -24,12 +24,7 @@ Vue.createApp({
 
 Результат:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="VwLGbwa" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Array">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/VwLGbwa">
-  v-for with Array</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with Array" slug="VwLGbwa" tab="js,result" :preview="false" />
 
 Внутри блока `v-for` нам доступны свойства из области видимости родителя. У `v-for` также есть второй опциональный параметр с индексом текущего элемента.
 
@@ -57,12 +52,7 @@ Vue.createApp({
 
 Результат:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="wvaEdBP" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Array and index">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/wvaEdBP">
-  v-for with Array and index</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with Array and index" slug="wvaEdBP" tab="js,result" :preview="false" />
 
 Вместо `in` разделителем можно использовать `of`, как в итераторах JavaScript:
 
@@ -98,12 +88,7 @@ Vue.createApp({
 
 Результат:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="NWqLjqy" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Object">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/NWqLjqy">
-  v-for with Object</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with Object" slug="NWqLjqy" tab="js,result" :preview="false" />
 
 Можно использовать второй аргумент для получения имени свойства (ключа объекта):
 
@@ -113,12 +98,7 @@ Vue.createApp({
 </li>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="poJOPjx" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Object and key">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/poJOPjx">
-  v-for with Object and key</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with Object and key" slug="poJOPjx" tab="js,result" :preview="false" />
 
 И третий — для индексов:
 
@@ -128,12 +108,7 @@ Vue.createApp({
 </li>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="abOaWdo" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Object key and index">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/abOaWdo">
-  v-for with Object key and index</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with Object key and index" slug="abOaWdo" tab="js,result" :preview="false" />
 
 :::tip Примечание
 При итерировании по объекту порядок обхода такой же как и в `Object.keys()`. Его консистентность **не гарантируется** при использовании различных реализаций движков JavaScript.
@@ -245,12 +220,7 @@ methods: {
 
 Результат:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="html,result" data-user="Vue" data-slug-hash="NWqLjNY" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with a range">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/NWqLjNY">
-  v-for with a range</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with a range" slug="NWqLjNY" tab="html,result" :preview="false" />
 
 ### `v-for` и тег `template`
 
@@ -384,9 +354,4 @@ app.component('todo-item', {
 app.mount('#todo-list-example')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="abOaWpz" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with components">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/abOaWpz">
-  v-for with components</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="v-for with components" slug="abOaWpz" tab="js,result" :preview="false" />

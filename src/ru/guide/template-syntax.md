@@ -33,12 +33,7 @@ Vue.js использует синтаксис шаблонов, основан�
 <p>Директива v-html: <span v-html="rawHtml"></span></p>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="yLNEJJM" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Rendering v-html">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/yLNEJJM">
-  Rendering v-html</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<common-codepen-snippet title="Rendering v-html" slug="yLNEJJM" :preview="false" />
 
 Содержимое тега `span` будет заменено значением свойства `rawHtml`, интерпретированного как обычный HTML — все привязки данных игнорируются. Запомните, вы не можете использовать `v-html` для вложения шаблонов друг в друга, потому что движок шаблонов Vue не основывается на строках. Вместо этого нужно использовать компоненты, позволяющие сочетать и переиспользовать элементы UI.
 
