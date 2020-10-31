@@ -1,24 +1,24 @@
-# Production Deployment
+# Публикация на production
 
 :::info Информация
-Most of the tips below are enabled by default if you are using [Vue CLI](https://cli.vuejs.org/ru/). This section is only relevant if you are using a custom build setup.
+Большинство из советов, описанных ниже, уже включены, если вы используете [Vue CLI](https://cli.vuejs.org/ru/). Этот раздел актуален только в том случае, если вы используете собственные конфигурации сборки.
 :::
 
-## Turn on Production Mode
+## Включение режима production
 
-During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in [production mode](https://cli.vuejs.org/ru/guide/mode-and-env.html#режимы-работы).
+В процессе разработки Vue предусматривает множество полезных предупреждений, чтобы помочь разобраться с типичными ошибками и подводными камнями. Однако в production эти предупреждения бессмысленны и лишь увеличивают размер вашего приложения. К тому же, часть проверок для этих предупреждений добавит небольшие затраты к времени выполнения и поэтому должны быть исключены в [режиме production](https://cli.vuejs.org/ru/guide/mode-and-env.html#%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B).
 
-### Without Build Tools
+### Без использования систем сборки
 
-If you are using the full build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version for production. This can be found in the [Installation guide](../installation.md#cdn).
+Если вы используете полную сборку, т.е. напрямую подключаете Vue через тег `<script>` без использования каких-либо систем сборки, удостоверьтесь что используете минифицированную версию для production. Эти версии можно найти [на странице установки](../installation.md#cdn).
 
-### With Build Tools
+### С использованием систем сборки
 
-When using a build tool like Webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. Vue CLI has this pre-configured for you, but it would be beneficial to know how it is done:
+При использовании систем сборки, таких как Webpack или Browserify, режим production определяется по значению `process.env.NODE_ENV` внутри исходного кода Vue. По умолчанию используется режим для разработки. Обе системы сборки предоставляют возможности для переопределения этой переменной — для включения режима production во Vue и удаления всех проверок и предупреждений на этапе сборки. Vue CLI уже пред-настроена для вас, но было бы полезно знать, как это делается:
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+С версии Webpack 4+ вы можете использовать опцию `mode`:
 
 ```js
 module.exports = {
@@ -28,45 +28,45 @@ module.exports = {
 
 #### Browserify
 
-- Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
+- Запустите сборку, указав в команде переменную `NODE_ENV` со значением `"production"`. Это позволит `vueify` исключить код для горячей замены модулей, а также код, относящийся к разработке.
 
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+- Примените глобальное преобразование [envify](https://github.com/hughsk/envify) к вашей сборке. Это позволит минификатору удалить все предупреждения из исходного кода Vue, обёрнутые в условия проверки переменной окружения. Например:
 
   ```bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
-- Or, using [envify](https://github.com/hughsk/envify) with Gulp:
+- Или используйте [envify](https://github.com/hughsk/envify) вместе с Gulp:
 
   ```js
-  // Use the envify custom module to specify environment variables
+  // Используйте пользовательский модуль envify для указания переменных окружения
   const envify = require('envify/custom')
 
   browserify(browserifyOptions)
     .transform(vueify)
     .transform(
-      // Required in order to process node_modules files
+      // Порядок необходим для обработки файлов node_modules
       { global: true },
       envify({ NODE_ENV: 'production' })
     )
     .bundle()
   ```
 
-- Or, using [envify](https://github.com/hughsk/envify) with Grunt and [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
+- Или используя [envify](https://github.com/hughsk/envify) вместе с Grunt и [grunt-browserify](https://github.com/jmreidy/grunt-browserify):
 
   ```js
-  // Use the envify custom module to specify environment variables
+  // Используйте пользовательский модуль envify для указания переменных окружения
   const envify = require('envify/custom')
 
   browserify: {
     dist: {
       options: {
-        // Function to deviate from grunt-browserify's default order
+        // Функция для изменения порядка по умолчанию у grunt-browserify
         configure: (b) =>
           b
             .transform('vueify')
             .transform(
-              // Required in order to process node_modules files
+              // Порядок необходим для обработки файлов node_modules
               { global: true },
               envify({ NODE_ENV: 'production' })
             )
@@ -78,7 +78,7 @@ module.exports = {
 
 #### Rollup
 
-Use [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace):
+Используйте [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace):
 
 ```js
 const replace = require('@rollup/plugin-replace')
@@ -93,24 +93,24 @@ rollup({
 }).then(...)
 ```
 
-## Pre-Compiling Templates
+## Прекомпиляция шаблонов
 
-When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive.
+При использовании DOM в качестве шаблона или строковых шаблонов в JavaScript, компиляция в `render`-функцию будет выполняться на лету. Это достаточно быстро для большинства случаев, но если ваше приложение нуждается в максимальной производительности стоит этого избегать.
 
-The easiest way to pre-compile templates is using [Single-File Components](../single-file-component.md) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
+Самый простой способ предварительной компиляции шаблонов — использовать [однофайловые компоненты](../single-file-component.md). На этапе сборки проекта будет выполнена предварительная компиляция, поэтому результирующий код будет содержать только `render`-функции вместо необработанных строковых шаблонов.
 
-If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
+Если вы используете Webpack и предпочитаете разделять JavaScript и файлы шаблонов, вы можете воспользоваться [vue-template-loader](https://github.com/ktsn/vue-template-loader), который также преобразует файлы шаблонов в `render`-функции на JavaScript на этапе сборки.
 
-## Extracting Component CSS
+## Извлечение CSS из компонентов
 
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file will avoid these issues, and also result in better CSS minification and caching.
+При использовании однофайловых компонентов, CSS из компонента будет динамически добавлен как тег `<style>` через JavaScript. Это немного увеличивает затраты времени выполнения, поэтому при использовании отрисовки на стороне сервера может привести к «мельканию неоформленного содержимого» (flash of unstyled content — FOUC). Извлечение CSS из всех компонентов в один файл позволит избежать этой проблемы, а также добиться лучших результатов в минификации и кэшировании CSS.
 
-Refer to the respective build tool documentations to see how it's done:
+Обратитесь к документации соответствующих инструментов для сборки, чтобы узнать как это реализовать:
 
-- [Webpack + vue-loader](https://vue-loader.vuejs.org/ru/guide/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Webpack + vue-loader](https://vue-loader.vuejs.org/ru/configurations/extract-css.html) (в `vue-cli` с шаблоном webpack это уже настроено)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://rollup-plugin-vue.vuejs.org/)
 
-## Tracking Runtime Errors
+## Отслеживание ошибок во время выполнения
 
-If a runtime error occurs during a component's render, it will be passed to the global `app.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+Если при отрисовке компонента произойдёт ошибка, она будет передана в глобальную функцию `app.config.errorHandler`, если таковая была указана. Использование этого хука в связке с сервисом отслеживания ошибок, например с [Sentry](https://sentry.io), может быть неплохой идеей — тем более, что [интеграция с Vue официально поддерживается](https://sentry.io/for/vue/).
