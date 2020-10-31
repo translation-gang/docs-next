@@ -1,7 +1,7 @@
 # Введение
 
 :::info Информация
-Новичок в Vue.js? Начать изучение лучше с [руководства](../introduction.md).
+Новичок в Vue.js? Начинать изучение лучше с [руководства](../introduction.md).
 :::
 
 This guide is primarily for users with prior Vue 2 experience who want to learn about the new features and changes in Vue 3. **This is not something you have to read from top to bottom before trying out Vue 3.** While it looks like a lot has changed, a lot of what you know and love about Vue is still the same; but we wanted to be as thorough as possible and provide detailed explanations and examples for every documented change.
@@ -116,13 +116,13 @@ The following consists a list of breaking changes from 2.x:
 
 ## Поддержка библиотек
 
-All of our official libraries and tools now support Vue 3, but most of them are still in beta status and distributed under the `next` dist tag on npm. **We are planning to stabilize and switch all projects to use the `latest` dist tag by end of 2020.**
+Все официальные библиотеки и инструменты поддерживают Vue 3, но большинство из них ещё находятся в бета-версии и распространяются под тегом `next` в npm. **Все проекты планируется стабилизировать и переключить на использование тега `latest` к концу 2020.**
 
 ### Vue CLI
 
 <a href="https://www.npmjs.com/package/@vue/cli" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/@vue/cli"></a>
 
-As of v4.5.0, `vue-cli` now provides built-in option to choose Vue 3 preset when creating a new project. You can upgrade `vue-cli` and run `vue create` to create a Vue 3 project today.
+Начиная с версии v4.5.0, `vue-cli` предоставляет опцию для выбора пресета Vue 3 при создании нового проекта. Можно обновить `vue-cli` и выполнить команду `vue create` для создания проекта на Vue 3 уже сегодня.
 
 - [Документация](https://cli.vuejs.org/ru/)
 - [GitHub](https://github.com/vuejs/vue-cli)
@@ -131,7 +131,7 @@ As of v4.5.0, `vue-cli` now provides built-in option to choose Vue 3 preset when
 
 <a href="https://www.npmjs.com/package/vue-router/v/next" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/vue-router/next.svg"></a>
 
-Vue Router 4.0 provides Vue 3 support and has a number of breaking changes of its own. Check out its [README](https://github.com/vuejs/vue-router-next#vue-router-next-) for full details.
+Vue Router 4.0 предоставляет поддержку Vue 3 и имеет ряд собственных кардинальных изменений. Для получения более подробной информации ознакомьтесь с его [README](https://github.com/vuejs/vue-router-next#vue-router-next-).
 
 - [GitHub](https://github.com/vuejs/vue-router-next)
 - [RFCs](https://github.com/vuejs/rfcs/pulls?q=is%3Apr+is%3Amerged+label%3Arouter)
@@ -140,7 +140,7 @@ Vue Router 4.0 provides Vue 3 support and has a number of breaking changes of it
 
 <a href="https://www.npmjs.com/package/vuex/v/next" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/vuex/next.svg"></a>
 
-Vuex 4.0 provides Vue 3 support with largely the same API as 3.x. The only breaking change is [how the plugin is installed](https://github.com/vuejs/vuex/tree/4.0#breaking-changes).
+Vuex 4.0 предоставляет поддержку Vue 3 с тем же самым API, что и 3.x. Единственное кардинальное изменение заключается в том [как устанавливается плагин](https://github.com/vuejs/vuex/tree/4.0#breaking-changes).
 
 - [GitHub](https://github.com/vuejs/vuex/tree/4.0)
 
