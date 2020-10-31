@@ -1,19 +1,19 @@
 ---
-title: $listeners removed
+title: $listeners удалены
 badges:
   - breaking
 ---
 
-# `$listeners` removed <MigrationBadges :badges="$frontmatter.badges" />
+# `$listeners` удалены <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-The `$listeners` object has been removed in Vue 3. Event listeners are now part of `$attrs`:
+Объект `$listeners` был удалён во Vue 3. Отслеживание событий теперь является частью `$attrs`:
 
-```javascript
+```js
 {
-  text: 'this is an attribute',
-  onClose: () => console.log('close Event triggered')
+  text: 'это какой-то атрибут',
+  onClose: () => console.log('произошло событие close')
 }
 ```
 
@@ -28,6 +28,7 @@ In combination with `inheritAttrs: false`, they allow the developer to apply the
     <input type="text" v-bind="$attrs" v-on="$listeners" />
   </label>
 </template>
+
 <script>
   export default {
     inheritAttrs: false
@@ -45,6 +46,7 @@ In Vue 3's virtual DOM, event listeners are now just attributes, prefixed with `
     <input type="text" v-bind="$attrs" />
   </label>
 </template>
+
 <script>
 export default {
   inheritAttrs: false
@@ -54,21 +56,21 @@ export default {
 
 If this component received an `id` attribute and a `v-on:close` listener, the `$attrs` object will now look like this:
 
-```javascript
+```js
 {
   id: 'my-input',
-  onClose: () => console.log('close Event triggered')
+  onClose: () => console.log('произошло событие close')
 }
 ```
 
 ## Стратегия миграции
 
-Remove all usages of `$listeners`.
+Удалить все случаи использования `$listeners`.
 
-## See also
+## См. также
 
-- [Relevant RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
-- [Migration guide - `$attrs`includes `class` & `style` ](attrs-includes-class-style.md)
-- [Migration guide - Changes in the Render Functions API](render-function-api.md)
-- [Migration guide - New Emits Option](emits-option.md)
-- [Migration guide - `.native` modifier removed](v-on-native-modifier-removed.md)
+- [Соответствующий RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
+- [Руководство по миграции — `$attrs` включает `class` и `style`](attrs-includes-class-style.md)
+- [Руководство по миграции — Изменения в API render-функций](render-function-api.md)
+- [Руководство по миграции — Новая опция emits](emits-option.md)
+- [Руководство по миграции — Модификатор `.native` удалён](v-on-native-modifier-removed.md)

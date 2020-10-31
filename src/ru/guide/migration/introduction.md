@@ -58,12 +58,12 @@ We are still working on a dedicated Migration Build of Vue 3 with Vue 2 compatib
 
 The following consists a list of breaking changes from 2.x:
 
-### Global API
+### Глобальное API
 
 - [Global Vue API is changed to use an application instance](global-api.md)
 - [Global and internal APIs have been restructured to be tree-shakable](global-api-treeshaking.md)
 
-### Template Directives
+### Директивы в шаблонах
 
 - [`v-model` usage on components has been reworked](v-model.md)
 - [`key` usage on `<template v-for>` and non-`v-for` nodes has changed](key-attribute.md)
@@ -72,29 +72,29 @@ The following consists a list of breaking changes from 2.x:
 - [`v-on:event.native` modifier has been removed](v-on-native-modifier-removed.md)
 - [`ref` inside `v-for` no longer register an array of refs](array-refs.md)
 
-### Components
+### Компоненты
 
 - [Functional components can only be created using a plain function](functional-components.md)
 - [`functional` attribute on single-file component (SFC) `<template>` and `functional` component option are deprecated](functional-components.md)
 - [Async components now require `defineAsyncComponent` method to be created](async-components.md)
 - [Component events should now be declared with the `emits` option](emits-option.md)
 
-### Render Function
+### Render-функции
 
 - [Render function API changed](render-function-api.md)
 - [`$scopedSlots` property is removed and all slots are exposed via `$slots` as functions](slots-unification.md)
 - [`$listeners` has been removed / merged into `$attrs`](listeners-removed.md)
-- [`$attrs` now includes `class` and `style` attributes](attrs-includes-class-style.md)
+- [`$attrs` включает `class` и `style`](attrs-includes-class-style.md)
 
-### Custom Elements
+### Пользовательские элементы
 
 - [Custom elements whitelisting is now performed during template compilation](custom-elements-interop.md)
 - [Special `is` prop usage is restricted to the reserved `<component>` tag only](custom-elements-interop.md#customized-built-in-elements)
 
 ### Другие незначительные изменения
 
-- The `destroyed` lifecycle option has been renamed to `unmounted`
-- The `beforeDestroy` lifecycle option has been renamed to `beforeUnmount`
+- Хук жизненного цикла `destroyed` переименован в `unmounted`
+- Хук жизненного цикла `beforeDestroy` переименован в `beforeUnmount`
 - [Props `default` factory function no longer has access to `this` context](props-default-this.md)
 - [Custom directive API changed to align with component lifecycle](custom-directives.md)
 - [The `data` option should always be declared as a function](data-option.md)
@@ -103,16 +103,16 @@ The following consists a list of breaking changes from 2.x:
 - [Some transition classes got a rename](transition.md)
 - [`<TransitionGroup>` now renders no wrapper element by default](transition-group.md)
 - [When watching an array, the callback will only trigger when the array is replaced. If you need to trigger on mutation, the `deep` option must be specified.](watch.md)
-- `<template>` tags with no special directives (`v-if/else-if/else`, `v-for`, or `v-slot`) are now treated as plain elements and will result in a native `<template>` element instead of rendering its inner content.
+- Теги `<template>` без специальных директив (`v-if/else-if/else`, `v-for` или `v-slot`) теперь обрабатываются как обычные элементы и в результате будет отрисован нативный элемент  `<template>` вместо отрисовки его содержимого.
 - In Vue 2.x, application root container's `outerHTML` is replaced with root component template (or eventually compiled to a template, if root component has no template/render option). Vue 3.x now uses application container's `innerHTML` instead - this means the container itself is no longer considered part of the template.
 
 ### Удалённые API
 
-- [`keyCode` support as `v-on` modifiers](keycode-modifiers.md)
-- [$on, $off and \$once instance methods](events-api.md)
-- [Filters](filters.md)
-- [Inline templates attributes](inline-template-attribute.md)
-- `$destroy` instance method. Users should no longer manually manage the lifecycle of individual Vue components.
+- [Поддержка `keyCode` в модификаторах `v-on`](keycode-modifiers.md)
+- [Методы экземпляра \$on, \$off и \$once](events-api.md)
+- [Фильтры](filters.md)
+- [Атрибуты инлайнового шаблона](inline-template-attribute.md)
+- Метод экземпляра `$destroy`. Пользователи больше не должны вручную управлять жизненным циклом отдельных компонентов Vue.
 
 ## Поддержка библиотек
 

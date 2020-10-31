@@ -49,9 +49,9 @@ Consequently, Vue will now add all event listeners that are _not_ defined as com
 - remove all instances of the `.native` modifier.
 - ensure that all your components document their events with the `emits` option.
 
-## See also
+## См. также
 
-- [Relevant RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md#v-on-listener-fallthrough)
-- [Migration guide - New Emits Option](emits-option.md)
-- [Migration guide - `$listeners` removed](listeners-removed.md)
-- [Migration guide - Changes in the Render Functions API](render-function-api.md)
+- [Соответствующий RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md#v-on-listener-fallthrough)
+- [Руководство по миграции — Новая опция emits](emits-option.md)
+- [Руководство по миграции — `$listeners` удалены](listeners-removed.md)
+- [Руководство по миграции — Изменения в API render-функций](render-function-api.md)

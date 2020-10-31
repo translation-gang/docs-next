@@ -10,7 +10,7 @@ badges:
 
 Vue 3 now offers an `emits` option similar to the existing `props` option. This option can be used to define the events that a component can emit to its parent.
 
-## 2.x Behavior
+## Поведение в 2.x
 
 In Vue 2, you can define the props that a component received, but you can't declare which events it can emit:
 
@@ -21,6 +21,7 @@ In Vue 2, you can define the props that a component received, but you can't decl
     <button v-on:click="$emit('accepted')">OK</button>
   </div>
 </template>
+
 <script>
   export default {
     props: ['text']
@@ -28,7 +29,7 @@ In Vue 2, you can define the props that a component received, but you can't decl
 </script>
 ```
 
-## 3.x Behavior
+## Поведение в 3.x
 
 Similar to props, the events that the component emits can now be defined with the `emits` option.
 
@@ -37,6 +38,7 @@ Similar to props, the events that the component emits can now be defined with th
   <p>{{ text }}</p>
   <button v-on:click="$emit('accepted')">OK</button>
 </template>
+
 <script>
   export default {
     props: ['text'],
@@ -55,7 +57,7 @@ It is highly recommended that you document all of the emitted events by your eac
 
 All events not defined with `emits` are now added as DOM event listeners to the component's root node (unless `inheritAttrs: false` has been set).
 
-### Example
+### Пример
 
 For components that re-emit native events to their parent, this would now lead to two events being fired:
 
@@ -64,6 +66,7 @@ For components that re-emit native events to their parent, this would now lead t
   <p>{{ text }}</p>
   <button v-on:click="$emit('click', $event)">OK</button>
 </template>
+
 <script>
 export default {
   props: ['text'],
@@ -88,10 +91,10 @@ Here you have two options:
 1. Properly declare the `click` event. This is useful if you actually do add some logic to that event handler in `<my-button>`
 2. Remove the re-emitting of the event, since the parent can now listen for the native event easily, without adding `.native`. Suitable when you really only re-emit the event anyway.
 
-## See also
+## См. также
 
-- [Relevant RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0030-emits-option.md)
-- [Migration guide - `.native` modifier removed](v-on-native-modifier-removed.md)
-- [Migration guide - `$listeners` removed](listeners-removed.md)
-- [Migration guide - `$attrs` includes `class` & `style` ](attrs-includes-class-style.md)
-- [Migration guide - Changes in the Render Functions API](render-function-api.md)
+- [Соответствующий RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0030-emits-option.md)
+- [Руководство по миграции — Модификатор `.native` удалён](v-on-native-modifier-removed.md)
+- [Руководство по миграции — `$listeners` удалены](listeners-removed.md)
+- [Руководство по миграции — `$attrs` включает `class` и `style`](attrs-includes-class-style.md)
+- [Руководство по миграции — Изменения в API render-функций](render-function-api.md)

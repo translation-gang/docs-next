@@ -10,7 +10,7 @@ badges:
 
 `$attrs` now contains _all_ attributes passed to a component, including `class` and `style`.
 
-## 2.x Behavior
+## Поведение в 2.x
 
 `class` and `style` attributes get some special handling in the Vue 2 virtual DOM implementation. For that reason, they are _not_ included in `$attrs`, while all other attributes are.
 
@@ -25,6 +25,7 @@ A side effect of this manifests when using `inheritAttrs: false`:
     <input type="text" v-bind="$attrs" />
   </label>
 </template>
+
 <script>
 export default {
   inheritAttrs: false
@@ -46,7 +47,7 @@ when used like this:
 </label>
 ```
 
-## 3.x Behavior
+## Поведение в 3.x
 
 `$attrs` contains _all_ attributes, which makes it easier to apply all of them to a different element. The example from above now generates the following HTML:
 
@@ -60,10 +61,10 @@ when used like this:
 
 In components that use `inheritAttrs: false`, make sure that styling still works as intended. If you previously relied on the special behavior of `class` and `style`, some visuals might be broken as these attributes might now be applied to another element.
 
-## See also
+## См. также
 
-- [Relevant RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
-- [Migration guide - `$listeners` removed](listeners-removed.md)
-- [Migration guide - New Emits Option](emits-option.md)
-- [Migration guide - `.native` modifier removed](v-on-native-modifier-removed.md)
-- [Migration guide - Changes in the Render Functions API](render-function-api.md)
+- [Соответствующий RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)
+- [Руководство по миграции — `$listeners` удалены](listeners-removed.md)
+- [Руководство по миграции — Новая опция emits](emits-option.md)
+- [Руководство по миграции — Модификатор `.native` удалён](v-on-native-modifier-removed.md)
+- [Руководство по миграции — Изменения в API render-функций](render-function-api.md)
