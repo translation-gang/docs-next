@@ -194,7 +194,7 @@ const Component = defineComponent({
 })
 ```
 
-### Типы `ref`
+### Типы `refs`
 
 Ref-ссылки получают вывод типа из исходного значения:
 
