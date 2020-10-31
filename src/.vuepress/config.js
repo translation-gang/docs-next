@@ -302,7 +302,8 @@ const sidebarRU = {
         '/ru/guide/single-file-component',
         '/ru/guide/testing',
         '/ru/guide/typescript-support',
-        '/ru/guide/mobile'
+        '/ru/guide/mobile',
+        '/ru/guide/tooling/deployment'
       ]
     },
     {
@@ -347,6 +348,7 @@ const sidebarRU = {
         '/ru/guide/migration/render-function-api',
         '/ru/guide/migration/slots-unification',
         '/ru/guide/migration/transition',
+        '/ru/guide/migration/transition-group',
         '/ru/guide/migration/v-on-native-modifier-removed',
         '/ru/guide/migration/v-model',
         '/ru/guide/migration/v-if-v-for',
