@@ -218,7 +218,11 @@ const sidebarRU = {
   cookbook: [{
     title: 'Книга рецептов',
     collapsable: false,
-    children: ['/ru/cookbook/', '/ru/cookbook/editable-svg-icons']
+    children: [
+      '/ru/cookbook/',
+      '/ru/cookbook/editable-svg-icons',
+      '/ru/cookbook/debugging-in-vscode'
+    ]
   }],
   guide: [{
       title: 'Основы',
