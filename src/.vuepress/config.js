@@ -3,7 +3,11 @@ const sidebar = {
     {
       title: 'Cookbook',
       collapsable: false,
-      children: ['/cookbook/', '/cookbook/editable-svg-icons']
+      children: [
+        '/cookbook/',
+        '/cookbook/editable-svg-icons',
+        '/cookbook/debugging-in-vscode'
+      ]
     }
   ],
   guide: [
@@ -565,7 +569,7 @@ module.exports = {
                 },
                 {
                   text: 'Vuex',
-                  link: 'https://vuex.vuejs.org/'
+                  link: 'https://next.vuex.vuejs.org/'
                 },
                 {
                   text: 'Vue CLI',
@@ -679,7 +683,7 @@ module.exports = {
                 },
                 {
                   text: 'Vuex',
-                  link: 'https://vuex.vuejs.org/ru/'
+                  link: 'https://next.vuex.vuejs.org/'
                 },
                 {
                   text: 'Vue CLI',
