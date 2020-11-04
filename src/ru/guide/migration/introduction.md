@@ -109,9 +109,10 @@ The following consists a list of breaking changes from 2.x:
 ### Удалённые API
 
 - [Поддержка `keyCode` в модификаторах `v-on`](keycode-modifiers.md)
-- [Методы экземпляра \$on, \$off и \$once](events-api.md)
+- [Методы экземпляра $on, $off и $once](events-api.md)
 - [Фильтры](filters.md)
 - [Атрибуты инлайнового шаблона](inline-template-attribute.md)
+- [Свойство экземпляра `$children`](children.md)
 - Метод экземпляра `$destroy`. Пользователи больше не должны вручную управлять жизненным циклом отдельных компонентов Vue.
 
 ## Поддержка библиотек
