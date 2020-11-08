@@ -340,6 +340,7 @@ const sidebarRU = {
         '/ru/guide/migration/async-components',
         '/ru/guide/migration/attribute-coercion',
         '/ru/guide/migration/attrs-includes-class-style',
+        '/ru/guide/migration/children',
         '/ru/guide/migration/custom-directives',
         '/ru/guide/migration/custom-elements-interop',
         '/ru/guide/migration/data-option',
@@ -362,7 +363,8 @@ const sidebarRU = {
         '/ru/guide/migration/v-on-native-modifier-removed',
         '/ru/guide/migration/v-model',
         '/ru/guide/migration/v-if-v-for',
-        '/ru/guide/migration/v-bind'
+        '/ru/guide/migration/v-bind',
+        '/ru/guide/migration/watch'
       ]
     },
     {
