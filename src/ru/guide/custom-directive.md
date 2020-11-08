@@ -69,7 +69,7 @@ Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="v
 
 Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
 
-```vue-html
+```vue
 <div id="dynamic-arguments-example" class="demo">
   <p>Scroll down the page</p>
   <p v-pin="200">Stick me 200px from the top of the page</p>
@@ -92,7 +92,7 @@ app.mount('#dynamic-arguments-example')
 
 This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
 
-```vue-html
+```vue
 <div id="dynamicexample">
   <h3>Scroll down inside this section ↓</h3>
   <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
@@ -126,7 +126,7 @@ app.mount('#dynamic-arguments-example')
 
 Our custom directive is now flexible enough to support a few different use cases. To make it even more dynamic, we can also allow to modify a bound value. Let's create an additional property `pinPadding` and bind it to the `<input type="range">`
 
-```vue-html{4}
+```vue{4}
 <div id="dynamicexample">
   <h2>Scroll down the page</h2>
   <input type="range" min="0" max="500" v-model="pinPadding">
@@ -181,7 +181,7 @@ app.directive('pin', (el, binding) => {
 
 If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
 
-```vue-html
+```vue
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>
 ```
 
@@ -196,7 +196,7 @@ app.directive('demo', (el, binding) => {
 
 When used on components, custom directive will always apply to component's root node, similarly to [non-prop attributes](component-attrs.md).
 
-```vue-html
+```vue
 <my-component v-demo="test"></my-component>
 ```
 

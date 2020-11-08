@@ -115,7 +115,7 @@ In other words, you **will not have access** to the following component options:
 
 If `setup` returns an object, the properties on the object can be accessed in the component's template, as well as the properties of the `props` passed into `setup`:
 
-```vue-html
+```vue
 <!-- MyBook.vue -->
 <template>
   <div>{{ collectionName }}: {{ readersNumber }} {{ book.title }}</div>

@@ -14,7 +14,7 @@ Let's dive into an example where a `render()` function would be practical. Say w
 
 Anchored headings are used very frequently, we should create a component:
 
-```vue-html
+```vue
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
@@ -395,7 +395,7 @@ Vue.h(
 
 Especially when the template version is so concise in comparison:
 
-```vue-html
+```vue
 <anchored-heading :level="1"> <span>Hello</span> world! </anchored-heading>
 ```
 

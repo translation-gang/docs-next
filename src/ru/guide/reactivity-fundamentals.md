@@ -47,7 +47,7 @@ console.log(count.value) // 1
 
 When a ref is returned as a property on the render context (the object returned from [setup()](composition-api-setup.md)) and accessed in the template, it automatically unwraps to the inner value. There is no need to append `.value` in the template:
 
-```vue-html
+```vue
 <template>
   <div>
     <span>{{ count }}</span>

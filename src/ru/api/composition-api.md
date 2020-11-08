@@ -35,7 +35,7 @@ To get type inference for the arguments passed to `setup()`, the use of [defineC
 
   With the template:
 
-  ```vue-html
+  ```vue
   <!-- MyBook.vue -->
   <template>
     <div>{{ readersNumber }} {{ book.title }}</div>
