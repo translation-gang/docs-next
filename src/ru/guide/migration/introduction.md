@@ -123,7 +123,7 @@ The following consists a list of breaking changes from 2.x:
 
 <a href="https://www.npmjs.com/package/@vue/cli" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/@vue/cli"></a>
 
-Начиная с версии v4.5.0, `vue-cli` предоставляет опцию для выбора пресета Vue 3 при создании нового проекта. Можно обновить `vue-cli` и выполнить команду `vue create` для создания проекта на Vue 3 уже сегодня.
+Начиная с версии v4.5.0, `vue-cli` предоставляет из коробки опцию для выбора Vue 3 при создании нового проекта. Можно обновить `vue-cli` и выполнить команду `vue create` для создания проекта на Vue 3 уже сегодня.
 
 - [Документация](https://cli.vuejs.org/ru/)
 - [GitHub](https://github.com/vuejs/vue-cli)
@@ -132,8 +132,9 @@ The following consists a list of breaking changes from 2.x:
 
 <a href="https://www.npmjs.com/package/vue-router/v/next" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/vue-router/next.svg"></a>
 
-Vue Router 4.0 предоставляет поддержку Vue 3 и имеет ряд собственных кардинальных изменений. Для получения более подробной информации ознакомьтесь с его [README](https://github.com/vuejs/vue-router-next#vue-router-next-).
+Vue Router 4.0 предоставляет поддержку Vue 3 и имеет ряд собственных кардинальных изменений. Для получения более подробной информации ознакомьтесь с его [руководством по миграции](https://next.router.vuejs.org/guide/migration/).
 
+- [Документация](https://next.router.vuejs.org/)
 - [GitHub](https://github.com/vuejs/vue-router-next)
 - [RFCs](https://github.com/vuejs/rfcs/pulls?q=is%3Apr+is%3Amerged+label%3Arouter)
 
@@ -141,7 +142,7 @@ Vue Router 4.0 предоставляет поддержку Vue 3 и имеет
 
 <a href="https://www.npmjs.com/package/vuex/v/next" target="_blank" noopener noreferrer><img src="https://img.shields.io/npm/v/vuex/next.svg"></a>
 
-Vuex 4.0 предоставляет поддержку Vue 3 с тем же самым API, что и 3.x. Единственное кардинальное изменение заключается в том [как устанавливается плагин](https://github.com/vuejs/vuex/tree/4.0#breaking-changes).
+Vuex 4.0 предоставляет поддержку Vue 3 с тем же самым API, что и 3.x. Единственное кардинальное изменение заключается в том [как устанавливается плагин](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html#breaking-changes).
 
 - [GitHub](https://github.com/vuejs/vuex/tree/4.0)
 
@@ -167,7 +168,7 @@ We are working on a new version of the Devtools with a new UI and refactored int
 | eslint-plugin-vue     | [![ga][epv-badge]][epv-npm]   | [[GitHub][epv-code]] |
 | @vue/test-utils       | [![beta][vtu-badge]][vtu-npm] | [[GitHub][vtu-code]] |
 | vue-class-component   | [![beta][vcc-badge]][vcc-npm] | [[GitHub][vcc-code]] |
-| vue-loader            | [![beta][vl-badge]][vl-npm]   | [[GitHub][vl-code]]  |
+| vue-loader            | [![rc][vl-badge]][vl-npm]     | [[GitHub][vl-code]]  |
 | rollup-plugin-vue     | [![beta][rpv-badge]][rpv-npm] | [[GitHub][rpv-code]] |
 
 [jsx-badge]: https://img.shields.io/npm/v/@vue/babel-plugin-jsx.svg

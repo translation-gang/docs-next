@@ -8,13 +8,13 @@ badges:
 
 ## Обзор
 
-Vue 3 now offers an `emits` option similar to the existing `props` option. This option can be used to define the events that a component can emit to its parent.
+Vue 3 now offers an `emits` option, similar to the existing `props` option. This option can be used to define the events that a component can emit to its parent.
 
 ## Поведение в 2.x
 
-In Vue 2, you can define the props that a component received, but you can't declare which events it can emit:
+In Vue 2, you can define the props that a component receives, but you can't declare which events it can emit:
 
-```html
+```vue
 <template>
   <div>
     <p>{{ text }}</p>
@@ -31,12 +31,14 @@ In Vue 2, you can define the props that a component received, but you can't decl
 
 ## Поведение в 3.x
 
-Similar to props, the events that the component emits can now be defined with the `emits` option.
+Similar to props, the events that the component emits can now be defined with the `emits` option:
 
-```html
+```vue
 <template>
-  <p>{{ text }}</p>
-  <button v-on:click="$emit('accepted')">OK</button>
+  <div>
+    <p>{{ text }}</p>
+    <button v-on:click="$emit('accepted')">OK</button>
+  </div>
 </template>
 
 <script>
@@ -47,15 +49,15 @@ Similar to props, the events that the component emits can now be defined with th
 </script>
 ```
 
-The option also accepts an object notation, which allows the developer to define validators for the arguments that are passed with the emitted event, similar to validators in props definitions.
+The option also accepts an object, which allows the developer to define validators for the arguments that are passed with the emitted event, similar to validators in `props` definitions.
 
 For more information on this, please read the [API documentation for this feature](../../api/options-data.md#emits).
 
 ## Стратегия миграции
 
-It is highly recommended that you document all of the emitted events by your each of components this way because of the [removal of the `.native` modifier](v-on-native-modifier-removed.md).
+It is highly recommended that you document all of the events emitted by each of your components using `emits`.
 
-All events not defined with `emits` are now added as DOM event listeners to the component's root node (unless `inheritAttrs: false` has been set).
+This is especially important because of [the removal of the `.native` modifier](v-on-native-modifier-removed.md). Any listeners for events that aren't declared with `emits` will now be included in the component's `$attrs`, which by default will be bound to the component's root node.
 
 ### Пример
 
@@ -63,13 +65,11 @@ For components that re-emit native events to their parent, this would now lead t
 
 ```vue
 <template>
-  <p>{{ text }}</p>
   <button v-on:click="$emit('click', $event)">OK</button>
 </template>
 
 <script>
 export default {
-  props: ['text'],
   emits: [] // without declared event
 }
 </script>
@@ -83,12 +83,12 @@ When a parent listens for the `click` event on the component:
 
 it would now be triggered _twice_:
 
-- Once from `$emit()`
-- Once from a native event listener applied to the root element
+- Once from `$emit()`.
+- Once from a native event listener applied to the root element.
 
 Here you have two options:
 
-1. Properly declare the `click` event. This is useful if you actually do add some logic to that event handler in `<my-button>`
+1. Properly declare the `click` event. This is useful if you actually do add some logic to that event handler in `<my-button>`.
 2. Remove the re-emitting of the event, since the parent can now listen for the native event easily, without adding `.native`. Suitable when you really only re-emit the event anyway.
 
 ## См. также
