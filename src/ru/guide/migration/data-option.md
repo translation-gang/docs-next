@@ -1,5 +1,5 @@
 ---
-title: Data Option
+title: Опция data
 badges:
   - breaking
 ---
@@ -8,16 +8,16 @@ badges:
 
 ## Обзор
 
-- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `data` component option declaration no longer accepts a plain JavaScript `object` and expects a `function` declaration.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** опция локального состояния `data` компонента больше не принимает обычный объект JavaScript и ожидает объявление функции.
 
 ## Синтаксис в 2.x
 
-In 2.x, developers could define the `data` option with either an `object` or a `function`.
+В 2.x разработчики могли определять опцию `data` используя как `object`, так и `function`.
 
-For example:
+Например:
 
-```html
-<!-- Object Declaration -->
+```vue
+<!-- Декларация объекта -->
 <script>
   const app = new Vue({
     data: {
@@ -26,7 +26,7 @@ For example:
   })
 </script>
 
-<!-- Function Declaration -->
+<!-- Декларация функции -->
 <script>
   const app = new Vue({
     data() {
@@ -38,15 +38,15 @@ For example:
 </script>
 ```
 
-Though this provided some convenience in terms of root instances having a shared state, this has led to confusion due to the fact that its only possible on the root instance.
+Хотя это обеспечило некоторое удобство с точки зрения того, что корневые экземпляры имеют общее состояние, это привело к путанице, потому что подобное возможно только на корневом экземпляре.
 
 ## Что изменилось в 3.x
 
-In 3.x, the `data` option has been standardized to only accept a `function` that returns an `object`.
+В 3.x опция `data` была стандартизирована чтобы принимать только функцию, которая возвращает объект.
 
-Using the example above, there would only be one possible implementation of the code:
+Используя пример выше, потребуется только одно изменение в реализованном коде:
 
-```html
+```vue
 <script>
   import { createApp } from 'vue'
 
@@ -62,7 +62,7 @@ Using the example above, there would only be one possible implementation of the 
 
 ## Стратегия миграции
 
-For users relying on the object declaration, we recommend:
+Для пользователей, полагающихся на объявление объектом рекомендуем:
 
-- Extracting the shared data into an external object and using it as a property in `data`
-- Rewrite references to the shared data to point to a new shared object
+- Извлечь общие данные во внешний объект и использовать его в качестве значения `data`
+- Переписать ссылки на общие данные, чтобы указывали на новый общий объект
