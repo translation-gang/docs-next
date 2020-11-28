@@ -1,5 +1,5 @@
 ---
-title: Watch on Arrays
+title: Использование watch на массивах
 badges:
   - breaking
 ---
@@ -8,17 +8,17 @@ badges:
 
 ## Обзор
 
-- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** When watching an array, the callback will only trigger when the array is replaced. If you need to to trigger on mutation, the `deep` option must be specified.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** Отслеживание изменений массива с помощью watch, будет вызывать обработчик только при замене массива. При необходимости вызывать обработчик при мутациях массива следует добавлять опцию `deep`.
 
 ## Синтаксис в 3.x
 
-When using [the `watch` option](/api/options-data.html#watch) to watch an array, the callback will only trigger when the array is replaced. In other words, the watch callback will no longer be triggered on array mutation. To trigger on mutation, the `deep` option must be specified.
+При использовании [опции `watch`](../../api/options-data.md#watch) для отслеживания изменений массива, обработчик будет вызван только при замене массива. Другими словами, обработчик больше не вызывается при мутациях массива. Для отслеживания мутаций массива надо добавлять опцию `deep`.
 
 ```js
 watch: {
   bookList: {
     handler(val, oldVal) {
-      console.log('book list changed')
+      console.log('список книг изменился')
     },
     deep: true
   },
@@ -27,4 +27,4 @@ watch: {
 
 ## Стратегия миграции
 
-If you rely on watching array mutations, add the `deep` property to ensure that your callback is triggered correctly.
+Если необходимо отслеживать мутации массива, добавьте свойство `deep` чтобы убедиться, что метод обработчика будет вызываться правильно.
