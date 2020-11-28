@@ -3,19 +3,19 @@ badges:
   - removed
 ---
 
-# Filters <MigrationBadges :badges="$frontmatter.badges" />
+# Фильтры <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-Filters are removed from Vue 3.0 and no longer supported.
+Фильтры были удалены из Vue 3.0 и больше не поддерживаются.
 
 ## Синтаксис в 2.x
 
-In 2.x, developers could use filters in order to apply common text formatting.
+В 2.x можно было использовать фильтры для часто используемого форматирования текста.
 
-For example:
+Например:
 
-```html
+```vue
 <template>
   <h1>Bank Account Balance</h1>
   <p>{{ accountBalance | currencyUSD }}</p>
@@ -38,15 +38,15 @@ For example:
 </script>
 ```
 
-While this seems like a convenience, it requires a custom syntax that breaks the assumption of expressions inside of curly braces being "just JavaScript," which has both learning and implementation costs.
+Хоть это и кажется удобным, но требует дополнительного синтаксиса, который нарушает ожидания, что выражения внутри фигурных скобок это «обычный JavaScript», что увеличивает затраты на обучение и реализацию.
 
 ## Что изменилось в 3.x
 
-In 3.x, filters are removed and no longer supported. Instead, we recommend replacing them with method calls or computed properties.
+В 3.x фильтры удалены и больше не поддерживаются. Вместо них рекомендуем использовать вызовы методов или вычисляемые свойства.
 
-Using the example above, here is one example of how it could be implemented.
+Для примера выше это может быть реализовано таким образом:
 
-```html
+```vue
 <template>
   <h1>Bank Account Balance</h1>
   <p>{{ accountInUSD }}</p>
@@ -71,13 +71,13 @@ Using the example above, here is one example of how it could be implemented.
 
 ## Стратегия миграции
 
-Instead of using filters, we recommend replacing them with computed properties or methods.
+Использование фильтров заменить на вычисляемые свойства или вызовы методов.
 
 ### Глобальные фильтры
 
-If you are using filters that were globally registered and then used throughout your app, it's likely not convenient to replace them with computed properties or methods in each individual component.
+Если использовались глобально зарегистрированные фильтры, которые затем повсеместно использовались в приложении, то вряд ли будет удобно их заменять вычисляемыми свойствами или методами в каждом компоненте.
 
-Instead, you can make your global filters available to all components through [globalProperties](../../api/application-config.md#globalproperties):
+Можно сделать такие фильтры доступными для всех компонентов через [globalProperties](../../api/application-config.md#globalproperties):
 
 ```js
 // main.js
@@ -90,7 +90,7 @@ app.config.globalProperties.$filters = {
 }
 ```
 
-Then you can fix all templates using this `$filters` object like this:
+Тогда потребуется исправить все шаблоны, используя объект `$filters`:
 
 ```html
 <template>
@@ -99,4 +99,4 @@ Then you can fix all templates using this `$filters` object like this:
 </template>
 ```
 
-Note that with this approach, you can only use methods, not computed properties, as the latter only make sense when defined in the context of an individual component.
+Однако при таком подходе можно использовать только методы, но не вычисляемые свойства, поскольку они имеют смысл лишь тогда, когда определены в контексте отдельного компонента.
