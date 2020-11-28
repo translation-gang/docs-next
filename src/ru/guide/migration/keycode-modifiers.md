@@ -3,28 +3,28 @@ badges:
   - breaking
 ---
 
-# KeyCode Modifiers <MigrationBadges :badges="$frontmatter.badges" />
+# Модификаторы keyCode <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-Here is a quick summary of what has changed:
+Вот краткое описание изменений:
 
-- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** Using numbers, i.e. keyCodes, as `v-on` modifiers is no longer supported
-- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `config.keyCodes` is no longer supported
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** Использование чисел, т.е. keyCode, в качестве модификаторов `v-on` больше не поддерживается
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** опция `config.keyCodes` больше не поддерживается
 
 ## Синтаксис в 2.x
 
-In Vue 2, `keyCodes` were supported as a way to modify a `v-on` method.
+Во Vue 2 можно было указывать `keyCode` для модификации метода `v-on`.
 
 ```html
-<!-- keyCode version -->
+<!-- версия с keyCode -->
 <input v-on:keyup.13="submit" />
 
-<!-- alias version -->
+<!-- версия с псевдонимом -->
 <input v-on:keyup.enter="submit" />
 ```
 
-In addition, you could define your own aliases via the global `config.keyCodes` option.
+Кроме того, можно было определять собственные псевдонимы через глобальную опцию `config.keyCodes`.
 
 ```js
 Vue.config.keyCodes = {
@@ -33,24 +33,24 @@ Vue.config.keyCodes = {
 ```
 
 ```html
-<!-- keyCode version -->
+<!-- версия с keyCode -->
 <input v-on:keyup.112="showHelpText" />
 
-<!-- custom alias version -->
+<!-- версия с пользовательским псевдонимом -->
 <input v-on:keyup.f1="showHelpText" />
 ```
 
 ## Синтаксис в 3.x
 
-Since [`KeyboardEvent.keyCode` has been deprecated](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode), it no longer makes sense for Vue 3 to continue supporting this as well. As a result, it is now recommended to use the kebab-case name for any key you want to use as a modifier.
+Так как [`KeyboardEvent.keyCode` был объявлен устаревшим](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) для Vue 3 больше нет смысла продолжать его поддержку. Теперь рекомендуется указывать имя в kebab-case для любой клавиши, которую требуется использовать в качестве модификатора.
 
 ```html
-<!-- Vue 3 Key Modifier on v-on -->
+<!-- Vue 3 и модификатор клавиши на v-on -->
 <input v-on:keyup.delete="confirmDelete" />
 ```
 
-As a result, this means that `config.keyCodes` is now also deprecated and will no longer be supported.
+Из этого следует, что опция `config.keyCodes` теперь больше не нужна и также не будет поддерживаться.
 
 ## Стратегия миграции
 
-For those using `keyCode` in their codebase, we recommend converting them to their kebab-cased named equivalents.
+Для тех кто использует `keyCode` в своей кодовой базе, рекомендуется преобразовать их в именованные эквиваленты в kebab-case.
