@@ -3,15 +3,15 @@ badges:
   - breaking
 ---
 
-# Inline Template Attribute <MigrationBadges :badges="$frontmatter.badges" />
+# Атрибут `inline-template` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-Support for the [inline-template feature](https://ru.vuejs.org/v2/guide/components-edge-cases.html#Inline-Templates) has been removed.
+Поддержка возможности [инлайновых шаблонов](https://ru.vuejs.org/v2/guide/components-edge-cases.html#Inline-Templates) была удалена.
 
 ## Синтаксис в 2.x
 
-In 2.x, Vue provided the `inline-template` attribute on child components to use its inner content as its template instead of treating it as distributed content.
+В версии 2.x, можно было указывать атрибут `inline-template` на дочерних компонентах, чтобы использовать их внутреннее содержимое в качестве шаблона, вместо того, чтобы рассматривать его как предоставляемое содержимое.
 
 ```html
 <my-component inline-template>
@@ -24,23 +24,23 @@ In 2.x, Vue provided the `inline-template` attribute on child components to use 
 
 ## Синтаксис в 3.x
 
-This feature will no longer be supported.
+Эта возможность больше не поддерживается.
 
 ## Стратегия миграции
 
-Most of the use cases for `inline-template` assumes a no-build-tool setup, where all templates are written directly inside the HTML page.
+Большинство случаев использования `inline-template` предполагает отсутствие шага сборки, когда все шаблоны записываются непосредственно внутри HTML-страницы.
 
-### Option #1: Use `<script>` tag
+### Опция #1: Использовать тег `<script>`
 
-The most straightforward workaround in such cases is using `<script>` with an alternative type:
+Самый простой путь в этих случаях — использовать тег `<script>` с альтернативным типом:
 
-```js
+```html
 <script type="text/html" id="my-comp-template">
   <div>{{ hello }}</div>
 </script>
 ```
 
-And in the component, target the template using a selector:
+И в компоненте указать шаблон с помощью селектора:
 
 ```js
 const MyComp = {
@@ -49,34 +49,34 @@ const MyComp = {
 }
 ```
 
-This doesn't require any build setup, works in all browsers, is not subject to any in-DOM HTML parsing caveats (e.g. you can use camelCase prop names), and provides proper syntax highlighting in most IDEs. In traditional server-side frameworks, these templates can be split out into server template partials (included into the main HTML template) for better maintainability.
+Для этого не требуется настраивать сборку, работает во всех браузерах, не подвергается никаким ограничениям по обработке HTML в DOM (например, можно использовать имена входных параметров в camelCase), а также обеспечивает корректную подсветку синтаксиса в большинстве IDE. В традиционных server-side фреймворках такие шаблоны могут быть разделены на серверные части шаблона (включённые в основной шаблон HTML) для удобства в поддержке.
 
-### Option #2: Default Slot
+### Опция #2: Слот по умолчанию
 
-A component previously using `inline-template` can also be refactored using the default slot - which makes the data scoping more explicit while preserving the convenience of writing child content inline:
+Компонент, ранее использовавший `inline-template`, также может быть переработан на использование слота по умолчанию — что делает более явной передачу данных, сохраняя при этом удобство записи инлайн-содержимого:
 
 ```html
-<!-- 2.x Syntax -->
+<!-- Синтаксис в 2.x -->
 <my-comp inline-template :msg="parentMsg">
   {{ msg }} {{ childState }}
 </my-comp>
 
-<!-- Default Slot Version -->
+<!-- Версия со слотом по умолчанию -->
 <my-comp v-slot="{ childState }">
   {{ parentMsg }} {{ childState }}
 </my-comp>
 ```
 
-The child, instead of providing no template, should now render the default slot\*:
+Дочерний элемент, вместо пустого шаблона, должен отображать слот по умолчанию\*:
 
 ```html
 <!--
-  in child template, render default slot while passing
-  in necessary private state of child.
+  в дочернем шаблоне, отрисовать слот по умолчанию
+  и передать необходимое приватного состояния потомку.
 -->
 <template>
   <slot :childState="childState" />
 </template>
 ```
 
-> - Note: In 3.x, slots can be rendered as the root with native [fragments](fragments.md) support!
+> Примечание: С версии 3.x, слоты могут быть отрисованы как корневые элементы с помощью поддержки [фрагментов](fragments.md)!
