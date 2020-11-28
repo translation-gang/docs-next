@@ -1,14 +1,14 @@
 ---
-title: $listeners удалены
+title: Удалены $listeners
 badges:
   - breaking
 ---
 
-# `$listeners` удалены <MigrationBadges :badges="$frontmatter.badges" />
+# Удалены `$listeners` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-Объект `$listeners` был удалён во Vue 3. Отслеживание событий теперь является частью `$attrs`:
+Объект `$listeners` удалён в 3.x. Отслеживание событий теперь является частью `$attrs`:
 
 ```js
 {
@@ -19,8 +19,7 @@ badges:
 
 ## Синтаксис в 2.x
 
-In Vue 2, you can access attributes passed to your components with `this.$attrs`, and event listeners with `this.$listeners`.
-In combination with `inheritAttrs: false`, they allow the developer to apply these attributes and listeners to some other element instead of the root element:
+Во Vue 2 можно получить доступ к атрибутам, переданным в компонент через `this.$attrs`, а также к обработчикам событий через `this.$listeners`. Вместе с `inheritAttrs: false` это позволяло разработчику применить эти атрибуты и обработчики событий к какому-то другому элементу вместо корневого:
 
 ```html
 <template>
@@ -38,7 +37,7 @@ In combination with `inheritAttrs: false`, they allow the developer to apply the
 
 ## Что изменилось в 3.x
 
-In Vue 3's virtual DOM, event listeners are now just attributes, prefixed with `on`, and as such are part of the `$attrs` object, so `$listeners` has been removed.
+В виртуальном DOM Vue 3 обработчики событий теперь просто атрибуты с префиксом `on` и являются частью объекта `$attrs`, поэтому `$listeners` были удалены.
 
 ```vue
 <template>
@@ -54,7 +53,7 @@ export default {
 </script>
 ```
 
-If this component received an `id` attribute and a `v-on:close` listener, the `$attrs` object will now look like this:
+Если компонент получит атрибут `id` и обработчик события `v-on:close`, то объект `$attrs` теперь будет выглядеть так:
 
 ```js
 {
