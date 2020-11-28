@@ -673,11 +673,11 @@ module.exports = {
               link: '/ru/examples/markdown'
             },
             {
-              text: 'Внести вклад',
+              text: 'Внести свой вклад',
               link: '/ru/guide/contributing/writing-guide'
             },
             {
-              text: 'Миграция с Vue 2',
+              text: 'Руководство по миграции',
               link: '/ru/guide/migration/introduction'
             }
           ]

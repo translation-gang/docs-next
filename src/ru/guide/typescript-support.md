@@ -24,7 +24,32 @@
 
 Обратите внимание, что необходимо включать `strict: true` (или хотя бы `noImplicitThis: true`, который является частью флага `strict`) для проверки `this` в методах компонента, потому что иначе он всегда будет рассматриваться как тип `any`.
 
-Подробнее можно изучить в [документации настроек компилятора TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.md).
+Подробнее можно изучить в [документации настроек компилятора TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html).
+
+## Конфигурация Webpack
+
+При использовании пользовательской конфигурации Webpack необходимо настроить `ts-loader` для парсинга блоков `<script lang="ts">` во `.vue` файлах:
+
+```js{10}
+// webpack.config.js
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      }
+      ...
+```
 
 ## Инструментарий для разработки
 

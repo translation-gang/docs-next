@@ -90,12 +90,11 @@ app.component('custom-form', {
 В таком случае, ожидается что дочерний компонент будет использовать входной параметр `title` и генерировать событие `update:title` для синхронизации значения:
 
 ```js
-const app = Vue.createApp({})
-
 app.component('my-component', {
   props: {
     title: String
   },
+  emits: ['update:title'],
   template: `
     <input 
       type="text"
@@ -123,13 +122,12 @@ app.component('my-component', {
 ```
 
 ```js
-const app = Vue.createApp({})
-
 app.component('user-name', {
   props: {
     firstName: String,
     lastName: String
   },
+  emits: ['update:firstName', 'update:lastName'],
   template: `
     <input 
       type="text"
@@ -154,10 +152,10 @@ app.component('user-name', {
 
 Модификаторы, которые будут использоваться в `v-model` компонента, должны указываться через входной параметр `modelModifiers`. В примере ниже, компонент содержит входной параметр `modelModifiers`, который по умолчанию будет пустым объектом.
 
-Обратите внимание, в хуке жизненного цикла `created` входной параметр `modelModifiers` содержит `capitalize` со значением `true` — потому что он указан на привязке `v-model` компонента `v-model.capitalize="bar"`.
+Обратите внимание, в хуке жизненного цикла `created` входной параметр `modelModifiers` содержит `capitalize` со значением `true` — потому что он указан на привязке `v-model` компонента `v-model.capitalize="myText"`.
 
 ```html
-<my-component v-model.capitalize="bar"></my-component>
+<my-component v-model.capitalize="myText"></my-component>
 ```
 
 ```js
@@ -168,6 +166,7 @@ app.component('my-component', {
       default: () => ({})
     }
   },
+  emits: ['update:modelValue'],
   template: `
     <input type="text" 
       :value="modelValue"
@@ -204,6 +203,7 @@ app.component('my-component', {
       default: () => ({})
     }
   },
+  emits: ['update:modelValue'],
   methods: {
     emitValue(e) {
       let value = e.target.value
@@ -225,19 +225,20 @@ app.mount('#app')
 При использовании привязки `v-model` с аргументом, имя входного параметра будет генерироваться как `arg + "Modifiers"`:
 
 ```html
-<my-component v-model:foo.capitalize="bar"></my-component>
+<my-component v-model:description.capitalize="myText"></my-component>
 ```
 
 ```js
 app.component('my-component', {
-  props: ['foo', 'fooModifiers'],
+  props: ['description', 'descriptionModifiers'],
+  emits: ['update:description'],
   template: `
     <input type="text" 
-      :value="foo"
-      @input="$emit('update:foo', $event.target.value)">
+      :value="description"
+      @input="$emit('update:description', $event.target.value)">
   `,
   created() {
-    console.log(this.fooModifiers) // { capitalize: true }
+    console.log(this.descriptionModifiers) // { capitalize: true }
   }
 })
 ```
