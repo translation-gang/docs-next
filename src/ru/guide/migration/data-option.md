@@ -8,7 +8,7 @@ badges:
 
 ## Обзор
 
-- **BREAKING**: `data` component option declaration no longer accepts a plain JavaScript `object` and expects a `function` declaration.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `data` component option declaration no longer accepts a plain JavaScript `object` and expects a `function` declaration.
 
 ## Синтаксис в 2.x
 

@@ -8,7 +8,7 @@ badges:
 
 ## Обзор
 
-- **BREAKING**: Order of bindings for v-bind will affect the rendering result.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** Order of bindings for v-bind will affect the rendering result.
 
 ## Введение
 

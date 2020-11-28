@@ -7,9 +7,9 @@ badges:
 
 ## Обзор
 
-- **NEW:** `key`s are no longer necessary on `v-if`/`v-else`/`v-else-if` branches, since Vue now automatically generates unique `key`s.
-  - **BREAKING:** If you manually provide `key`s, then each branch must use a unique `key`.
-- **BREAKING:** `<template v-for>` `key` should be placed on the `<template>` tag (rather than on its children).
+- **НОВОЕ:** `key`s are no longer necessary on `v-if`/`v-else`/`v-else-if` branches, since Vue now automatically generates unique `key`s.
+  - **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** If you manually provide `key`s, then each branch must use a unique `key`.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `<template v-for>` `key` should be placed on the `<template>` tag (rather than on its children).
 
 ## Background
 

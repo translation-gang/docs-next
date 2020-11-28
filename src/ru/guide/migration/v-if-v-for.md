@@ -8,7 +8,7 @@ badges:
 
 ## Обзор
 
-- **BREAKING**: If used on the same element, `v-if` will have higher precedence than `v-for`
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** If used on the same element, `v-if` will have higher precedence than `v-for`
 
 ## Введение
 

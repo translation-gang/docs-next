@@ -12,7 +12,7 @@ This change unifies normal and scoped slots in 3.x.
 Here is a quick summary of what has changed:
 
 - `this.$slots` now exposes slots as functions
-- **BREAKING**: `this.$scopedSlots` is removed
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `this.$scopedSlots` is removed
 
 For more information, read on!
 

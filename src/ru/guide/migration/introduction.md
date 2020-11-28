@@ -20,21 +20,21 @@ Start learning Vue 3 at [Vue Mastery](https://www.vuemastery.com/courses-path/vu
 
 ## Быстрый старт
 
-- Via CDN: `<script src="https://unpkg.com/vue@next"></script>`
-- In-browser playground on [Codepen](https://codepen.io/yyx990803/pen/OJNoaZL)
-- In-browser Sandbox on [CodeSandbox](https://v3.vue.new)
-- Scaffold via [Vite](https://github.com/vitejs/vite):
+- Через CDN: `<script src="https://unpkg.com/vue@next"></script>`
+- В браузере песочница на [Codepen](https://codepen.io/yyx990803/pen/OJNoaZL)
+- В браузере песочница на [CodeSandbox](https://v3.vue.new)
+- Развернуть проект с помощью [Vite](https://github.com/vitejs/vite):
 
   ```bash
-  npm init vite-app hello-vue3 # OR yarn create vite-app hello-vue3
+  npm init vite-app hello-vue3 # ИЛИ yarn create vite-app hello-vue3
   ```
 
-- Scaffold via [vue-cli](https://cli.vuejs.org/ru/):
+- Развернуть проект с помощью [vue-cli](https://cli.vuejs.org/ru/):
 
   ```bash
-  npm install -g @vue/cli # OR yarn global add @vue/cli
+  npm install -g @vue/cli # ИЛИ yarn global add @vue/cli
   vue create hello-vue3
-  # select vue 3 preset
+  # выбрать пресет vue 3
   ```
 
 ## Важные новые возможности

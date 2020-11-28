@@ -14,7 +14,7 @@ This is a low-level internal API change and does not affect most developers.
 Here is a high level summary of the changes:
 
 - Drop the internal concept of enumerated attributes and treat those attributes the same as normal non-boolean attributes
-- **BREAKING**: No longer removes attribute if value is boolean `false`. Instead, it's set as attr="false" instead. To remove the attribute, use `null` or `undefined`.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** No longer removes attribute if value is boolean `false`. Instead, it's set as attr="false" instead. To remove the attribute, use `null` or `undefined`.
 
 For more information, read on!
 
@@ -93,7 +93,7 @@ In 2.x, invalid values were coerced to `'true'` for enumerated attributes. This 
 
 In 3.x, `null` or `undefined` should be used to explicitly remove an attribute.
 
-### Сравнение поведения 2.x & 3.x
+### Сравнение поведения в 2.x и в 3.x
 
 <table>
   <thead>

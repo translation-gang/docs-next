@@ -8,7 +8,7 @@ badges:
 
 ## Обзор
 
-- **BREAKING**: When watching an array, the callback will only trigger when the array is replaced. If you need to to trigger on mutation, the `deep` option must be specified.
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** When watching an array, the callback will only trigger when the array is replaced. If you need to to trigger on mutation, the `deep` option must be specified.
 
 ## Синтаксис в 3.x
 
