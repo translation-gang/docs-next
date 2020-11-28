@@ -116,51 +116,6 @@ const sidebar = {
         '/guide/a11y-standards',
         '/guide/a11y-resources'
       ]
-    },
-    {
-      title: 'Migration Guide',
-      collapsable: true,
-      children: [
-        '/guide/migration/introduction',
-        '/guide/migration/array-refs',
-        '/guide/migration/async-components',
-        '/guide/migration/attribute-coercion',
-        '/guide/migration/attrs-includes-class-style',
-        '/guide/migration/children',
-        '/guide/migration/custom-directives',
-        '/guide/migration/custom-elements-interop',
-        '/guide/migration/data-option',
-        '/guide/migration/emits-option',
-        '/guide/migration/events-api',
-        '/guide/migration/filters',
-        '/guide/migration/fragments',
-        '/guide/migration/functional-components',
-        '/guide/migration/global-api',
-        '/guide/migration/global-api-treeshaking',
-        '/guide/migration/inline-template-attribute',
-        '/guide/migration/key-attribute',
-        '/guide/migration/keycode-modifiers',
-        '/guide/migration/listeners-removed',
-        '/guide/migration/props-default-this',
-        '/guide/migration/render-function-api',
-        '/guide/migration/slots-unification',
-        '/guide/migration/transition',
-        '/guide/migration/transition-group',
-        '/guide/migration/v-on-native-modifier-removed',
-        '/guide/migration/v-model',
-        '/guide/migration/v-if-v-for',
-        '/guide/migration/v-bind',
-        '/guide/migration/watch'
-      ]
-    },
-    {
-      title: 'Contribute to the Docs',
-      collapsable: true,
-      children: [
-        '/guide/contributing/writing-guide',
-        '/guide/contributing/doc-style-guide',
-        '/guide/contributing/translations'
-      ]
     }
   ],
   api: [
@@ -213,20 +168,72 @@ const sidebar = {
         '/examples/todomvc'
       ]
     }
+  ],
+  migration: [
+    '/guide/migration/introduction',
+    {
+      title: 'Details',
+      collapsable: false,
+      children: [
+        '/guide/migration/array-refs',
+        '/guide/migration/async-components',
+        '/guide/migration/attribute-coercion',
+        '/guide/migration/attrs-includes-class-style',
+        '/guide/migration/children',
+        '/guide/migration/custom-directives',
+        '/guide/migration/custom-elements-interop',
+        '/guide/migration/data-option',
+        '/guide/migration/emits-option',
+        '/guide/migration/events-api',
+        '/guide/migration/filters',
+        '/guide/migration/fragments',
+        '/guide/migration/functional-components',
+        '/guide/migration/global-api',
+        '/guide/migration/global-api-treeshaking',
+        '/guide/migration/inline-template-attribute',
+        '/guide/migration/key-attribute',
+        '/guide/migration/keycode-modifiers',
+        '/guide/migration/listeners-removed',
+        '/guide/migration/props-default-this',
+        '/guide/migration/render-function-api',
+        '/guide/migration/slots-unification',
+        '/guide/migration/transition',
+        '/guide/migration/transition-group',
+        '/guide/migration/v-on-native-modifier-removed',
+        '/guide/migration/v-model',
+        '/guide/migration/v-if-v-for',
+        '/guide/migration/v-bind',
+        '/guide/migration/watch'
+      ]
+    }
+  ],
+  contributing: [
+    {
+      title: 'Contribute to the Docs',
+      collapsable: false,
+      children: [
+        '/guide/contributing/writing-guide',
+        '/guide/contributing/doc-style-guide',
+        '/guide/contributing/translations'
+      ]
+    }
   ]
 }
 
 const sidebarRU = {
-  cookbook: [{
-    title: 'Книга рецептов',
-    collapsable: false,
-    children: [
-      '/ru/cookbook/',
-      '/ru/cookbook/editable-svg-icons',
-      '/ru/cookbook/debugging-in-vscode'
-    ]
-  }],
-  guide: [{
+  cookbook: [
+    {
+      title: 'Книга рецептов',
+      collapsable: false,
+      children: [
+        '/ru/cookbook/',
+        '/ru/cookbook/editable-svg-icons',
+        '/ru/cookbook/debugging-in-vscode'
+      ]
+    }
+  ],
+  guide: [
+    {
       title: 'Основы',
       collapsable: false,
       children: [
@@ -283,7 +290,8 @@ const sidebarRU = {
     {
       title: 'Продвинутые руководства',
       collapsable: false,
-      children: [{
+      children: [
+        {
           title: 'Reactivity',
           children: [
             '/ru/guide/reactivity',
@@ -330,50 +338,6 @@ const sidebarRU = {
         '/ru/guide/a11y-standards',
         '/ru/guide/a11y-resources'
       ]
-    },
-    {
-      title: 'Миграция с Vue 2',
-      collapsable: true,
-      children: [
-        '/ru/guide/migration/introduction',
-        '/ru/guide/migration/array-refs',
-        '/ru/guide/migration/async-components',
-        '/ru/guide/migration/attribute-coercion',
-        '/ru/guide/migration/attrs-includes-class-style',
-        '/ru/guide/migration/children',
-        '/ru/guide/migration/custom-directives',
-        '/ru/guide/migration/custom-elements-interop',
-        '/ru/guide/migration/data-option',
-        '/ru/guide/migration/emits-option',
-        '/ru/guide/migration/events-api',
-        '/ru/guide/migration/filters',
-        '/ru/guide/migration/fragments',
-        '/ru/guide/migration/functional-components',
-        '/ru/guide/migration/global-api',
-        '/ru/guide/migration/global-api-treeshaking',
-        '/ru/guide/migration/inline-template-attribute',
-        '/ru/guide/migration/key-attribute',
-        '/ru/guide/migration/keycode-modifiers',
-        '/ru/guide/migration/listeners-removed',
-        '/ru/guide/migration/props-default-this',
-        '/ru/guide/migration/render-function-api',
-        '/ru/guide/migration/slots-unification',
-        '/ru/guide/migration/transition',
-        '/ru/guide/migration/transition-group',
-        '/ru/guide/migration/v-on-native-modifier-removed',
-        '/ru/guide/migration/v-model',
-        '/ru/guide/migration/v-if-v-for',
-        '/ru/guide/migration/v-bind',
-        '/ru/guide/migration/watch'
-      ]
-    },
-    {
-      title: 'Внести вклад в документацию',
-      collapsable: true,
-      children: [
-        '/ru/guide/contributing/doc-style-guide',
-        '/ru/guide/contributing/translations'
-      ]
     }
   ],
   api: [
@@ -410,21 +374,72 @@ const sidebarRU = {
     },
     '/ru/api/composition-api'
   ],
-  examples: [{
-    title: 'Примеры',
-    collapsable: false,
-    children: [
-      '/ru/examples/markdown',
-      '/ru/examples/commits',
-      '/ru/examples/grid-component',
-      '/ru/examples/tree-view',
-      '/ru/examples/svg',
-      '/ru/examples/modal',
-      '/ru/examples/elastic-header',
-      '/ru/examples/select2',
-      '/ru/examples/todomvc'
-    ]
-  }]
+  examples: [
+    {
+      title: 'Примеры',
+      collapsable: false,
+      children: [
+        '/ru/examples/markdown',
+        '/ru/examples/commits',
+        '/ru/examples/grid-component',
+        '/ru/examples/tree-view',
+        '/ru/examples/svg',
+        '/ru/examples/modal',
+        '/ru/examples/elastic-header',
+        '/ru/examples/select2',
+        '/ru/examples/todomvc'
+      ]
+    }
+  ],
+  migration: [
+    '/ru/guide/migration/introduction',
+    {
+      title: 'Подробности',
+      collapsable: false,
+      children: [
+        '/ru/guide/migration/array-refs',
+        '/ru/guide/migration/async-components',
+        '/ru/guide/migration/attribute-coercion',
+        '/ru/guide/migration/attrs-includes-class-style',
+        '/ru/guide/migration/children',
+        '/ru/guide/migration/custom-directives',
+        '/ru/guide/migration/custom-elements-interop',
+        '/ru/guide/migration/data-option',
+        '/ru/guide/migration/emits-option',
+        '/ru/guide/migration/events-api',
+        '/ru/guide/migration/filters',
+        '/ru/guide/migration/fragments',
+        '/ru/guide/migration/functional-components',
+        '/ru/guide/migration/global-api',
+        '/ru/guide/migration/global-api-treeshaking',
+        '/ru/guide/migration/inline-template-attribute',
+        '/ru/guide/migration/key-attribute',
+        '/ru/guide/migration/keycode-modifiers',
+        '/ru/guide/migration/listeners-removed',
+        '/ru/guide/migration/props-default-this',
+        '/ru/guide/migration/render-function-api',
+        '/ru/guide/migration/slots-unification',
+        '/ru/guide/migration/transition',
+        '/ru/guide/migration/transition-group',
+        '/ru/guide/migration/v-on-native-modifier-removed',
+        '/ru/guide/migration/v-model',
+        '/ru/guide/migration/v-if-v-for',
+        '/ru/guide/migration/v-bind',
+        '/ru/guide/migration/watch'
+      ]
+    }
+  ],
+  contributing: [
+    {
+      title: 'Внести вклад в документацию',
+      collapsable: false,
+      children: [
+        '/ru/guide/contributing/writing-guide',
+        '/ru/guide/contributing/doc-style-guide',
+        '/ru/guide/contributing/translations'
+      ]
+    }
+  ]
 }
 
 module.exports = {
@@ -509,6 +524,7 @@ module.exports = {
     smoothScroll: false,
     algolia: {
       indexName: 'vuejs-v3',
+      appId: 'BH4D9OD16A',
       apiKey: 'bc6e8acb44ed4179c30d0a45d6140d3f'
     },
     locales: {
@@ -525,10 +541,6 @@ module.exports = {
               link: '/guide/introduction'
             },
             {
-              text: 'Migration Guide',
-              link: '/guide/migration/introduction'
-            },
-            {
               text: 'Style Guide',
               link: '/style-guide/'
             },
@@ -539,6 +551,14 @@ module.exports = {
             {
               text: 'Examples',
               link: '/examples/markdown'
+            },
+            {
+              text: 'Contribute',
+              link: '/guide/contributing/writing-guide'
+            },
+            {
+              text: 'Migration Guide',
+              link: '/guide/migration/introduction'
             }
           ]
         },
@@ -619,6 +639,8 @@ module.exports = {
         ],
         sidebar: {
           collapsable: false,
+          '/guide/migration/': sidebar.migration,
+          '/guide/contributing/': sidebar.contributing,
           '/guide/': sidebar.guide,
           '/community/': sidebar.guide,
           '/cookbook/': sidebar.cookbook,
@@ -639,10 +661,6 @@ module.exports = {
               link: '/ru/guide/introduction'
             },
             {
-              text: 'Миграция с Vue 2',
-              link: '/ru/guide/migration/introduction'
-            },
-            {
               text: 'Рекомендации',
               link: '/ru/style-guide/'
             },
@@ -653,6 +671,14 @@ module.exports = {
             {
               text: 'Примеры',
               link: '/ru/examples/markdown'
+            },
+            {
+              text: 'Внести вклад',
+              link: '/ru/guide/contributing/writing-guide'
+            },
+            {
+              text: 'Миграция с Vue 2',
+              link: '/ru/guide/migration/introduction'
             }
           ]
         },
@@ -733,6 +759,8 @@ module.exports = {
         ],
         sidebar: {
           collapsable: false,
+          '/ru/guide/migration/': sidebarRU.migration,
+          '/ru/guide/contributing/': sidebarRU.contributing,
           '/ru/guide/': sidebarRU.guide,
           '/ru/community/': sidebarRU.guide,
           '/ru/cookbook/': sidebarRU.cookbook,
