@@ -3,63 +3,63 @@ badges:
   - breaking
 ---
 
-# Slots Unification <MigrationBadges :badges="$frontmatter.badges" />
+# Унификация слотов <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-This change unifies normal and scoped slots in 3.x.
+Изменение унифицирует обычные и слоты с ограниченной областью видимости в 3.x.
 
-Here is a quick summary of what has changed:
+Вот краткое описание изменений:
 
-- `this.$slots` now exposes slots as functions
-- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `this.$scopedSlots` is removed
+- `this.$slots` теперь выставляет слоты как функции
+- **КАРДИНАЛЬНОЕ ИЗМЕНЕНИЕ:** `this.$scopedSlots` удалено
 
-For more information, read on!
+Для получения дополнительной информации читайте дальше!
 
 ## Синтаксис в 2.x
 
-When using the render function, i.e., `h`, 2.x used to define the `slot` data property on the content nodes.
+Когда используется render-функция, т.е. `h`, в версии 2.x требуется определять свойство `slot` на узлах содержимого.
 
 ```js
-// 2.x Syntax
+// Синтаксис в 2.x
 h(LayoutComponent, [
   h('div', { slot: 'header' }, this.header),
   h('div', { slot: 'content' }, this.content)
 ])
 ```
 
-In addition, when referencing scoped slots, they could be referenced using the following syntax:
+Кроме того, при обращении к слотам с ограниченной областью видимости, на них можно сослаться с помощью следующего синтаксиса:
 
 ```js
-// 2.x Syntax
+// Синтаксис в 2.x
 this.$scopedSlots.header
 ```
 
 ## Синтаксис в 3.x
 
-In 3.x, slots are defined as children of the current node as an object:
+В 3.x слоты определяются как дочерние элементы текущего узла в качестве объекта:
 
 ```js
-// 3.x Syntax
+// Синтаксис в 3.x
 h(LayoutComponent, {}, {
   header: () => h('div', this.header),
   content: () => h('div', this.content)
 })
 ```
 
-And when you need to reference scoped slots programmatically, they are now unified into the `$slots` option.
+А когда нужно программно сослаться на слот с ограниченной областью видимости, то теперь они доступны в опции `$slots`.
 
 ```js
-// 2.x Syntax
+// Синтаксис в 2.x
 this.$scopedSlots.header
 
-// 3.x Syntax
+// Синтаксис в 3.x
 this.$slots.header()
 ```
 
 ## Стратегия миграции
 
-A majority of the change has already been shipped in 2.6. As a result, the migration can happen in one step:
+Большая часть изменений уже была опубликована с версией 2.6. В результате миграция может быть выполнена в два шага:
 
-1. Replace all `this.$scopedSlots` occurrences with `this.$slots` in 3.x.
-2. Replace all occurrences of `this.$slots.mySlot` with `this.$slots.mySlot()`
+1. Заменить все вхождения `this.$scopedSlots` на `this.$slots` в 3.x.
+2. Заменить все вхождения `this.$slots.mySlot` на `this.$slots.mySlot()`
