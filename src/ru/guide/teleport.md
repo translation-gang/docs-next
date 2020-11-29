@@ -1,6 +1,6 @@
-# Teleport
+# Телепорт
 
-<VideoLesson href="https://vueschool.io/lessons/vue-3-teleport?friend=vuejs" title="Learn how to use teleport with Vue School">Learn how to use teleport with a free lesson on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/vue-3-teleport?friend=vuejs" title="Узнайте как использовать телепорты на бесплатном уроке Vue School">Узнайте как использовать телепорты на бесплатном уроке Vue School</VideoLesson>
 
 Vue encourages us to build our UIs by encapsulating UI and related behavior into components. We can nest them inside one another to build a tree that makes up an application UI.
 

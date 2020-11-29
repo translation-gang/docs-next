@@ -33,7 +33,7 @@ this.$emit('myEvent')
 
 ## Определение пользовательских событий
 
-<VideoLesson href="https://vueschool.io/lessons/defining-custom-events-emits?friend=vuejs" title="Learn how to define which events a component can emit with Vue School">Watch a free video about Defining Custom Events on Vue School</VideoLesson>
+<VideoLesson href="https://vueschool.io/lessons/defining-custom-events-emits?friend=vuejs" title="Посмотрите бесплатное видео об определении пользовательских событий на Vue School">Посмотрите бесплатное видео об определении пользовательских событий на Vue School</VideoLesson>
 
 Генерируемые компонентом события можно определить с помощью опции `emits`.
 
