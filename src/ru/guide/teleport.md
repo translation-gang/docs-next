@@ -2,13 +2,13 @@
 
 <VideoLesson href="https://vueschool.io/lessons/vue-3-teleport?friend=vuejs" title="Узнайте как использовать телепорты на бесплатном уроке Vue School">Узнайте как использовать телепорты на бесплатном уроке Vue School</VideoLesson>
 
-Vue encourages us to build our UIs by encapsulating UI and related behavior into components. We can nest them inside one another to build a tree that makes up an application UI.
+Vue предлагает создавать свои пользовательские интерфейсы, инкапсулируя UI и соответствующее поведение в компоненты. Вкладывая их друг в друга можно построить дерево компонентов, из которого и строится пользовательский интерфейс приложения.
 
-However, sometimes a part of a component's template belongs to this component logically, while from a technical point of view, it would be preferable to move this part of the template somewhere else in the DOM, outside of the Vue app. 
+Однако, иногда часть шаблона компонента принадлежит этому компоненту логически, в то время как с технической точки зрения было бы предпочтительнее переместить эту часть шаблона куда-то в другое место DOM или даже вне приложения Vue. 
 
-A common scenario for this is creating a component that includes a full-screen modal. In most cases, you'd want the modal's logic to live within the component, but the positioning of the modal quickly becomes difficult to solve through CSS, or requires a change in component composition.
+Частый случай такого — компонент, содержащий в себе полноэкранное модальное окно. В большинстве случаев, удобнее чтобы логика модального окна была внутри компонента, но тогда позиционирование модального окна становится сложной задачей для решения с помощью CSS, или требует кардинальных изменений в композиции компонентов.
 
-Consider the following HTML structure.
+Рассмотрим следующую структуру HTML:
 
 ```html
 <body>
@@ -21,24 +21,24 @@ Consider the following HTML structure.
 </body>
 ```
 
-Let's take a look at `modal-button`. 
+Давайте взглянем на `modal-button`. 
 
-The component will have a `button` element to trigger the opening of the modal, and a `div` element with a class of `.modal`, which will contain the modal's content and a button to self-close.
+Компонент содержит элемент `button` для открытия модального окна и элемент `div` с классом `.modal`, в котором будет располагаться содержимое модального окна, а также кнопка для его закрытия.
 
 ```js
 const app = Vue.createApp({});
 
 app.component('modal-button', {
   template: `
-    <button @click="modalOpen = true">
-        Open full screen modal!
+    <button type="button" @click="modalOpen = true">
+      Открыть полноэкранное модальное окно!
     </button>
 
     <div v-if="modalOpen" class="modal">
       <div>
-        I'm a modal! 
-        <button @click="modalOpen = false">
-          Close
+        Информация в модальном окне! 
+        <button type="button" @click="modalOpen = false">
+          Закрыть
         </button>
       </div>
     </div>
@@ -51,26 +51,26 @@ app.component('modal-button', {
 })
 ```
 
-When using this component inside the initial HTML structure, we can see a problem - the modal is being rendered inside the deeply nested `div` and the `position: absolute` of the modal takes the parent relatively positioned `div` as reference.
+При использовании этого компонента внутри исходной структуры HTML видна проблема — модальное окно отрисовывается внутри глубоко вложенного `div` и его стиль `position: absolute` получает родителя относительно расположенного `div` по ссылке.
 
-Teleport provides a clean way to allow us to control under which parent in our DOM we want a piece of HTML to be rendered, without having to resort to global state or splitting this into two components.
+Телепорт предоставляет прозрачный способ для контроля, в каком месте DOM требуется отрисовать часть HTML, без необходимости использования глобального состояния или разделения на два компонента.
 
-Let's modify our `modal-button` to use `<teleport>` and tell Vue "**teleport** this HTML **to** the "**body**" tag". 
+Давайте модифицируем `modal-button` для использования `<teleport>` и скажем Vue «**телепортировать** этот HTML **в** тег "**body**"». 
 
 ```js
 app.component('modal-button', {
   template: `
-    <button @click="modalOpen = true">
-        Open full screen modal! (With teleport!)
+    <button type="button" @click="modalOpen = true">
+      Открыть полноэкранное модальное окно! (с помощью телепорта!)
     </button>
 
     <teleport to="body">
       <div v-if="modalOpen" class="modal">
         <div>
-          I'm a teleported modal! 
-          (My parent is "body")
-          <button @click="modalOpen = false">
-            Close
+          Я телепортированное модальное окно! 
+          (Мой родитель "body")
+          <button type="button" @click="modalOpen = false">
+            Закрыть
           </button>
         </div>
       </div>
@@ -84,25 +84,25 @@ app.component('modal-button', {
 })
 ```
 
-As a result, once we click the button to open the modal, Vue will correctly render the modal's content as a child of the `body` tag.
+В результате, как только нажмём кнопку открытия модального окна, Vue корректно отобразит содержимое модального окна в качестве потомка тега `body`.
 
 <common-codepen-snippet title="Vue 3 Teleport" slug="gOPNvjR" tab="js,result" />
 
-## Using with Vue components
+## Использование с компонентами Vue
 
-If `<teleport>` contains a Vue component, it will remain a logical child component of the `<teleport>`'s parent:
+Если `<teleport>` содержит компонент Vue, то он логически останется дочерним компонентом родителя `<teleport>`:
 
 ```js
 const app = Vue.createApp({
   template: `
-    <h1>Root instance</h1>
+    <h1>Корневой экземпляр</h1>
     <parent-component />
   `
 })
 
 app.component('parent-component', {
   template: `
-    <h2>This is a parent component</h2>
+    <h2>Это родительский компонент</h2>
     <teleport to="#endofbody">
       <child-component name="John" />
     </teleport>
@@ -112,18 +112,18 @@ app.component('parent-component', {
 app.component('child-component', {
   props: ['name'],
   template: `
-    <div>Hello, {{ name }}</div>
+    <div>Привет, {{ name }}</div>
   `
 })
 ```
 
-In this case, even when `child-component` is rendered in the different place, it will remain a child of `parent-component` and will receive a `name` prop from it.
+В этом случае, даже когда `child-component` будет отрисован в другом месте, он останется потомком компонента `parent-component` и получит входной параметр `name` от него.
 
-This also means that injections from a parent component work as expected, and that the child component will be nested below the parent component in the Vue Devtools, instead of being placed where the actual content moved to.
+Это также означает, что инъекции из родительского компонента будут работать как и ожидается, и что дочерний компонент будет вложен ниже родительского компонента во Vue Devtools, вместо того, чтобы быть помещённым туда, куда он переместился фактически.
 
-## Using multiple teleports on the same target
+## Использование нескольких телепортов на одной цели
 
-A common use case scenario would be a reusable `<Modal>` component of which there might be multiple instances active at the same time. For this kind of scenario, multiple `<teleport>` components can mount their content to the same target element. The order will be a simple append - later mounts will be located after earlier ones within the target element.
+Подобный сценарий может быть при переиспользовании компонента `<Modal>`, когда может быть несколько его активных экземпляров одновременно. В таких случаях несколько компонентов `<teleport>` могут монтировать своё содержимое к одному и тому же элементу. Порядок будет определяться по времени добавления — более поздние будут располагаться после тех монтирований, что произошли раньше в целевом элементе.
 
 ```html
 <teleport to="#modals">
@@ -133,11 +133,11 @@ A common use case scenario would be a reusable `<Modal>` component of which ther
   <div>B</div>
 </teleport>
 
-<!-- result-->
+<!-- результат -->
 <div id="modals">
   <div>A</div>
   <div>B</div>
 </div>
 ```
 
-You can check `<teleport>` component options in the [API reference](../api/built-in-components.md#teleport).
+Подробнее опции компонента `<teleport>` можно изучить в [справочнике API](../api/built-in-components.md#teleport).
