@@ -261,7 +261,7 @@ render() {
 
 `resolveComponent` is the same function that templates use internally to resolve components by name.
 
-A `render` function will normally only need to use `resolveComponent` for components that are [registered globally](/guide/component-registration.html#global-registration). [Local component registration](/guide/component-registration.html#local-registration) can usually be skipped altogether. Consider the following example:
+A `render` function will normally only need to use `resolveComponent` for components that are [registered globally](component-registration.md#global-registration). [Local component registration](component-registration.md#local-registration) can usually be skipped altogether. Consider the following example:
 
 ```js
 // We can simplify this
