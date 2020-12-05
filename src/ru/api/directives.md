@@ -68,9 +68,9 @@
 
 ## v-else
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Ограничение:** previous sibling element must have `v-if` or `v-else-if`.
 
 - **Использование:**
 
@@ -91,7 +91,7 @@
 
 - **Ожидает:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Ограничение:** previous sibling element must have `v-if` or `v-else-if`.
 
 - **Использование:**
 
@@ -153,13 +153,13 @@
 
 ## v-on
 
-- **Shorthand:** `@`
+- **Сокращённая запись:** `@`
 
 - **Ожидает:** `Function | Inline Statement | Object`
 
-- **Argument:** `event`
+- **Аргумент:** `event`
 
-- **Modifiers:**
+- **Модификаторы:**
 
   - `.stop` - call `event.stopPropagation()`.
   - `.prevent` - call `event.preventDefault()`.
@@ -237,13 +237,13 @@
 
 ## v-bind
 
-- **Shorthand:** `:`
+- **Сокращённая запись:** `:`
 
 - **Ожидает:** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Аргумент:** `attrOrProp (опционально)`
 
-- **Modifiers:**
+- **Модификаторы:**
 
   - `.camel` - transform the kebab-case attribute name into camelCase.
 
@@ -320,7 +320,7 @@
   - `<textarea>`
   - components
 
-- **Modifiers:**
+- **Модификаторы:**
 
   - [`.lazy`](../guide/forms.md#lazy) - listen to `change` events instead of `input`
   - [`.number`](../guide/forms.md#number) - cast valid input string to numbers
@@ -336,11 +336,11 @@
 
 ## v-slot
 
-- **Shorthand:** `#`
+- **Сокращённая запись:** `#`
 
 - **Ожидает:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/component-slots.md#destructuring-slot-props)). Optional - only needed if expecting props to be passed to the slot.
 
-- **Argument:** slot name (optional, defaults to `default`)
+- **Аргумент:** slot name (optional, defaults to `default`)
 
 - **Limited to:**
 
@@ -391,7 +391,7 @@
 
 ## v-pre
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
 - **Использование:**
 
@@ -405,7 +405,7 @@
 
 ## v-cloak
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
 - **Использование:**
 
@@ -429,7 +429,7 @@
 
 ## v-once
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
 - **Подробности:**
 
@@ -480,5 +480,4 @@
 <!-- Correct -->
 <tr v-is="'blog-post-row'"></tr>
 ```
-
 :::

@@ -6,7 +6,7 @@
 
   - `{string | Function} source`
   - `{Function | Object} callback`
-  - `{Object} options (optional)`
+  - `{Object} options (опционально)`
     - `{boolean} deep`
     - `{boolean} immediate`
     - `{string} flush`
@@ -119,7 +119,7 @@
   unwatch()
   ```
 
-- **Option: deep**
+- **Опция: deep**
 
   To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
 
@@ -131,7 +131,7 @@
   // callback is fired
   ```
 
-- **Option: immediate**
+- **Опция: immediate**
 
   Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
 
@@ -173,7 +173,7 @@
   )
   ```
 
-- **Option: flush**
+- **Опция: flush**
 
   The `flush` option allows for greater control over the timing of the callback. It can be set to `'pre'`, `'post'` or `'sync'`.
   
@@ -198,11 +198,11 @@
 - **Аргументы:**
 
   - `{string} eventName`
-  - `...args (optional)`
+  - `...args (опционально)`
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
-- **Examples:**
+- **Примеры:**
 
   Using `$emit` with only an event name:
 
@@ -284,7 +284,7 @@
 
 - **Аргументы:**
 
-  - `{Function} callback (optional)`
+  - `{Function} callback (опционально)`
 
 - **Использование:**
 
