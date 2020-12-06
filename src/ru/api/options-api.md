@@ -1,10 +1,10 @@
 # Options API
 
-Options API разделяется на несколько категорий:
+Options API состоит из нескольких категорий:
 
-- [Data](options-data.md)
+- [Локальное состояние (data)](options-data.md)
 - [DOM](options-dom.md)
-- [Lifecycle Hooks](options-lifecycle-hooks.md)
-- [Assets](options-assets.md)
-- [Composition](options-composition.md)
-- [Miscellaneous](options-misc.md)
+- [Хуки жизненного цикла](options-lifecycle-hooks.md)
+- [Доступные ресурсы](options-assets.md)
+- [Композиция](options-composition.md)
+- [Разное](options-misc.md)
