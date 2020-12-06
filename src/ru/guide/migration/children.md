@@ -3,21 +3,21 @@ badges:
   - removed
 ---
 
-# $children <MigrationBadges :badges="$frontmatter.badges" />
+# Удалено свойство $children <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-The `$children` instance property has been removed from Vue 3.0 and is no longer supported.
+Свойство экземпляра `$children` было удалено из Vue 3.x и больше не поддерживается.
 
 ## Синтаксис в 2.x
 
-In 2.x, developers could access direct child components of the current instance with `this.$children`:
+В версии 2.x, разработчики могли получить доступ к дочерним компонентам текущего экземпляра через `this.$children`:
 
 ```vue
 <template>
   <div>
     <img alt="Vue logo" src="./assets/logo.png">
-    <my-button>Change logo</my-button>
+    <my-button>Изменить логотип</my-button>
   </div>
 </template>
 
@@ -37,4 +37,4 @@ export default {
 
 ## Изменения в 3.x
 
-In 3.x, the `$children` property is removed and no longer supported. Instead, if you need to access a child component instance, we recommend using [$refs](/guide/component-template-refs.md#template-refs).
+В версии 3.x, свойство `$children` было удалено и больше не поддерживается. Вместо этого, при необходимости получить доступ к экземпляру дочернего компонента рекомендуется использовать [$refs](../component-template-refs.md#template-refs).
