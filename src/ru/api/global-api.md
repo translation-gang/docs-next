@@ -356,23 +356,23 @@ return withDirectives(h('div'), [
 
   Массив директив.
 
-  Each directive itself is an array, which allows for up to 4 indexes to be defined as seen in the following examples.
+  Каждая директива сама по себе является массивом, что позволяет определять до 4 индексов, как показано в следующих примерах.
 
-  - `[directive]` - The directive by itself. Required.
+  - `[directive]` — Директива сама по себе. Обязательно.
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
   const nodeWithDirectives = withDirectives(h('div'), [[MyDirective]])
   ```
 
-  - `[directive, value]` - The above, plus a value of type `any` to be assigned to the directive
+  - `[directive, value]` — Тоже, что и выше, плюс значение типа `any`, которое присваивается директиве.
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
   const nodeWithDirectives = withDirectives(h('div'), [[MyDirective, 100]])
   ```
 
-  - `[directive, value, arg]` - The above, plus a `String` argument, ie. `click` in `v-on:click`
+  - `[directive, value, arg]` — Тоже, что и выше, плюс аргумент типа `String`, т.е. `click` в `v-on:click`.
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
@@ -381,7 +381,7 @@ return withDirectives(h('div'), [
   ])
   ```
 
-  - `[directive, value, arg, modifiers]` - The above, plus a `key: value` pair `Object` defining any modifiers.
+  - `[directive, value, arg, modifiers]` — Тоже, что и выше, плюс пары `key: value` типа `Object`, определяющие любые модификаторы.
 
   ```js
   const MyDirective = resolveDirective('MyDirective')
@@ -392,14 +392,11 @@ return withDirectives(h('div'), [
 
 ## createRenderer
 
-The createRenderer function accepts two generic arguments:
-`HostNode` and `HostElement`, corresponding to Node and Element types in the
-host environment.
+Функция `createRenderer` принимает 2 общих аргумента: `HostNode` и `HostElement`, соответствующие типам `Node` и `Element` в окружении.
 
-For example, for runtime-dom, HostNode would be the DOM
-`Node` interface and HostElement would be the DOM `Element` interface.
+Например, для runtime-DOM, `HostNode` будет интерфейсом DOM `Node`, а `HostElement` будет интерфейсом DOM `Element`.
 
-Custom renderers can pass in the platform specific types like this:
+Пользовательские рендеры могут передавать платформо-специфичные типы следующим образом:
 
 ```js
 import { createRenderer } from 'vue'
@@ -419,7 +416,7 @@ const { render, createApp } = createRenderer<Node, Element>({
 
 - **Подробности:**
 
-  The node in the host environment.
+  Узел в окружении.
 
 #### HostElement
 
@@ -427,11 +424,11 @@ const { render, createApp } = createRenderer<Node, Element>({
 
 - **Подробности:**
 
-  The element in the host environment.
+  Элемент в окружении.
 
 ## nextTick
 
-Defer the callback to be executed after the next DOM update cycle. Use it immediately after you’ve changed some data to wait for the DOM update.
+Возможность вызвать коллбэк, после следующего цикла обновления DOM. Используйте его сразу после изменения некоторых данных, чтобы дождаться обновлённого DOM.
 
 ```js
 import { createApp, nextTick } from 'vue'
