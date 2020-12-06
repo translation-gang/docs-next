@@ -116,4 +116,4 @@ app.component('todo-list-statistics', {
 })
 ```
 
-Теперь любое изменение `todos.length` будет корректно отражаться в компонентах, куда внедряется `todoLength`. Подробнее `computed` можно изучить в [разделе Computed и Watch](reactivity-computed-watchers.md#computed-values) и `reactive` provide/inject в [разделе Composition API](composition-api-provide-inject.md#reactivity).
+Теперь любое изменение `todos.length` будет корректно отражаться в компонентах, куда внедряется `todoLength`. Подробнее про `computed` можно изучить в [разделе Computed и Watch](reactivity-computed-watchers.md#computed-values), а про `reactive` provide/inject в [разделе Composition API](composition-api-provide-inject.md#reactivity).
