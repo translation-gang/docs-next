@@ -3,15 +3,15 @@ badges:
   - breaking
 ---
 
-# Events API <MigrationBadges :badges="$frontmatter.badges" />
+# Удалено API событий <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-`$on`, `$off` and `$once` instance methods are removed. Application instances no longer implement the event emitter interface.
+Методы экземпляров `$on`, `$off` и `$once` были удалены. Экземпляры приложения больше не реализуют интерфейс эмиттера событий.
 
 ## Синтаксис в 2.x
 
-In 2.x, Vue instance could be used to trigger handlers attached imperatively via the event emitter API (`$on`, `$off` and `$once`). This was used to create _event hubs_ to create global event listeners used across the whole application:
+В версии 2.x, экземпляр Vue можно было использовать для запуска обработчиков, подключённых через API эмиттера событий (`$on`, `$off` и `$once`). Это использовалось для создания _шины событий_ чтобы создавать глобальные слушатели событий, используемые во всем приложении:
 
 ```js
 // eventHub.js
@@ -27,13 +27,13 @@ import eventHub from './eventHub'
 
 export default {
   mounted() {
-    // adding eventHub listener
+    // добавление слушателя в eventHub
     eventHub.$on('custom-event', () => {
       console.log('Custom event triggered!')
     })
   },
   beforeDestroy() {
-    // removing eventHub listener
+    // удаление слушателя из eventHub
     eventHub.$off('custom-event')
   }
 }
@@ -46,7 +46,7 @@ import eventHub from './eventHub'
 export default {
   methods: {
     callGlobalCustomEvent() {
-      eventHub.$emit('custom-event') // if ChildComponent is mounted, we will have a message in the console
+      eventHub.$emit('custom-event') // если ChildComponent примонтирован, то появится сообщение в консоли
     }
   }
 }
@@ -54,10 +54,10 @@ export default {
 
 ## Что изменилось в 3.x
 
-We removed `$on`, `$off` and `$once` methods from the instance completely. `$emit` is still a part of the existing API as it's used to trigger event handlers declaratively attached by a parent component
+Были полностью удалены методы экземпляра `$on`, `$off` и `$once`. Метод `$emit` всё ещё является частью существующего API, так как он используется для запуска обработчиков событий, декларативно прикреплённых родительским компонентом.
 
 ## Стратегия миграции
 
-Existing event hubs can be replaced by using an external library implementing the event emitter interface, for example [mitt](https://github.com/developit/mitt).
+Существующие шины событий могут быть заменены на реализацию внешней библиотеки, реализующей интерфейс эмиттера событий, например [mitt](https://github.com/developit/mitt).
 
-These methods can also be supported in compatibility builds.
+Эти методы также могут поддерживаться в специальных сборках для совместимости.
