@@ -1,41 +1,41 @@
-# Dynamic & Async Components
+# Динамические и асинхронные компоненты
 
 > Подразумевается, что вы уже изучили и разобрались с разделом [Основы компонентов](component-basics.md). Если нет — прочитайте его сначала.
 
-## Dynamic Components with `keep-alive`
+## Динамические компоненты с `keep-alive`
 
-Earlier, we used the `is` attribute to switch between components in a tabbed interface:
+Ранее, атрибут `is` использовался для переключения между компонентами в интерфейсе с вкладками:
 
 ```vue
 <component :is="currentTabComponent"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
+Однако при переключении между этими компонентами может возникнуть необходимость сохранить их состояние или избежать их перерисовку в целях производительности. Например при небольшой доработки интерфейса с вкладками:
 
 <common-codepen-snippet title="Dynamic components: without keep-alive" slug="jOPjZOe" tab="html,result" :preview="false" />
 
-You'll notice that if you select a post, switch to the _Archive_ tab, then switch back to _Posts_, it's no longer showing the post you selected. That's because each time you switch to a new tab, Vue creates a new instance of the `currentTabComponent`.
+Можно заметить, что если выбрать пост, переключиться на вкладку _Archive_, а затем снова вернуться на _Posts_, то выбранный пост больше не отображается. Так происходит потому, что каждый раз, когда переключаемся на новую вкладку Vue будет создавать новый экземпляр `currentTabComponent`.
 
-Recreating dynamic components is normally useful behavior, but in this case, we'd really like those tab component instances to be cached once they're created for the first time. To solve this problem, we can wrap our dynamic component with a `<keep-alive>` element:
+Пересоздание динамических компонентов обычно полезно, но в данном случае хотелось бы чтобы экземпляры компонентов вкладок кэшировались после их создания в первый раз. Для решения этой проблемы можно обернуть динамический компонент в `<keep-alive>`:
 
 ```vue
-<!-- Inactive components will be cached! -->
+<!-- Неактивные компоненты будут закэшированы! -->
 <keep-alive>
   <component :is="currentTabComponent"></component>
 </keep-alive>
 ```
 
-Check out the result below:
+Проверим результат ниже:
 
 <common-codepen-snippet title="Dynamic components: with keep-alive" slug="VwLJQvP" tab="html,result" :preview="false" />
 
-Now the _Posts_ tab maintains its state (the selected post) even when it's not rendered.
+Теперь вкладка _Posts_ сохраняет своё состояние (выбранный пост) даже тогда, когда не отрисовывается.
 
-Check out more details on `<keep-alive>` in the [API reference](../api/built-in-components.md#keep-alive).
+Подробнее о компоненте `<keep-alive>` можно узнать в [справочнике API](../api/built-in-components.md#keep-alive).
 
-## Async Components
+## Асинхронные компоненты
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that possible, Vue has a `defineAsyncComponent` method:
+В больших приложениях может потребоваться разделить приложение на более мелкие части и загружать компоненты с сервера только тогда, когда они необходимы. Чтобы реализовать подобное Vue предоставляет метод `defineAsyncComponent`:
 
 ```js
 const app = Vue.createApp({})
@@ -52,9 +52,9 @@ const AsyncComp = Vue.defineAsyncComponent(
 app.component('async-example', AsyncComp)
 ```
 
-As you can see, this method accepts a factory function returning a `Promise`. Promise's `resolve` callback should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed.
+Как можно увидеть, метод принимает функцию-фабрику, возвращающую `Promise`. В Promise коллбэк `resolve` должен быть вызван, когда получено определение компонента с сервера. Также можно вызвать `reject(reason)` для обработки неудачи при загрузке.
 
-You can also return a `Promise` in the factory function, so with Webpack 2 or later and ES2015 syntax you can do:
+Можно также возвращать `Promise` в функции-фабрике, так что с Webpack 2 или более поздней версии и синтаксисом ES2015 можно сделать так:
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -66,7 +66,7 @@ const AsyncComp = defineAsyncComponent(() =>
 app.component('async-component', AsyncComp)
 ```
 
-You can also use `defineAsyncComponent` when [registering a component locally](component-registration.md#local-registration):
+Также можно использовать `defineAsyncComponent` при [локальной регистрации компонента](component-registration.md#local-registration):
 
 ```js
 import { createApp, defineAsyncComponent } from 'vue'
@@ -81,10 +81,10 @@ createApp({
 })
 ```
 
-### Using with Suspense
+### Использование с Suspense
 
-Async components are _suspensible_ by default. This means if it has a `<Suspense>` in the parent chain, it will be treated as an async dependency of that `<Suspense>`. In this case, the loading state will be controlled by the `<Suspense>`, and the component's own loading, error, delay and timeout options will be ignored.
+Асинхронные компоненты по умолчанию считаются _suspensible_. Это означает, что если имеется `<Suspense>` в родительской цепочке, то компонент будет рассматриваться как асинхронная зависимость от этого `<Suspense>`. В таком случае состояние загрузки будет контролироваться `<Suspense>`, а собственные опции компонента для загрузки, ошибки, задержки и таймаута будут проигнорированы.
 
-The async component can opt-out of `Suspense` control and let the component always control its own loading state by specifying `suspensible: false` in its options.
+Асинхронный компонент может отказаться от управления `Suspense` и всегда использовать собственное состояние для загрузки, с помощью опции `suspensible: false`.
 
-You can check the list of available options in the [API Reference](../api/global-api.md#arguments-4)
+Список доступных опций можно посмотреть в [справочнике API](../api/global-api.md#arguments-4)
