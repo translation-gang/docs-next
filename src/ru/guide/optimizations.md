@@ -1,17 +1,17 @@
-# Rendering Mechanisms and Optimizations
+# Механизмы отрисовки и оптимизации
 
-> This page is not required reading in order to learn how to use Vue well, but it provides more information, should you be curious how rendering works under the hood.
+> Это необязательный раздел для чтения, чтобы узнать как хорошо использовать Vue, но он предоставляет дополнительную информацию, если интересно понять как работает отрисовка страниц под капотом.
 
-## Virtual DOM
+## Виртуальный DOM
 
-Now that we know how watchers are updating the components, you might ask how those changes eventually make it to the DOM! Perhaps you’ve heard of the Virtual DOM before, many frameworks including Vue use this paradigm to make sure our interfaces reflect the changes we’re updating in JavaScript effectively
+Сейчас, когда знаем как методы-наблюдатели обновляют компоненты, может возникнуть вопрос: каким образом эти изменения попадают в конечном итоге в DOM?! Возможно, ранее вы уже слышали о виртуальном DOM, многие фреймворки, включая и Vue, используют эту парадигму чтобы убедиться что интерфейсы эффективно отражают все изменения, выполненные в JavaScript.
 
 <div class="reactivecontent">
   <common-codepen-snippet title="How does the Virtual DOM work?" slug="RwwQapa" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
 </div>
 
-We make a copy of the DOM in JavaScript called the Virtual DOM, we do this because touching the DOM with JavaScript is computationally expensive. While performing updates in JavaScript is cheap, finding the required DOM nodes and updating them with JS is expensive. So we batch calls, and change the DOM all at once.
+Копия DOM в JavaScript, называемая виртуальным DOM, создаётся из-за того, что работа с DOM через JavaScript является дорогостоящими вычислительными операциями. В тоже время как выполнение обновлений в JavaScript дёшево, поиск требуемых DOM-узлов и их обновление с помощью JS затратно. Поэтому набирается список предстоящих изменений и применяется к DOM одновременно.
 
-The Virtual DOM is a lightweight JavaScript object, created by a render function. It takes three arguments: the element, an object with data, props, attrs and more, and an array. The array is where we pass in the children, which have all these arguments too, and then they can have children and so on, until we build a full tree of elements.
+Виртуальный DOM — это легковесный объект JavaScript, создаваемый render-функцией. Он принимает три аргумента: элемент, объект с данными, входными параметрами, атрибутами и многим другим, а также массив. Массив — место где указываются дочерние элементы, каждый из которых тоже имеет по три аргумента, и они также могут иметь свои дочерние элементы и так далее, пока не будет построено полное дерево элементов.
 
-If we need to update the list items, we do so in JavaScript, using the reactivity we mentioned earlier. We then make all the changes to the JavaScript copy, the virtual DOM, and perform a diff between this and the actual DOM. Only then do we make our updates to just what has changed. The Virtual DOM allows us to make performant updates to our UIs!
+Если требуется обновить элементы списка, мы выполняем это через JavaScript, используя реактивность о которой упоминали ранее. Затем все эти изменения вносятся в JavaScript копию, т.е. в виртуальный DOM, и выполняется операция сравнения с оригинальным DOM. Только после этого определяются какие обновления необходимо сделать. Таким образом виртуальный DOM позволяет сделать обновления UI производительными!
