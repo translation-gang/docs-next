@@ -63,7 +63,7 @@ stop()
 
 ### Side Effect Invalidation
 
-Sometimes the watched effect function will perform asynchronous side effects that need to be cleaned up when it is invalidated (i.e state changed before the effects can be completed). The effect function receives an `onInvalidate` function that can be used to register an invalidation callback. This invalidation callback is called when:
+Sometimes the watched effect function will perform asynchronous side effects that need to be cleaned up when it is invalidated (i.e. state changed before the effects can be completed). The effect function receives an `onInvalidate` function that can be used to register an invalidation callback. This invalidation callback is called when:
 
 - the effect is about to re-run
 - the watcher is stopped (i.e. when the component is unmounted if `watchEffect` is used inside `setup()` or lifecycle hooks)
@@ -83,8 +83,8 @@ We are registering the invalidation callback via a passed-in function instead of
 
 ```js
 const data = ref(null)
-watchEffect(async onInvalidate => {
-  onInvalidate(() => {...}) // we register cleanup function before Promise resolves
+watchEffect(async (onInvalidate) => {
+  onInvalidate(() => { /* ... */ }) // we register cleanup function before Promise resolves
   data.value = await fetchData(props.id)
 })
 ```
@@ -93,7 +93,7 @@ An async function implicitly returns a Promise, but the cleanup function needs t
 
 ### Effect Flush Timing
 
-Vue's reactivity system buffers invalidated effects and flushes them asynchronously to avoid unnecessary duplicate invocation when there are many state mutations happening in the same "tick". Internally, a component's `update` function is also a watched effect. When a user effect is queued, it is always invoked after all component `update` effects:
+Vue's reactivity system buffers invalidated effects and flushes them asynchronously to avoid unnecessary duplicate invocation when there are many state mutations happening in the same "tick". Internally, a component's `update` function is also a watched effect. When a user effect is queued, it is by default invoked **before** all component `update` effects:
 
 ```html
 <template>
@@ -120,41 +120,25 @@ Vue's reactivity system buffers invalidated effects and flushes them asynchronou
 In this example:
 
 - The count will be logged synchronously on initial run.
-- When `count` is mutated, the callback will be called **after** the component has updated.
+- When `count` is mutated, the callback will be called **before** the component has updated.
 
-Note the first run is executed before the component is mounted. So if you wish to access the DOM (or template refs) in a watched effect, do it in the `onMounted` hook:
-
-```js
-onMounted(() => {
-  watchEffect(() => {
-    // access the DOM or template refs
-  })
-})
-```
-
-In cases where a watcher effect needs to be re-run synchronously or before component updates, we can pass an additional `options` object with the `flush` option (default is `'post'`):
+In cases where a watcher effect needs to be re-run **after** component updates, we can pass an additional `options` object with the `flush` option (default is `'pre'`):
 
 ```js
-// fire synchronously
+// fire after component updates so you can access the updated DOM
+// Note: this will also defer the initial run of the effect until the
+// component's first render is finished.
 watchEffect(
   () => {
     /* ... */
   },
   {
-    flush: 'sync'
-  }
-)
-
-// fire before component updates
-watchEffect(
-  () => {
-    /* ... */
-  },
-  {
-    flush: 'pre'
+    flush: 'post'
   }
 )
 ```
+
+The `flush` option also accepts `'sync'`, which forces the effect to always trigger synchronously. This is however inefficient and should be rarely needed.
 
 ### Watcher Debugging
 
@@ -216,9 +200,15 @@ watch(count, (count, prevCount) => {
 A watcher can also watch multiple sources at the same time using an array:
 
 ```js
-watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
-  /* ... */
+const firstName = ref('');
+const lastName= ref('');
+
+watch([firstName, lastName], (newValues, prevValues) => {
+  console.log(newValues, prevValues);
 })
+
+firstName.value = "John"; // logs: ["John",""] ["", ""]
+lastName.value = "Smith"; // logs: ["John", "Smith"] ["John", ""]
 ```
 
 ### Shared Behavior with `watchEffect`
