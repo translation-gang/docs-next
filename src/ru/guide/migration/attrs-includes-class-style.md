@@ -1,55 +1,55 @@
 ---
-title: $attrs includes class & style
+title: Свойство $attrs содержит class и style
 badges:
   - breaking
 ---
 
-# `$attrs` includes `class` & `style` <MigrationBadges :badges="$frontmatter.badges" />
+# Свойство `$attrs` содержит `class` и `style` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-`$attrs` now contains _all_ attributes passed to a component, including `class` and `style`.
+Свойство `$attrs` теперь содержит _все_ атрибуты, переданные компоненту, в том числе `class` и `style`.
 
 ## Поведение в 2.x
 
-`class` and `style` attributes get some special handling in the Vue 2 virtual DOM implementation. For that reason, they are _not_ included in `$attrs`, while all other attributes are.
+Атрибуты `class` и `style` получали специальную обработку в реализации виртуального DOM во Vue 2. По этой причине они _не содержались_ в свойстве `$attrs`, в то время как остальные атрибуты были.
 
-A side effect of this manifests when using `inheritAttrs: false`:
+Побочный эффект этого проявлялся при использовании `inheritAttrs: false`:
 
-- Attributes in `$attrs` are no longer automatically added to the root element, leaving it to the developer to decide where to add them.
-- But `class` and `style`, not being part of `$attrs`, will still be applied to the component's root element:
+- Атрибуты в свойстве `$attrs` больше не добавлялись автоматически к корневому элементу, оставляя решение за разработчиком, куда их следует добавлять.
+- Но атрибуты `class` и `style`, не являясь частью `$attrs`, всё равно применялись к корневому элементу компонента:
 
-```vue
-<template>
-  <label>
-    <input type="text" v-bind="$attrs" />
+  ```vue
+  <template>
+    <label>
+      <input type="text" v-bind="$attrs" />
+    </label>
+  </template>
+
+  <script>
+  export default {
+    inheritAttrs: false
+  }
+  </script>
+  ```
+
+  при таком использовании:
+
+  ```html
+  <my-component id="my-id" class="my-class"></my-component>
+  ```
+
+  ...получался следующий HTML:
+
+  ```html
+  <label class="my-class">
+    <input type="text" id="my-id" />
   </label>
-</template>
-
-<script>
-export default {
-  inheritAttrs: false
-}
-</script>
-```
-
-when used like this:
-
-```html
-<my-component id="my-id" class="my-class"></my-component>
-```
-
-...will generate this HTML:
-
-```html
-<label class="my-class">
-  <input type="text" id="my-id" />
-</label>
-```
+  ```
 
 ## Поведение в 3.x
 
-`$attrs` contains _all_ attributes, which makes it easier to apply all of them to a different element. The example from above now generates the following HTML:
+Свойство `$attrs` содержит _все атрибуты_, что облегчает их применение к разным элементам. Для примера выше будет сгенерирован следующий HTML:
 
 ```html
 <label>
@@ -59,7 +59,7 @@ when used like this:
 
 ## Стратегия миграции
 
-In components that use `inheritAttrs: false`, make sure that styling still works as intended. If you previously relied on the special behavior of `class` and `style`, some visuals might be broken as these attributes might now be applied to another element.
+В компонентах, использующих `inheritAttrs: false`, следует убедиться что стилизация работает как и задумано. Если раньше полагались на специальное поведение для `class` и `style`, то некоторые визуальные стили могут быть нарушены, поскольку эти атрибуты теперь будут применяться к другому элементу.
 
 ## См. также
 
