@@ -1,5 +1,5 @@
 ---
-title: Опция data
+title: Опция data только функция
 badges:
   - breaking
 ---

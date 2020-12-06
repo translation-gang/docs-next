@@ -3,7 +3,7 @@ badges:
   - removed
 ---
 
-# Фильтры <MigrationBadges :badges="$frontmatter.badges" />
+# Фильтры удалены <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
