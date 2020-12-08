@@ -172,11 +172,12 @@ Vue валидирует входные параметры по указанно
 ```ts
 import { defineComponent, PropType } from 'vue'
 
-interface ComplexMessage {
+interface Book {
   title: string
-  okMessage: string
-  cancelMessage: string
+  author: string
+  year: number
 }
+
 const Component = defineComponent({
   props: {
     name: String,
@@ -184,18 +185,51 @@ const Component = defineComponent({
     callback: {
       type: Function as PropType<() => void>
     },
-    message: {
-      type: Object as PropType<ComplexMessage>,
-      required: true,
-      validator(message: ComplexMessage) {
-        return !!message.title
-      }
+    book: {
+      type: Object as PropType<Book>,
+      required: true
     }
   }
 })
 ```
 
-Если обнаружили, что валидатор не получает вывод типов или автокомплит по свойствам не работает, аннотация аргумента с ожидаемым типом может помочь решить эту проблему.
+:::warning ВНИМАНИЕ
+Ввиду [ограничений](https://github.com/microsoft/TypeScript/issues/38845) TypeScript, когда дело доходит до вывода типов выражений функций, необходимо быть осторожным со значениями `validators` и `default` для объектов и массивов:
+:::
+
+```ts
+import { defineComponent, PropType } from 'vue'
+
+interface Book {
+  title: string
+  year?: number
+}
+
+const Component = defineComponent({
+  props: {
+    bookA: {
+      type: Object as PropType<Book>,
+      // Убедитесь, что используете стрелочные функции
+      default: () => ({
+        title: "Arrow Function Expression"
+      }),
+      validator: (book: Book) => !!book.title
+    },
+    bookB: {
+      type: Object as PropType<Book>,
+      // Или явно укажите этот параметр
+      default(this: void) {
+        return {
+          title: "Function Expression"
+        }
+      },
+      validator(this: void, book: Book) {
+        return !!book.title
+      }
+    }
+  }
+})
+```
 
 ## Использование с Composition API
 
