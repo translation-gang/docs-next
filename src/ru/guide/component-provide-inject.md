@@ -59,7 +59,7 @@ app.component('todo-list', {
     }
   },
   provide: {
-    todoLength: this.todos.length // это приведёт к ошибке 'Cannot read property 'length' of undefined`
+    todoLength: this.todos.length // это приведёт к ошибке `Cannot read property 'length' of undefined`
   },
   template: `
     ...
