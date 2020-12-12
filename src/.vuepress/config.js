@@ -705,7 +705,7 @@ module.exports = {
                   link: '/ru/community/partners'
                 },
                 {
-                  text: 'Join',
+                  text: 'Присоединяйтесь к сообществу Vue.js!',
                   link: '/ru/community/join/'
                 },
                 {
