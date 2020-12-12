@@ -1,36 +1,36 @@
-# Handling Edge Cases
+# Обработка крайних случаев
 
 > Подразумевается, что вы уже изучили и разобрались с разделом [Основы компонентов](component-basics.md). Если нет — прочитайте его сначала.
 
 :::tip Примечание
-All the features on this page document the handling of edge cases, meaning unusual situations that sometimes require bending Vue's rules a little. Note however, that they all have disadvantages or situations where they could be dangerous. These are noted in each case, so keep them in mind when deciding to use each feature.
+Возможности на этой странице документируют обработку крайних случаев — необычных ситуаций, когда требуются некоторые исключения из правил Vue. Обратите внимание, все они имеют недостатки или ситуации, когда могут быть опасными. Об этом отмечено в каждом случае, поэтому помните о них, когда собираетесь использовать какую-либо из этих возможностей.
 :::
 
-## Controlling Updates
+## Контролирование обновлений
 
-Thanks to Vue's Reactivity system, it always knows when to update (if you use it correctly). There are edge cases, however, when you might want to force an update, despite the fact that no reactive data has changed. Then there are other cases when you might want to prevent unnecessary updates.
+Благодаря системе реактивности, Vue всегда знает когда требуется выполнить обновление (если используете корректно). Однако есть крайние случаи, когда может потребоваться принудительное обновление, даже если никакие реактивные данные не изменились. Могут быть и другие случаи, когда требуется предотвращать ненужные обновления.
 
-### Forcing an Update
+### Принудительное обновление
 
-If you find yourself needing to force an update in Vue, in 99.99% of cases, you've made a mistake somewhere. For example, you may be relying on state that isn't tracked by Vue's reactivity system, e.g. with `data` property added after component creation.
+Если столкнулись с тем, что нужно принудительное обновление во Vue, то в 99.99% случаев где-то совершили ошибку. Например, полагаетесь на состояние, которое не отслеживается системой реактивности Vue, добавляя новое свойство в `data` после создания компонента.
 
-However, if you've ruled out the above and find yourself in this extremely rare situation of having to manually force an update, you can do so with [`$forceUpdate`](../api/instance-methods.md#forceupdate).
+Однако, если все возможные варианты исключены и это оказалась крайне редкая ситуация, связанная с необходимостью принудительного обновления вручную, то это можно сделать с помощью [`$forceUpdate`](../api/instance-methods.md#forceupdate).
 
-### Cheap Static Components with `v-once`
+### Дешёвые статические компоненты с помощью `v-once`
 
-Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+Отрисовка простых HTML-элементов во Vue происходит очень быстро, но иногда бывают компоненты, в которых **очень-очень много статичного содержимого**. Для таких случаев, можно убедиться, что он будет вычислен только один раз, а потом закэшируется, указав директиву `v-once` на корневом элементе, например так:
 
 ```js
 app.component('terms-of-service', {
   template: `
     <div v-once>
-      <h1>Terms of Service</h1>
-      ... a lot of static content ...
+      <h1>Условия использования</h1>
+      ... много-много статичного содержимого ...
     </div>
   `
 })
 ```
 
 :::tip Совет
-Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering - plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with `v-once` or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.
+Повторимся ещё раз, старайтесь не злоупотреблять этим шаблоном. Хоть это и удобно в тех редких случаях, когда приходится отрисовывать много статичного содержимого, это попросту не нужно, если только на самом деле не заметили замедления в отрисовке — кроме того, это может добавить путаницы в будущем. Представьте себе разработчика, который не знаком с `v-once` или пропустил её использование в шаблоне. Можно потратить часы, выясняя почему шаблон не обновляется корректно.
 :::
