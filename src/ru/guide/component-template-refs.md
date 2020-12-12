@@ -1,14 +1,14 @@
-# Template refs
+# Ссылки на элементы шаблона
 
 > Подразумевается, что вы уже изучили и разобрались с разделом [Основы компонентов](component-basics.md). Если нет — прочитайте его сначала.
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you can assign a reference ID to the child component or HTML element using the `ref` attribute. For example:
+Несмотря на существование входных параметров и событий, иногда может потребоваться прямой доступ к дочернему компоненту в JavaScript. Для этого можно присвоить ID дочернему компоненту или HTML-элементу с помощью атрибута `ref`. Например:
 
 ```html
 <input ref="input" />
 ```
 
-This may be useful when you want to, for example, programmatically focus this input on component mount:
+К примеру, это может пригодиться для программного выставления фокуса на поле ввода при монтировании компонента:
 
 ```js
 const app = Vue.createApp({})
@@ -28,7 +28,7 @@ app.component('base-input', {
 })
 ```
 
-Also, you can add another `ref` to the component itself and use it to trigger `focusInput` event from the parent component:
+Также, можно добавить ещё один `ref` на сам компонент и использовать его для запуска события `focusInput` из родительского компонента:
 
 ```html
 <base-input ref="usernameInput"></base-input>
@@ -39,7 +39,7 @@ this.$refs.usernameInput.focusInput()
 ```
 
 :::warning ВНИМАНИЕ
-`$refs` are only populated after the component has been rendered. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing `$refs` from within templates or computed properties.
+Свойство `$refs` заполняется после отрисовки компонента. Они предназначены для исключительных случаев, когда необходимо напрямую управлять дочерними элементами — рекомендуется избегать доступа к `$refs` из шаблонов или вычисляемых свойств.
 :::
 
-**См. также**: [Using template refs in Composition API](composition-api-template-refs.md#template-refs)
+**См. также**: [Использование ссылок на элементы шаблонов в Composition API](composition-api-template-refs.md#template-refs)
