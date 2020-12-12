@@ -1,10 +1,10 @@
 ---
-title: Корневой элемент transition-group
+title: Корневой элемент transition-group больше не создаётся
 badges:
   - breaking
 ---
 
-# Корневой элемент `<transition-group>` <MigrationBadges :badges="$frontmatter.badges" />
+# Корневой элемент `<transition-group>` больше не создаётся <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
