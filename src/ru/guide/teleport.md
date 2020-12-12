@@ -1,4 +1,4 @@
-# Телепорт
+# Телепорты
 
 <VideoLesson href="https://vueschool.io/lessons/vue-3-teleport?friend=vuejs" title="Узнайте как использовать телепорты на бесплатном уроке Vue School">Узнайте как использовать телепорты на бесплатном уроке Vue School</VideoLesson>
 
@@ -88,7 +88,7 @@ app.component('modal-button', {
 
 <common-codepen-snippet title="Vue 3 Teleport" slug="gOPNvjR" tab="js,result" />
 
-## Использование с компонентами Vue
+## Использование с компонентами
 
 Если `<teleport>` содержит компонент Vue, то он логически останется дочерним компонентом родителя `<teleport>`:
 
