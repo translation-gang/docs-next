@@ -1,5 +1,5 @@
 ---
-title: Корневой элемент <transition-group>
+title: Корневой элемент transition-group
 badges:
   - breaking
 ---

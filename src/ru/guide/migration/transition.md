@@ -1,5 +1,5 @@
 ---
-title: Transition Class Change
+title: Переименованы некоторые классы transition
 badges:
   - breaking
 ---
@@ -8,13 +8,13 @@ badges:
 
 ## Обзор
 
-The `v-enter` transition class has been renamed to `v-enter-from` and the `v-leave` transition class has been renamed to `v-leave-from`.
+Класс перехода `v-enter` переименован в `v-enter-from`, а класс перехода `v-leave` переименован в `v-leave-from`.
 
 ## Синтаксис в 2.x
 
-Before v2.1.8, we had two transition classes for each transition direction: initial and active states.
+До версии 2.1.8 было два класса для каждого направления перехода: начальное и активное состояния.
 
-In v2.1.8, we introduced `v-enter-to` to address the timing gap between enter/leave transitions. However, for backward compatibility, the `v-enter` name was untouched:
+В версии 2.1.8, мы добавили `v-enter-to` для решения проблемы с временным интервалом между переходами появления/исчезновения. Но для обратной совместимости `v-enter` остался нетронутым:
 
 ```css
 .v-enter,
@@ -28,11 +28,11 @@ In v2.1.8, we introduced `v-enter-to` to address the timing gap between enter/le
 }
 ```
 
-This became confusing, as _enter_ and _leave_ were broad and not using the same naming convention as their class hook counterparts.
+Это добавило путаницы, так как _enter_ и _leave_ имели более широкое понимание и не использовали то же самое соглашение по именованию, как аналоги других классов хуков.
 
 ## Что изменилось в 3.x
 
-In order to be more explicit and legible, we have now renamed these initial state classes:
+Чтобы внести явность, теперь были переименованы эти классы начального состояния:
 
 ```css
 .v-enter-from,
@@ -46,21 +46,21 @@ In order to be more explicit and legible, we have now renamed these initial stat
 }
 ```
 
-It's now much clearer what the difference between these states is.
+Теперь намного понятнее, в чём заключается разница между этими состояниями.
 
 ![Диаграмма переходов](/images/transitions.svg)
 
-The `<transition>` component's related prop names are also changed:
+Связанные с этим входные параметры компонента `<transition>` также изменяются:
 
-- `leave-class` is renamed to `leave-from-class` (can be written as `leaveFromClass` in render functions or JSX)
-- `enter-class` is renamed to `enter-from-class` (can be written as `enterFromClass` in render functions or JSX)
+- `leave-class` переименован в `leave-from-class` (может быть записан как `leaveFromClass` в render-функциях или JSX)
+- `enter-class` переименован в `enter-from-class` (может быть записан как `enterFromClass` в render-функциях или JSX)
 
 ## Стратегия миграции
 
-1. Replace instances of `.v-enter` to `.v-enter-from`
-2. Replace instances of `.v-leave` to `.v-leave-from`
-3. Replace instances of related prop names, as above.
+1. Заменить случаи использования `.v-enter` на `.v-enter-from`
+2. Заменить случаи использования `.v-leave` на `.v-leave-from`
+3. Заменить случаи использования связанных входных параметров, как указано выше.
 
 ## См. также
 
-- [`<TransitionGroup>` now renders no wrapper element by default](transition-group.md)
+- [`<transition-group>` теперь не имеет корневого элемента по умолчанию](transition-group.md)
