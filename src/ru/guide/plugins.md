@@ -1,39 +1,39 @@
-﻿# Plugins
+﻿# Плагины
 
-Plugins are self-contained code that usually add global-level functionality to Vue. It is either an `object` that exposes an `install()` method, or a `function`.
+Плагины —  самодостаточная единица кода, которая добавляет во Vue функциональность глобального уровня. Это может быть `object`, предоставляющий метод `install()`, либо `function`.
 
-There is no strictly defined scope for a plugin, but common scenarios where plugins are useful include:
+Нет строго ограниченной области применения для плагинов, но часто распространённые сценарии могут быть такими:
 
-1. Add some global methods or properties, e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element).
+1. Добавление глобальных методов или свойств (например, [vue-custom-element](https://github.com/karol-f/vue-custom-element)).
 
-2. Add one or more global assets: directives/filters/transitions etc. (e.g. [vue-touch](https://github.com/vuejs/vue-touch)).
+2. Добавление одного или нескольких глобальных ресурсов: директивы/фильтры/переходы и т.д. (например, [vue-touch](https://github.com/vuejs/vue-touch)).
 
-3. Add some component options by global mixin (e.g. [vue-router](https://github.com/vuejs/vue-router)).
+3. Добавление опций компоненту с помощью глобальной примеси (например, [vue-router](https://github.com/vuejs/vue-router)).
 
-4. Add some global instance methods by attaching them to `config.globalProperties`.
+4. Добавление глобальных методов экземпляра, добавляя их в `config.globalProperties`.
 
-5. A library that provides an API of its own, while at the same time injecting some combination of the above (e.g. [vue-router](https://github.com/vuejs/vue-router)).
+5. Библиотека, предоставляющая собственный API и в то же время внедряющая некоторую комбинацию из вышеперечисленного (например, [vue-router](https://github.com/vuejs/vue-router)).
 
-## Writing a Plugin
+## Создание плагина
 
-In order to better understand how to create your own Vue.js plugins, we will create a very simplified version of a plugin that displays `i18n` ready strings.
+Чтобы лучше понять, как создавать собственные плагины Vue.js, создадим упрощённую версию плагина, который отображает локализованные строки (`i18n`).
 
-Whenever this plugin is added to an application, the `install` method will be called if it is an object. If it is a `function`, the function itself will be called. In both cases, it will receive two parameters - the `app` object resulting from Vue's `createApp`, and the options passed in by the user.
+При добавлении плагина в приложение будет вызываться метод `install`, если указывался объект. При использовании `function` будет вызвана сама функция. В обоих случаях она получает два параметра — объект `app`, являющийся результатом вызова `createApp`, и опции, переданные пользователем.
 
-Let's begin by setting up the plugin object. It is recommended to create it in a separate file and export it, as shown below to keep the logic contained and separate.
+Начнём с настройки объекта плагина. Рекомендуется создавать его в отдельном файле и экспортировать, как показано ниже, для изолированности и разделения логики.
 
 ```js
 // plugins/i18n.js
 export default {
   install: (app, options) => {
-    // Plugin code goes here
+    // Код плагина будет здесь
   }
 }
 ```
 
-We want to make a function to translate keys available to the whole application, so we will expose it using `app.config.globalProperties`.
+Нам требуется сделать функцию для перевода ключей, которая будет доступна во всём приложении, поэтому добавим её с помощью `app.config.globalProperties`.
 
-This function will receive a `key` string, which we will use to look up the translated string in the user-provided options.
+Функция будет получать строку `key`, которую станет использовать для поиска переведённой строки в предоставленных пользователем опциях.
 
 ```js
 // plugins/i18n.js
@@ -48,9 +48,9 @@ export default {
 }
 ```
 
-We will assume that our users will pass in an object containing the translated keys in the `options` parameter when they use the plugin. Our `$translate` function will take a string such as `greetings.hello`, look inside the user provided configuration and return the translated value - in this case, `Bonjour!`
+Будем подразумевать, что пользователи при использовании плагина будут передавать объект с переведёнными ключами в параметре `options`. Функция `$translate` будет получать строку ключа вида `greetings.hello`, искать её в предоставленной конфигурации и возвращать переведённое значение — в данном случае, `Bonjour!`
 
-Ex:
+Например:
 
 ```js
 greetings: {
@@ -58,7 +58,7 @@ greetings: {
 }
 ```
 
-Plugins also allow us to use `inject` to provide a function or attribute to the plugin's users. For example, we can allow the application to have access to the `options` parameter to be able to use the translations object.
+Плагины также позволяют использовать `inject` для предоставления функции или атрибута пользователям плагина. Например, можно разрешить приложению получать доступ к параметру `options`, чтобы иметь возможность использовать объект с переводами.
 
 ```js
 // plugins/i18n.js
@@ -75,9 +75,9 @@ export default {
 }
 ```
 
-Plugin users will now be able to `inject['i18n']` into their components and access the object.
+Пользователи плагина теперь смогут использовать `inject['i18n']` в компонентах для получения доступа к объекту.
 
-Additionally, since we have access to the `app` object, all other capabilities like using `mixin` and `directive` are available to the plugin. To learn more about `createApp` and the application instance, check out the [Application API documentation](../api/application-api.md).
+Кроме того, поскольку есть доступ к объекту `app`, все остальные возможности, такие как использование `mixin` и `directive` доступны в плагине. Подробнее о методе `createApp` и экземпляре приложения можно изучить в [документации API приложения](../api/application-api.md).
 
 ```js
 // plugins/i18n.js
@@ -92,14 +92,14 @@ export default {
 
     app.directive('my-directive', {
       mounted (el, binding, vnode, oldVnode) {
-        // some logic ...
+        // какая-то логика ...
       }
       ...
     })
 
     app.mixin({
       created() {
-        // some logic ...
+        // какая-то логика ...
       }
       ...
     })
@@ -107,20 +107,20 @@ export default {
 }
 ```
 
-## Using a Plugin
+## Использование плагина
 
-After a Vue app has been initialized with `createApp()`, you can add a plugin to your application by calling the `use()` method.
+После инициализации приложения Vue с помощью `createApp()` можно подключить плагин с помощью метода `use()`.
 
-We will use the `i18nPlugin` we created in the [Writing a Plugin](#writing-a-plugin) section for demo purposes.
+Используем плагин `i18nPlugin`, который создали в разделе [создание плагина](#writing-a-plugin) в демонстрационных целях.
 
-The `use()` method takes two parameters. The first one is the plugin to be installed, in this case `i18nPlugin`.
+Метод `use()` принимает два параметра. Первый — это устанавливаемы плагин, в данном случае `i18nPlugin`.
 
-It also automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+Он также автоматически предотвращает подключение одного и того же плагина больше одного раза, поэтому несколько вызовов для установки установят плагин только один раз.
 
-The second parameter is optional, and depends on each particular plugin. In the case of the demo `i18nPlugin`, it is an object with the translated strings.
+Второй параметр является опциональным и зависит от каждого конкретного плагина. В случае демо-плагина `i18nPlugin`, это будет объект с переведёнными строками.
 
 :::info Информация
-If you are using third party plugins such as `Vuex` or `Vue Router`, always check the documentation to know what that particular plugin expects to receive as a second parameter.
+При использовании сторонних плагинов, таких как `Vuex` или `Vue Router`, всегда сверяйтесь с документацией, чтобы узнать что ожидает плагин вторым параметром.
 :::
 
 ```js
@@ -139,4 +139,4 @@ app.use(i18nPlugin, i18nStrings)
 app.mount('#app')
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
+Обратите внимание на [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) — огромную коллекцию плагинов и библиотек от сообщества Vue.
