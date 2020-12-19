@@ -146,3 +146,4 @@ Contains parent-scope attribute bindings and events that are not recognized (and
 
 - **См. также:**
   - [Non-Prop Attributes](../guide/component-attrs.md)
+  - [Options / Misc - inheritAttrs](./options-misc.md#inheritattrs)
