@@ -15,7 +15,8 @@
   :::
 
   :::tip Примечание
-  If render function is present in the Vue option, the template will be ignored.:::
+  If render function is present in the Vue option, the template will be ignored.
+  :::
 
 - **См. также:**
   - [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
