@@ -280,6 +280,16 @@ const sidebarRU = {
       title: 'Переиспользование и композиция',
       collapsable: false,
       children: [
+        {
+          title: 'Composition API',
+          children: [
+            '/ru/guide/composition-api-introduction',
+            '/ru/guide/composition-api-setup',
+            '/ru/guide/composition-api-lifecycle-hooks',
+            '/ru/guide/composition-api-provide-inject',
+            '/ru/guide/composition-api-template-refs'
+          ]
+        },
         '/ru/guide/mixins',
         '/ru/guide/custom-directive',
         '/ru/guide/teleport',
@@ -297,16 +307,6 @@ const sidebarRU = {
             '/ru/guide/reactivity',
             '/ru/guide/reactivity-fundamentals',
             '/ru/guide/reactivity-computed-watchers'
-          ]
-        },
-        {
-          title: 'Composition API',
-          children: [
-            '/ru/guide/composition-api-introduction',
-            '/ru/guide/composition-api-setup',
-            '/ru/guide/composition-api-lifecycle-hooks',
-            '/ru/guide/composition-api-provide-inject',
-            '/ru/guide/composition-api-template-refs'
           ]
         },
         '/ru/guide/optimizations',
