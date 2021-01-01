@@ -434,7 +434,7 @@ render() {
   // Вызовы resolveComponent должны находиться вне функции слота
   const Button = Vue.resolveComponent('MyButton')
   const Icon = Vue.resolveComponent('MyIcon')
-  
+
   return Vue.h(
     Button,
     null,
@@ -448,7 +448,7 @@ render() {
           this.text
         ]
       }
-    } 
+    }
   )
 }
 ```

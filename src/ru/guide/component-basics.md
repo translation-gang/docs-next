@@ -178,7 +178,11 @@ const App = {
 ```html
 <div id="blog-posts-events-demo">
   <div :style="{ fontSize: postFontSize + 'em' }">
-    <blog-post v-for="post in posts" :key="post.id" :title="post.title"></blog-post>
+    <blog-post
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+    ></blog-post>
   </div>
 </div>
 ```
@@ -216,7 +220,7 @@ app.component('blog-post', {
 Тогда дочерний компонент может сгенерировать событие с помощью встроенного [метода **`$emit`**](../api/instance-methods.md#emit), передавая ему имя события:
 
 ```html
-<button @click="$emit('enlarge-text')">
+<button @click="$emit('enlargeText')">
   Увеличить размер текста
 </button>
 ```
@@ -230,7 +234,7 @@ app.component('blog-post', {
 ```js
 app.component('blog-post', {
   props: ['title'],
-  emits: ['enlarge-text']
+  emits: ['enlargeText']
 })
 ```
 
@@ -241,7 +245,7 @@ app.component('blog-post', {
 Иногда может потребоваться отправить определённые данные вместе с событием. Например, если захотим, чтобы компонент `<blog-post>` отвечал за то, насколько нужно увеличивать текст. В таком случае, для указания этого значения можно передавать второй параметр `$emit`:
 
 ```html
-<button @click="$emit('enlarge-text', 0.1)">
+<button @click="$emit('enlargeText', 0.1)">
   Увеличить размер текста
 </button>
 ```

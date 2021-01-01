@@ -102,7 +102,7 @@ export default {
   // это массив выходных форматов
   output: [ 
     {
-      file: pkg.module, // название нашей esm библиотеки
+      file: pkg.module, // название создаваемой esm библиотеки
       format: 'esm', // выбранный формат
       sourcemap: true, // флаг rollup для добавления sourcemaps
     }

@@ -5,7 +5,9 @@
 Каждое приложение начинается с создания нового **экземпляра приложения** с помощью функции `createApp`:
 
 ```js
-const app = Vue.createApp({ /* опции */ })
+const app = Vue.createApp({
+  /* опции */
+})
 ```
 
 Экземпляр приложения используется для регистрации глобальных вещей, которые затем могут использоваться компонентами внутри этого приложения. Подробнее об этом мы обсудим дальше в руководстве, но в качестве небольшого примера:
@@ -35,7 +37,9 @@ Vue.createApp({})
 Приложение должно быть примонтировано в DOM-элемент. Например, если требуется примонтировать приложение Vue в `<div id="app"></div>`, то необходимо передать `#app`:
 
 ```js
-const RootComponent = { /* опции */ }
+const RootComponent = {
+  /* опции */
+}
 const app = Vue.createApp(RootComponent)
 const vm = app.mount('#app')
 ```
@@ -109,4 +113,4 @@ Vue.createApp({
 
 Ниже представлена диаграмма жизненного цикла экземпляра. Необязательно понимать её полностью прямо сейчас, но по мере изучения и практики разработки к ней полезно будет обращаться.
 
-<img src="/images/lifecycle.png" width="840" height="auto" style="margin: 0px auto; display: block; max-width: 100%;" loading="lazy" alt="Хуки жизненного цикла экземпляра">
+<img src="/images/lifecycle.svg" width="840" height="auto" style="margin: 0px auto; display: block; max-width: 100%;" loading="lazy" alt="Хуки жизненного цикла экземпляра">
