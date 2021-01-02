@@ -1,4 +1,4 @@
-# Misc
+# Разное
 
 ## name
 
@@ -6,9 +6,9 @@
 
 - **Подробности:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.createApp({}).component({})`, the global ID is automatically set as its name.
+  Позволяет компоненту рекурсивно вызывать себя в своём шаблоне. Обратите внимание, что при глобальной регистрации с помощью `Vue.createApp({}).component({})` в качестве имени автоматически устанавливается его глобальный ID.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Другой плюс указания опции `name` будет для отладки. Именованные компоненты приведут к более полезным предупреждающим сообщениям. Также, при изучении приложения через [vue-devtools](https://github.com/vuejs/vue-devtools), компоненты без имени будут отображаться как `<AnonymousComponent>`, что не очень информативно. Указывая опцию `name`, можно получить гораздо более информативное дерево компонентов.
 
 ## delimiters
 
@@ -16,19 +16,19 @@
 
 - **По умолчанию:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}` 
 
-- **Ограничения:** This option is only available in the full build, with in-browser template compilation.
+- **Ограничения:** Эта опция доступна только в полной сборке, с компилятором шаблонов в браузере.
 
 - **Подробности:**
 
-  Sets the delimiters used for text interpolation within the template.
+  Устанавливает разделители, используемые для интерполяции в шаблоне.
 
-  Typically this is used to avoid conflicting with server-side frameworks that also use mustache syntax.
+  Обычно применяют для избежания конфликтов с фреймворками на стороне сервера, которые также могут использовать синтаксис с фигурными скобками.
 
 - **Пример:**
 
   ```js
   Vue.createApp({
-    // Delimiters changed to ES6 template string style
+    // Разделители изменены на стиль строковых шаблонов в ES6
     delimiters: ['${', '}']
   })
   ```
@@ -41,7 +41,7 @@
 
 - **Подробности:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
+  По умолчанию, атрибуты, привязываемые в родительской области видимости, которые не распознаны как входные параметры, будут «проваливаться». Это означает, что для компонента с одним корневым элементом, эти привязки будут добавлены к корневому элементу дочернего компонента как обычные HTML-атрибуты. При создании компонента, который оборачивает целевой элемент или другой компонент, это не всегда может быть желаемым поведением. Установив `inheritAttrs` в значение `false`, это поведение по умолчанию можно отключить. Атрибуты будут доступны через свойство экземпляра `$attrs` и их можно явно привязать не только к корневому элементу через `v-bind`.
 
 - **Использование:**
 
@@ -63,4 +63,4 @@
   })
   ```
 
-- **См. также:** [Disabling Attribute Inheritance](../guide/component-attrs.md#disabling-attribute-inheritance)
+- **См. также:** [Отключение наследования атрибутов](../guide/component-attrs.md#отключение-наследования-атрибутов)
