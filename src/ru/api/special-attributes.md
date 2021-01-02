@@ -4,11 +4,11 @@
 
 - **Ожидает:** `number | string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  Специальный атрибут `key` в первую очередь нужен в качестве подсказки для Vue и его алгоритма виртуального DOM для идентификации VNode при сравнениях обновлённого списка узлов со старым. Без ключей Vue станет использовать алгоритм, который минимизирует перемещения элементов и по-максимуму старается изменять/переиспользовать элементы одного типа. При использовании ключей элементы будут переупорядочиваться в соответствии с изменением порядка следования ключей, а элементы с уже отсутствующими ключами всегда будут удаляться/уничтожаться.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Потомки одного и того же общего родителя должны иметь **уникальные ключи**. Появление дубликатов ключей будет приводить к ошибкам при отрисовке.
 
-  The most common use case is combined with `v-for`:
+  Наиболее частый случай использования вместе с `v-for`:
 
   ```html
   <ul>
@@ -16,12 +16,12 @@
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  Но также можно использовать его для принудительной замены элемента/компонента вместо переиспользования. Это может быть полезно, когда потребуется:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Корректно вызвать хуки жизненного цикла компонента
+  - Вызвать анимации перехода
 
-  For example:
+  Например:
 
   ```html
   <transition>
@@ -29,44 +29,44 @@
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  При изменениях значения `text`, элемент `<span>` будет всегда заменяться целиком, вместо обновления содержимого, а значит и анимация перехода будет запущена.
 
 ## ref
 
 - **Ожидает:** `string | Function`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  Атрибут `ref` используется для регистрации ссылки на элемент / дочерний компонент. Ссылка будет добавляться в объект `$refs` родительского компонента. При использовании на обычном DOM-элементе ссылка будет указывать на этот элемент; при использовании на дочернем компоненте ссылка будет указывать на экземпляр компонента:
 
   ```html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p будет DOM-узлом -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child component instance -->
+  <!-- vm.$refs.child будет экземпляром дочернего компонента -->
   <child-component ref="child"></child-component>
 
-  <!-- When bound dynamically, we can define ref as a callback function, passing the element or component instance explicitly -->
+  <!-- При динамической привязке, можно определить ref как коллбэк-функцию, явно передавая элемент или экземпляр компонента -->
   <child-component :ref="(el) => child = el"></child-component>
   ```
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Важное примечание о времени регистрации ref-ссылок: поскольку ref-ссылки создаются в результате функции отрисовки, нет возможности получить к ним доступ при начальной отрисовке — потому что их ещё не существует! Свойство `$refs` также нереактивно, поэтому не стоит использовать его в шаблонах для привязки данных.
 
-- **См. также:** [Child Component Refs](../guide/component-template-refs.md)
+- **См. также:** [Ссылки на элементы шаблона](../guide/component-template-refs.md)
 
 ## is
 
-- **Ожидает:** `string | Object (component’s options object)`
+- **Ожидает:** `string | Object (объект опций компонента)`
 
-Used for [dynamic components](../guide/component-dynamic-async.md).
+Используется для [динамических компонентов](../guide/component-dynamic-async.md).
 
-For example:
+Например:
 
 ```html
-<!-- component changes when currentView changes -->
+<!-- компонент меняется в соответствии с изменением currentView -->
 <component :is="currentView"></component>
-
-For detailed usage, follow the links in the description above.
 ```
 
+Подробное описание использования можно изучить по ссылкам ниже.
+
 - **См. также:**
-  - [Dynamic Components](../guide/component-dynamic-async.md)
-  - [DOM Template Parsing Caveats](../guide/component-basics.md#dom-template-parsing-caveats)
+  - [Динамические компоненты](../guide/component-dynamic-async.md)
+  - [Особенности парсинга DOM-шаблона](../guide/component-basics.md#особенности-парсинга-dom-шаблона)
