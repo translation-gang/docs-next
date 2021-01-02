@@ -31,7 +31,7 @@ function setup(props: Data, context: SetupContext): Data
 To get type inference for the arguments passed to `setup()`, the use of [defineComponent](global-api.md#definecomponent) is needed.
 :::
 
-- **Example**
+- **Пример**
 
   With the template:
 
