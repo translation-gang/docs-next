@@ -1,4 +1,4 @@
-# Assets
+# Доступные ресурсы
 
 ## directives
 
@@ -6,9 +6,9 @@
 
 - **Подробности:**
 
-  A hash of directives to be made available to the component instance.
+  Хэш директив, которые доступны в экземпляре компонента.
 
-- **См. также:** [Custom Directives](../guide/custom-directive.md)
+- **См. также:** [Пользовательские директивы](../guide/custom-directive.md)
 
 ## components
 
@@ -16,6 +16,6 @@
 
 - **Подробности:**
 
-  A hash of components to be made available to the component instance.
+  Хэш компонентов, которые доступны в экземпляре компонента.
 
-- **См. также:** [Components](../guide/component-basics.md)
+- **См. также:** [Компоненты](../guide/component-basics.md)
