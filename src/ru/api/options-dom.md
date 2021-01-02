@@ -6,21 +6,21 @@
 
 - **Подробности:**
 
-  A string template to be used as the markup for the component instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Строковый шаблон, который будет использоваться в качестве разметки для экземпляра компонента. Этот **шаблон будет заменять элемент** к которому монтируется. Любая другая разметка внутри элемента для монтирования будет проигнорирована, за исключением случаев когда в шаблоне указаны слоты для распределения контента.
 
-  If the string starts with `#` it will be used as a `querySelector` and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Если строка начинается с `#`, то она будет использоваться в качестве `querySelector`, а в качестве шаблона будет использован innerHTML выбранного элемента. Это позволяет использовать частый трюк с `<script type="x-template">` для подключения шаблонов.
 
   :::tip Примечание
-  From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.
+  С точки зрения безопасности, нужно использовать только те шаблоны Vue, которым можно доверять. Никогда не используйте в качестве шаблона содержимое, создаваемое пользователем.
   :::
 
   :::tip Примечание
-  If render function is present in the Vue option, the template will be ignored.
+  Если в опциях Vue присутствует render-функция, то шаблон будет проигнорирован.
   :::
 
 - **См. также:**
-  - [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
-  - [Content Distribution with Slots](../guide/component-basics.md#content-distribution-with-slots)
+  - [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
+  - [Распределение контента слотами](../guide/component-basics.md#распределение-контента-слотами)
 
 ## render
 
@@ -28,13 +28,13 @@
 
 - **Подробности:**
 
-  An alternative to string templates allowing you to leverage the full programmatic power of JavaScript.
+  Альтернатива строковым шаблонам, позволяющая использовать всю мощь JavaScript.
 
 - **Использование:**
 
   ```html
   <div id="app" class="demo">
-    <my-title blog-title="A Perfect Vue"></my-title>
+    <my-title blog-title="Шикарный Vue"></my-title>
   </div>
   ```
 
@@ -44,8 +44,8 @@
   app.component('my-title', {
     render() {
       return Vue.h(
-        'h1', // tag name,
-        this.blogTitle // tag content
+        'h1', // имя тега,
+        this.blogTitle // содержимое тега
       )
     },
     props: {
@@ -60,7 +60,7 @@
   ```
 
   :::tip Примечание
-  The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element
+  Функция `render` имеет приоритет над render-функцией, скомпилированной из опции `template`, или HTML-шаблоном в DOM монтируемого элемента
   :::
 
-- **См. также:** [Render Functions](../guide/render-function.md)
+- **См. также:** [Render-функции](../guide/render-function.md)
