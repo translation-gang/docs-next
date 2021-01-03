@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Удалено API событий <MigrationBadges :badges="$frontmatter.badges" />
+# Удалено API для событий <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

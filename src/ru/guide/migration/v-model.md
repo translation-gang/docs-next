@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Изменения работы `v-model` <MigrationBadges :badges="$frontmatter.badges" />
+# Изменения в работе `v-model` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

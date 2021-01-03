@@ -3,7 +3,7 @@ badges:
   - new
 ---
 
-# Фрагменты <MigrationBadges :badges="$frontmatter.badges" />
+# Добавлены фрагменты <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

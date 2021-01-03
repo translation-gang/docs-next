@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Поведение при приведениях атрибутов <MigrationBadges :badges="$frontmatter.badges" />
+# Изменено поведение при приведении значения атрибутов <MigrationBadges :badges="$frontmatter.badges" />
 
 :::info Информация
 Это изменение низкоуровневого внутреннего API не затрагивает большинство разработчиков.

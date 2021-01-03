@@ -1,5 +1,5 @@
 ---
-title: Приоритет между v-if и v-for
+title: Изменён приоритет между v-if и v-for
 badges:
   - breaking
 ---

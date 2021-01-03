@@ -1,10 +1,10 @@
 ---
-title: Модификатор v-on.native удалён
+title: Удалён модификатор v-on.native
 badges:
   - breaking
 ---
 
-# Модификатор `v-on.native` удалён <MigrationBadges :badges="$frontmatter.badges" />
+# Удалён модификатор `v-on.native` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

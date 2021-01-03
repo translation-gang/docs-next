@@ -1,10 +1,10 @@
 ---
-title: Удалены $listeners
+title: Удалено свойство $listeners
 badges:
   - breaking
 ---
 
-# Удалены `$listeners` <MigrationBadges :badges="$frontmatter.badges" />
+# Удалено свойство `$listeners` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

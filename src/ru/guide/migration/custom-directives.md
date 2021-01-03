@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Пользовательские директивы <MigrationBadges :badges="$frontmatter.badges" />
+# Переименованы хуки пользовательских директив <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

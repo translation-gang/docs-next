@@ -1,5 +1,5 @@
 ---
-title: Массив ref-ссылок с v-for
+title: Массив ref-ссылок при использовании с v-for
 badges:
 - breaking
 ---

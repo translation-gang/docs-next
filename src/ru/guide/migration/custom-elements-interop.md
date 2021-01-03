@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Изменения обработки пользовательских элементов <MigrationBadges :badges="$frontmatter.badges" />
+# Изменена обработка пользовательских элементов <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

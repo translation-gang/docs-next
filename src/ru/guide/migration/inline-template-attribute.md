@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Атрибут `inline-template` <MigrationBadges :badges="$frontmatter.badges" />
+# Удалён атрибут `inline-template` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

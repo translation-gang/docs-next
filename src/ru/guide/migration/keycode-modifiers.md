@@ -3,7 +3,7 @@ badges:
   - breaking
 ---
 
-# Модификаторы keyCode <MigrationBadges :badges="$frontmatter.badges" />
+# Удалена поддержка модификаторов keyCode <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

@@ -3,7 +3,7 @@ badges:
   - new
 ---
 
-# Асинхронные компоненты <MigrationBadges :badges="$frontmatter.badges" />
+# Изменение синтаксиса для асинхронных компонентов <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

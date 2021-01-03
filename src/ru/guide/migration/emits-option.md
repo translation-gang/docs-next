@@ -1,10 +1,10 @@
 ---
-title: Опция emits
+title: Добавлена опция emits
 badges:
   - new
 ---
 
-# Опция `emits` <MigrationBadges :badges="$frontmatter.badges" />
+# Добавлена опция `emits` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 

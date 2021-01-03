@@ -1,14 +1,14 @@
 ---
-title: Свойство $attrs содержит class и style
+title: Свойство $attrs теперь содержит class и style
 badges:
   - breaking
 ---
 
-# Свойство `$attrs` содержит `class` и `style` <MigrationBadges :badges="$frontmatter.badges" />
+# Свойство `$attrs` теперь содержит `class` и `style` <MigrationBadges :badges="$frontmatter.badges" />
 
 ## Обзор
 
-Свойство `$attrs` теперь содержит _все_ атрибуты, переданные компоненту, в том числе `class` и `style`.
+Свойство `$attrs` теперь содержит _все_ атрибуты, передаваемые компоненту, в том числе `class` и `style`.
 
 ## Поведение в 2.x
 
