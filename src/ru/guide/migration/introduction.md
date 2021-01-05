@@ -4,7 +4,7 @@
 Новичок в Vue.js? Начинать изучение лучше с [руководства](../introduction.md).
 :::
 
-This guide is primarily for users with prior Vue 2 experience who want to learn about the new features and changes in Vue 3. **This is not something you have to read from top to bottom before trying out Vue 3.** While it looks like a lot has changed, a lot of what you know and love about Vue is still the same; but we wanted to be as thorough as possible and provide detailed explanations and examples for every documented change.
+Это руководство в первую очередь предназначено для пользователей с опытом работы с Vue 2, которые хотят узнать о новых функциях и изменениях во Vue 3. **Это не то, с чего надо начинать изучение и читать от начала до конца, прежде чем пробовать Vue 3.** Несмотря на то, что кажется многое изменилось, многое что знаете и любите во Vue осталось прежним; просто мы хотим как можно основательнее и подробнее дать объяснения и примеры для каждого произошедшего изменения.
 
 - [Быстрый старт](#быстрыи-старт)
 - [Важные новые возможности](#важные-новые-возможности)
@@ -16,13 +16,13 @@ This guide is primarily for users with prior Vue 2 experience who want to learn 
 <br>
 <iframe src="https://player.vimeo.com/video/440868720" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-Start learning Vue 3 at [Vue Mastery](https://www.vuemastery.com/courses-path/vue3).
+Начать изучение Vue 3 на [Vue Mastery](https://www.vuemastery.com/courses-path/vue3) (на англ.).
 
 ## Быстрый старт
 
 - Через CDN: `<script src="https://unpkg.com/vue@next"></script>`
-- В браузере песочница на [Codepen](https://codepen.io/yyx990803/pen/OJNoaZL)
-- В браузере песочница на [CodeSandbox](https://v3.vue.new)
+- Песочница в браузере на [Codepen](https://codepen.io/yyx990803/pen/OJNoaZL)
+- Песочница в браузере на [CodeSandbox](https://v3.vue.new)
 - Развернуть проект с помощью [Vite](https://github.com/vitejs/vite):
 
   ```bash
@@ -39,81 +39,81 @@ Start learning Vue 3 at [Vue Mastery](https://www.vuemastery.com/courses-path/vu
 
 ## Важные новые возможности
 
-Some of the new features to keep an eye on in Vue 3 include:
+Некоторые из новых функций, которые появились во Vue 3:
 
 - [Composition API](../composition-api-introduction.md)
-- [Teleport](../teleport.md)
-- [Fragments](fragments.md)
-- [Emits Component Option](../component-custom-events.md)
-- [`createRenderer` API from `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) to create custom renderers
-- [SFC Composition API Syntax Sugar (`<script setup>`)](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-script-setup.md) <Badge text="экспериментально" type="warning" />
-- [SFC State-driven CSS Variables (`<style vars>`)](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-style-variables.md) <Badge text="экспериментально" type="warning" />
-- [SFC `<style scoped>` can now include global rules or rules that target only slotted content](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
+- [Телепорты](../teleport.md)
+- [Добавлены фрагменты](fragments.md)
+- [Добавлена опция emits в компонентах](../component-custom-events.md)
+- [`createRenderer` API из `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) для создания пользовательских рендеров
+- [SFC Синтаксический сахар для Composition API (`<script setup>`)](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-script-setup.md) <Badge text="экспериментально" type="warning" />
+- [SFC CSS-переменные на основе состояния (`<style vars>`)](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-style-variables.md) <Badge text="экспериментально" type="warning" />
+- [SFC `<style scoped>` теперь могут содержать глобальные правила или правила только для содержимого слотов](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 
 ## Кардинальные изменения
 
 :::info Информация
-We are still working on a dedicated Migration Build of Vue 3 with Vue 2 compatible behavior and runtime warnings of incompatible usage. If you are planning to migrate a non-trivial Vue 2 app, we strongly recommend waiting for the Migration Build for a smoother experience.
+Всё ещё ведётся работа над созданием специальной сборки для перехода на Vue 3 с поведением, совместимым с Vue 2, и выводом предупреждений о предстоящих несовместимостях при миграции. Если планируете миграцию большого приложения на Vue 2, рекомендуемся дождаться этой сборки для более спокойного перехода.
 :::
 
-The following consists a list of breaking changes from 2.x:
+Ниже приведён список кардинальных изменений в сравнении с 2.x:
 
 ### Глобальное API
 
-- [Global Vue API is changed to use an application instance](global-api.md)
-- [Global and internal APIs have been restructured to be tree-shakable](global-api-treeshaking.md)
+- [Глобальное API Vue теперь применяется к экземпляру приложения](global-api.md)
+- [Глобальное и внутренние API были реорганизованы для поддержки tree-shaking](global-api-treeshaking.md)
 
 ### Директивы в шаблонах
 
-- [`v-model` usage on components has been reworked](v-model.md)
-- [`key` usage on `<template v-for>` and non-`v-for` nodes has changed](key-attribute.md)
-- [`v-if` and `v-for` precedence when used on the same element has changed](v-if-v-for.md)
-- [`v-bind="object"` is now order-sensitive](v-bind.md)
-- [`v-on:event.native` modifier has been removed](v-on-native-modifier-removed.md)
-- [`ref` inside `v-for` no longer register an array of refs](array-refs.md)
+- [Использование `v-model` на компонентах было переработано](v-model.md)
+- [Изменения использования`key` на `<template v-for>` и не-`v-for` узлах](key-attribute.md)
+- [Изменён приоритет `v-if` и `v-for` при использовании на одном элементе](v-if-v-for.md)
+- [Теперь учитывается порядок при использовании `v-bind="object"`](v-bind.md)
+- [Удалён модификатор `v-on:event.native`](v-on-native-modifier-removed.md)
+- [Использование `ref` внутри `v-for` больше не регистрирует массив ссылок](array-refs.md)
 
 ### Компоненты
 
-- [Functional components can only be created using a plain function](functional-components.md)
-- [`functional` attribute on single-file component (SFC) `<template>` and `functional` component option are deprecated](functional-components.md)
-- [Async components now require `defineAsyncComponent` method to be created](async-components.md)
-- [Component events should now be declared with the `emits` option](emits-option.md)
+- [Функциональные компоненты могут создаваться только простыми функциями](functional-components.md)
+- [Удалён атрибут `functional` для `<template>` однофайловых компонентов, а также удалена опция `functional` в компонентах](functional-components.md)
+- [Создание асинхронных компонентов теперь с помощью метода `defineAsyncComponent`](async-components.md)
+- [События компонента теперь должны описываться с помощью опции `emits`](emits-option.md)
 
 ### Render-функции
 
-- [Render function API changed](render-function-api.md)
-- [`$scopedSlots` property is removed and all slots are exposed via `$slots` as functions](slots-unification.md)
-- [`$listeners` has been removed / merged into `$attrs`](listeners-removed.md)
-- [`$attrs` включает `class` и `style`](attrs-includes-class-style.md)
+- [Изменён API render-функций](render-function-api.md)
+- [Удалено свойство `$scopedSlots`, теперь все слоты доступны как функции через `$slots`](slots-unification.md)
+- [Удалено свойство `$listeners` / теперь всё в `$attrs`](listeners-removed.md)
+- [Свойство `$attrs` теперь содержит `class` и `style`](attrs-includes-class-style.md)
 
 ### Пользовательские элементы
 
-- [Custom elements whitelisting is now performed during template compilation](custom-elements-interop.md)
-- [Special `is` prop usage is restricted to the reserved `<component>` tag only](custom-elements-interop.md#customized-built-in-elements)
+- [Добавление пользовательских элементов в белый список теперь происходит на этапе компиляции шаблона](custom-elements-interop.md)
+- [Использование специального атрибута `is` ограничено тегом `<component>`](custom-elements-interop.md#модифицированные-встроенные-элементы)
 
 ### Другие незначительные изменения
 
 - Хук жизненного цикла `destroyed` переименован в `unmounted`
 - Хук жизненного цикла `beforeDestroy` переименован в `beforeUnmount`
-- [Props `default` factory function no longer has access to `this` context](props-default-this.md)
-- [Custom directive API changed to align with component lifecycle](custom-directives.md)
-- [The `data` option should always be declared as a function](data-option.md)
-- [The `data` option from mixins is now merged shallowly](data-option.md#mixin-merge-behavior-change)
-- [Attributes coercion strategy changed](attribute-coercion.md)
-- [Some transition classes got a rename](transition.md)
-- [`<TransitionGroup>` now renders no wrapper element by default](transition-group.md)
-- [When watching an array, the callback will only trigger when the array is replaced. If you need to trigger on mutation, the `deep` option must be specified.](watch.md)
+- [Удалён доступ к `this` в функции значения по умолчанию входного параметра](props-default-this.md)
+- [Переименованы функции хуков директив, чтобы лучше соответствовать жизненному циклу компонента](custom-directives.md)
+- [Опцию `data` необходимо указывать только функцией](data-option.md)
+- [Опция `data` из примесей теперь объединяется неглубоко](data-option.md#изменение-поведения-при-слиянии-с-примесями)
+- [Изменено поведение при приведении значения атрибутов](attribute-coercion.md)
+- [Переименованы некоторые классы transition](transition.md)
+- [Корневой элемент `<TransitionGroup>` больше не создаётся по умолчанию](transition-group.md)
+- [Отслеживание изменений массива с помощью watch будет вызывать обработчик только при замене массива. При необходимости отслеживаний изменений необходимо указывать опцию `deep`.](watch.md)
 - Теги `<template>` без специальных директив (`v-if/else-if/else`, `v-for` или `v-slot`) теперь обрабатываются как обычные элементы и в результате будет отрисован нативный элемент  `<template>` вместо отрисовки его содержимого.
-- In Vue 2.x, application root container's `outerHTML` is replaced with root component template (or eventually compiled to a template, if root component has no template/render option). Vue 3.x now uses application container's `innerHTML` instead - this means the container itself is no longer considered part of the template.
+- Во Vue 2.x, в корневом контейнере приложения `outerHTML` заменялся на шаблон корневого компонента (или на скомпилированный шаблон, если корневой компонент не имел опции template/render). Vue 3.x теперь использует `innerHTML` контейнера приложения — это означает, что сам контейнер больше не считается частью шаблона.
 
 ### Удалённые API
 
-- [Поддержка `keyCode` в модификаторах `v-on`](keycode-modifiers.md)
-- [Методы экземпляра $on, $off и $once](events-api.md)
-- [Фильтры](filters.md)
-- [Атрибуты инлайнового шаблона](inline-template-attribute.md)
-- [Свойство экземпляра `$children`](children.md)
-- Метод экземпляра `$destroy`. Пользователи больше не должны вручную управлять жизненным циклом отдельных компонентов Vue.
+- [Удалена поддержка `keyCode` в модификаторах `v-on`](keycode-modifiers.md)
+- [Удалены методы экземпляра $on, $off и $once](events-api.md)
+- [Удалены фильтры](filters.md)
+- [Удалена поддержка атрибута inline-template](inline-template-attribute.md)
+- [Удалено свойство экземпляра `$children`](children.md)
+- Удалён метод экземпляра `$destroy`. Пользователи больше не должны вручную управлять жизненным циклом отдельных компонентов Vue.
 
 ## Поддержка библиотек
 
@@ -148,11 +148,11 @@ Vuex 4.0 предоставляет поддержку Vue 3 с тем же са
 
 ### Расширение инструментов для разработчика
 
-We are working on a new version of the Devtools with a new UI and refactored internals to support multiple Vue versions. The new version is currently in beta and only supports Vue 3 (for now). Vuex and Router integration is also work in progress.
+Сейчас идёт работа над новой версией Devtools с новым интерфейсом и переработанной внутренней частью для поддержки нескольких версий Vue. Новая версия в настоящее время находится в бета-тестировании и поддерживает только Vue 3 (на данный момент). Также ведётся работа над интеграцией обновлённых версий Vuex и Router.
 
 - Для Chrome: [Установить из магазина приложений Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg?hl=en)
 
-  - Примечание: the beta channel may conflict with the stable version of devtools so you may need to temporarily disable the stable version for the beta channel to work properly.
+  - Примечание: канал обновлений с бета-версиями может конфликтовать со стабильной версией devtools, поэтому может потребоваться отключить стабильную версию для корректной работы канала обновлений с бета-версиями.
 
 - Для Firefox: [Скачать подписанное расширение](https://github.com/vuejs/vue-devtools/releases/tag/v6.0.0-beta.2) (файл `.xpi` в Assets)
 
