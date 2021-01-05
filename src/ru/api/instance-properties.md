@@ -142,7 +142,7 @@ An object of DOM elements and component instances, registered with [`ref` attrib
 
 - **Подробности:**
 
-Contains parent-scope attribute bindings and events that are not recognized (and extracted) as component [props](options-data.md#props) or [custom events](options-data.md#emits). When a component doesn't have any declared props or custom events, this essentially contains all parent-scope bindings, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+Contains parent-scope attribute bindings and events that are not recognized (and extracted) as component [props](options-data.md#props) or [custom events](options-data.md#emits). When a component doesn't have any declared props or custom events, this essentially contains all parent-scope bindings, and can be passed down to an inner component via `v-bind="$attrs"` — useful when creating higher-order components.
 
 - **См. также:**
   - [Non-Prop Attributes](../guide/component-attrs.md)
