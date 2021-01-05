@@ -1,6 +1,6 @@
 # Template Refs
 
-> This section uses [single-file component](single-file-component.md) syntax for code examples
+> Этот раздел использует синтаксис [однофайловых компонентов](single-file-component.md) для примеров кода
 
 > This guide assumes that you have already read the [Composition API Introduction](composition-api-introduction.md) and [Reactivity Fundamentals](reactivity-fundamentals.md). Read that first if you are new to Composition API.
 

@@ -1,6 +1,6 @@
 # Computed and Watch
 
-> This section uses [single-file component](single-file-component.md) syntax for code examples
+> Этот раздел использует синтаксис [однофайловых компонентов](single-file-component.md) для примеров кода
 
 ## Computed values
 
