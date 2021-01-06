@@ -538,109 +538,120 @@ module.exports = {
         selectText: 'Languages',
         editLinkText: 'Edit this on GitHub!',
         lastUpdated: 'Last updated',
-        nav: [{
-          text: 'Docs',
-          ariaLabel: 'Documentation Menu',
-          items: [{
-              text: 'Guide',
-              link: '/guide/introduction'
-            },
-            {
-              text: 'Style Guide',
-              link: '/style-guide/'
-            },
-            {
-              text: 'Cookbook',
-              link: '/cookbook/'
-            },
-            {
-              text: 'Examples',
-              link: '/examples/markdown'
-            },
-            {
-              text: 'Contribute',
-              link: '/guide/contributing/writing-guide'
-            },
-            {
-              text: 'Migration Guide',
-              link: '/guide/migration/introduction'
-            }
-          ]
-        },
-        {
-          text: 'API Reference',
-          link: '/api/'
-        },
-        {
-          text: 'Ecosystem',
-          items: [{
-              text: 'Community',
-              ariaLabel: 'Community Menu',
-              items: [{
-                  text: 'Team',
-                  link: '/community/team/'
-                },
-                {
-                  text: 'Partners',
-                  link: '/community/partners'
-                },
-                {
-                  text: 'Join',
-                  link: '/community/join/'
-                },
-                {
-                  text: 'Themes',
-                  link: '/community/themes/'
-                }
-              ]
-            },
-            {
-              text: 'Official Projects',
-              items: [{
-                  text: 'Vue Router',
-                  link: 'https://next.router.vuejs.org/'
-                },
-                {
-                  text: 'Vuex',
-                  link: 'https://next.vuex.vuejs.org/'
-                },
-                {
-                  text: 'Vue CLI',
-                  link: 'https://cli.vuejs.org/'
-                },
-                {
-                  text: 'Vue Test Utils',
-                  link: 'https://vuejs.github.io/vue-test-utils-next-docs/guide/introduction.html'
-                },
-                {
-                  text: 'Devtools',
-                  link: 'https://github.com/vuejs/vue-devtools'
-                },
-                {
-                  text: 'Weekly news',
-                  link: 'https://news.vuejs.org/'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          text: 'Support Vue',
-          link: '/support-vuejs/',
-          items: [{
-              text: 'One-time Donations',
-              link: '/support-vuejs/#one-time-donations'
-            },
-            {
-              text: 'Recurring Pledges',
-              link: '/support-vuejs/#recurring-pledges'
-            },
-            {
-              text: 'T-Shirt Shop',
-              link: 'https://vue.threadless.com/'
-            }
-          ]
-        }
+        nav: [
+          {
+            text: 'Docs',
+            ariaLabel: 'Documentation Menu',
+            items: [{
+                text: 'Guide',
+                link: '/guide/introduction'
+              },
+              {
+                text: 'Style Guide',
+                link: '/style-guide/'
+              },
+              {
+                text: 'Cookbook',
+                link: '/cookbook/'
+              },
+              {
+                text: 'Examples',
+                link: '/examples/markdown'
+              },
+              {
+                text: 'Contribute',
+                link: '/guide/contributing/writing-guide'
+              },
+              {
+                text: 'Migration Guide',
+                link: '/guide/migration/introduction'
+              }
+            ]
+          },
+          {
+            text: 'API Reference',
+            link: '/api/'
+          },
+          {
+            text: 'Ecosystem',
+            items: [{
+                text: 'Community',
+                ariaLabel: 'Community Menu',
+                items: [{
+                    text: 'Team',
+                    link: '/community/team/'
+                  },
+                  {
+                    text: 'Partners',
+                    link: '/community/partners'
+                  },
+                  {
+                    text: 'Join',
+                    link: '/community/join/'
+                  },
+                  {
+                    text: 'Themes',
+                    link: '/community/themes/'
+                  }
+                ]
+              },
+              {
+                text: 'Official Projects',
+                items: [{
+                    text: 'Vue Router',
+                    link: 'https://next.router.vuejs.org/'
+                  },
+                  {
+                    text: 'Vuex',
+                    link: 'https://next.vuex.vuejs.org/'
+                  },
+                  {
+                    text: 'Vue CLI',
+                    link: 'https://cli.vuejs.org/'
+                  },
+                  {
+                    text: 'Vue Test Utils',
+                    link: 'https://vuejs.github.io/vue-test-utils-next-docs/guide/introduction.html'
+                  },
+                  {
+                    text: 'Devtools',
+                    link: 'https://github.com/vuejs/vue-devtools'
+                  },
+                  {
+                    text: 'Weekly news',
+                    link: 'https://news.vuejs.org/'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            text: 'Support Vue',
+            link: '/support-vuejs/',
+            items: [{
+                text: 'One-time Donations',
+                link: '/support-vuejs/#one-time-donations'
+              },
+              {
+                text: 'Recurring Pledges',
+                link: '/support-vuejs/#recurring-pledges'
+              },
+              {
+                text: 'T-Shirt Shop',
+                link: 'https://vue.threadless.com/'
+              }
+            ]
+          },
+          {
+            text: 'Translations',
+            link: '#',
+            items: [
+              {
+                text: '中文',
+                link: 'https://v3.cn.vuejs.org/'
+              }
+            ]
+          }
         ],
         sidebar: {
           collapsable: false,
@@ -658,109 +669,121 @@ module.exports = {
         selectText: 'Переводы',
         editLinkText: 'Изменить эту страницу на GitHub',
         lastUpdated: 'Последнее обновление',
-        nav: [{
-          text: 'Документация',
-          ariaLabel: 'Меню документации',
-          items: [{
-              text: 'Руководство',
-              link: '/ru/guide/introduction'
-            },
-            {
-              text: 'Рекомендации',
-              link: '/ru/style-guide/'
-            },
-            {
-              text: 'Книга рецептов',
-              link: '/ru/cookbook/'
-            },
-            {
-              text: 'Примеры',
-              link: '/ru/examples/markdown'
-            },
-            {
-              text: 'Внести свой вклад',
-              link: '/ru/guide/contributing/writing-guide'
-            },
-            {
-              text: 'Руководство по миграции',
-              link: '/ru/guide/migration/introduction'
-            }
-          ]
-        },
-        {
-          text: 'Справочник API',
-          link: '/ru/api/'
-        },
-        {
-          text: 'Экосистема',
-          items: [{
-              text: 'Сообщество',
-              ariaLabel: 'Меню сообщества',
-              items: [{
-                  text: 'Команда',
-                  link: '/ru/community/team/'
-                },
-                {
-                  text: 'Партнёры',
-                  link: '/ru/community/partners'
-                },
-                {
-                  text: 'Присоединяйтесь к сообществу Vue.js!',
-                  link: '/ru/community/join/'
-                },
-                {
-                  text: 'Темы',
-                  link: '/ru/community/themes/'
-                }
-              ]
-            },
-            {
-              text: 'Официальные проекты',
-              items: [{
-                  text: 'Vue Router',
-                  link: 'https://next.router.vuejs.org/'
-                },
-                {
-                  text: 'Vuex',
-                  link: 'https://next.vuex.vuejs.org/'
-                },
-                {
-                  text: 'Vue CLI',
-                  link: 'https://cli.vuejs.org/ru/'
-                },
-                {
-                  text: 'Vue Test Utils',
-                  link: 'https://vuejs.github.io/vue-test-utils-next-docs/guide/introduction.html'
-                },
-                {
-                  text: 'Devtools',
-                  link: 'https://github.com/vuejs/vue-devtools'
-                },
-                {
-                  text: 'Weekly news',
-                  link: 'https://news.vuejs.org/'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          text: 'Поддержать Vue',
-          link: '/ru/support-vuejs/',
-          items: [{
-              text: 'Единоразовые пожертвования',
-              link: '/support-vuejs/#one-time-donations'
-            },
-            {
-              text: 'Повторяющиеся взносы',
-              link: '/support-vuejs/#recurring-pledges'
-            },
-            {
-              text: 'Магазин футболок',
-              link: 'https://vue.threadless.com/'
-            }
-          ]
-        }
+        nav: [
+          {
+            text: 'Документация',
+            ariaLabel: 'Меню документации',
+            items: [
+              {
+                text: 'Руководство',
+                link: '/ru/guide/introduction'
+              },
+              {
+                text: 'Рекомендации',
+                link: '/ru/style-guide/'
+              },
+              {
+                text: 'Книга рецептов',
+                link: '/ru/cookbook/'
+              },
+              {
+                text: 'Примеры',
+                link: '/ru/examples/markdown'
+              },
+              {
+                text: 'Внести свой вклад',
+                link: '/ru/guide/contributing/writing-guide'
+              },
+              {
+                text: 'Руководство по миграции',
+                link: '/ru/guide/migration/introduction'
+              }
+            ]
+          },
+          {
+            text: 'Справочник API',
+            link: '/ru/api/'
+          },
+          {
+            text: 'Экосистема',
+            items: [{
+                text: 'Сообщество',
+                ariaLabel: 'Меню сообщества',
+                items: [{
+                    text: 'Команда',
+                    link: '/ru/community/team/'
+                  },
+                  {
+                    text: 'Партнёры',
+                    link: '/ru/community/partners'
+                  },
+                  {
+                    text: 'Присоединяйтесь к сообществу Vue.js!',
+                    link: '/ru/community/join/'
+                  },
+                  {
+                    text: 'Темы',
+                    link: '/ru/community/themes/'
+                  }
+                ]
+              },
+              {
+                text: 'Официальные проекты',
+                items: [{
+                    text: 'Vue Router',
+                    link: 'https://next.router.vuejs.org/'
+                  },
+                  {
+                    text: 'Vuex',
+                    link: 'https://next.vuex.vuejs.org/'
+                  },
+                  {
+                    text: 'Vue CLI',
+                    link: 'https://cli.vuejs.org/ru/'
+                  },
+                  {
+                    text: 'Vue Test Utils',
+                    link: 'https://vuejs.github.io/vue-test-utils-next-docs/guide/introduction.html'
+                  },
+                  {
+                    text: 'Devtools',
+                    link: 'https://github.com/vuejs/vue-devtools'
+                  },
+                  {
+                    text: 'Weekly news',
+                    link: 'https://news.vuejs.org/'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            text: 'Поддержать Vue',
+            link: '/ru/support-vuejs/',
+            items: [{
+                text: 'Единоразовые пожертвования',
+                link: '/support-vuejs/#one-time-donations'
+              },
+              {
+                text: 'Повторяющиеся взносы',
+                link: '/support-vuejs/#recurring-pledges'
+              },
+              {
+                text: 'Магазин футболок',
+                link: 'https://vue.threadless.com/'
+              }
+            ]
+          },
+          {
+            text: 'Переводы',
+            link: '#',
+            items: [
+              {
+                text: '中文',
+                link: 'https://v3.cn.vuejs.org/'
+              }
+            ]
+          }
         ],
         sidebar: {
           collapsable: false,
