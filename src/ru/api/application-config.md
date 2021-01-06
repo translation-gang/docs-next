@@ -94,6 +94,10 @@ app.config.isCustomElement = tag => tag.startsWith('ion-')
 
 > Обратите внимание что нет необходимости указывать HTML и SVG теги — парсер Vue определяет их автоматически.
 
+:::tip Важно
+Эта опция конфигурации работает только при использовании компилятора шаблонов. Для только-runtime сборки `isCustomElement` нужно передавать в `@vue/compiler-dom` в настройках сборки — например, через [опцию vue-loader `compilerOptions`](https://vue-loader.vuejs.org/ru/options.html#compileroptions).
+:::
+
 ## optionMergeStrategies
 
 - **Тип:** `{ [key: string]: Function }`
