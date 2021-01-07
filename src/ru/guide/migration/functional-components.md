@@ -31,8 +31,8 @@ badges:
 
 Компонент `<dynamic-heading>`, отвечающий за отрисовку соответствующего заголовка (т.е., `h1`, `h2`, `h3`, и т.д.), можно записать однофайловым компонентом в 2.x так:
 
-```js
-// Пример функционального компонента во Vue 2
+```vue
+<!-- Пример функционального компонента во Vue 2 -->
 export default {
   functional: true,
   props: ['level'],
@@ -44,8 +44,8 @@ export default {
 
 Или так, если предпочитаете использовать `<template>` в однофайловых компонентах:
 
-```js
-// Пример функционального компонента во Vue 2 с <template>
+```vue
+<!-- Пример функционального компонента во Vue 2 с <template> -->
 <template functional>
   <component
     :is="`h${props.level}`"
@@ -91,7 +91,7 @@ export default DynamicHeading
 
 Используя компонент `<dynamic-heading>` из примера выше, в итоге он будет выглядеть так:
 
-```js{1,3,4}
+```vue{1,3,4}
 <template>
   <component
     v-bind:is="`h${$props.level}`"

@@ -1,6 +1,6 @@
 # Методы экземпляра
 
-## \$watch
+## $watch
 
 - **Аргументы:**
 
@@ -193,7 +193,7 @@
 
 - **См. также:** [Watchers](../guide/computed.md#watchers)
 
-## \$emit
+## $emit
 
 - **Аргументы:**
 
@@ -274,13 +274,13 @@
   - [`emits` option](options-data.md#emits)
   - [Emitting a Value With an Event](../guide/component-basics.md#emitting-a-value-with-an-event)
 
-## \$forceUpdate
+## $forceUpdate
 
 - **Использование:**
 
   Force the component instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
-## \$nextTick
+## $nextTick
 
 - **Аргументы:**
 

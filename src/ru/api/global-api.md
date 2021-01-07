@@ -398,7 +398,7 @@ return withDirectives(h('div'), [
 
 Пользовательские рендеры могут передавать платформо-специфичные типы следующим образом:
 
-```js
+```ts
 import { createRenderer } from 'vue'
 const { render, createApp } = createRenderer<Node, Element>({
   patchProp,

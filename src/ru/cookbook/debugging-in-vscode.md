@@ -102,7 +102,7 @@ npm run serve
 
 Примеры выше — отличные рабочие варианты для отладки. Однако, есть и альтернативный вариант, когда можно просто использовать [нативное выражение debugger](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Statements/debugger) прямо в коде. При их использовании важно не забыть удалить эти выражения после окончания отладки.
 
-```html
+```vue
 <script>
 export default {
   data() {
