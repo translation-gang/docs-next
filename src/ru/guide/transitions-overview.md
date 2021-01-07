@@ -1,19 +1,19 @@
-# Overview
+# Обзор возможностей
 
-Vue offers some abstractions that can help work with transitions and animations, particularly in response to something changing. Some of these abstractions include:
+Vue предоставляет некоторые абстракции, которые могут помочь в работе с переходами и анимациями, особенно в ответ на изменения чего-либо. Некоторые из них включают в себя:
 
-- Hooks for components entering and leaving the DOM, in both CSS and JS, using the built-in `<transition>` component.
-- Transition Modes so that you can orchestrate ordering during a transition.
-- Hooks for when multiple elements are updating in position, with FLIP techniques applied under the hood to increase performance, using the `<transition-group>` component.
-- Transitioning different states in an application, with `watchers`.
+- Хуки для компонентов, добавляемых или удаляемых из DOM, как для CSS, так и для JS, с помощью встроенного компонента `<transition>`.
+- Режимы перехода для возможности оркестрации порядка выполнения во время перехода.
+- Хуки для списка элементов, положение которых на странице изменяется, с поддержкой техники FLIP под капотом для увеличения производительности, с помощью компонента `<transition-group>`.
+- Переходы между различными состояниями в приложении с помощью `watchers`.
 
-We will cover all of these and more in the next three sections in this Guide. However, aside from these useful API offerings, it's worth mentioning that the class and style declarations we covered earlier can be used to apply animations and transitions as well, for more simple use cases.
+Всё это (и не только) будет рассматриваться в трёх следующих разделах руководства. Однако несмотря на то, что предоставляются эти удобные API, стоит помнить, что привязки классов и стилей, изученные ранее, также можно использовать и для применения анимаций и переходов в более простых случаях.
 
-In this next section, we'll go over some web animation and transitions basics, and link off to some resources for further exploration. If you're already familiar with web animation and how those principles might work with some of Vue's directives, feel free to skip this next section. For anyone else looking to learn a little more about web animation basics before diving in, read on.
+В следующем разделе познакомимся с некоторыми основами веб-анимации и переходов, а также предложим дополнительные ссылки на ресурсы для дальнейшего изучения. Если уже знакомы с веб-анимациями и с тем, как эти принципы могут работать с директивами Vue, не стесняйтесь пропустить этот раздел. Всех остальных, кому интересно узнать немного больше об основах веб-анимации, приглашаем читать дальше.
 
-## Class-based Animations & Transitions
+## Анимации и переходы на классах
 
-Though the `<transition>` component can be wonderful for components entering and leaving, you can also activate an animation without mounting a component, by adding a conditional class.
+Несмотря на то, что компонент `<transition>` замечательно подходит для анимации появления и исчезновения компонентов, анимацию также можно активировать без монтирования компонента, просто добавляя определённый класс по условию.
 
 ```html
 <div id="demo">
@@ -72,9 +72,9 @@ Vue.createApp(Demo).mount('#demo')
 
 <common-codepen-snippet title="Create animation with a class" slug="ff45b91caf7a98c8c9077ad8ab539260" tab="css,result" :editable="false" :preview="false" />
 
-## Transitions with Style Bindings
+## Переходы с привязками к стилям
 
-Some transition effects can be applied by interpolating values, for instance by binding a style to an element while an interaction occurs. Take this example for instance:
+Некоторые эффекты переходов можно реализовать путём интерполяции значений, например привязкой определённых стилей к элементам во время взаимодействия:
 
 ```html
 <div id="demo">
@@ -112,29 +112,29 @@ const Demo = {
 Vue.createApp(Demo).mount('#demo')
 ```
 
-<common-codepen-snippet title="Interpolation with style bindings" slug="JjGezQY" :editable="false" />
+<common-codepen-snippet title="Интерполяция с помощью привязок стилей" slug="JjGezQY" :editable="false" />
 
-In this example, we are creating animation through the use of interpolation, attached to the mouse movement. The CSS transition is applied to the element as well, to let the element know what kind of easing to use while it's updating.
+В примере выше создали анимацию с использованием интерполяции, привязавшись к движению курсора мыши. CSS-переход применяется и к элементу, чтобы он понимал какую функцию плавности перехода нужно использовать во время его обновления.
 
-## Performance
+## Производительность
 
-You may notice that the animations shown above are using things like `transforms`, and applying strange properties like `perspective`- why were they built that way instead of just using `margin` and `top` etc?
+Можно заметить, что в примерах анимации выше используются такие вещи как `transform` и применяются странные свойства, например `perspective` — зачем они нужны, и почему построены таким образом вместо простого использования свойств `margin` и `top` и т.п.?
 
-We can create extremely smooth animations on the web by being aware of performance. We want to hardware accelerate elements when we can, and use properties that don't trigger repaints. Let's go over some of how we can accomplish this.
+Создать невероятно плавную анимацию можно только помня о производительности. Стоит использовать аппаратное ускорение для элементов, где только это возможно, а также использовать свойства, которые не приводят к перерисовке (repaints). Рассмотрим подробнее как этого можно достичь.
 
-### Transform and Opacity
+### Трансформации и прозрачность
 
-We can check resources like [CSS-Triggers](https://csstriggers.com/) to see which properties will trigger repaints if we animate them. Here, if you look under `transform`, you will see:
+Можно обратиться к специальным ресурсам, таким как [CSS-Triggers](https://csstriggers.com/), чтобы узнать какие свойства будут приводить к перерисовке страницы (repaint), если будем их анимировать. Если посмотреть что указано под `transform`, можно увидеть следующее:
 
-> Changing transform does not trigger any geometry changes or painting, which is very good. This means that the operation can likely be carried out by the compositor thread with the help of the GPU.
+> Применение трансформаций не вызывает никаких изменений геометрии или отрисовки, что очень хорошо. Это означает, что операция скорее всего может быть выполнена в compositor thread с поддержкой GPU.
 
-Opacity behaves similarly. Thus, they are ideal candidates for movement on the web.
+Свойство `opacity` ведёт себя аналогичным образом. Поэтому, они являются идеальными кандидатами для создания анимаций перемещений.
 
-### Hardware Acceleration
+### Аппаратное ускорение
 
-Properties such as `perspective`, `backface-visibility`, and `transform: translateZ(x)` will allow the browser to know you need hardware acceleration.
+Свойства `perspective`, `backface-visibility` и `transform: translateZ(x)` подсказывают браузеру, когда требуется использовать аппаратное ускорение.
 
-If you wish to hardware-accelerate an element, you can apply any of these properties (not all are necessary, only one):
+Если нужно аппаратное ускорение для элемента, можно применить любое из этих свойств (не все сразу, только одно):
 
 ```css
 perspective: 1000px;
@@ -142,49 +142,51 @@ backface-visibility: hidden;
 transform: translateZ(0);
 ```
 
-Many JS libraries like GreenSock will assume you want hardware acceleration and will apply them by default, so you do not need to set them manually.
+Многие JS-библиотеки, такие как GreenSock, считают что аппаратное ускорение нужно всегда и будут применять его по умолчанию, так что включать вручную не потребуется.
 
-## Timing
+## Тайминги
 
-For simple UI transitions, meaning from just one state to another with no intermediary states, it's common to use timings between 0.1s and 0.4s, and most folks find that _0.25s_ tends to be a sweet spot. Can you use that timing for everything? No, not really. If you have something that needs to move a greater distance or has more steps or state changes, 0.25s is not going to work as well and you will have to be much more intentional, and the timing will need to be more unique. That doesn't mean you can't have nice defaults that you repeat within your application, though.
+Простые переходы в интерфейсе чаще всего просто переход из одного состояния в другое без каких-либо промежуточных состояний, а тайминг в таких случаях обычно между 0.1s и 0.4s, в большинстве случаев _0.25s_. Можно ли указывать этот тайминг для всего? Нет, не совсем. Если есть что-то, чему нужно двигаться на большее расстояние или требуется больше шагов или смен состояний, то 0.25s далеко не всегда смотрится также хорошо, поэтому нужно будет более детально определить уникальные тайминги. Но это не значит, что больше не будет хороших настроек по умолчанию, которые можно переиспользовать в приложении.
 
-You may also find that entrances look better with slightly more time than an exit. The user typically is being guided during the entrance, and is a little less patient upon exit because they want to go on their way.
+Также можно заметить, что появления лучше выглядят с чуть большей длительностью, чем исчезновения. Пользователь, как правило, направляется на этапе появления, но немного нетерпелив на этапе исчезновения, потому что желает идти своим путём дальше.
 
-## Easing
+## Функции плавности
 
-Easing is an important way to convey depth in an animation. One of the most common mistakes newcomers to animation make is to use `ease-in` for entrances, and `ease-out` for exits. You'll actually need the opposite.
+Функция плавности (easing) — является важным способом передачи глубины анимации. Наиболее распространённая ошибка новичков — использовать `ease-in` для появления/входа и `ease-out` для исчезновения/выхода. На самом деле, всё надо сделать наоборот.
 
-If we were to apply these states to a transition, it would look something like this:
+Если применить эти состояния перехода к элементу, то будет выглядеть примерно так:
 
 ```css
 .button {
   background: #1b8f5a;
-  /* applied to the initial state, so this transition will be applied to the return state */
+  /* применяется к начальному состоянию, поэтому */
+  /* этот переход будет виден при возвращении к этому состоянию */
   transition: background 0.25s ease-in;
 }
 
 .button:hover {
   background: #3eaf7c;
-  /* applied to the hover state, so this transition will be applied when a hover is triggered */
+  /* применяется к состоянию при наведении, поэтому */
+  /* этот переход будет применяться при срабатывании hover */
   transition: background 0.35s ease-out;
 }
 ```
 
-<common-codepen-snippet title="Transition Ease Example" slug="996a9665131e7902327d350ca8a655ac" tab="css,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Пример функций плавности для перехода" slug="996a9665131e7902327d350ca8a655ac" tab="css,result" :editable="false" :preview="false" />
 
-Easing can also convey the quality of material being animated. Take this pen for example, which ball do you think is hard and which is soft?
+С помощью функции плавности анимации также можно передать свойства материала. Возьмём песочницу с примером, какой из шариков кажется твёрдым, а какой мягким?
 
-<common-codepen-snippet title="Bouncing Ball Demo" slug="zxJWBJ" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" />
+<common-codepen-snippet title="Демо с подпрыгивающим шариком" slug="zxJWBJ" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" />
 
-You can get a lot of unique effects and make your animation very stylish by adjusting your easing. CSS allows you to modify this by adjusting a cubic bezier property, [this playground](https://cubic-bezier.com/#.17,.67,.83,.67) by Lea Verou is very helpful for exploring this.
+Можно получить множество уникальных эффектов и сделать анимацию очень стильной, регулируя функцию плавности. CSS позволяет управлять ею с помощью свойства cubic-bezier, а [эта песочница](https://cubic-bezier.com/#.17,.67,.83,.67), которую сделала Lea Verou, будет очень полезна для изучения.
 
-Though you can achieve great effects for simple animation with the two handles the cubic-bezier ease offers, JavaScript allows multiple handles, and therefore, allows for much more variance.
+Хотя можно достичь огромных успехов в простых анимациях, управляя двумя точками функций плавности cubic-bezier, JavaScript предоставляет несравненно больше точек для возможности управления, а значит, и большую вариативность в результате.
 
-![Ease Comparison](/images/css-vs-js-ease.svg)
+![Сравнение функций плавности](/images/css-vs-js-ease.svg)
 
-Take a bounce, for instance. In CSS we have to declare each keyframe, up and down. In JavaScript, we can express all of that movement within the ease, by declaring `bounce` in the [GreenSock API (GSAP)](https://greensock.com/) (other JS libraries have other types of easing defaults).
+Возьмём для примера анимацию прыжка. В CSS нужно объявить каждый кадр (keyframe), верх и низ. В JavaScript, можно выразить все перемещения с помощью готовой функции анимации, передав `bounce` в [GreenSock API (GSAP)](https://greensock.com/) (в других JS-библиотеках есть свои варианты анимаций по умолчанию).
 
-Here is the code used for a bounce in CSS (example from animate.css):
+CSS-код для прыжка (пример из animate.css):
 
 ```css
 @keyframes bounceInDown {
@@ -224,15 +226,15 @@ Here is the code used for a bounce in CSS (example from animate.css):
 }
 ```
 
-And here is the same bounce in JS using GreenSock:
+И его аналог в JS с использованием GreenSock:
 
 ```js
 gsap.from(element, { duration: 1, ease: 'bounce.out', y: -500 })
 ```
 
-We'll be using GreenSock in some of the examples in the sections following. They have a great [ease visualizer](https://greensock.com/ease-visualizer) that will help you build nicely crafted eases.
+В некоторых примерах следующих разделов будет использоваться GreenSock. Также есть замечательный [визуализатор анимаций](https://greensock.com/ease-visualizer), который поможет создать прекрасные функции для анимации.
 
-## Further Reading
+## Дальнейшее изучение
 
 - [Designing Interface Animation: Improving the User Experience Through Animation by Val Head](https://www.amazon.com/dp/B01J4NKSZA/)
 - [Animation at Work by Rachel Nabors](https://abookapart.com/products/animation-at-work)
