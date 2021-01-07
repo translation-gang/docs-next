@@ -278,23 +278,23 @@
   <!-- class binding -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
-  <div :class="[classA, { classB: isB, classC: isC }]">
-    <!-- style binding -->
-    <div :style="{ fontSize: size + 'px' }"></div>
-    <div :style="[styleObjectA, styleObjectB]"></div>
+  <div :class="[classA, { classB: isB, classC: isC }]"></div>
 
-    <!-- binding an object of attributes -->
-    <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
+  <!-- style binding -->
+  <div :style="{ fontSize: size + 'px' }"></div>
+  <div :style="[styleObjectA, styleObjectB]"></div>
 
-    <!-- prop binding. "prop" must be declared in my-component. -->
-    <my-component :prop="someThing"></my-component>
+  <!-- binding an object of attributes -->
+  <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-    <!-- pass down parent props in common with a child component -->
-    <child-component v-bind="$props"></child-component>
+  <!-- prop binding. "prop" must be declared in my-component. -->
+  <my-component :prop="someThing"></my-component>
 
-    <!-- XLink -->
-    <svg><a :xlink:special="foo"></a></svg>
-  </div>
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind="$props"></child-component>
+
+  <!-- XLink -->
+  <svg><a :xlink:special="foo"></a></svg>
   ```
 
   The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
@@ -313,18 +313,18 @@
 
 - **Ожидает:** varies based on value of form inputs element or output of components
 
-- **Limited to:**
+- **Использование ограничено:**
 
   - `<input>`
   - `<select>`
   - `<textarea>`
-  - components
+  - компоненты
 
 - **Модификаторы:**
 
-  - [`.lazy`](../guide/forms.md#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.md#number) - cast valid input string to numbers
-  - [`.trim`](../guide/forms.md#trim) - trim input
+  - [`.lazy`](../guide/forms.md#lazy) — listen to `change` events instead of `input`
+  - [`.number`](../guide/forms.md#number) — cast valid input string to numbers
+  - [`.trim`](../guide/forms.md#trim) — trim input
 
 - **Использование:**
 
@@ -340,16 +340,16 @@
 
 - **Ожидает:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/component-slots.md#destructuring-slot-props)). Optional - only needed if expecting props to be passed to the slot.
 
-- **Аргумент:** slot name (optional, defaults to `default`)
+- **Аргумент:** имя слота (опционально, по умолчанию `default`)
 
-- **Limited to:**
+- **Использование ограничено:**
 
   - `<template>`
-  - [components](../guide/component-slots.md#abbreviated-syntax-for-lone-default-slots) (for a lone default slot with props)
+  - [компонентами](../guide/component-slots.md#abbreviated-syntax-for-lone-default-slots) (для единственного слота по умолчанию с входными параметрами)
 
 - **Использование:**
 
-  Denote named slots or slots that expect to receive props.
+  Обозначение именованного слота или слота, который получает входные параметры.
 
 - **Пример:**
 
@@ -460,7 +460,7 @@
 
 - **Ожидает:** string literal
 
-- **Limited to:** native HTML elements
+- **Использование ограничено:** нативными HTML-элементами
 
 - **Использование:** When using in-DOM templates, the template is subject to native HTML parsing rules. Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements. As a workaround, we can use `v-is` directive on these elements:
 
@@ -471,13 +471,13 @@
 ```
 
 :::warning ВНИМАНИЕ
-`v-is` functions like a dynamic 2.x `:is` binding - so to render a component by its registered name, its value should be a JavaScript string literal:
+Директива `v-is` работает как динамическая привязка в 2.x `:is` — поэтому для отрисовки компонента по его зарегистрированному имени значение должно быть строковым литералом JavaScript:
 
 ```html
-<!-- Incorrect, nothing will be rendered -->
+<!-- НЕПРАВИЛЬНО, ничего не будет отрисовано -->
 <tr v-is="blog-post-row"></tr>
 
-<!-- Correct -->
+<!-- Правильно -->
 <tr v-is="'blog-post-row'"></tr>
 ```
 :::
