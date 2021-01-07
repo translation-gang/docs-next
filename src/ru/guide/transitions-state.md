@@ -1,17 +1,17 @@
-# State Transitions
+# Анимирование переходов между состояниями
 
-Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+Система переходов Vue предлагает множество простых способ анимирования появления, исчезновения, а также списков, но что насчёт анимации самих данных? Например:
 
-- numbers and calculations
-- colors displayed
-- the positions of SVG nodes
-- the sizes and other properties of elements
+- числа и расчёты
+- отображаемые цвета
+- положение SVG-узлов
+- размеры и другие свойства элементов
 
-All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
+Все они либо уже хранятся в виде необработанных чисел, либо могут быть преобразованы в числа. Как только это сделать, можно анимировать изменения состояний с помощью сторонних библиотек, в сочетании с системой реактивности и компонентами Vue.
 
-## Animating State with Watchers
+## Анимация состояния при помощи наблюдателей
 
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [GreenSock](https://greensock.com/):
+Методы-наблюдатели (watch) позволяют анимировать изменения одного числа на другое. Это может звучать сложно, поэтому рассмотрим пример с использованием [GreenSock](https://greensock.com/):
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
@@ -47,17 +47,17 @@ Vue.createApp(Demo).mount('#animated-number-demo')
 
 <common-codepen-snippet title="Transitioning State 1" slug="22903bc3b53eb5b7817378ecb985ce96" tab="js,result" :editable="false" :preview="false" />
 
-When you update the number, the change is animated below the input.
+При обновлении числа в поле ввода произойдёт анимация изменения под ним.
 
-## Dynamic State Transitions
+## Динамические переходы между состояниями
 
-As with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
+Обновляться в реальном времени могут как компоненты Vue для анимации, так и данные, на которых строятся переходы, что особенно полезно для прототипирования! Используя даже простой SVG-полигон можно реализовать множества интересных эффектов, которых сложно достичь без небольшой игры с переменными.
 
-<common-codepen-snippet title="Updating SVG" slug="a8e00648d4df6baa1b19fb6c31c8d17e" :height="500" tab="js,result" :editable="false" />
+<common-codepen-snippet title="Обновление SVG" slug="a8e00648d4df6baa1b19fb6c31c8d17e" :height="500" tab="js,result" :editable="false" />
 
-## Organizing Transitions into Components
+## Организация переходов в компонентах
 
-Managing many state transitions can quickly increase the complexity of a component instance. Fortunately, many animations can be extracted out into dedicated child components. Let's do this with the animated integer from our earlier example:
+Управление множеством состояний переходов может быстро увеличить сложность экземпляра компонента. К счастью, многие анимации можно выделить в отдельные дочерние компоненты. Создадим такой для анимированного числа из примера выше:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
@@ -128,18 +128,18 @@ app.component('animated-integer', {
 app.mount('#app')
 ```
 
-<common-codepen-snippet title="State Transition Components" slug="e9ef8ac7e32e0d0337e03d20949b4d17" tab="js,result" :editable="false" />
+<common-codepen-snippet title="Компонент для управления переходом от состояния" slug="e9ef8ac7e32e0d0337e03d20949b4d17" tab="js,result" :editable="false" />
 
-Now we can compose multiple states with these child components. It's exciting- we can use any combination of transition strategies that have been covered on this page, along with those offered by Vue's [built-in transition system](transitions-enterleave.md). Together, there are very few limits to what can be accomplished.
+В дочерних компонентах можно использовать любую комбинацию стратегий переходов, упомянутых на этой странице, наряду со [встроенной системой переходов Vue](transitions-enterleave.md). Вместе они предоставляют практически безграничные возможности.
 
-You can see how we could use this for data visualization, for physics effects, for character animations and interactions, the sky's the limit.
+Как можно увидеть, нет никаких ограничений для использования — визуализация данных, физические эффекты, анимация персонажей и взаимодействий.
 
-## Bringing Designs to Life
+## Привнесение дизайна в жизнь
 
-To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+По одному из определений, анимация означает оживление. К сожалению, когда дизайнеры создают новые иконки, логотипы и талисманы, результаты обычно оказываются картинками или статичными SVG. Таким образом осьминожек в GitHub, птичка в Twitter и многие другие логотипы напоминают живых существ, но в действительности не кажутся живыми.
 
-Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+Vue может помочь. Поскольку SVG это всего лишь данные, нам нужны только примеры того, как выглядят эти существа когда они радуются, думают или встревожены. Затем Vue берёт на себя всю работу по реализации переходов между этими состояниями, помогая создавать более эмоциональные приветственные страницы, индикаторы загрузки и уведомления.
 
-Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+Сара Драснер (Sarah Drasner) демонстрирует это в демо ниже, используя комбинацию временных и интерактивных изменений состояния:
 
 <common-codepen-snippet title="Vue-controlled Wall-E" slug="YZBGNp" :height="400" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" version="2" theme="light" />
