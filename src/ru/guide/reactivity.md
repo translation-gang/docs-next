@@ -215,6 +215,6 @@ When you pass an object to a component instance as data, Vue converts it to a pr
 
 After the first render, a component would have tracked a list of dependencies &mdash; the properties it accessed during the render. Conversely, the component becomes a subscriber to each of these properties. When a proxy intercepts a set operation, the property will notify all of its subscribed components to re-render.
 
-[//]: # 'TODO: Insert diagram'
+<!-- [//]: # 'TODO: Insert diagram' -->
 
 > If you are using Vue 2.x and below, you may be interested in some of the change detection caveats that exist for those versions, [explored in more detail here](change-detection.md).
