@@ -1,33 +1,33 @@
-# Enter & Leave Transitions
+# Анимация появления/исчезновения элемента
 
-Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
+Vue предоставляет различные способы для анимации эффектов переходов при добавлении, обновлении или удалении элементов из DOM. Его возможности позволяют:
 
-- automatically apply classes for CSS transitions and animations
-- integrate 3rd-party CSS animation libraries, such as [Animate.css](https://animate.style/)
-- use JavaScript to directly manipulate the DOM during transition hooks
-- integrate 3rd-party JavaScript animation libraries
+- автоматически применять CSS-классы для переходов и анимаций
+- интегрировать сторонние библиотеки CSS-анимаций, такие как [Animate.css](https://animate.style/)
+- использовать JavaScript для манипуляции DOM напрямую с помощью хуков
+- интегрировать сторонние библиотеки JavaScript-анимаций
 
-On this page, we'll only cover entering, leaving, and list transitions, but you can see the next section for [managing state transitions](transitions-state.md).
+В этом разделе рассматриваются только анимации переходов появления и исчезновения элементов. В следующих — [анимация списков](transitions-list.md) и [анимация переходов между состояниями](transitions-state.md).
 
-## Transitioning Single Elements/Components
+## Анимация одиночного элемента/компонента
 
-Vue provides a `transition` wrapper component, allowing you to add entering/leaving transitions for any element or component in the following contexts:
+Vue предоставляет компонент-обёртку `<transition>`, позволяющий добавить анимации появления/исчезновения для любого элемента или компонента в следующих случаях:
 
-- Conditional rendering (using `v-if`)
-- Conditional display (using `v-show`)
-- Dynamic components
-- Component root nodes
+- Условная отрисовка (с помощью `v-if`)
+- Условное отображение (с помощью `v-show`)
+- Динамические компоненты
+- Корневые элементы компонента
 
-This is what an example looks like in action:
+Рассмотрим небольшой пример в действии:
 
 ```html
 <div id="demo">
   <button @click="show = !show">
-    Toggle
+    Переключить
   </button>
 
   <transition name="fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">привет</p>
   </transition>
 </div>
 ```
@@ -58,48 +58,48 @@ Vue.createApp(Demo).mount('#demo')
 
 <common-codepen-snippet title="Simple Transition Component" slug="3466d06fb252a53c5bc0a0edb0f1588a" tab="html,result" :editable="false" />
 
-When an element wrapped in a `transition` component is inserted or removed, this is what happens:
+Когда обёрнутый в компонент `<transition>` элемент добавляется или удаляется, произойдут следующие действия:
 
-1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, CSS transition classes will be added/removed at appropriate timings.
+1. Vue автоматически определит, применяются ли к целевому элементу CSS-переходы или анимации. Если да, то классы CSS-переходов будут добавляться и удаляться в соответствующие моменты времени.
 
-2. If the transition component provided [JavaScript hooks](#javascript-hooks), these hooks will be called at appropriate timings.
+2. Если есть [JavaScript-хуки](#javascript-хуки) на компоненте, то они будут вызываться в соответствующие моменты времени.
 
-3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed immediately on next frame (Note: this is a browser animation frame, different from Vue's concept of `nextTick`).
+3. Если CSS-переходов или анимаций не обнаружено и нет JavaScript-хуков, DOM-операции для вставки и/или удаления будут вызваны незамедлительно или в следующем фрейме (примечание: это фрейм анимации браузера, отличный от концепции `nextTick` во Vue).
 
-### Transition Classes
+### Классы переходов
 
-There are six classes applied for enter/leave transitions.
+Существует шесть классов для анимаций переходов появления и исчезновения элементов.
 
-1. `v-enter-from`: Starting state for enter. Added before the element is inserted, removed one frame after the element is inserted.
+1. `v-enter-from`: Означает начало анимации появления элемента. Этот класс добавляется перед вставкой элемента, а удаляется в следующем фрейме после вставки.
 
-2. `v-enter-active`: Active state for enter. Applied during the entire entering phase. Added before the element is inserted, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the entering transition.
+2. `v-enter-active`: Означает активное состояние анимации появления элемента. Этот класс остаётся на элементе в течение всей анимации появления. Он добавляется перед вставкой элемента, а удаляется после завершения перехода или анимации. Этот класс можно использовать для установки длительности, задержки или функции плавности (easing curve) анимации появления.
 
-3. `v-enter-to`: Ending state for enter. Added one frame after the element is inserted (at the same time `v-enter-from` is removed), removed when the transition/animation finishes.
+3. `v-enter-to`: Означает завершение анимации появления элемента. Добавляется в следующем фрейме после вставки элемента (тогда же удаляется `v-enter-from`), а удаляется после завершения перехода или анимации.
 
-4. `v-leave-from`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
+4. `v-leave-from`: Означает начало анимации исчезновения элемента. Добавляется сразу после вызова анимации исчезновения, а удаляется в следующем фрейме после этого.
 
-5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when a leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
+5. `v-leave-active`: Означает активное состояние анимации исчезновения. Этот класс остаётся на элементе в течение всей анимации исчезновения. Он добавляется при вызове анимации исчезновения, а удаляется после завершения перехода или анимации. Этот класс можно использовать для установки длительности, задержки или функции плавности (easing curve) анимации исчезновения.
 
-6. `v-leave-to`: Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave-from` is removed), removed when the transition/animation finishes.
+6. `v-leave-to`: Означает завершение анимации исчезновения элемента. Добавляется в следующем фрейме после вызова анимации исчезновения (тогда же удаляется `v-leave-from`), а удаляется после завершения перехода или анимации.
 
 ![Диаграмма переходов](/images/transitions.svg)
 
-Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter-from` class would instead be `my-transition-enter-from`.
+У каждого класса будет префикс с именем перехода. Префикс `v-` будет по умолчанию, если не указан атрибут `name` в `<transition>`. Например, для `<transition name="super">` вместо класса `v-enter-from` будет применяться `super-enter-from`.
 
-`v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
+Классы `v-enter-active` и `v-leave-active` позволяют устанавливать кривые плавности для переходов появления и исчезновения элемента. Пример использования рассмотрим ниже.
 
-### CSS Transitions
+### CSS-переходы
 
-One of the most common transition types uses CSS transitions. Here's an example:
+Один из наиболее распространённых типов анимации — CSS-переходы:
 
 ```html
 <div id="demo">
   <button @click="show = !show">
-    Toggle render
+    Переключить отрисовку
   </button>
 
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">привет</p>
   </transition>
 </div>
 ```
@@ -117,8 +117,8 @@ Vue.createApp(Demo).mount('#demo')
 ```
 
 ```css
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
+/* Анимации появления и исчезновения могут иметь    */
+/* различные продолжительности и функции плавности. */
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
@@ -136,15 +136,15 @@ Vue.createApp(Demo).mount('#demo')
 
 <common-codepen-snippet title="Different Enter and Leave Transitions" slug="0dfa7869450ef43d6f7bd99022bc53e2" tab="css,result" :editable="false" />
 
-### CSS Animations
+### CSS-анимации
 
-CSS animations are applied in the same way as CSS transitions, the difference being that `v-enter-from` is not removed immediately after the element is inserted, but on an `animationend` event.
+CSS-анимации применяются таким же образом, что и CSS-переходы. Они отличаются лишь тем, что `v-enter-from` удаляется не сразу после вставки элемента, а при наступлении события `animationend`.
 
-Here's an example, omitting prefixed CSS rules for the sake of brevity:
+Небольшой пример; браузерные CSS-префиксы опущены для краткости:
 
 ```html
 <div id="demo">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Переключить отображение</button>
   <transition name="bounce">
     <p v-if="show">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis
@@ -189,9 +189,9 @@ Vue.createApp(Demo).mount('#demo')
 
 <common-codepen-snippet title="CSS Animation Transition Example" slug="8627c50c5514752acd73d19f5e33a781" tab="html,result" :editable="false" />
 
-### Custom Transition Classes
+### Пользовательские классы переходов
 
-You can also specify custom transition classes by providing the following attributes:
+Можно определить пользовательские классы переходов с помощью следующих атрибутов:
 
 - `enter-from-class`
 - `enter-active-class`
@@ -200,9 +200,9 @@ You can also specify custom transition classes by providing the following attrib
 - `leave-active-class`
 - `leave-to-class`
 
-These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/).
+Таким образом можно переопределить стандартные названия классов. Это может быть полезно при необходимости комбинировать систему анимации Vue с возможностями сторонних библиотек CSS-анимаций, например [Animate.css](https://daneden.github.io/animate.css/).
 
-Here's an example:
+Пример переопределения имён классов:
 
 ```html
 <link
@@ -213,7 +213,7 @@ Here's an example:
 
 <div id="demo">
   <button @click="show = !show">
-    Toggle render
+    Переключить отрисовку
   </button>
 
   <transition
@@ -221,7 +221,7 @@ Here's an example:
     enter-active-class="animate__animated animate__tada"
     leave-active-class="animate__animated animate__bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">привет</p>
   </transition>
 </div>
 ```
@@ -238,33 +238,33 @@ const Demo = {
 Vue.createApp(Demo).mount('#demo')
 ```
 
-### Using Transitions and Animations Together
+### Совместное использование переходов и анимаций
 
-Vue needs to attach event listeners in order to know when a transition has ended. It can either be `transitionend` or `animationend`, depending on the type of CSS rules applied. If you are only using one or the other, Vue can automatically detect the correct type.
+Для определения завершения анимации Vue использует прослушиватели событий с типом `transitionend` или `animationend`, в зависимости от типа применяемых CSS-правил. Если используется только один подход из них, Vue определит правильный тип автоматически.
 
-However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about in a `type` attribute, with a value of either `animation` or `transition`.
+Однако, в некоторых случах может потребоваться использовать оба подхода на одном элементе. Например CSS-анимация, запущенная Vue, может соседствовать с эффектом CSS-перехода при наведении на элемент. В таких случаях потребуется явное указание типа события, на которое должен ориентироваться Vue. Для этого нужно использовать атрибут `type` со значением `animation` или `transition`.
 
-### Explicit Transition Durations
+### Указание длительности перехода
 
 <!-- TODO: validate and provide an example -->
 
-In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+В большинстве случаев Vue может автоматически определить завершение перехода. По умолчанию Vue дожидается первого события `transitionend` или `animationend` на корневом элементе. Но не всегда это будет нужным поведением — например, может потребоваться некая хореографическая последовательность переходов, в которой некоторые из вложенных элементов могут иметь задержку перед началом перехода или большую продолжительность, чем у корневого элемента.
 
-In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+В таких случаях можно явно задать продолжительность перехода (в миллисекундах) с помощью входного параметра `duration` на компоненте `<transition>`:
 
 ```html
 <transition :duration="1000">...</transition>
 ```
 
-You can also specify separate values for enter and leave durations:
+Также можно устанавливать раздельные значения для анимации появления и исчезновения:
 
 ```html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
-### JavaScript Hooks
+### JavaScript-хуки
 
-You can also define JavaScript hooks in attributes:
+На компоненте также можно указывать JavaScript-хуки:
 
 ```html
 <transition
@@ -285,15 +285,15 @@ You can also define JavaScript hooks in attributes:
 ```js
 // ...
 methods: {
-  // --------
-  // ENTERING
-  // --------
+  // ---------
+  // ПОЯВЛЕНИЕ
+  // ---------
 
   beforeEnter(el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // коллбэк done опционален
+  // при использовании в комбинации с CSS
   enter(el, done) {
     // ...
     done()
@@ -305,15 +305,15 @@ methods: {
     // ...
   },
 
-  // --------
-  // LEAVING
-  // --------
+  // ------------
+  // ИСЧЕЗНОВЕНИЕ
+  // ------------
 
   beforeLeave(el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // коллбэк done опционален
+  // при использовании в комбинации с CSS
   leave(el, done) {
     // ...
     done()
@@ -321,25 +321,25 @@ methods: {
   afterLeave(el) {
     // ...
   },
-  // leaveCancelled only available with v-show
+  // хук leaveCancelled доступен только для v-show
   leaveCancelled(el) {
     // ...
   }
 }
 ```
 
-These hooks can be used in combination with CSS transitions/animations or on their own.
+Хуки могут использоваться как самостоятельно, так и в сочетании с CSS-переходами и анимациями.
 
-When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, the hooks will be called synchronously and the transition will finish immediately. Adding `:css="false"` will also let Vue know to skip CSS detection. Aside from being slightly more performant, this also prevents CSS rules from accidentally interfering with the transition.
+Если анимация реализуется только на JavaScript — **обязательно вызывайте коллбэки `done` в хуках `enter` и `leave`**. Если этого не сделать, то хуки будут вызваны синхронно и переход закончится сразу. Установка `:css="false"` также поможет Vue не тратить время на обнаружение CSS. Кроме бонуса производительности, это предотвратит случайное взаимовлияние CSS-правил и JS-перехода.
 
-Now let's dive into an example. Here's a JavaScript transition using [GreenSock](https://greensock.com/):
+Пример JavaScript-перехода с использованием [GreenSock](https://greensock.com/):
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 
 <div id="demo">
   <button @click="show = !show">
-    Toggle
+    Переключить
   </button>
 
   <transition
@@ -349,7 +349,7 @@ Now let's dive into an example. Here's a JavaScript transition using [GreenSock]
     :css="false"
   >
     <p v-if="show">
-      Demo
+      Демо
     </p>
   </transition>
 </div>
@@ -403,9 +403,9 @@ Vue.createApp(Demo).mount('#demo')
 
 <common-codepen-snippet title="JavaScript Hooks Transition" slug="68ce1b8c41d0a6e71ff58df80fd85ae5" tab="js,result" :editable="false" />
 
-## Transitions on Initial Render
+## Анимация при первоначальной отрисовке
 
-If you also want to apply a transition on the initial render of a node, you can add the `appear` attribute:
+Если необходимо чтобы пользователь увидел анимацию перехода при первоначальной отрисовке элемента, то требуется добавить атрибут `appear`:
 
 ```html
 <transition appear>
@@ -413,38 +413,38 @@ If you also want to apply a transition on the initial render of a node, you can 
 </transition>
 ```
 
-## Transitioning Between Elements
+## Анимация перехода между элементами
 
-We discuss [transitioning between components](#transitioning-between-components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
+[Анимация перехода между компонентами](#анимация-перехода-между-компонентами) будет рассмотрена ниже, но также можно создавать переходы между обычными элементами с помощью `v-if`/`v-else`. Один из наиболее распространённых случаев перехода между двумя элементами — между контейнером со списком и сообщением об отсутствии элементов в нём:
 
 ```html
 <transition>
   <table v-if="items.length > 0">
     <!-- ... -->
   </table>
-  <p v-else>Sorry, no items found.</p>
+  <p v-else>Нет элементов.</p>
 </transition>
 ```
 
-It's actually possible to transition between any number of elements, either by using `v-if`/`v-else-if`/`v-else` or binding a single element to a dynamic property. For example:
+Фактически, возможен переход между любым количеством элементов, используя `v-if`/`v-else-if`/`v-else` или с помощью привязки элемента к динамическому свойству. Например:
 
 <!-- TODO: rewrite example and put in codepen example -->
 
 ```html
 <transition>
   <button v-if="docState === 'saved'" key="saved">
-    Edit
+    Изменить
   </button>
   <button v-else-if="docState === 'edited'" key="edited">
-    Save
+    Сохранить
   </button>
   <button v-else-if="docState === 'editing'" key="editing">
-    Cancel
+    Отмена
   </button>
 </transition>
 ```
 
-Which could also be written as:
+Что можно записать и следующим образом:
 
 ```html
 <transition>
@@ -467,28 +467,28 @@ computed: {
 }
 ```
 
-### Transition Modes
+### Режимы переходов
 
-There's still one problem though. Try clicking the button below:
+Однако сохраняется одна проблема. Попробуйте кликнуть на кнопку в примере ниже:
 
 <common-codepen-snippet title="Transition Modes Button Problem" slug="Rwrqzpr" :editable="false" />
 
-As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
+Во время анимации перехода от кнопки «on» к кнопке «off» будут одновременно видны обе кнопки: одна — исчезая, другая — появляясь. Это стандартное поведение `<transition>` — анимации появления и исчезновения происходят одновременно.
 
-Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
+Иногда это поведение подходит, например если абсолютно спозиционированы обе кнопки друг над другом:
 
 <common-codepen-snippet title="Transition Modes Button Problem- positioning" slug="abdQgLr" :editable="false" />
 
-Sometimes this isn't an option, though, or we're dealing with more complex movement where in and out states need to be coordinated, so Vue offers an extremely useful utility called **transition modes**:
+Иногда это не вариант, когда имеем дело с более сложными случаями, где состояния появления и исчезновения должны быть скоординированы. Для таких ситуаций Vue предоставляет полезную возможность указания **режима перехода**:
 
-- `in-out`: New element transitions in first, then when complete, the current element transitions out.
-- `out-in`: Current element transitions out first, then when complete, the new element transitions in.
+- `in-out`: Сначала появляется новый элемент и только после этого исчезает старый.
+- `out-in`: Сначала исчезает старый элемент и только после этого появляется новый.
 
 :::tip Совет
-You'll find very quickly that `out-in` is the state you will want most of the time :)
+Очень быстро поймёте, что `out-in` — это то требуется чаще всего :)
 :::
 
-Now let's update the transition for our on/off buttons with `out-in`:
+Доработаем пример для кнопок «on»/«off» с использованием режима перехода `out-in`:
 
 ```html
 <transition name="fade" mode="out-in">
@@ -498,15 +498,15 @@ Now let's update the transition for our on/off buttons with `out-in`:
 
 <common-codepen-snippet title="Transition Modes Button Problem- solved" slug="ZEQmdvq" :editable="false" />
 
-With one attribute addition, we've fixed that original transition without having to add any special styling.
+Всего лишь с помощью одного атрибута исправили работу анимации перехода и избежали необходимости добавлять специальные стили.
 
-We can use this to coordinate more expressive movement, such as a folding card, as demonstrated below. It's actually two elements transitioning between each other, but since the beginning and end states are scaling the same: horizontally to 0, it appears like one fluid movement. This type of sleight-of-hand can be very useful for realistic UI microinteractions:
+Это можно использовать для координации более выразительных движений, к примеру переворачивания карты (см. пример ниже). На самом деле это два элемента, переходящие друг в друга, но так как начальное и конечное состояние одинаковы: по горизонтали до 0, то это похоже на одно плавное движение. Подобное может пригодиться для создания реалистичных микро-взаимодействий в пользовательском интерфейсе:
 
 <common-codepen-snippet title="Transition Modes Flip Cards" slug="76e344bf057bd58b5936bba260b787a8" :editable="false" />
 
-## Transitioning Between Components
+## Анимация перехода между компонентами
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we wrap a [dynamic component](component-basics.md#dynamic-components):
+Анимация перехода между компонентами ещё проще — не требуется даже атрибут `key`. Всё, что нужно — обернуть [динамический компонент](component-basics.md#динамическое-переключение-компонентов) в `<transition>`:
 
 ```html
 <div id="demo">
@@ -527,10 +527,10 @@ const Demo = {
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Компонент A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Компонент B</div>'
     }
   }
 }
