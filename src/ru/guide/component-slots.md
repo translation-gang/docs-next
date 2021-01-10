@@ -245,7 +245,7 @@ app.component('todo-list', {
 })
 ```
 
-Можно заменить интерполяцию `item` на `<slot>`, чтобы настраивать отображение в родительском компоненте:
+Можно заменить <span v-pre>`{{ item }}`</span> на `<slot>`, чтобы настраивать отображение в родительском компоненте:
 
 ```html
 <todo-list>
@@ -322,6 +322,7 @@ app.component('todo-list', {
 <todo-list v-slot="slotProps">
   <i class="fas fa-check"></i>
   <span class="green">{{ slotProps.item }}</span>
+
   <template v-slot:other="otherSlotProps">
     slotProps НЕДОСТУПНЫ здесь
   </template>
