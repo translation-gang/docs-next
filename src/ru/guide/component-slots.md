@@ -245,7 +245,7 @@ app.component('todo-list', {
 })
 ```
 
-Возможно мы захотим использовать слот, чтобы настраивать отображение в родительском компоненте:
+Можно заменить интерполяцию `item` на `<slot>`, чтобы настраивать отображение в родительском компоненте:
 
 ```html
 <todo-list>
@@ -260,8 +260,22 @@ app.component('todo-list', {
 
 ```html
 <ul>
-  <li v-for="( item, index ) in items">
+  <li v-for="(item, index) in items">
     <slot :item="item"></slot>
+  </li>
+</ul>
+```
+
+Можно привязывать к `slot` только атрибутов, сколько нужно:
+
+```html
+<ul>
+  <li v-for="(item, index) in items">
+    <slot
+      :item="item"
+      :index="index"
+      :another-attribute="anotherAttribute"
+    ></slot>
   </li>
 </ul>
 ```
