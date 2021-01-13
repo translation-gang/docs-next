@@ -211,7 +211,7 @@ const Component = defineComponent({
       type: Object as PropType<Book>,
       // Убедитесь, что используете стрелочные функции
       default: () => ({
-        title: "Arrow Function Expression"
+        title: 'Выражение со стрелочной функцией'
       }),
       validator: (book: Book) => !!book.title
     },
@@ -220,12 +220,36 @@ const Component = defineComponent({
       // Или явно укажите этот параметр
       default(this: void) {
         return {
-          title: "Function Expression"
+          title: 'Выражение с функцией'
         }
       },
       validator(this: void, book: Book) {
         return !!book.title
       }
+    }
+  }
+})
+```
+
+## Аннотация событий
+
+Возможно указать тип данных, передаваемых сгенерированным событием. Кроме того, все необъявленные в `emits` события при вызове будут выкидывать ошибку:
+
+```ts
+const Component = defineComponent({
+  emits: {
+    addBook(payload: { bookName: string }) {
+      // выполнение валидации в runtime
+      return payload.bookName.length > 0
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.$emit('addBook', {
+        bookName: 123 // Ошибка!
+      })
+
+      this.$emit('non-declared-event') // Ошибка!
     }
   }
 })
