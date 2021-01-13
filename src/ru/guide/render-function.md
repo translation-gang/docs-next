@@ -21,7 +21,9 @@ Vue рекомендует использовать шаблоны для соз
 Компонент должен генерировать заголовок, основываясь на входном параметре `level`, что приводит к следующему решению:
 
 ```js
-const app = Vue.createApp({})
+const { createApp } = Vue
+
+const app = createApp({})
 
 app.component('anchored-heading', {
   template: `
@@ -58,11 +60,13 @@ app.component('anchored-heading', {
 Хотя шаблоны отлично работают в большинстве компонентов, в данном случае очевидно, что это не один из них. Давайте перепишем его с помощью функции `render()`:
 
 ```js
-const app = Vue.createApp({})
+const { createApp, h } = Vue
+
+const app = createApp({})
 
 app.component('anchored-heading', {
   render() {
-    return Vue.h(
+    return h(
       'h' + this.level, // имя тега
       {}, // входные параметры/атрибуты
       this.$slots.default() // массив дочерних элементов
@@ -109,7 +113,7 @@ app.component('anchored-heading', {
 
 ```js
 render() {
-  return Vue.h('h1', {}, this.blogTitle)
+  return h('h1', {}, this.blogTitle)
 }
 ```
 
@@ -120,7 +124,7 @@ render() {
 Vue обновляет страницу, создавая **виртуальный DOM**, чтобы отслеживать изменения, которые необходимо внести в реальный DOM. Взглянем внимательнее на эту строку:
 
 ```js
-return Vue.h('h1', {}, this.blogTitle)
+return h('h1', {}, this.blogTitle)
 ```
 
 Что возвращает функция `h()`? Это _не совсем_ настоящий DOM-элемент. Возвращается обычный объект с информацией для Vue, какой узел должен отобразиться на страницы, включая описание любых дочерних элементов. Это описание называют «виртуальным узлом» или «виртуальной нодой», обычно сокращая до **VNode**. «Виртуальный DOM» — это всё дерево из VNode, созданных по дереву компонентов Vue.
@@ -169,7 +173,9 @@ h(
 С полученными знаниями теперь можем завершить начатый компонент:
 
 ```js
-const app = Vue.createApp({})
+const { createApp, h } = Vue
+
+const app = createApp({})
 
 /** Рекурсивно получаем текст дочерних узлов */
 function getChildrenTextContent(children) {
@@ -192,8 +198,8 @@ app.component('anchored-heading', {
       .replace(/\W+/g, '-') // заменяем не-буквенные символы на тире
       .replace(/(^-|-$)/g, '') // удаляем тире в начале и конце
 
-    return Vue.h('h' + this.level, [
-      Vue.h(
+    return h('h' + this.level, [
+      h(
         'a',
         {
           name: headingId,
@@ -220,8 +226,8 @@ app.component('anchored-heading', {
 
 ```js
 render() {
-  const myParagraphVNode = Vue.h('p', 'hi')
-  return Vue.h('div', [
+  const myParagraphVNode = h('p', 'hi')
+  return h('div', [
     // НЕПРАВИЛЬНО - одинаковые VNode!
     myParagraphVNode, myParagraphVNode
   ])
@@ -232,9 +238,9 @@ render() {
 
 ```js
 render() {
-  return Vue.h('div',
+  return h('div',
     Array.from({ length: 20 }).map(() => {
-      return Vue.h('p', 'hi')
+      return h('p', 'hi')
     })
   )
 }
@@ -246,16 +252,20 @@ render() {
 
 ```js
 render() {
-  return Vue.h(ButtonCounter)
+  return h(ButtonCounter)
 }
 ```
 
 Если необходимо разрешить компонент по имени, можно использовать `resolveComponent`:
 
 ```js
+const { h, resolveComponent } = Vue
+
+// ...
+
 render() {
-  const ButtonCounter = Vue.resolveComponent('ButtonCounter')
-  return Vue.h(ButtonCounter)
+  const ButtonCounter = resolveComponent('ButtonCounter')
+  return h(ButtonCounter)
 }
 ```
 
@@ -269,7 +279,7 @@ components: {
   ButtonCounter
 },
 render() {
-  return Vue.h(Vue.resolveComponent('ButtonCounter'))
+  return h(resolveComponent('ButtonCounter'))
 }
 ```
 
@@ -277,7 +287,7 @@ render() {
 
 ```js
 render() {
-  return Vue.h(ButtonCounter)
+  return h(ButtonCounter)
 }
 ```
 
@@ -300,11 +310,11 @@ render() {
 props: ['items'],
 render() {
   if (this.items.length) {
-    return Vue.h('ul', this.items.map((item) => {
-      return Vue.h('li', item.name)
+    return h('ul', this.items.map((item) => {
+      return h('li', item.name)
     }))
   } else {
-    return Vue.h('p', 'Элементов не найдено.')
+    return h('p', 'Элементов не найдено.')
   }
 }
 ```
@@ -319,7 +329,7 @@ render() {
 props: ['modelValue'],
 emits: ['update:modelValue'],
 render() {
-  return Vue.h(SomeComponent, {
+  return h(SomeComponent, {
     modelValue: this.modelValue,
     'onUpdate:modelValue': value => this.$emit('update:modelValue', value)
   })
@@ -332,7 +342,7 @@ render() {
 
 ```js
 render() {
-  return Vue.h('div', {
+  return h('div', {
     onClick: $event => console.log('кликнули!', $event.target)
   })
 }
@@ -346,7 +356,7 @@ render() {
 
 ```js
 render() {
-  return Vue.h('input', {
+  return h('input', {
     onClickCapture: this.doThisInCapturingMode,
     onKeyupOnce: this.doThisOnce,
     onMouseoverOnceCapture: this.doThisOnceInCapturingMode
@@ -368,7 +378,7 @@ render() {
 
 ```js
 render() {
-  return Vue.h('input', {
+  return h('input', {
     onKeyUp: event => {
       // Отменяем обработку, если элемент вызвавший событие
       // не является элементом, к которому событие было привязано
@@ -393,7 +403,7 @@ render() {
 ```js
 render() {
   // `<div><slot></slot></div>`
-  return Vue.h('div', this.$slots.default())
+  return h('div', this.$slots.default())
 }
 ```
 
@@ -401,7 +411,7 @@ render() {
 props: ['message'],
 render() {
   // `<div><slot :text="message"></slot></div>`
-  return Vue.h('div', this.$slots.default({
+  return h('div', this.$slots.default({
     text: this.message
   }))
 }
@@ -412,14 +422,14 @@ render() {
 ```js
 render() {
   // `<div><child v-slot="props"><span>{{ props.text }}</span></child></div>`
-  return Vue.h('div', [
-    Vue.h(
-      Vue.resolveComponent('child'),
+  return h('div', [
+    h(
+      resolveComponent('child'),
       null,
       // передаём `slots` как дочерний объект
       // в виде { slotName: props => VNode | Array<VNode> }
       {
-        default: (props) => Vue.h('span', props.text)
+        default: (props) => h('span', props.text)
       }
     )
   ])
@@ -432,10 +442,10 @@ render() {
 // `<MyButton><MyIcon :name="icon" />{{ text }}</MyButton>`
 render() {
   // Вызовы resolveComponent должны находиться вне функции слота
-  const Button = Vue.resolveComponent('MyButton')
-  const Icon = Vue.resolveComponent('MyIcon')
+  const Button = resolveComponent('MyButton')
+  const Icon = resolveComponent('MyIcon')
 
-  return Vue.h(
+  return h(
     Button,
     null,
     {
@@ -444,7 +454,7 @@ render() {
         // Реактивные свойства должны считываться внутри функции слота,
         // чтобы они стали зависимостями для отрисовки дочернего компонента
         return [
-          Vue.h(Icon, { name: this.icon }),
+          h(Icon, { name: this.icon }),
           this.text
         ]
       }
@@ -457,7 +467,7 @@ render() {
 
 ```js
 render() {
-  return Vue.h(Panel, null, this.$slots)
+  return h(Panel, null, this.$slots)
 }
 ```
 
@@ -465,7 +475,7 @@ render() {
 
 ```js
 render() {
-  return Vue.h(
+  return h(
     Panel,
     null,
     {
@@ -477,7 +487,7 @@ render() {
       default: (props) => {
         const children = this.$slots.default ? this.$slots.default(props) : []
         
-        return children.concat(Vue.h('div', 'Extra child'))
+        return children.concat(h('div', 'Extra child'))
       }
     } 
   )
@@ -489,10 +499,14 @@ render() {
 Под капотом шаблоны используют `resolveDynamicComponent` для реализации атрибута `is`. Можно воспользоваться этой же функции, если требуется вся гибкость, предоставляемая `is`, в создаваемой `render`-функции:
 
 ```js
+const { h, resolveDynamicComponent } = Vue
+
+// ...
+
 // `<component :is="name"></component>`
 render() {
-  const Component = Vue.resolveDynamicComponent(this.name)
-  return Vue.h(Component)
+  const Component = resolveDynamicComponent(this.name)
+  return h(Component)
 }
 ```
 
@@ -507,7 +521,7 @@ render() {
 ```js
 // `<component :is="bold ? 'strong' : 'em'"></component>`
 render() {
-  return Vue.h(this.bold ? 'strong' : 'em')
+  return h(this.bold ? 'strong' : 'em')
 }
 ```
 
@@ -520,13 +534,13 @@ render() {
 При создании множества `render`-функций, может быть мучительно писать подобное:
 
 ```js
-Vue.h(
-  Vue.resolveComponent('anchored-heading'),
+h(
+  resolveComponent('anchored-heading'),
   {
     level: 1
   },
   {
-    default: () => [Vue.h('span', 'Hello'), ' world!']
+    default: () => [h('span', 'Hello'), ' world!']
   }
 )
 ```
