@@ -9,6 +9,8 @@
 Если вам достаточно простейшего роутера и вы не хотите задействовать полновесную внешнюю библиотеку, может оказаться достаточно просто динамической отрисовки компонента уровня страницы:
 
 ```js
+const { createApp, h } = Vue
+
 const NotFoundComponent = { template: '<p>Страница не найдена</p>' }
 const HomeComponent = { template: '<p>Главная страница</p>' }
 const AboutComponent = { template: '<p>Страница о нас</p>' }
@@ -29,11 +31,11 @@ const SimpleRouter = {
   },
 
   render() {
-    return Vue.h(this.CurrentComponent)
+    return h(this.CurrentComponent)
   }
 })
 
-Vue.createApp(SimpleRouter).mount('#app')
+createApp(SimpleRouter).mount('#app')
 ```
 
 В сочетании с [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API) можно создать простейший, но вполне рабочий клиентский роутер. Для практического примера, смотрите [это демонстрационное приложение](https://github.com/phanan/vue-3.0-simple-routing-example).
