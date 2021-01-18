@@ -38,9 +38,11 @@
 В больших приложениях может потребоваться разделить приложение на более мелкие части и загружать компоненты с сервера только тогда, когда они необходимы. Чтобы реализовать подобное Vue предоставляет метод `defineAsyncComponent`:
 
 ```js
-const app = Vue.createApp({})
+const { createApp, defineAsyncComponent } = Vue
 
-const AsyncComp = Vue.defineAsyncComponent(
+const app = createApp({})
+
+const AsyncComp = defineAsyncComponent(
   () =>
     new Promise((resolve, reject) => {
       resolve({
