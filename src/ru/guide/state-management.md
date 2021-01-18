@@ -13,17 +13,19 @@
 Часто упускается из виду тот факт, что «источником истины» во Vue-приложениях является реактивный объект `data` — экземпляры компонентов всего лишь проксируют доступ к нему. Поэтому состояние, которым должны совместно владеть несколько экземпляров, может использовать метод [reactive](reactivity-fundamentals.md#declaring-reactive-state) для создания реактивного объекта:
 
 ```js
-const sourceOfTruth = Vue.reactive({
+const { createApp, reactive } = Vue
+
+const sourceOfTruth = reactive({
   message: 'Hello'
 })
 
-const appA = Vue.createApp({
+const appA = createApp({
   data() {
     return sourceOfTruth
   }
 }).mount('#app-a')
 
-const appB = Vue.createApp({
+const appB = createApp({
   data() {
     return sourceOfTruth
   }
@@ -39,7 +41,7 @@ const appB = Vue.createApp({
 Теперь при любых изменениях `sourceOfTruth` обновится и `appA`, и `appВ`. Эффект «единого источника истины» достигнут, но отладка превратится в сущее мучение: любая часть данных может быть изменена любой частью приложения в любой момент и без каких-либо следов.
 
 ```js
-const appB = Vue.createApp({
+const appB = createApp({
   data() {
     return sourceOfTruth
   },
@@ -55,7 +57,7 @@ const appB = Vue.createApp({
 const store = {
   debug: true,
 
-  state: Vue.reactive({
+  state: reactive({
     message: 'Hello!'
   }),
 
@@ -88,7 +90,7 @@ const store = {
 ```
 
 ```js
-const appA = Vue.createApp({
+const appA = createApp({
   data() {
     return {
       privateState: {},
@@ -100,7 +102,7 @@ const appA = Vue.createApp({
   }
 }).mount('#app-a')
 
-const appB = Vue.createApp({
+const appB = createApp({
   data() {
     return {
       privateState: {},
