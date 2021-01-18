@@ -301,4 +301,16 @@ setTimeout(() => app.unmount(), 5000)
 
   При многократном вызове метода установки одного и того же плагина, установка будет выполнена только один раз.
 
+- **Пример:**
+
+  ```js
+  import { createApp } from 'vue'
+  import MyPlugin from './plugins/MyPlugin'
+
+  const app = createApp({})
+
+  app.use(MyPlugin)
+  app.mount('#app')
+  ```
+
 - **См. также:** [Плагины](../guide/plugins.md)
