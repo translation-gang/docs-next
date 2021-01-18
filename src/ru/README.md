@@ -23,8 +23,8 @@ features:
   - title: Производительный
     details: |
       Всего 20KB (min+gzip)<br>
-      Молниеносный Виртуальный DOM<br>
-      Минимальная необходимость в оптимизации
+      Сверхбыстрый виртуальный DOM<br>
+      Оптимизация без сложностей
 footer: |
   Выпускается под <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">Лицензией MIT</a><br>
   Copyright © 2014-2020 Evan You
