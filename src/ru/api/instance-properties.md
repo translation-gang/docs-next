@@ -6,9 +6,9 @@
 
 - **Подробности:**
 
-  The data object that the component instance is observing. The component instance proxies access to the properties on its data object.
+  Объект с данными, за которыми осуществляет наблюдение экземпляр компонента. Экземпляр компонента проксирует доступ к свойствам объекта данных.
 
-- **См. также:** [Options / Data - data](options-data.md#data-2)
+- **См. также:** [Options API / Data — data](options-data.md#data-2)
 
 ## $props
 
@@ -16,7 +16,7 @@
 
 - **Подробности:**
 
-  An object representing the current props a component has received. The component instance proxies access to the properties on its props object.
+  Объект, отображающий текущие входные параметры, которые получил компонент. Экземпляр компонента проксирует доступ к свойствам объекта входных параметров.
 
 ## $el
 
@@ -26,9 +26,9 @@
 
 - **Подробности:**
 
-  The root DOM element that the component instance is managing.
+  Корневой элемент DOM, которым управляет экземпляр компонента.
 
-  For components using [fragments](../guide/migration/fragments.md), `$el` will be the placeholder DOM node that Vue uses to keep track of the component's position in the DOM. It is recommended to use [template refs](../guide/component-template-refs.md) for direct access to DOM elements instead of relying on `$el`.
+  Для компонентов использующих [фрагменты](../guide/migration/fragments.md), `$el` будет узлом DOM, с помощью которого Vue будет отслеживать место компонента в DOM. Рекомендуется использовать [ссылки на элементы шаблона](../guide/component-template-refs.md) для доступа к элементам DOM напрямую, а не полагаться на `$el`.
 
 ## $options
 
@@ -38,7 +38,7 @@
 
 - **Подробности:**
 
-  The instantiation options used for the current component instance. This is useful when you want to include custom properties in the options:
+  Опции, используемые для инициализации текущего экземпляра компонента. Полезно, если потребуется добавить пользовательские свойства в опции:
 
   ```js
   const app = Vue.createApp({
@@ -51,23 +51,23 @@
 
 ## $parent
 
-- **Тип:** `Component instance`
+- **Тип:** `Экземпляр компонента`
 
 - **Только для чтения**
 
 - **Подробности:**
 
-  The parent instance, if the current instance has one.
+  Родительский экземпляр, если таковой имеется.
 
 ## $root
 
-- **Тип:** `Component instance`
+- **Тип:** `Экземпляр компонента`
 
 - **Только для чтения**
 
 - **Подробности:**
 
-  The root component instance of the current component tree. If the current instance has no parents this value will be itself.
+  Экземпляр корневого компонента текущего дерева компонентов. Если у текущего экземпляра нет родителя, то значением будет он сам.
 
 ## $slots
 
@@ -77,9 +77,9 @@
 
 - **Подробности:**
 
-  Used to programmatically access content [distributed by slots](../guide/component-basics.md#content-distribution-with-slots). Each [named slot](../guide/component-slots.md#named-slots) has its own corresponding property (e.g. the contents of `v-slot:foo` will be found at `this.$slots.foo()`). The `default` property contains either nodes not included in a named slot or contents of `v-slot:default`.
+  Используется для программного доступа к содержимому, [распределяемому с помощью слотов](../guide/component-basics.md#распределение-контента-слотами). Каждый [именованный слот](../guide/component-slots.md#именованные-слоты) имеет соответствующее свойство (например, содержимое `v-slot:foo` будет доступно через `this.$slots.foo()`). В свойстве `default` будут либо узлы, не попавшие в какой-либо именованный слот, либо содержимое `v-slot:default`.
 
-  Accessing `this.$slots` is most useful when writing a component with a [render function](../guide/render-function.md).
+  Доступ к `this.$slots` пригодится при создании компонента с помощью [render-функции](../guide/render-function.md).
 
 - **Пример:**
 
@@ -116,9 +116,9 @@
   ```
 
 - **См. также:**
-  - [`<slot>` Component](built-in-components.md#slot)
-  - [Content Distribution with Slots](../guide/component-basics.md#content-distribution-with-slots)
-  - [Render Functions - Slots](../guide/render-function.md#slots)
+  - [Встроенный компонент `<slot>`](built-in-components.md#slot)
+  - [Распределение контента слотами](../guide/component-basics.md#распределение-контента-слотами)
+  - [Render-функции — Слоты](../guide/render-function.md#слоты)
 
 ## $refs
 
@@ -128,11 +128,11 @@
 
 - **Подробности:**
 
-An object of DOM elements and component instances, registered with [`ref` attributes](../guide/component-template-refs.md).
+Объект из DOM-элементов и экземпляров компонентов, зарегистрированных с помощью [атрибутов `ref`](../guide/component-template-refs.md).
 
 - **См. также:**
-  - [Template refs](../guide/component-template-refs.md)
-  - [Special Attributes - ref](special-attributes.md#ref)
+  - [Ссылки на элементы шаблона](../guide/component-template-refs.md)
+  - [Специальные атрибуты — ref](special-attributes.md#ref)
 
 ## $attrs
 
@@ -142,8 +142,8 @@ An object of DOM elements and component instances, registered with [`ref` attrib
 
 - **Подробности:**
 
-Contains parent-scope attribute bindings and events that are not recognized (and extracted) as component [props](options-data.md#props) or [custom events](options-data.md#emits). When a component doesn't have any declared props or custom events, this essentially contains all parent-scope bindings, and can be passed down to an inner component via `v-bind="$attrs"` — useful when creating higher-order components.
+Содержит привязки атрибутов и события в родительском компоненте, которые не были распознаны (и исключены) как [входные параметры](options-data.md#props) компонента или [пользовательские события](options-data.md#emits). Если компонент не объявляет входные параметры или пользовательские события, тут будут все привязки из родительского компонента, которые через `v-bind="$attrs"` можно передать внутреннему компоненту  — удобно при создании компонентов высшего порядка (HOC).
 
 - **См. также:**
-  - [Non-Prop Attributes](../guide/component-attrs.md)
-  - [Options / Misc - inheritAttrs](./options-misc.md#inheritattrs)
+  - [Передача обычных атрибутов](../guide/component-attrs.md)
+  - [Options API / Разное — inheritAttrs](./options-misc.md#inheritattrs)
