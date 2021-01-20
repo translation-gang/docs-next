@@ -330,7 +330,7 @@ const sidebarRU = {
       children: ['/ru/guide/routing', '/ru/guide/state-management', '/ru/guide/ssr']
     },
     {
-      title: 'Accessibility',
+      title: 'Доступность',
       collapsable: false,
       children: [
         '/ru/guide/a11y-basics',
