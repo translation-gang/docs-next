@@ -1,4 +1,4 @@
-# Data
+# Локальное состояние (data)
 
 ## data
 
@@ -6,21 +6,21 @@
 
 - **Подробности:**
 
-  The function that returns a data object for the component instance. In `data`, we don't recommend to observe objects with their own stateful behavior like browser API objects and prototype properties. A good idea would be to have here just a plain object that represents component data.
+  Функция, которая возвращает объект данных для экземпляра компонента. Не следует использовать в `data` для отслеживания объекты со своим собственным поведением, например объекты API браузера или свойства прототипа. Лучше когда данные компонента представляет простой объект.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  После инициализации системы реактивности больше не будет возможности добавлять реактивные свойства к корневому объекту data. Поэтому рекомендуется объявить все необходимые свойства корневого уровня перед созданием экземпляра.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The component instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  После создания экземпляра доступ к оригинальном объекту с данными можно получить через `vm.$data`. Экземпляр компонента также проксирует все свойства, найденные в объекте данных, поэтому обращение к `vm.a` будет эквивалентно `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the component instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Свойства, чьи имена начинаются с символа `_` или `$`, **не будут проксироваться** экземпляром компонента, так как могут конфликтовать с внутренними свойствами Vue и методами API. Доступ к ним можно получить следующим образом `vm.$data._property`.
 
 - **Пример:**
 
   ```js
-  // direct instance creation
+  // Создание экземпляра напрямую
   const data = { a: 1 }
 
-  // The object is added to a component instance
+  // Объект добавляется к экземпляру компонента
   const vm = Vue.createApp({
     data() {
       return data
@@ -30,13 +30,15 @@
   console.log(vm.a) // => 1
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Обратите внимание, если в свойстве `data` использовать стрелочную функцию, то `this` не будет указывать на экземпляр компонента. Доступ к нему в таких случаях можно получить через первый аргумент функции:
 
   ```js
-  data: vm => ({ a: vm.myProp })
+  data: vm => ({
+    a: vm.myProp
+  })
   ```
 
-- **См. также:** [Reactivity in Depth](../guide/reactivity.md)
+- **См. также:** [Подробно о реактивности](../guide/reactivity.md)
 
 ## props
 
@@ -44,34 +46,37 @@
 
 - **Подробности:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Список/хэш атрибутов, которые могут принимать данные от родительского компонента. Может использоваться простой синтаксис массивом или альтернативный синтаксис объектом, который позволяет указывать расширенные настройки: устанавливать проверку типа, пользовательскую валидацию или значение по умолчанию.
 
-  With Object-based syntax, you can use following options:
+  При использовании объектного синтаксиса можно использовать следующие опции:
 
-  - `type`: can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/component-props.md#prop-types) on prop types.
+  - `type`: может быть одним из нативных конструкторов: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol` или любой функцией пользовательского конструктора или массивом из вышеперечисленных вариантов. Проверяет имеет ли входной параметр заданный тип и выдаёт предупреждение если нет. Подробнее в разделе [указания типа входных параметров](../guide/component-props.md#указание-типа-входных-параметров).
+
   - `default`: `any`
-    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    Определяет значение по умолчанию для входного параметра. Если входной параметр не был передан, то будет использовано это значение. При указании в качестве значения по умолчанию объекта или массива необходимо возвращать их из функции фабрики.
+
   - `required`: `Boolean`
-    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    Определяет является ли входной параметр обязательным. В не-production окружении будет выводиться предупреждение в консоли, если значение истинно, но входной параметр не передавался.
+
   - `validator`: `Function`
-    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/component-props.md#prop-validation).
+    Пользовательская функция валидации, которая получает значение входного параметра единственным аргументом. В не-production окружении будет выводиться предупреждение в консоли, если вернётся значение приводимое к false (т.е., если валидация не пройдена). Подробнее в разделе [валидации входных параметров](../guide/component-props.md#валидация-входных-параметров).
 
 - **Пример:**
 
   ```js
   const app = Vue.createApp({})
 
-  // simple syntax
+  // простой синтаксис
   app.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // объектный синтаксис с валидацией
   app.component('props-demo-advanced', {
     props: {
-      // type check
+      // проверка типа
       height: Number,
-      // type check plus other validations
+      // проверка типа + другие валидации
       age: {
         type: Number,
         default: 0,
@@ -84,7 +89,7 @@
   })
   ```
 
-- **См. также:** [Props](../guide/component-props.md)
+- **См. также:** [Входные параметры](../guide/component-props.md)
 
 ## computed
 
@@ -92,9 +97,9 @@
 
 - **Подробности:**
 
-  Computed properties to be mixed into the Vcomponent instance. All getters and setters have their `this` context automatically bound to the component instance.
+  Вычисляемые свойства, которые будут добавлены в экземпляр компонента. Все геттеры и сеттеры имеют свой контекст `this`, который автоматически привязывается к экземпляру компонента.
 
-  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+  Обратите внимание, что при использовании стрелочной функции для вычисляемого свойства `this` не будет указывать на экземпляр компонента. Доступ к нему в таких случаях можно получить через первый аргумент функции:
 
   ```js
   computed: {
@@ -102,7 +107,7 @@
   }
   ```
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will **not** be updated.
+  Вычисляемые свойства кэшируются и пересчитываются только при изменении своих реактивных зависимостей. Обратите внимание, если какая-либо зависимость находится за пределами области видимости экземпляра (т.е. не является реактивной), то в таком случае вычисляемое свойство **обновляться не будет**.
 
 - **Пример:**
 
@@ -112,11 +117,11 @@
       return { a: 1 }
     },
     computed: {
-      // get only
+      // только получение
       aDouble() {
         return this.a * 2
       },
-      // both get and set
+      // получение и установка
       aPlus: {
         get() {
           return this.a + 1
@@ -129,13 +134,14 @@
   })
 
   const vm = app.mount('#app')
+
   console.log(vm.aPlus) // => 2
   vm.aPlus = 3
   console.log(vm.a) // => 2
   console.log(vm.aDouble) // => 4
   ```
 
-- **См. также:** [Computed Properties](../guide/computed.md)
+- **См. также:** [Вычисляемые свойства](../guide/computed.md)
 
 ## methods
 
@@ -143,10 +149,10 @@
 
 - **Подробности:**
 
-  Methods to be mixed into the component instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the component instance.
+  Методы, которые будут добавлены в экземпляр компонента. К ним можно получить доступ через экземпляр или использовать их в выражениях директив. Все методы имеют свой контекст `this`, который автоматически привязывается к экземпляру компонента.
 
   :::tip Примечание
-  Note that **you should not use an arrow function to define a method** (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.a` will be undefined.
+  **Не используйте стрелочные функции при определении методов** (например, `plus: () => this.a++`). Стрелочные функции связываются с родительским контекстом, поэтому `this` не будет указывать на экземпляр компонента и `this.a` окажется неопределённым.
   :::
 
 - **Пример:**
@@ -169,7 +175,7 @@
   console.log(vm.a) // => 2
   ```
 
-- **См. также:** [Event Handling](../guide/events.md)
+- **См. также:** [Обработка событий](../guide/events.md)
 
 ## watch
 
@@ -177,7 +183,7 @@
 
 - **Подробности:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The component instance will call `$watch()` for each entry in the object at instantiation. See [$watch](instance-methods.md#watch) for more information about the `deep`, `immediate` and `flush` options.
+  Объект, ключ в котором определяет выражения для отслеживания изменений, а значение соответствующий коллбэк для вызова. Значение также может быть строкой с именем метода или объектом, содержащим дополнительные опции. Экземпляр компонента будет вызывать `$watch()` для каждой записи в объекте при инициализации. Подробнее о дополнительных опциях `deep`, `immediate` и `flush` в разделе [$watch](instance-methods.md#watch).
 
 - **Пример:**
 
@@ -196,33 +202,34 @@
     },
     watch: {
       a(val, oldVal) {
-        console.log(`new: ${val}, old: ${oldVal}`)
+        console.log(`новое значение: ${val}, старое: ${oldVal}`)
       },
-      // string method name
+      // строка с именем метода
       b: 'someMethod',
-      // the callback will be called whenever any of the watched object properties change regardless of their nested depth
+      // коллбэк будет вызываться каждый раз, когда изменится любое из свойств
+      // наблюдаемого объекта, независимо от глубины вложенности
       c: {
         handler(val, oldVal) {
-          console.log('c changed')
+          console.log('изменилось свойство c')
         },
         deep: true
       },
-      // the callback will be called immediately after the start of the observation
+      // коллбэк будет вызван сразу после начала наблюдения
       e: {
         handler(val, oldVal) {
-          console.log('e changed')
+          console.log('изменилось свойство e')
         },
         immediate: true
       },
-      // you can pass array of callbacks, they will be called one-by-one
+      // передача массива коллбэков; они будут вызываться один за другим
       f: [
         'handle1',
         function handle2(val, oldVal) {
-          console.log('handle2 triggered')
+          console.log('вызван handle2')
         },
         {
           handler: function handle3(val, oldVal) {
-            console.log('handle3 triggered')
+            console.log('вызван handle3')
           }
           /* ... */
         }
@@ -230,24 +237,24 @@
     },
     methods: {
       someMethod() {
-        console.log('b changed')
+        console.log('изменилось свойство b')
       },
       handle1() {
-        console.log('handle 1 triggered')
+        console.log('вызван handle1')
       }
     }
   })
 
   const vm = app.mount('#app')
 
-  vm.a = 3 // => new: 3, old: 1
+  vm.a = 3 // => новое значение: 3, старое: 1
   ```
 
   :::tip Примечание
-  Note that _you should not use an arrow function to define a watcher_ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.updateAutocomplete` will be undefined.
+  **Не используйте стрелочные функции при объявлении методов-наблюдателей** (например, `searchQuery: newValue => this.updateAutocomplete(newValue)`). Стрелочные функции связываются с родительским контекстом, поэтому `this` не будет указывать на экземпляр компонента и `this.updateAutocomplete` окажется неопределённым.
   :::
 
-- **См. также:** [Watchers](../guide/computed.md#watchers)
+- **См. также:** [Методы-наблюдатели](../guide/computed.md#методы-наблюдатели)
 
 ## emits
 
@@ -255,16 +262,16 @@
 
 - **Подробности:**
 
-  A list/hash of custom events that can be emitted from the component. It has an array-based simple syntax and an alternative Object-based syntax that allows to configure an event validation.
+  Список/хэш пользовательских событий, которые могут генерироваться компонентом. Может использоваться простой синтаксис массивом или альтернативный синтаксис объектом, который позволяет определить валидацию для событий.
 
-  In Object-based syntax, the value of each property can either be `null` or a validator function. The validation function will receive the additional arguments passed to the `$emit` call. For example, if `this.$emit('foo', 1)` is called, the corresponding validator for `foo` will receive the argument `1`. The validator function should return a boolean to indicate whether the event arguments are valid.
+  При использовании объектного синтаксиса значением каждого свойства может быть `null` или функция валидации. Функция будет получать дополнительные аргументы, переданные при вызове `$emit`. Например, для `this.$emit('foo', 1)` соответствующая функция валидации для `foo` получит аргументом значение `1`. Функция должна возвращать булево, чтобы указать корректность передаваемых с событием аргументов.
 
 - **Использование:**
 
   ```js
   const app = Vue.createApp({})
 
-  // Array syntax
+  // Синтаксис массивом
   app.component('todo-item', {
     emits: ['check'],
     created() {
@@ -272,18 +279,18 @@
     }
   })
 
-  // Object syntax
+  // Объектный синтаксис
   app.component('reply-form', {
     emits: {
-      // no validation
+      // без валидации
       click: null,
 
-      // with validation
+      // с валидацией
       submit: payload => {
         if (payload.email && payload.password) {
           return true
         } else {
-          console.warn(`Invalid submit event payload!`)
+          console.warn('Некорректные данные для события submit!')
           return false
         }
       }
@@ -292,7 +299,7 @@
   ```
 
   :::tip Примечание
-  Events listed in the `emits` option **will not** be inherited by the root element of the component and also will be excluded from the `$attrs` property.
+  События, перечисляемые в опции `emits`, **не будут наследоваться** корневым элементом компонента, а также будут исключаться из свойства `$attrs`.
   :::
 
-* **См. также:** [Attribute Inheritance](../guide/component-attrs.md#attribute-inheritance)
+* **См. также:** [Наследование атрибутов](../guide/component-attrs.md#наследование-атрибутов)
