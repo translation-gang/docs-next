@@ -1,16 +1,16 @@
-# Basics
+# Основы
 
-Web accessibility (also known as a11y) refers to the practice of creating websites that can be used by anyone — be that a person with a disability, a slow connection, outdated or broken hardware or simply someone in an unfavorable environment. For example, adding subtitles to a video would help both your deaf and hard-of-hearing users and your users who are in a loud environment and can't hear their phone. Similarly, making sure your text isn't too low contrast will help both your low-vision users and your users who are trying to use their phone in bright sunlight.
+Веб-доступность (сокращённо на английском — a11y) — это практика создания сайтов, которые могут быть использованы каждым человеком независимо от его инвалидности, скорости интернета, использовании старого или повреждённого оборудования или просто нахождении в некомфортных местах. К примеру, добавление субтитров к видеороликам может помочь как глухим, слабослышащим людям, так и тем, кто в данный момент находится в шумной обстановке и не могут услышать звук со своего телефона. Аналогично, не слишком низкой контрастности текст будет легче читать людям с ослабленным зрением, а также тем, кто использует телефон при ярком солнечном свете.
 
-Ready start but aren’t sure where?
+Хотите сделать своими сайты доступными, но не знаете с чего начать?
 
-Checkout the [Planning and managing web accessibility guide](https://www.w3.org/WAI/planning-and-managing/) provided by [World Wide Web Consortium (W3C)](https://www.w3.org/)
+Ознакомьтесь с [руководством по планированию и управлению веб-доступностью](https://www.w3.org/WAI/planning-and-managing/) от [консорциума Всемирной паутины (World Wide Web Consortium, W3C)](https://www.w3.org/).
 
-## Skip link
+## Ссылка для перехода к основному контенту
 
-You should add a link at the top of each page that goes directly to the main content area so users can skip content that is repeated on multiple Web pages.
+Хорошая практика — добавить ссылку в начале каждой страницы, которая позволит пользователям быстро переходить к области основного содержимого на ней, что позволит пропустить повторяющееся элементы на веб-страницах.
 
-Typically this is done on the top of `App.vue` as it will be the first focusable element on all your pages:
+Как правило, такая ссылка размещается в самом верху разметки главного компонента `App.vue`, поскольку она должна стать первым фокусируемым элементом для всех страниц:
 
 ```html
 <ul class="skip-links">
@@ -20,7 +20,7 @@ Typically this is done on the top of `App.vue` as it will be the first focusable
 </ul>
 ```
 
-To hide the link unless it is focused, you can add the following style:
+Чтобы скрыть ссылку до тех пор пока она не получит фокус можно добавить следующие стили:
 
 ```css
 .skipLink {
@@ -40,7 +40,7 @@ To hide the link unless it is focused, you can add the following style:
 }
 ```
 
-Once a user changes route, bring focus back to the skip link. This can be achieved by calling focus to the `ref` provided below:
+При переходе на новую страницу возвращаем фокус обратно на ссылку. Для этого вызовем соответствующий метод на элементе в `ref`, как показано ниже:
 
 ```vue
 <script>
@@ -56,57 +56,57 @@ export default {
 
 <common-codepen-snippet title="Skip to Main" slug="VwepxJa" :height="350" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-[Read documentation on skip link to main content](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
+[Документация о реализации ссылок для перехода к основному содержимому](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
 
-## Structure Your Content
+## Структурирование содержимого
 
-One of the most important pieces of accessibility is making sure that design can support accessible implementation. Design should consider not only color contrast, font selection, text sizing, and language, but also how the content is structured in the application.
+Одна из важнейших частей доступности — разработка дизайна с прицелом на доступность. Дизайне должен рассматривать не только цветовой контраст, шрифт, размер текста и язык, но и то, как структурировать содержимое в приложении.
 
-### Headings
+### Заголовки
 
-Users can navigate an application through headings. Having descriptive headings for every section of your application makes it easier for users to predict the content of each section. When it comes to headings, there are a couple of recommended accessibility practices:
+Пользователи могут осуществлять навигацию по заголовкам в приложении. Наличие заголовков в каждых разделах дадут общее представление об содержащейся в них информации. Несколько полезных рекомендаций для улучшения доступности заголовков:
 
-- Nest headings in their ranking order: `<h1>` - `<h6>`
-- Don’t skip headings within a section
-- Use actual heading tags instead of styling text to give the visual appearance of headings
+- Используйте вложенные заголовки в порядке очерёдности: `<h1>` - `<h6>`
+- Ссылки на заголовки должны быть доступны для фокуса
+- Следует использовать именно теги заголовков вместо стилизации текста
 
-[Read more about headings](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
+[Узнать подробнее про заголовки](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
 
 ```html
 <main role="main" aria-labelledby="main-title">
-  <h1 id="main-title">Main title</h1>
+  <h1 id="main-title">Основной заголовок</h1>
   <section aria-labelledby="section-title">
-    <h2 id="section-title"> Section Title </h2>
-    <h3>Section Subtitle</h3>
-    <!-- Content -->
+    <h2 id="section-title"> Заголовок раздела </h2>
+    <h3>Вложенный заголовок раздела</h3>
+    <!-- Содержимое -->
   </section>
   <section aria-labelledby="section-title">
-    <h2 id="section-title"> Section Title </h2>
-    <h3>Section Subtitle</h3>
-    <!-- Content -->
-    <h3>Section Subtitle</h3>
-    <!-- Content -->
+    <h2 id="section-title"> Заголовок раздела  </h2>
+    <h3>Вложенный заголовок раздела</h3>
+    <!-- Содержимое -->
+    <h3>Вложенный заголовок раздела</h3>
+    <!-- Содержимое -->
   </section>
 </main>
 ```
 
-### Landmarks
+### Ориентиры
 
-Landmarks provide programmatic access to sections within an application. Users who rely on assistive technology can navigate to each section of the application and skip over content. You can use [ARIA roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) to help you achieve this.
+Ориентиры (landmarks) описывают способ доступа к разделам внутри приложения. Пользователи, использующие вспомогательные технологии, могут перейти непосредственно к каждому разделу приложения минуя остальное содержимое. Для этого следует использовать [ARIA-роли](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
 
-| HTML            | ARIA Role                                                         | Landmark Purpose                                                                       |
-| --------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| header          | role="banner"                                                     | Prime heading: title of the page                                                       |
-| nav             | role="navigation"                                                 | Collection of links suitable for use when navigating the document or related documents |
-| main            | role="main"                                                       | The main or central content of the document.                                           |
-| footer          | role="contentinfo"                                                | Information about the parent document: footnotes/copyrights/links to privacy statement |
-| aside           | role="complementary"                                              | Supports the main content, yet is separated and meaningful on its own content            |
-| _Not available_ | role="search"                                                     | This section contains the search functionality for the application                     |
-| form            | role="form"                                                       | Collection of form-associated elements                                                 |
-| section         | role="region"  | Content that is relevant and that users will likely want to navigate to. Label must be provided for this element                |
+| HTML         | ARIA-роль            | Назначение ориентира                                                                                             |
+|--------------|----------------------|------------------------------------------------------------------------------------------------------------------|
+| header       | role="banner"        | Основной заголовок: заголовок страницы                                                                           |
+| nav          | role="navigation"    | Коллекция ссылок для перемещения по странице или другим страницам                                                |
+| main         | role="main"          | Основное или самое важное содержимое на странице                                                                 |
+| footer       | role="contentinfo"   | Информация о странице: сноски, авторские права, ссылки на политику конфиденциальности                            |
+| aside        | role="complementary" | Дополнение к основному содержимому                                                                               |
+| _Недоступен_ | role="search"        | Раздел, содержащий функциональность поиска по приложению                                                         |
+| form         | role="form"          | Коллекция элементов формы                                                                                        |
+| section      | role="region"        | Сопутствующее содержимое, которое пользователь возможно захочет изучить. Для такого элемента нужно указать метку |
 
 :::tip Совет
-It is recommended to use landmark HTML elements with redundant landmark role attributes in order to maximize compatibility with legacy [browsers that don’t support HTML5 semantic elements](https://caniuse.com/#feat=html5semantic).
+Для улучшения совместимости с устаревшими браузерами, которые не поддерживают [семантические элементы HTML5](https://caniuse.com/#feat=html5semantic) при использовании HTML-элементов ориентиров рекомендуется добавлять соответствующие, пусть и устаревшие, атрибуты ролей.
 :::
 
-[Read more about landmarks](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
+[Подробнее про ориентиры](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
