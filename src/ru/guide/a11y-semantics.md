@@ -1,10 +1,10 @@
-# Semantics
+# Семантика
 
-## Forms
+## Формы
 
-When creating a form, you can use the following elements: `<form>`, `<label>`, `<input>`, `<textarea>`, and `<button>`
+При создании формы используйте следующие элементы: `<form>`, `<label>`, `<input>`, `<textarea>` и `<button>`.
 
-Labels are typically placed on top or to the left of the form fields:
+Как правило, метки размещаются сверху или слева от полей формы:
 
 ```html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
@@ -21,27 +21,27 @@ Labels are typically placed on top or to the left of the form fields:
 </form>
 ```
 
-<common-codepen-snippet title="Simple Form" slug="YzwpPYZ" :height="368" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Простая форма" slug="YzwpPYZ" :height="368" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-Notice how you can include `autocomplete='on'` on the form element and it will apply to all inputs in your form. You can also set different [values for autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for each input.
+Обратите внимание, если добавить `autocomplete='on'` к самому элементу формы, то он этот атрибут применится ко всем полям формы. Для каждого поля можно задать разные [значения в атрибуте autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
-### Labels
+### Метки
 
-Provide labels to describe the purpose of all form control; linking `for` and `id`:
+В метках даётся описание полей формы; они устанавливают связь между элементами с атрибутами `for` и `id`:
 
 ```html
 <label for="name">Name</label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
-<common-codepen-snippet title="Form Label" slug="wvMrGqz" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Метка формы" slug="wvMrGqz" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-If you inspect this element in your chrome developer tools and open the Accessibility tab inside the Elements tab, you will see how the input gets its name from the label:
+Если открыть инструменты разработки (например, DevTools в браузере Chrome) на вкладке Elements, затем перейти на вкладку Accessibility, можно заметить, что имя поле извлекается из её метки:
 
-![Chrome Developer Tools showing input accessible name from label](/images/AccessibleLabelChromeDevTools.png)
+![В инструментах разработки Chrome показывается имя поле, указанное в метке](/images/AccessibleLabelChromeDevTools.png)
 
-:::warning ВНИМАНИЕ Warning:
-Though you might have seen labels wrapping the input fields like this:
+:::warning ВНИМАНИЕ:
+Возможно, вы видели, как поля ввода находится внутри элемента метки: 
 
 ```html
 <label>
@@ -50,12 +50,12 @@ Though you might have seen labels wrapping the input fields like this:
 </label>
 ```
 
-Explicitly setting the labels with a matching id is better supported by assistive technology.
+Однако так лучше не делать, поскольку вспомогательные технологии лучше работают с метками, явно связанные с идентификаторами.
 :::
 
 #### aria-label
 
-You can also give the input an accessible name with [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute).
+С помощью атрибута [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) можно задать описание поля для вспомогательных технологий.
 
 ```html
 <label for="name">Name</label>
@@ -70,13 +70,13 @@ You can also give the input an accessible name with [`aria-label`](https://devel
 
 <common-codepen-snippet title="Form ARIA label" slug="jOWGqgz" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-Feel free to inspect this element in Chrome DevTools to see how the accessible name has changed:
+В Chrome DevTools посмотрите сами, что метка формы изменилась:
 
-![Chrome Developer Tools showing input accessible name from aria-label](/images/AccessibleARIAlabelDevTools.png)
+![В инструментах разработки Chrome показывается имя поля, заданное в aria-label](/images/AccessibleARIAlabelDevTools.png)
 
 #### aria-labelledby
 
-Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) is similar to `aria-label` expect it is used if the label text is visible on screen. It is paired to other elements by their `id` and you can link multiple `id`s:
+Использование атрибута [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) похоже на `aria-label`, за исключением того, что текст метки отображается на экране. Он создаёт связь между элементами с атрибутом `id`, допускается указать несколько `id`:
 
 ```html
 <form
@@ -102,11 +102,11 @@ Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibi
 
 <common-codepen-snippet title="Form ARIA labelledby" slug="ZEQXOLP" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-![Chrome Developer Tools showing input accessible name from aria-labelledby](/images/AccessibleARIAlabelledbyDevTools.png)
+![В инструментах разработки Chrome показывается имя поля, указанное в атрибуте aria-labelledby](/images/AccessibleARIAlabelledbyDevTools.png)
 
 #### aria-describedby
 
-[aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) is used the same way as `aria-labelledby` expect provides a description with additional information that the user might need. This can be used to describe the criteria for any input:
+Атрибут [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) аналогичен `aria-labelledby`, но представляет собой дополнительную информацию для пользователя. Его можно использовать для добавления условий ввода для поля:
 
 ```html
 <form
@@ -134,24 +134,24 @@ Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibi
 
 <common-codepen-snippet title="Form ARIA describedby" slug="JjGrKyY" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-You can see the description by inspecting Chrome DevTools:
+Через Chrome DevTools можно увидеть применённое описание:
 
-![Chrome Developer Tools showing input accessible name from aria-labelledby and description with aria-describedby](/images/AccessibleARIAdescribedby.png)
+![В инструментах разработки Chrome показывается имя из атрибута aria-labelledby вместе с описанием, полученным из атрибута aria-describedby](/images/AccessibleARIAdescribedby.png)
 
-### Placeholder
+### Подсказка поля
 
-Avoid using placeholders as they can confuse many users.
+Постарайтесь не использовать подсказки полей, поскольку они могут запутать многих пользователей.
 
-One of the issues with placeholders is that they don't meet the [color contrast criteria](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) by default; fixing the color contrast makes the placeholder look like pre-populated data in the input fields. Looking at the following example, you can see that the Last Name placeholder which meets the color contrast criteria looks like pre-populated data:
+По умолчанию подсказки полей не соответствуют [критериям цветового контраста](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html). Попытка исправить эту проблему приведёт к тому, что подсказка поля будет выглядеть как предварительно заполненные данные в элементах формы. Посмотрите на следующий пример: подсказка поля Last Name соответствует критериям цветового контраста, хотя она не отличается от введённого значения:
 
 <common-codepen-snippet title="Form Placeholder" slug="PoZJzeQ" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-It is best to provide all the information the user needs to fill out forms outside any inputs.
+Таким образом, лучше всего вынести всю справочную информацию за пределы полей формы.
 
-### Instructions
+### Инструкции
 
-When adding instructions for your input fields, make sure to link it correctly to the input.
-You can provide additional instructions and bind multiple ids inside an [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute). This allows for more flexible design.
+При добавлении инструкций для заполнения к полям формы убедитесь, что они правильно связаны между собой.
+Все инструкции можно указать в виде идентификаторов внутри атрибута [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute). Это делает дизайн более гибким.
 
 ```html
 <fieldset>
@@ -167,7 +167,7 @@ You can provide additional instructions and bind multiple ids inside an [`aria-l
 </fieldset>
 ```
 
-Alternatively, you can attach the instructions to the input with [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute):
+В качестве альтернативного варианта можно воспользоваться атрибутом [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute):
 
 ```html
 <fieldset>
@@ -180,11 +180,11 @@ Alternatively, you can attach the instructions to the input with [`aria-describe
 
 <common-codepen-snippet title="Form Instructions" slug="GRoMqYy" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-### Hiding Content
+### Скрытие содержимого
 
-Usually it is not recommended to visually hide labels, even if the input has an accessible name. However, if the functionality of the input can be understood with surrounding content, then we can hide the visual label.
+Обычно не рекомендуется скрывать метки, даже если для поля ввода задано имя. Тем не менее, если смысл поля понятен из контекста, то метку можно скрыть.
 
-Let's look at this search field:
+Рассмотрим следующее поле поиска:
 
 ```html
 <form role="search">
@@ -194,9 +194,9 @@ Let's look at this search field:
 </form>
 ```
 
-We can do this because the search button will help visual users identify the purpose of the input field.
+В данном случае можно скрыть метку, поскольку кнопка поиска даёт понять, для чего предназначено поле ввода.
 
-We can use CSS to visually hide elements but keep them available for assistive technology:
+При помощи CSS-класса скроем необходимый элемент, при этом сохранив его функциональность для вспомогательных технологий:
 
 ```css
 .hidden-visually {
@@ -216,25 +216,25 @@ We can use CSS to visually hide elements but keep them available for assistive t
 
 #### aria-hidden="true"
 
-Adding `aria-hidden="true"` will hide the element from assistive technology but leave it visually available for other users. Do not use it on focusable elements, purely on decorative, duplicated or offscreen content.
+Добавление `aria-hidden="true"` скроет элемент от вспомогательных технологий, однако он по-прежнему будет показываться другим пользователям. Не используйте его на фокусируемых элементах, только для декоративного, дублируемого или не предназначенного для вывода на экран содержимого.
 
 ```html
 <p>This is not hidden from screen readers.</p>
 <p aria-hidden="true">This is hidden from screen readers.</p>
 ```
 
-### Buttons
+### Кнопки
 
-When using buttons inside a form, you must set the type to prevent submitting the form.
-You can also use an input to create buttons:
+При использовании кнопок внутри формы, следует задать тип для них, чтобы избежать отправку формы.
+Для создания кнопок также можно использовать обычное поле ввода:
 
 ```html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
-  <!-- Buttons -->
+  <!-- Кнопки -->
   <button type="button">Cancel</button>
   <button type="submit">Submit</button>
 
-  <!-- Input buttons -->
+  <!-- Кнопки как поля ввода -->
   <input type="button" value="Cancel" />
   <input type="submit" value="Submit" />
 </form>
@@ -242,13 +242,13 @@ You can also use an input to create buttons:
 
 <common-codepen-snippet title="Form Buttons" slug="PoZEXoj" :height="467" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
 
-#### Functional Images
+#### Функциональные изображения
 
-You can use this technique to create functional images.
+Для создания функциональных изображений можно использовать перечисленную ниже технику.
 
-- Input fields
+- Поля ввода
 
-  - These images will act as a submit type button on forms
+  - Изображение будет работать как кнопка отправки формы
 
   ```html
   <form role="search">
@@ -263,7 +263,7 @@ You can use this technique to create functional images.
   </form>
   ```
 
-- Icons
+- Иконки
 
 ```html
 <form role="search">
@@ -276,4 +276,4 @@ You can use this technique to create functional images.
 </form>
 ```
 
-<common-codepen-snippet title="Functional Images" slug="NWxXeqY" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Функциональные изображения" slug="NWxXeqY" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
