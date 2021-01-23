@@ -1,32 +1,32 @@
-# Standards
+# Стандарты
 
-The World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI) develops web accessibility standards for the different components:
+Инициатива веб-доступности (Web Accessibility Initiative, WAI) консорциума Всемирной паутины (World Wide Web Consortium, W3C) разработала стандарты для обеспечения доступности:
 
-- [User Agent Accessibility Guidelines (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
-  - web browsers and media players, including some aspects of assistive technologies
-- [Authoring Tool Accessibility Guidelines (ATAG)](https://www.w3.org/WAI/standards-guidelines/atag/)
-  - authoring tools
-- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-  - web content - used by developers, authoring tools, and accessibility evaluation tools
+- [Руководства по доступности пользовательских программ (User Agent Accessibility Guidelines, UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
+  - касается браузеров и медиаплееров, включая вспомогательные технологии
+- [Руководства по доступности средств разработки авторского контента (Authoring Tool Accessibility Guidelines, ATAG)](https://www.w3.org/WAI/standards-guidelines/atag/)
+  - распространяется на приложения для создания веб-страниц
+- [Руководства по доступности веб-содержимого (Web Content Accessibility Guidelines, WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+  - относится к содержимому в вебе, используемому разработчиками, программами для создания веб-страниц и инструментами для оценки доступности
 
-## Web Content Accessibility Guidelines (WCAG)
+## Руководства по доступности веб-содержимого (WCAG)
 
-[WCAG 2.1](https://www.w3.org/TR/WCAG21/) extends on [WCAG 2.0](https://www.w3.org/TR/WCAG20/) and allows implementation of new technologies by addressing changes to the web. The W3C encourages use of the most current version of WCAG when developing or updating Web accessibility policies.
+[WCAG 2.1](https://www.w3.org/TR/WCAG21/) — продолжение [WCAG 2.0](https://www.w3.org/TR/WCAG20/), в котором были учтены новые веб-технологии. При разработке новых или обновлении существующих политик по обеспечению веб-доступности консорциум W3C настоятельно рекомендует использовать последнюю версию стандарта WCAG.
 
-### WCAG 2.1 Four Main Guiding Principles (abbreviated as POUR):
+### Четыре базовых принципа WCAG 2.1 (сокращённо POUR):
 
-- [Perceivable](https://www.w3.org/TR/WCAG21/#perceivable)
-  - Users must be able to perceive the information being presented
-- [Operable](https://www.w3.org/TR/WCAG21/#operable)
-  - Interface forms, controls, and navigation are operable
-- [Understandable](https://www.w3.org/TR/WCAG21/#understandable)
-  - Information and the operation of user interface must be understandable to all users
-- [Robust](https://www.w3.org/TR/WCAG21/#robust)
-  - Users must be able to access the content as technologies advance
+- [Perceivable (Воспринимаемость)](https://www.w3.org/TR/WCAG21/#perceivable)
+  - Представленная информация должна быть доступной для всех пользователей
+- [Operable (Управляемость)](https://www.w3.org/TR/WCAG21/#operable)
+  - Компоненты интерфейса, элементы управления и навигации поддерживают управление с клавиатуры
+- [Understandable (Понятность)](https://www.w3.org/TR/WCAG21/#understandable)
+  - Информация и функционирование интерфейса должны быть понятны всем пользователям
+- [Robust (Надёжность)](https://www.w3.org/TR/WCAG21/#robust)
+  - Рабочий доступ к информации вне зависимости от технологии, используемой пользователями
 
-### Web Accessibility Initiative – Accessible Rich Internet Applications (WAI-ARIA)
+### Инициатива веб-доступности – Доступные полнофункциональные интернет-приложения (Accessible Rich Internet Applications, WAI-ARIA)
 
-W3C's WAI-ARIA provides guidance on how to build dynamic content and advanced user interface controls.
+Стандарт WAI-ARIA компании от W3C служит руководством по созданию динамического содержимого и расширенных средств для управления интерфейсом.
 
 - [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
 - [WAI-ARIA Authoring Practices 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
