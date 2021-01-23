@@ -1,6 +1,6 @@
 # Стандарты
 
-Инициатива веб-доступности (Web Accessibility Initiative, WAI) консорциума Всемирной паутины (World Wide Web Consortium, W3C) разработала стандарты для обеспечения доступности:  
+Инициатива веб-доступности (Web Accessibility Initiative, WAI) консорциума Всемирной паутины (World Wide Web Consortium, W3C) разработала стандарты для обеспечения доступности:
 
 - [Руководства по доступности пользовательских программ (User Agent Accessibility Guidelines, UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
   - касается браузеров и медиаплееров, включая вспомогательные технологии
