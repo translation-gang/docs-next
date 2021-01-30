@@ -1,16 +1,16 @@
-# Introduction
+# Введение
 
-## Why Composition API?
+## Зачем Composition API?
 
 :::tip Примечание
-Reaching this far in the documentation, you should already be familiar with both [the basics of Vue](introduction.md) and [creating components](component-basics.md).
+Прежде чем начинать изучение этого раздела документации необходимо знать как базовые [основы Vue](introduction.md), так и принципы [создания компонентов](component-basics.md).
 :::
 
 <VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/why-the-composition-api" title="Посмотрите бесплатное видео о Composition API на Vue Mastery">Посмотрите бесплатное видео о Composition API на Vue Mastery</VideoLesson>
 
-Creating Vue components allows us to extract repeatable parts of the interface coupled with its functionality into reusable pieces of code. This alone can get our application pretty far in terms of maintainability and flexibility. However, our collective experience has proved that this alone might not be enough, especially when your application is getting really big – think several hundred components. When dealing with such large applications, sharing and reusing code becomes especially important.
+Создание компонентов Vue позволяет извлечь повторяющиеся части интерфейса вместе со связанной функциональностью в переиспользуемые части кода. Подобное уже добавляет приложению довольно много с точки зрения удобства обслуживания и гибкости. Однако, коллективный опыт показал, что этого всё ещё может быть недостаточно, если приложение становится действительно большим — представьте, когда счёт идёт на несколько сотен компонентов. Когда приходится иметь дело с такими большими приложениями — возможность разделения и переиспользования кода становится крайне важна.
 
-Let’s imagine that in our app, we have a view to show a list of repositories of a certain user. On top of that, we want to apply search and filter capabilities. Our component handling this view could look like this:
+Представим, что в приложении есть компонент с отображением списка репозиториев определённого пользователя. Поверх него, необходимо добавить возможность поиска и фильтрации. Компонент, управляющим подобным отображением, может выглядеть так:
 
 ```js
 // src/components/UserRepositories.vue
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     getUserRepositories () {
-      // using `this.user` to fetch user repositories
+      // использование `this.user` для загрузки пользовательских репозиториев
     }, // 1
     updateFilters () { ... }, // 3
   },
@@ -49,39 +49,39 @@ export default {
 }
 ```
 
-This component has several responsibilities:
+Такой компонент имеет несколько обязанностей:
 
-1. Getting repositories from a presumedly external API for that user name and refreshing it whenever the user changes
-2. Searching for repositories using a `searchQuery` string
-3. Filtering repositories using a `filters` object
+1. Загрузка репозиториев для этого имени пользователя из какого-либо внешнего API и обновление списка при изменениях пользователя
+2. Поиск репозиториев с помощью строки `searchQuery`
+3. Фильтрация репозиториев с помощью объекта `filters`
 
-Organizing logics with component's options (`data`, `computed`, `methods`, `watch`) works in most cases. However, when our components get bigger, the list of **logical concerns** also grows. This can lead to components that are hard to read and understand, especially for people who didn't write them in the first place.
+Организация логики через опции компонента (`data`, `computed`, `methods`, `watch`) будет прекрасно работать в большинстве случаев. Однако, когда компоненты становятся больше, список **логических блоков** также растёт. Это может привести к появлению компонентов, которые сложно изучать и понимать, особенно для тех, кто не занимался их написанием.
 
-![Vue Option API: Code grouped by option type](https://user-images.githubusercontent.com/499550/62783021-7ce24400-ba89-11e9-9dd3-36f4f6b1fae2.png)
+![Options API во Vue: Код сгруппированный по типу опции](https://user-images.githubusercontent.com/499550/62783021-7ce24400-ba89-11e9-9dd3-36f4f6b1fae2.png)
 
-Example presenting a large component where its **logical concerns** are grouped by colors.
+Пример большого компонента, где его **логические блоки** сгруппированы по цвету.
 
-Such fragmentation is what makes it difficult to understand and maintain a complex component. The separation of options obscures the underlying logical concerns. In addition, when working on a single logical concern, we have to constantly "jump" around option blocks for the relevant code.
+Подобная фрагментация усложняет понимание и поддержание таких сложных компонентов. Разделение по опциям делает менее заметными логические блоки используемые в них. Кроме того, при работе над одним логическим блоком постоянно приходится «прыгать» между блоками в поисках соответствующего кода.
 
-It would be much nicer if we could collocate code related to the same logical concern. And this is exactly what the Composition API enables us to do.
+Было бы гораздо удобнее, если соответствующий логическому блоку код можно разместить рядом. И это именно то, что позволяет сделать Composition API.
 
-## Basics of Composition API
+## Основы Composition API
 
-Now that we know the **why** we can get to the **how**. To start working with the Composition API we first need a place where we can actually use it. In a Vue component, we call this place the `setup`.
+Ответив на вопрос **зачем**, теперь можно перейти к разделу **как**. Прежде чем начать работу с Composition API нужно место, где его можно использовать. В компоненте Vue это место называется `setup`.
 
-### `setup` Component Option
+### Опция компонента `setup`
 
 <VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/setup-and-reactive-references" title="Посмотрите бесплатное видео об опции setup на Vue Mastery">Посмотрите бесплатное видео об опции setup на Vue Mastery</VideoLesson>
 
-The new `setup` component option is executed **before** the component is created, once the `props` are resolved, and serves as the entry point for composition API's.
+Новая опция компонента `setup` выполняется **перед** созданием компонента, как только разрешатся входные параметры `props`, и случит точкой входа для Composition API.
 
 :::warning ВНИМАНИЕ
-Because the component instance is not yet created when `setup` is executed, there is no `this` inside a `setup` option. This means, with the exception of `props`, you won't be able to access any properties declared in the component – **local state**, **computed properties** or **methods**.
+Так как на этапе выполнения `setup` экземпляр компонента ещё не создан, то внутри опции `setup` доступа к `this` не будет. Это значит, что кроме входных параметров `props`, нельзя будет обратиться ни к каким свойствам, объявленным в компоненте, а именно — **локальному состоянию**, **вычисляемым свойствам** или **методам**.
 :::
 
-The `setup` option should be a function that accepts `props` and `context` which we will talk about [later](composition-api-setup.md#arguments). Additionally, everything that we return from `setup` will be exposed to the rest of our component (computed properties, methods, lifecycle hooks and so on) as well as to the component's template.
+Опция `setup` должна быть функцией, которая принимает аргументами `props` и `context`, о которых подробнее поговорим [дальше](composition-api-setup.md#arguments). Кроме того, всё что возвращает `setup` станет доступным для остальных частей компонента (вычисляемые свойства, методы, хуки жизненного цикла и т.д.), а также в шаблоне компонента.
 
-Let’s add `setup` to our component:
+Добавим `setup` в компонент:
 
 ```js
 // src/components/UserRepositories.vue
@@ -97,27 +97,27 @@ export default {
   setup(props) {
     console.log(props) // { user: '' }
 
-    return {} // anything returned here will be available for the rest of the component
+    return {} // всё что возвращается здесь, станет доступно остальной части компонента
   }
-  // the "rest" of the component
+  // ... остальная часть компонента
 }
 ```
 
-Now let’s start with extracting the first logical concern (marked as "1" in the original snippet).
+Теперь извлечём логику первого логического блока (отмечена как «1» в исходном примере).
 
-> 1. Getting repositories from a presumedly external API for that user name and refreshing it whenever the user changes
+> 1. Загрузка репозиториев для этого имени пользователя из какого-либо внешнего API и обновление списка при изменениях пользователя
 
-We will start with the most obvious parts:
+Начнём с самых очевидных частей:
 
-- The list of repositories
-- The function to update the list of repositories
-- Returning both the list and the function so they are accessible by other component options
+- Списка репозиториев
+- Функции для обновления списка репозиториев
+- Возвращение как списка, так и функции, чтобы сделать их доступными для других опций компонента
 
 ```js
-// src/components/UserRepositories.vue `setup` function
+// src/components/UserRepositories.vue; функция `setup`
 import { fetchUserRepositories } from '@/api/repositories'
 
-// inside our component
+// в компоненте
 setup (props) {
   let repositories = []
   const getUserRepositories = async () => {
@@ -126,16 +126,16 @@ setup (props) {
 
   return {
     repositories,
-    getUserRepositories // functions returned behave the same as methods
+    getUserRepositories // возвращаемые функции ведут себя как методы
   }
 }
 ```
 
-This is our starting point, except it's not working yet because our `repositories` variable is not reactive. This means from a user's perspective, the repository list would remain empty. Let's fix that!
+Это стартовая точка, за исключением того, что ещё не всё работает, потому что переменная `repositories` пока не-реактивна. С точки зрения пользователя, список репозиториев будет оставаться пустым. Давайте это исправим!
 
-### Reactive Variables with `ref`
+### Реактивные переменные с помощью `ref`
 
-In Vue 3.0 we can make any variable reactive anywhere with a new `ref` function, like this:
+Во Vue 3.0 теперь где угодно любую переменную можно сделать реактивной с помощью новой функции `ref`, например так:
 
 ```js
 import { ref } from 'vue'
@@ -143,7 +143,7 @@ import { ref } from 'vue'
 const counter = ref(0)
 ```
 
-`ref` takes the argument and returns it wrapped within an object with a `value` property, which can then be used to access or mutate the value of the reactive variable:
+Аргумент `ref` возвращается обёрнутым в объект со свойством `value`, которое затем можно использовать для доступа или изменения значения реактивной переменной:
 
 ```js
 import { ref } from 'vue'
@@ -157,24 +157,24 @@ counter.value++
 console.log(counter.value) // 1
 ```
 
-Wrapping values inside an object might seem unnecessary but is required to keep the behavior unified across different data types in JavaScript. That’s because in JavaScript, primitive types like `Number` or `String` are passed by value, not by reference:
+Оборачивание значения в объект может показаться лишним, но это нужно для одинакового поведения для разных типов данных в JavaScript. Связано это с тем, что примитивные типы в JavaScript, такие как `Number` или `String`, передаются по значению, а не по ссылке:
 
-![Pass by reference vs pass by value](https://blog.penjee.com/wp-content/uploads/2015/02/pass-by-reference-vs-pass-by-value-animation.gif)
+![Отличия в передаче по ссылки и передаче по значению](https://blog.penjee.com/wp-content/uploads/2015/02/pass-by-reference-vs-pass-by-value-animation.gif)
 
-Having a wrapper object around any value allows us to safely pass it across our whole app without worrying about losing its reactivity somewhere along the way.
+Наличие вокруг любого значения объекта-обёртки позволяет безопасно использовать его во всём приложении, не беспокоясь о потере реактивности где-то по пути.
 
 :::tip Примечание
-In other words, `ref` creates a **Reactive Reference** to our value. The concept of working with **References** will be used often throughout the Composition API.
+Другими словами, `ref` создаёт **реактивную ссылку** к значению. Концепция работы со **ссылками** будет повсюду использоваться в Composition API.
 :::
 
-Back to our example, let's create a reactive `repositories` variable:
+Возвращаясь к примеру, создадим реактивную переменную `repositories`:
 
 ```js
-// src/components/UserRepositories.vue `setup` function
+// src/components/UserRepositories.vue; функция `setup`
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref } from 'vue'
 
-// in our component
+// в компоненте
 setup (props) {
   const repositories = ref([])
   const getUserRepositories = async () => {
@@ -188,7 +188,7 @@ setup (props) {
 }
 ```
 
-Done! Now whenever we call `getUserRepositories`, `repositories` will be mutated and the view will be updated to reflect the change. Our component should now look like this:
+Готово! Теперь при каждом вызове `getUserRepositories` будет изменяться `repositories` и обновляться вид блока, чтобы отобразить изменения. Теперь компонент выглядит так:
 
 ```js
 // src/components/UserRepositories.vue
@@ -236,31 +236,31 @@ export default {
 }
 ```
 
-We have moved several pieces of our first logical concern into the `setup` method, nicely put close to each other. What’s left is calling `getUserRepositories` in the `mounted` hook and setting up a watcher to do that whenever the `user` prop changes.
+Несколько кусочков первого логического блока теперь переместились в метод `setup` и удобно располагаются рядом друг с другом. Остался вызов `getUserRepositories` в хуке `mounted` и метод-наблюдатель, отслеживающий изменения входного параметра `user`.
 
-We will start with the lifecycle hook.
+Начнём с хука жизненного цикла.
 
-### Lifecycle Hook Registration Inside `setup`
+### Использование хуков жизненного цикла внутри `setup`
 
-To make Composition API feature-complete compared to Options API, we also need a way to register lifecycle hooks inside `setup`. This is possible thanks to several new functions exported from Vue. Lifecycle hooks on composition API have the same name as for Options API but are prefixed with `on`: i.e. `mounted` would look like `onMounted`.
+Для паритета возможностей между Composition API и Options API, также требуется способ использования хуков жизненного цикла внутри `setup`. Это стало возможным благодаря новым функциям, экспортируемым Vue. Хуки жизненного цикла в Composition API имеют такое же имя, как и в Options API, но с префиксом `on`: т.е. `mounted` станет `onMounted`.
 
-These functions accept a callback that will be executed when the hook is called by the component.
+Эти функции принимают коллбэк, который выполнится при вызове хука жизненного цикла компонентом.
 
-Let’s add it to our `setup` function:
+Добавим его в функцию `setup`:
 
-```js
-// src/components/UserRepositories.vue `setup` function
+```js{12}
+// src/components/UserRepositories.vue; функция `setup`
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted } from 'vue'
 
-// in our component
+// в компоненте
 setup (props) {
   const repositories = ref([])
   const getUserRepositories = async () => {
     repositories.value = await fetchUserRepositories(props.user)
   }
 
-  onMounted(getUserRepositories) // on `mounted` call `getUserRepositories`
+  onMounted(getUserRepositories) // хук `mounted` вызовет `getUserRepositories`
 
   return {
     repositories,
@@ -269,30 +269,30 @@ setup (props) {
 }
 ```
 
-Now we need to react to the changes made to the `user` prop. For that we will use the standalone `watch` function.
+Теперь осталось реагировать на изменения входного параметра `user`. Для этого потребуется использовать автономную функцию `watch`.
 
-### Reacting to Changes with `watch`
+### Отслеживание изменений с помощью `watch`
 
-Just like how we set up a watcher on the `user` property inside our component using the `watch` option, we can do the same using the `watch` function imported from Vue. It accepts 3 arguments:
+Подобно тому, как добавляем внутри компонента отслеживание изменений свойства `user` через опцию `watch`, можно сделать тоже самое через функцию `watch`, импортированную из Vue. Она принимает 3 аргумента:
 
-- A **Reactive Reference** or getter function that we want to watch
-- A callback
-- Optional configuration options
+- **Реактивная ссылка** или геттер-функция, которую требуется отслеживать
+- Коллбэк
+- Опциональные настройки
 
-**Here’s a quick look at how it works.**
+**Простой пример как это работает:**
 
 ```js
 import { ref, watch } from 'vue'
 
 const counter = ref(0)
 watch(counter, (newValue, oldValue) => {
-  console.log('The new counter value is: ' + counter.value)
+  console.log('Новое значение counter: ' + counter.value)
 })
 ```
 
-Whenever `counter` is modified, for example `counter.value = 5`, the watch will trigger and execute the callback (second argument) which in this case will log `'The new counter value is: 5'` into our console.
+Каждый раз, когда изменяется `counter`, например после `counter.value = 5`, наблюдатель сработает и вызовет коллбэк (второй аргумент), который в данном случае выведет в консоль `'Новое значение counter: 5'`.
 
-**Below is the Options API equivalent:**
+**Эквивалент при использовании Options API:**
 
 ```js
 export default {
@@ -303,35 +303,35 @@ export default {
   },
   watch: {
     counter(newValue, oldValue) {
-      console.log('The new counter value is: ' + this.counter)
+      console.log('Новое значение counter: ' + this.counter)
     }
   }
 }
 ```
 
-For more details on `watch`, refer to our [in-depth guide]().
+Более подробную информацию о `watch` можно найти   в [продвинутом руководстве](reactivity-computed-watchers.md#watch).
 
-**Let’s now apply it to our example:**
+**Возвращаемся к примеру:**
 
-```js
-// src/components/UserRepositories.vue `setup` function
+```js{7-8,12-13,18-19}
+// src/components/UserRepositories.vue; функция `setup`
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch, toRefs } from 'vue'
 
-// in our component
+// в компоненте
 setup (props) {
-  // using `toRefs` to create a Reactive Reference to the `user` property of props
+  // `toRefs` создаёт реактивную ссылку для свойству `user` входных параметров
   const { user } = toRefs(props)
 
   const repositories = ref([])
   const getUserRepositories = async () => {
-    // update `props.user` to `user.value` to access the Reference value
+    // меняем `props.user` на `user.value` для доступа к значению по ссылке
     repositories.value = await fetchUserRepositories(user.value)
   }
 
   onMounted(getUserRepositories)
 
-  // set a watcher on the Reactive Reference to user prop
+  // установка наблюдателя на реактивную ссылку входного параметра user
   watch(user, getUserRepositories)
 
   return {
@@ -341,13 +341,13 @@ setup (props) {
 }
 ```
 
-You probably have noticed the use of `toRefs` at the top of our `setup`. This is to ensure our watcher will react to changes made to the `user` prop.
+Использование `toRefs` в самом начале `setup` требуется для того, чтобы убедиться, что метод-наблюдатель будет реагировать на изменения входного параметра `user`.
 
-With those changes in place, we've just moved the whole first logical concern into a single place. We can now do the same with the second concern — filtering based on `searchQuery`, this time with a computed property.
+Со всеми этими изменениями получилось вынести весь первый логический блок в одно место. Теперь можно сделать тоже самое и со вторым логическим блоком — фильтрацией по свойству `searchQuery`, на этот раз с использованием вычисляемого свойства.
 
-### Standalone `computed` properties
+### Автономные `computed`-свойства
 
-Similar to `ref` and `watch`, computed properties can also be created outside of a Vue component with the `computed` function imported from Vue. Let’s get back to our counter example:
+Вычисляемые свойства, как `ref` или `watch`, также можно создавать вне компонента Vue с помощью функции `computed`, импортированной из Vue. Вернёмся к примеру со счётчиком:
 
 ```js
 import { ref, computed } from 'vue'
@@ -360,29 +360,29 @@ console.log(counter.value) // 1
 console.log(twiceTheCounter.value) // 2
 ```
 
-Here, the `computed` function returns a _read-only_ **Reactive Reference** to the output of the getter-like callback passed as the first argument to `computed`. In order to access the **value** of the newly-created computed variable, we need to use the `.value` property just like with `ref`.
+Функция `computed` возвращает **реактивную ссылку** _только для чтения_ вывода результата коллбэка, переданного первым аргументом в `computed`. Для доступа к **значению** нового вычисляемого свойства, нужно обращаться к свойству `.value`, как и в случае с `ref`.
 
-Let’s move our search functionality into `setup`:
+Перенесём функциональность поиска в `setup`:
 
-```js
-// src/components/UserRepositories.vue `setup` function
+```js{21-26,31-32}
+// src/components/UserRepositories.vue; функция `setup`
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch, toRefs, computed } from 'vue'
 
-// in our component
+// в компоненте
 setup (props) {
-  // using `toRefs` to create a Reactive Reference to the `user` property of props
+  // `toRefs` создаёт реактивную ссылку для свойству `user` входных параметров
   const { user } = toRefs(props)
 
   const repositories = ref([])
   const getUserRepositories = async () => {
-    // update `props.user` to `user.value` to access the Reference value
+    // меняем `props.user` на `user.value` для доступа к значению по ссылке
     repositories.value = await fetchUserRepositories(user.value)
   }
 
   onMounted(getUserRepositories)
 
-  // set a watcher on the Reactive Reference to user prop
+  // установка наблюдателя на реактивную ссылку входного параметра user
   watch(user, getUserRepositories)
 
   const searchQuery = ref('')
@@ -401,7 +401,7 @@ setup (props) {
 }
 ```
 
-We could do the same for other **logical concerns** but you might be already asking the question – _Isn’t this just moving the code to the `setup` option and making it extremely big?_ Well, that’s true. That’s why before moving on with the other responsibilities, we will first extract the above code into a standalone **composition function**. Let's start with creating `useUserRepositories`:
+Можно продолжать делать то же самое и для других **логических блоков**, но возможно уже раздаётся вопрос — _Разве это не просто перемещение кода в опцию `setup`, что сделает её гигантской?_ Что ж, это не так. Поэтому, прежде чем продолжить, вынесем приведённый код выше в автономную **функцию композиции**. Начнём с создания `useUserRepositories.js`:
 
 ```js
 // src/composables/useUserRepositories.js
@@ -425,7 +425,7 @@ export default function useUserRepositories(user) {
 }
 ```
 
-And then the searching functionality:
+Функциональность поиска вынесем в свою функцию композиции:
 
 ```js
 // src/composables/useRepositoryNameSearch.js
@@ -447,7 +447,7 @@ export default function useRepositoryNameSearch(repositories) {
 }
 ```
 
-**Now having those two functionalities in separate files, we can start using them in our component. Here’s how this can be done:**
+**Теперь, имея эти две функциональности в отдельных файлах, можно начать использовать их в компоненте. Вот как это можно сделать:**
 
 ```js
 // src/components/UserRepositories.vue
@@ -474,8 +474,8 @@ export default {
     } = useRepositoryNameSearch(repositories)
 
     return {
-      // Since we don’t really care about the unfiltered repositories
-      // we can expose the filtered results under the `repositories` name
+      // Поскольку репозитории без фильтрации не используются, можно
+      // объявить отфильтрованные результаты под именем `repositories`
       repositories: repositoriesMatchingSearchQuery,
       getUserRepositories,
       searchQuery,
@@ -495,7 +495,7 @@ export default {
 }
 ```
 
-At this point you probably already know the drill, so let’s skip to the end and migrate the leftover filtering functionality. We don’t really need to get into the implementation details as it’s not the point of this guide.
+На данный момент уже должно быть понятно, как это делается, поэтому перейдём к концу и переместим оставшуюся функциональность фильтрации. Вдаваться в детали её реализации не будем, это не важно для данного руководства.
 
 ```js
 // src/components/UserRepositories.vue
@@ -529,8 +529,8 @@ export default {
     } = useRepositoryFilters(repositoriesMatchingSearchQuery)
 
     return {
-      // Since we don’t really care about the unfiltered repositories
-      // we can expose the end results under the `repositories` name
+      // Поскольку репозитории без фильтрации не используются, можно
+      // объявить отфильтрованные результаты под именем `repositories`
       repositories: filteredRepositories,
       getUserRepositories,
       searchQuery,
@@ -541,6 +541,6 @@ export default {
 }
 ```
 
-And we are done!
+Вот и всё!
 
-Keep in mind that we've only scratched the surface of Composition API and what it allows us to do. To learn more about it, refer to the in-depth guide.
+Учтите, это лишь видимая часть айсберга Composition API и того, что он позволяет сделать. Чтобы узнать больше, обратитесь к продвинутому руководству.
