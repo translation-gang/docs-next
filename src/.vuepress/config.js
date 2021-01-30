@@ -302,7 +302,7 @@ const sidebarRU = {
       collapsable: false,
       children: [
         {
-          title: 'Reactivity',
+          title: 'Реактивность',
           children: [
             '/ru/guide/reactivity',
             '/ru/guide/reactivity-fundamentals',
