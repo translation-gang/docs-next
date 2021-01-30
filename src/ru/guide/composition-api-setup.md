@@ -1,21 +1,21 @@
-# Setup
+# Функция `setup`
 
 > Этот раздел использует синтаксис [однофайловых компонентов](single-file-component.md) для примеров кода
 
-> This guide assumes that you have already read the [Composition API Introduction](composition-api-introduction.md) and [Reactivity Fundamentals](reactivity-fundamentals.md). Read that first if you are new to Composition API.
+> Подразумевается, что вы уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
 
-## Arguments
+## Аргументы
 
-When using the `setup` function, it will take two arguments:
+При использовании функции `setup` можно передавать два аргумента:
 
-1. `props`
-2. `context`
+1. `props` — входные параметры
+2. `context` — контекст
 
-Let's dive deeper into how each argument can be used.
+Давайте разберёмся с тем, как можно использовать каждый из них.
 
-### Props
+### Входные параметры
 
-The first argument in the `setup` function is the `props` argument. Just as you would expect in a standard component, `props` inside of a `setup` function are reactive and will be updated when new props are passed in.
+Первым аргументом `setup` передаются входные параметры `props`. Как и следует ожидать в обычном компоненте, `props` внутри функции `setup` реактивны и будут обновляться при передаче новых значений.
 
 ```js
 // MyBook.vue
@@ -31,10 +31,10 @@ export default {
 ```
 
 :::warning ВНИМАНИЕ
-However, because `props` are reactive, you **cannot use ES6 destructuring** because it will remove props reactivity.
+Поскольку `props` реактивны, то **использовать деструктуризацию ES6 нельзя**, потому что это уберёт реактивность со входных параметров.
 :::
 
-If you need to destructure your props, you can do this by utilizing the [toRefs](reactivity-fundamentals.md#destructuring-reactive-state) inside of the `setup` function:
+Если необходимо использовать деструктуризацию входных параметров, это можно сделать используя [toRefs](reactivity-fundamentals.md#destructuring-reactive-state) внутри функции `setup`:
 
 ```js
 // MyBook.vue
@@ -42,13 +42,13 @@ If you need to destructure your props, you can do this by utilizing the [toRefs]
 import { toRefs } from 'vue'
 
 setup(props) {
-	const { title } = toRefs(props)
+  const { title } = toRefs(props)
 
-	console.log(title.value)
+  console.log(title.value)
 }
 ```
 
-If `title` is an optional prop, it could be missing from `props`. In that case, `toRefs` won't create a ref for `title`. Instead you'd need to use `toRef`:
+Если `title` является необязательным входным параметром — он может отсутствовать в `props`. В таком случае  `toRefs` не создаст ссылку для `title`. Вместо этого потребуется использовать `toRef`:
 
 ```js
 // MyBook.vue
@@ -56,34 +56,34 @@ If `title` is an optional prop, it could be missing from `props`. In that case, 
 import { toRef } from 'vue'
 
 setup(props) {
-	const title = toRef(props, 'title')
+  const title = toRef(props, 'title')
 
-	console.log(title.value)
+  console.log(title.value)
 }
 ```
 
-### Context
+### Контекст
 
-The second argument passed to the `setup` function is the `context`. The `context` is a normal JavaScript object that exposes three component properties:
+Вторым аргументом, передаваемым в функцию `setup`, будет контекст `context`. Это обычный объект JavaScript, который предоставляет доступ к трём свойствам компонента:
 
 ```js
 // MyBook.vue
 
 export default {
   setup(props, context) {
-    // Attributes (Non-reactive object)
+    // Атрибуты (не-реактивный объект)
     console.log(context.attrs)
 
-    // Slots (Non-reactive object)
+    // Слоты (не-реактивный объект)
     console.log(context.slots)
 
-    // Emit Events (Method)
+    // Генерация событий (метод)
     console.log(context.emit)
   }
 }
 ```
 
-The `context` object is a normal JavaScript object, i.e., it is not reactive, this means you can safely use ES6 destructuring on `context`.
+Поскольку объект `context` будет обычным объектом JavaScript, т.е. он не-реактивный, а значит можно спокойно использовать деструктуризацию ES6 для `context`.
 
 ```js
 // MyBook.vue
@@ -94,26 +94,26 @@ export default {
 }
 ```
 
-`attrs` and `slots` are stateful objects that are always updated when the component itself is updated. This means you should avoid destructuring them and always reference properties as `attrs.x` or `slots.x`. Also note that unlike `props`, `attrs` and `slots` are **not** reactive. If you intend to apply side effects based on `attrs` or `slots` changes, you should do so inside an `onUpdated` lifecycle hook.
+Свойства `attrs` и `slots` — объекты с состоянием, которые будут всегда обновляться при обновлении самого компонента. Это значит, что следует избегать деструктуризации для них и всегда ссылаться на свойства как `attrs.x` или `slots.x`. Также обратите внимание, что в отличие от `props`, свойства `attrs` и `slots` **НЕ-РЕАКТИВНЫ**. Если необходимо применить побочные эффекты, основанные на изменениях `attrs` или `slots`, то следует делать это внутри жизненного цикла `onUpdated`.
 
-## Accessing Component Properties
+## Доступ к свойствам компонента
 
-When `setup` is executed, the component instance has not been created yet. As a result, you will only be able to access the following properties:
+При выполнении `setup` экземпляр компонента ещё не будет создан. Поэтому возможно получить доступ только к следующим свойствам:
 
 - `props`
 - `attrs`
 - `slots`
 - `emit`
 
-In other words, you **will not have access** to the following component options:
+Другими словами, **не будет доступа** к следующим опциям компонента:
 
 - `data`
 - `computed`
 - `methods`
 
-## Usage with Templates
+## Использование в шаблонах
 
-If `setup` returns an object, the properties on the object can be accessed in the component's template, as well as the properties of the `props` passed into `setup`:
+Если функция `setup` возвращает объект, то его свойства будут также доступны в шаблоне компонента, как и свойства `props`, переданные в `setup`:
 
 ```vue
 <!-- MyBook.vue -->
@@ -132,7 +132,7 @@ If `setup` returns an object, the properties on the object can be accessed in th
       const readersNumber = ref(0)
       const book = reactive({ title: 'Vue 3 Guide' })
 
-      // expose to template
+      // всё объявленное будет доступно в шаблоне
       return {
         readersNumber,
         book
@@ -142,11 +142,11 @@ If `setup` returns an object, the properties on the object can be accessed in th
 </script>
 ```
 
-Note that [refs](../api/refs-api.md#ref) returned from `setup` are [automatically unwrapped](reactivity-fundamentals.md#ref-unwrapping) when accessed in the template so you shouldn't use `.value` in templates.
+Обратите внимание, [refs](../api/refs-api.md#ref) возвращаемые из `setup` будут [автоматически разворачиваться](reactivity-fundamentals.md#ref-unwrapping) при обращениях в шаблоне, поэтому в шаблонах указывать `.value` не потребуется.
 
-## Usage with Render Functions
+## Использование в render-функциях
 
-`setup` can also return a render function which can directly make use of the reactive state declared in the same scope:
+Функция `setup` также может возвращать render-функцию, которая может напрямую использовать реактивное состояние, объявленное в той же области видимости:
 
 ```js
 // MyBook.vue
@@ -157,12 +157,12 @@ export default {
   setup() {
     const readersNumber = ref(0)
     const book = reactive({ title: 'Vue 3 Guide' })
-    // Please note that we need to explicitly expose ref value here
+    // Обратите внимание, здесь потребуется явно объявлять значение ref
     return () => h('div', [readersNumber.value, book.title])
   }
 }
 ```
 
-## Usage of `this`
+## Использование `this`
 
-**Inside `setup()`, `this` won't be a reference to the current active instance** Since `setup()` is called before other component options are resolved, `this` inside `setup()` will behave quite differently from `this` in other options. This might cause confusions when using `setup()` along other Options API.
+**Внутри `setup()` использование `this` не будет ссылкой на текущий активный экземпляр.** Поскольку `setup()` вызывается до разрешения других опций компонента, то `this` внутри `setup()` будет вести себя несколько иначе, чем `this` в других опциях. Это может привести к путанице при использовании `setup()` вместе с другими Options API.
