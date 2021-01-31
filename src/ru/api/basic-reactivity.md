@@ -19,7 +19,7 @@ function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
 ```
 
 :::tip Примечание
-`reactive` will unwrap all the deep [refs](./refs-api.html#ref), while maintaining the ref reactivity
+`reactive` will unwrap all the deep [refs](refs-api.md#ref), while maintaining the ref reactivity
 
 ```ts
 const count = ref(1)
@@ -41,7 +41,7 @@ console.log(count.value) // 3
 :::
 
 :::warning Важно
-When assigning a [ref](./refs-api.html#ref) to a `reactive` property, that ref will be automatically unwrapped.
+When assigning a [ref](refs-api.md#ref) to a `reactive` property, that ref will be automatically unwrapped.
 
 ```ts
 const count = ref(1)
