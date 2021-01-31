@@ -469,3 +469,47 @@ export default {
   }
 }
 ```
+
+## useCssModule
+
+:::warning Предупреждение
+`useCssModule` можно использовать только внутри функций `render` или `setup`.
+:::
+
+Позволяет получить доступ к CSS-модулям [в функции `setup`](composition-api.md#setup) [однофайлового компонента](../guide/single-file-component.md):
+
+```vue
+<script>
+import { h, useCssModule } from 'vue'
+
+export default {
+  setup () {
+    const style = useCssModule()
+
+    return () => h('div', {
+      class: style.success
+    }, 'Задача выполнена!')
+  }
+}
+</script>
+
+<style module>
+.success {
+  color: #090;
+}
+</style>
+```
+
+Дополнительную информацию об использовании CSS-модулей можно изучить в разделе [Vue Loader — CSS модули](https://vue-loader.vuejs.org/ru/guide/css-modules.html).
+
+### Аргументы
+
+Принимает один аргумент: `name`
+
+#### name
+
+- **Тип:** `String`
+
+- **Подробности:**
+
+  Имя CSS-модуля. По умолчанию `'$style'`.
