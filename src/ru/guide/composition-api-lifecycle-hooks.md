@@ -1,15 +1,17 @@
-# Lifecycle Hooks
+# Хуки жизненного цикла
 
-> This guide assumes that you have already read the [Composition API Introduction](composition-api-introduction.md) and [Reactivity Fundamentals](reactivity-fundamentals.md). Read that first if you are new to Composition API.
+> Подразумевается, что вы уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
 
-You can access a component's lifecycle hook by prefixing the lifecycle hook with "on".
+<VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/lifecycle-hooks" title="Посмотрите бесплатное видео о том как работать с хуками жизненного цикла">Посмотрите бесплатное видео о том как работать с хуками жизненного цикла на Vue Mastery</VideoLesson>
 
-The following table contains how the lifecycle hooks are invoked inside of [setup()](composition-api-setup.md):
+Хуки жизненного цикла компонента доступны с префиксом «on» к имени хука.
 
-| Options API       | Hook inside inside `setup` |
+В таблице ниже перечислено, как нужно именовать хуки жизненного цикла внутри [setup()](composition-api-setup.md):
+
+| Options API       | Хук внутри `setup`         |
 | ----------------- | -------------------------- |
-| `beforeCreate`    | Not needed\*               |
-| `created`         | Not needed\*               |
+| `beforeCreate`    | Не нужен\*                 |
+| `created`         | Не нужен\*                 |
 | `beforeMount`     | `onBeforeMount`            |
 | `mounted`         | `onMounted`                |
 | `beforeUpdate`    | `onBeforeUpdate`           |
@@ -21,10 +23,10 @@ The following table contains how the lifecycle hooks are invoked inside of [setu
 | `renderTriggered` | `onRenderTriggered`        |
 
 :::tip Совет
-Because `setup` is run around the `beforeCreate` and `created` lifecycle hooks, you do not need to explicitly define them. In other words, any code that would be written inside those hooks should be written directly in the `setup` function.
+Поскольку `setup` запускается приблизительно как и хуки `beforeCreate` и `created`, то не требуется явно их определять. Другими словами, любой код для этих хуков стоит писать непосредственно в функции `setup`.
 :::
 
-These functions accept a callback that will be executed when the hook is called by the component:
+Эти функции принимают коллбэк, который будет выполнен при вызове хука компонентом:
 
 ```js
 // MyBook.vue
@@ -33,7 +35,7 @@ export default {
   setup() {
     // mounted
     onMounted(() => {
-      console.log('Component is mounted!')
+      console.log('Компонент примонтирован!')
     })
   }
 }
