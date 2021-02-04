@@ -47,7 +47,7 @@
 - [Добавлена опция emits в компонентах](../component-custom-events.md)
 - [`createRenderer` API из `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) для создания пользовательских рендеров
 - [SFC Синтаксический сахар для Composition API (`<script setup>`)](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-script-setup.md) <Badge text="экспериментально" type="warning" />
-- [SFC CSS-переменные на основе состояния (`<style vars>`)](https://github.com/vuejs/rfcs/blob/sfc-improvements/active-rfcs/0000-sfc-style-variables.md) <Badge text="экспериментально" type="warning" />
+- [SFC CSS-переменные на основе состояния (`v-bind` in `<style>`)](https://github.com/vuejs/rfcs/blob/style-vars-2/active-rfcs/0000-sfc-style-variables.md) <Badge text="экспериментально" type="warning" />
 - [SFC `<style scoped>` теперь могут содержать глобальные правила или правила только для содержимого слотов](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 
 ## Кардинальные изменения
