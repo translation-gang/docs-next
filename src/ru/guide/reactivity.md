@@ -1,53 +1,53 @@
-# Reactivity in Depth
+# Подробно о реактивность
 
-Now it’s time to take a deep dive! One of Vue’s most distinct features is the unobtrusive reactivity system. Models are proxied JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it’s also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue’s reactivity system.
+Пришло время нырнуть поглубже в тему!  Одна из наиболее примечательных возможностей Vue — это ненавязчивая реактивность. Модели представляют собой проксированные JavaScript-объекты. По мере их изменения обновляется и представление данных. Благодаря этому управление состоянием приложения так просто и очевидно. Тем не менее, у механизма реактивности есть ряд особенностей, знакомство с которыми позволит избежать распространённых ошибок. В этом разделе руководства мы подробно рассмотрим низкоуровневую реализацию системы реактивности Vue.
 
-## What is Reactivity?
+## Что такое реактивность?
 
-This term comes up in programming quite a bit these days, but what do people mean when they say it? Reactivity is a programming paradigm that allows us to adjust to changes in a declarative manner. The canonical example that people usually show, because it’s a great one, is an Excel spreadsheet.
+В последнее время этот термин часто используется в программировании, но что он значит? Реактивность - это концепция в программировании, которая позволяет нам приспособиться к изменениям декларативным способом. Отличный канонический пример, который обычно демонстрируется - это электронная таблица в Excel.
 
 <video width="550" height="400" controls>
   <source src="/images/reactivity-spreadsheet.mp4" type="video/mp4">
-  Your browser does not support the video tag.
+  Ваш браузер не поддерживает тег video.
 </video>
 
-If you put the number two in the first cell, and the number 3 in the second and asked for the SUM, the spreadsheet would give it to you. No surprises there. But if you update that first number, the SUM automagically updates too.
+Если вы введёте цифру 2 в первую ячейку, цифру 3 во вторую и попробуете получить сумму с помощью встроенной в Excel функции SUM, таблица её посчитает. Ничего необычного. Но если вы обновите число в первой ячейке, сумма тоже автоматически обновится.
 
-JavaScript doesn’t usually work like this -- If we were to write something comparable in JavaScript:
+Обычно JavaScript так не работает. Если бы вы писали что-то подобное на JavaScript:
 
 ```js
 var val1 = 2
 var val2 = 3
 var sum = val1 + val2
 
-// sum
+// сумма
 // 5
 
 val1 = 3
 
-// sum
+// сумма
 // 5
 ```
 
-If we update the first value, the sum is not adjusted.
+Если мы обновим первое значение, сумма не скорректируется.
 
-So how would we do this in JavaScript?
+Итак, как бы мы это сделали в JavaScript?
 
-- Detect when there’s a change in one of the values
-- Track the function that changes it
-- Trigger the function so it can update the final value
+- Определить, когда одно из значений изменяется
+- Найти функцию, которая их изменяет
+- Вызвать функцию, чтобы она обновила конечный результат
 
-## How Vue Tracks These Changes
+## Как Vue отслеживает изменения
 
-When you pass a plain JavaScript object to an application or component instance as its `data` option, Vue will walk through all of its properties and convert them to [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) using a handler with getters and setters. This is an ES6-only feature, but we offer a version of Vue 3 that uses the older `Object.defineProperty` to support IE browsers. Both have the same surface API, but the Proxy version is slimmer and offers improved performance.
+Когда простой JavaScript-объект передаётся в приложение или экземпляр Vue в качестве опции `data`, Vue обходит все его свойства и превращает их в [Прокси](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), используя обработчик с геттерами и сеттерами. Эта возможность присутствует только в ES6, но Vue 3 также поддерживает старый подход с `Object.defineProperty` для совместимости с браузерами IE. Обе версии используют одинаковое API верхнего уровня, но версия с Proxy более легковесная и производительная.
 
 <div class="reactivecontent">
-  <common-codepen-snippet title="Proxies and Vue's Reactivity Explained Visually" slug="zYYzjBg" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
+  <common-codepen-snippet title="Визуальное объяснение Proxy и реактивности во Vue" slug="zYYzjBg" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
 </div>
 
-That was rather quick and requires some knowledge of [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to understand! So let’s dive in a bit. There’s a lot of literature on Proxies, but what you really need to know is that a **Proxy is an object that encases another object or function and allows you to intercept it.**
+Это было довольно быстро и требует некоторых знаний о [Прокси](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) для полного понимания. Давайте немного углубимся. Есть достаточно много литературы про Прокси, но что вам действительно важно знать, что **Прокси это объект, который содержит в себе другой объект или функцию и позволяет "перехватить" их.**
 
-We use it like this: `new Proxy(target, handler)`
+Вот как мы это используем: `new Proxy(target, handler)`
 
 ```js
 const dinner = {
@@ -65,8 +65,7 @@ console.log(proxy.meal)
 
 // tacos
 ```
-
-Ok, so far, we’re just wrapping that object and returning it. Cool, but not that useful yet. But watch this, we can also intercept this object while we wrap it in the Proxy. This interception is called a trap.
+Пока что мы просто оборачиваем объект и возвращаем его. Круто, но ещё не так полезно. Но взгляните сюда, мы также можем перехватить этот объект пока оборачиваем его в Прокси. Этот перехват называется ловушкой. 
 
 ```js
 const dinner = {
@@ -75,7 +74,7 @@ const dinner = {
 
 const handler = {
   get(target, prop) {
-    console.log('intercepted!')
+    console.log('перехвачен!')
     return target[prop]
   }
 }
@@ -83,7 +82,7 @@ const handler = {
 const proxy = new Proxy(dinner, handler)
 console.log(proxy.meal)
 
-// intercepted!
+// перехвачен!
 // tacos
 ```
 
