@@ -4,12 +4,12 @@
 
 ## `setup`
 
-A component option that is executed **before** the component is created, once the `props` are resolved, and serves as the entry point for composition API's
+Опция компонента, которая выполняется **перед созданием** компонента, после разрешения входных параметров `props`, и служит точкой входа для Composition API.
 
 - **Аргументы:**
 
-  - `{Data} props`
-  - `{SetupContext} context`
+  - `{Data} props` — входные параметры
+  - `{SetupContext} context` — контекст
 
 - **Типы**:
 
@@ -28,12 +28,12 @@ function setup(props: Data, context: SetupContext): Data
 ```
 
 :::tip Совет
-To get type inference for the arguments passed to `setup()`, the use of [defineComponent](global-api.md#definecomponent) is needed.
+Для получения автодополнения типов для аргументов, передаваемых в `setup()`, необходимо использовать [defineComponent](global-api.md#definecomponent).
 :::
 
 - **Пример**
 
-  With the template:
+  С использованием шаблона:
 
   ```vue
   <!-- MyBook.vue -->
@@ -49,7 +49,7 @@ To get type inference for the arguments passed to `setup()`, the use of [defineC
         const readersNumber = ref(0)
         const book = reactive({ title: 'Vue 3 Guide' })
 
-        // expose to template
+        // объявление для шаблона
         return {
           readersNumber,
           book
@@ -59,7 +59,7 @@ To get type inference for the arguments passed to `setup()`, the use of [defineC
   </script>
   ```
 
-  With render function:
+  С использованием render-функции:
 
   ```js
   // MyBook.vue
@@ -70,7 +70,7 @@ To get type inference for the arguments passed to `setup()`, the use of [defineC
     setup() {
       const readersNumber = ref(0)
       const book = reactive({ title: 'Vue 3 Guide' })
-      // Please note that we need to explicitly expose ref value here
+      // Обратите внимание, здесь потребуется явно объявлять значение ref
       return () => h('div', [readersNumber.value, book.title])
     }
   }
@@ -78,9 +78,9 @@ To get type inference for the arguments passed to `setup()`, the use of [defineC
 
 - **См. также**: [Composition API `setup`](../guide/composition-api-setup.md)
 
-## Lifecycle Hooks
+## Хуки жизненного цикла
 
-Lifecycle hooks can be registered with directly-imported `onX` functions:
+Хуки жизненного цикла можно регистрировать через явно импортируемые `onX` функции:
 
 ```js
 import { onMounted, onUpdated, onUnmounted } from 'vue'
@@ -88,26 +88,26 @@ import { onMounted, onUpdated, onUnmounted } from 'vue'
 const MyComponent = {
   setup() {
     onMounted(() => {
-      console.log('mounted!')
+      console.log('примонтирован!')
     })
     onUpdated(() => {
-      console.log('updated!')
+      console.log('обновлён!')
     })
     onUnmounted(() => {
-      console.log('unmounted!')
+      console.log('размонтирован!')
     })
   }
 }
 ```
 
-These lifecycle hook registration functions can only be used synchronously during [`setup()`](#setup), since they rely on internal global state to locate the current active instance (the component instance whose `setup()` is being called right now). Calling them without a current active instance will result in an error.
+Функции хуков жизненного цикла могут использоваться только синхронно в [`setup()`](#setup), так как они полагаются на внутреннее локальное состояние для обнаружения текущего активного экземпляра (экземпляра компонента чей `setup()` сейчас вызывается). Вызов их без текущего активного экземпляра будет приводить к ошибке.
 
-The component instance context is also set during the synchronous execution of lifecycle hooks. As a result, watchers and computed properties created synchronously inside of lifecycle hooks are also automatically tore down when the component unmounts.
+Контекст экземпляра компонента также устанавливается во время синхронного выполнения хуков жизненного цикла. В результате, методы-наблюдатели и вычисляемые свойства созданные синхронно внутри хуков жизненного цикла будут также автоматически уничтожаться при размонтировании компонента.
 
-- **Mapping between Options API Lifecycle Options and Composition API**
+- **Сопоставление между Options API и Composition API**
 
-  - ~~`beforeCreate`~~ -> use `setup()`
-  - ~~`created`~~ -> use `setup()`
+  - ~~`beforeCreate`~~ -> используйте `setup()`
+  - ~~`created`~~ -> используйте `setup()`
   - `beforeMount` -> `onBeforeMount`
   - `mounted` -> `onMounted`
   - `beforeUpdate` -> `onBeforeUpdate`
@@ -118,11 +118,11 @@ The component instance context is also set during the synchronous execution of l
   - `renderTracked` -> `onRenderTracked`
   - `renderTriggered` -> `onRenderTriggered`
 
-- **См. также**: [Composition API lifecycle hooks](../guide/composition-api-lifecycle-hooks.md)
+- **См. также**: [Composition API. Хуки жизненного цикла](../guide/composition-api-lifecycle-hooks.md)
 
 ## Provide / Inject
 
-`provide` and `inject` enables dependency injection. Both can only be called during [`setup()`](#setup) with a current active instance.
+Функции `provide` и `inject` предоставляют возможность инъекции зависимостей. Могут быть вызваны только во время [`setup()`](#setup) с текущим активным экземпляром.
 
 - **Типы**:
 
@@ -131,11 +131,13 @@ interface InjectionKey<T> extends Symbol {}
 
 function provide<T>(key: InjectionKey<T> | string, value: T): void
 
-// without default value
+// без значения по умолчанию
 function inject<T>(key: InjectionKey<T> | string): T | undefined
-// with default value
+
+// со значением по умолчанию
 function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
-// with factory
+
+// с функцией-фабрикой
 function inject<T>(
   key: InjectionKey<T> | string,
   defaultValue: () => T,
@@ -143,19 +145,19 @@ function inject<T>(
 ): T
 ```
 
-Vue provides an `InjectionKey` interface which is a generic type that extends `Symbol`. It can be used to sync the type of the injected value between the provider and the consumer:
+Vue предоставляет интерфейс `InjectionKey` — общий тип, расширяющий `Symbol`. Может использоваться для синхронизации типа внедряемого значения между провайдером и потребителем:
 
 ```ts
 import { InjectionKey, provide, inject } from 'vue'
 
 const key: InjectionKey<string> = Symbol()
 
-provide(key, 'foo') // providing non-string value will result in error
+provide(key, 'foo') // указание не-строчного значения приведёт к ошибке
 
-const foo = inject(key) // type of foo: string | undefined
+const foo = inject(key) // тип foo: string | undefined
 ```
 
-If using string keys or non-typed symbols, the type of the injected value will need to be explicitly declared:
+При использовании строковых ключей или не-типизированных Symbol, тип внедряемого значения необходимо явно объявить:
 
 ```ts
 const foo = inject<string>('foo') // string | undefined
@@ -163,11 +165,11 @@ const foo = inject<string>('foo') // string | undefined
 
 - **См. также**:
   - [Provide / Inject](../guide/component-provide-inject.md)
-  - [Composition API Provide / Inject](../guide/composition-api-provide-inject.md)
+  - [Composition API. Provide / Inject](../guide/composition-api-provide-inject.md)
 
 ## `getCurrentInstance`
 
-`getCurrentInstance` enables access to an internal component instance useful for advanced usages or for library creators.
+Метод `getCurrentInstance` позволяет получить доступ к внутреннему экземпляру компонента, что может быть полезно для продвинутых пользователей или разработчиков библиотек.
 
 ```ts
 import { getCurrentInstance } from 'vue'
@@ -176,31 +178,31 @@ const MyComponent = {
   setup() {
     const internalInstance = getCurrentInstance()
 
-    internalInstance.appContext.config.globalProperties // access to globalProperties
+    internalInstance.appContext.config.globalProperties // доступ к globalProperties
   }
 }
 ```
 
-`getCurrentInstance` **only** works during [setup](#setup) or [Lifecycle Hooks](#lifecycle-hooks)
+Метод `getCurrentInstance` **работает только** во время [setup](#setup) или [хуков жизненного цикла](#lifecycle-hooks)
 
-> When using outside of [setup](#setup) or [Lifecycle Hooks](#lifecycle-hooks), please call `getCurrentInstance()` on `setup` and use the instance instead.
+> При использовании вне [setup](#setup) или [хуков жизненного цикла](#lifecycle-hooks) вызывайте `getCurrentInstance()` в `setup` и используйте вместо него экземпляр.
 
 ```ts
 const MyComponent = {
   setup() {
-    const internalInstance = getCurrentInstance() // works
+    const internalInstance = getCurrentInstance() // работает
 
-    const id = useComponentId() // works
+    const id = useComponentId() // работает
 
     const handleClick = () => {
-      getCurrentInstance() // doesn't work
-      useComponentId() // doesn't work
+      getCurrentInstance() // НЕ БУДЕТ РАБОТАТЬ
+      useComponentId() // НЕ БУДЕТ РАБОТАТЬ
 
-      internalInstance // works
+      internalInstance // работает
     }
 
     onMounted(() => {
-      getCurrentInstance() // works
+      getCurrentInstance() // работает
     })
 
     return () =>
@@ -214,7 +216,7 @@ const MyComponent = {
   }
 }
 
-// also works if called on a composable
+// также работает при вызове в функции композиции
 function useComponentId() {
   return getCurrentInstance().uid
 }
