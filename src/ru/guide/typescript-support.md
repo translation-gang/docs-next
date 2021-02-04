@@ -76,6 +76,14 @@ vue add typescript
 </script>
 ```
 
+Или при желании совмещать использование TypeScript с [JSX `render`-функцией](/render-function.md#jsx):
+
+```html
+<script lang="tsx">
+  ...
+</script>
+```
+
 ### Поддержка редакторов
 
 Для разработки приложений Vue на TypeScript настоятельно рекомендуем использовать [Visual Studio Code](https://code.visualstudio.com/), которая предоставляет отличную поддержку TypeScript из коробки. Если используете [однофайловые компоненты](single-file-component.md) (SFC), то установите [расширение Vetur](https://github.com/vuejs/vetur), которое добавит вывод типов TypeScript внутри SFC и множество других замечательных возможностей.
