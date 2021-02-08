@@ -1,19 +1,19 @@
-# Подробно о реактивность
+# Подробно о реактивности
 
 Пришло время нырнуть поглубже в тему!  Одна из наиболее примечательных возможностей Vue — это ненавязчивая реактивность. Модели представляют собой проксированные JavaScript-объекты. По мере их изменения обновляется и представление данных. Благодаря этому управление состоянием приложения так просто и очевидно. Тем не менее, у механизма реактивности есть ряд особенностей, знакомство с которыми позволит избежать распространённых ошибок. В этом разделе руководства мы подробно рассмотрим низкоуровневую реализацию системы реактивности Vue.
 
 ## Что такое реактивность?
 
-В последнее время этот термин часто используется в программировании, но что он значит? Реактивность - это концепция в программировании, которая позволяет нам приспособиться к изменениям декларативным способом. Отличный канонический пример, который обычно демонстрируется - это электронная таблица в Excel.
+В последнее время этот термин часто используется в программировании, но что он значит? Реактивность - это концепция, которая позволяет нам приспособиться к изменениям декларативным способом. Отличный канонический пример, который обычно демонстрируется - это электронная таблица в Excel.
 
 <video width="550" height="400" controls>
   <source src="/images/reactivity-spreadsheet.mp4" type="video/mp4">
   Ваш браузер не поддерживает тег video.
 </video>
 
-Если вы введёте цифру 2 в первую ячейку, цифру 3 во вторую и попробуете получить сумму с помощью встроенной в Excel функции SUM, таблица её посчитает. Ничего необычного. Но если вы обновите число в первой ячейке, сумма тоже автоматически обновится.
+Если ввести цифру 2 в первую ячейку, 3 во вторую и попробовать получить сумму с помощью встроенной в Excel функции SUM, таблица её посчитает. Ничего необычного. Но если повторно изменить число в первой ячейке, сумма тоже автоматически обновится.
 
-Обычно JavaScript так не работает. Если бы вы писали что-то подобное на JavaScript:
+Обычно JavaScript так не работает. Что-то подобное на JavaScript выглядело бы так:
 
 ```js
 var val1 = 2
@@ -31,23 +31,23 @@ val1 = 3
 
 Если мы обновим первое значение, сумма не скорректируется.
 
-Итак, как бы мы это сделали в JavaScript?
+Итак, как это сделать в JavaScript?
 
 - Определить, когда одно из значений изменяется
 - Найти функцию, которая их изменяет
-- Вызвать функцию, чтобы она обновила конечный результат
+- Вызвать функцию, которая обновит конечный результат
 
 ## Как Vue отслеживает изменения
 
-Когда простой JavaScript-объект передаётся в приложение или экземпляр Vue в качестве опции `data`, Vue обходит все его свойства и превращает их в [Прокси](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), используя обработчик с геттерами и сеттерами. Эта возможность присутствует только в ES6, но Vue 3 также поддерживает старый подход с `Object.defineProperty` для совместимости с браузерами IE. Обе версии используют одинаковое API верхнего уровня, но версия с Proxy более легковесная и производительная.
+Когда простой JavaScript-объект передаётся в приложение или экземпляр Vue в качестве опции `data`, Vue обходит все его свойства и превращает их в [Proxy](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy), используя обработчик с геттерами и сеттерами. Эта возможность присутствует только в ES6, но Vue 3 также поддерживает старый подход с `Object.defineProperty` для совместимости с браузерами IE. Обе версии используют одинаковое API верхнего уровня, но версия с Proxy более легковесная и производительная.
 
 <div class="reactivecontent">
   <common-codepen-snippet title="Визуальное объяснение Proxy и реактивности во Vue" slug="zYYzjBg" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
 </div>
 
-Это было довольно быстро и требует некоторых знаний о [Прокси](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) для полного понимания. Давайте немного углубимся. Есть достаточно много литературы про Прокси, но что вам действительно важно знать, что **Прокси это объект, который содержит в себе другой объект или функцию и позволяет "перехватить" их.**
+Это было поверхноестное объяснение и оно требует некоторых знаний о [Proxy](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy) для полного понимания. Давайте немного углубимся. Есть достаточно много литературы про Proxy, но что вам действительно важно знать, что **Прокси — это объект, который содержит в себе другой объект или функцию и позволяет "перехватить" их.**
 
-Вот как мы это используем: `new Proxy(target, handler)`
+Вот так мы это используем: `new Proxy(target, handler)`
 
 ```js
 const dinner = {
@@ -65,7 +65,7 @@ console.log(proxy.meal)
 
 // tacos
 ```
-Пока что мы просто оборачиваем объект и возвращаем его. Круто, но ещё не так полезно. Но взгляните сюда, мы также можем перехватить этот объект пока оборачиваем его в Прокси. Этот перехват называется ловушкой. 
+Пока что мы просто оборачиваем объект и возвращаем его. Круто, но ещё не так полезно. Но взгляните сюда, мы также можем перехватить этот объект во время оборачивания его в Proxy. Этот перехват называется ловушкой. 
 
 ```js
 const dinner = {
@@ -85,10 +85,9 @@ console.log(proxy.meal)
 // перехвачен!
 // tacos
 ```
+Помимо вызова console.log мы можем выполнить здесь всё, что захотим. В том числе, при желании, мы даже можем _не_ возвращать реальное значение. Это то, что делает Proxy настолько мощными для создания API.
 
-Beyond a console log, we could do anything here we wish. We could even _not_ return the real value if we wanted to. This is what makes Proxies so powerful for creating APIs.
-
-Furthermore, there’s another feature Proxies offer us. Rather than just returning the value like this: `target[prop]`, we could take this a step further and use a feature called `Reflect`, which allows us to do proper `this` binding. It looks like this:
+Более того, у Proxy есть ешё одна особенность. Вместо того, чтобы просто вернуть значение в виде: `target[prop]`, мы можем пойти дальше и использовать `Reflect`, который позволит нам корректно привязать `this`. Это выглядит так:
 
 ```js{7}
 const dinner = {
@@ -107,7 +106,7 @@ console.log(proxy.meal)
 // tacos
 ```
 
-We mentioned before that in order to have an API that updates a final value when something changes, we’re going to have to set new values when something changes. We do this in the handler, in a function called `track`, where we pass in the `target` and `key`.
+Ранее мы уже упоминали, что для того, чтобы API обновляло результат когда одно из значений изменяется, нам придётся устанавливать новые значения при изменении. Давайте сделаем это в функции-обработчике `track`, куда мы передадим `target` и `key`.
 
 ```js{7}
 const dinner = {
@@ -127,7 +126,7 @@ console.log(proxy.meal)
 // tacos
 ```
 
-Finally, we also set new values when something changes. For this, we’re going to set the changes on our new proxy, by triggering those changes:
+Наконец, мы установим новые значения, когда что-то поменяется. Для этого мы обновим эти данные с помощью нашего нового прокси, вызвав эти изменения:
 
 ```js
 const dinner = {
@@ -151,19 +150,20 @@ console.log(proxy.meal)
 // tacos
 ```
 
-Remember this list from a few paragraphs ago? Now we have some answers to how Vue handles these changes:
+Помните, несколькими абзацами ранее мы уже рассматривали этот список? Теперь у нас есть ответы на вопросы как Vue обрабатывает изменения:
 
-- <strike>Detect when there’s a change in one of the values</strike>: we no longer have to do this, as Proxies allow us to intercept it
-- **Track the function that changes it**: We do this in a getter within the proxy, called `effect`
-- **Trigger the function so it can update the final value**: We do in a setter within the proxy, called `trigger`
+- <strike>Определить, когда одно из значений изменяется</strike>: нам больше не нужно этого делать, т.к. Proxy позволяют нам перехватить изменение
+- **Найти функцию, которая их изменяет**: Этот пункт выполняется в геттере `effect`
+- **Вызвать функцию, чтобы она обновила конечный результат**: Выполняется в сеттере внутри прокси `trigger`
 
-The proxied object is invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. As of Vue 3, our reactivity is now available in a [separate package](https://github.com/vuejs/vue-next/tree/master/packages/reactivity). One caveat is that browser consoles format differently when converted data objects are logged, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
+Проксированный объект невидим для пользователя, но под капотом это позволяет Vue следить за изменениями и уведомлять о них при обращении или редактировании свойств объекта. Начиная с Vue 3, наша реализация реактивности теперь доступна как [отдельныый модуль](https://github.com/vuejs/vue-next/tree/master/packages/reactivity). Оговоримся, что преобразованные объекты логируются в консоли по-разному для разных браузеров. Для более удобной работы с этими объектами вы можете установить [vue-devtools](https://github.com/vuejs/vue-devtools).
 
-### Proxied Objects
+### Проксированные объекты
 
-Vue internally tracks all objects that have been made reactive, so it always returns the same proxy for the same object.
+Под капотом Vue отслеживает все реактивные объекты, благодаря этому для каждого объекта возвращается свой Proxy. 
 
-When a nested object is accessed from a reactive proxy, that object is _also_ converted into a proxy before being returned:
+
+Когда требуется доступ к вложенному объекту внутри реактивной Proxy, этот объект _тоже_ конвертируется в Proxy и потом возвращается.
 
 ```js
 const handler = {
@@ -180,9 +180,9 @@ const handler = {
 }
 ```
 
-### Proxy vs. original identity
+### Proxy vs оригинальная сущность
 
-The use of Proxy does introduce a new caveat to be aware with: the proxied object is not equal to the original object in terms of identity comparison (`===`). For example:
+Использование Proxy вводит новую оговорку, о которой следует знать: проксируемый объект не равен оригинальному объекту при строгом сравнении (`===`). Например:
 
 ```js
 const obj = {}
@@ -191,29 +191,28 @@ const wrapped = new Proxy(obj, handlers)
 console.log(obj === wrapped) // false
 ```
 
-The original and the wrapped version will behave the same in most cases, but be aware that they will fail
-operations that rely on strong identity comparisons, such as `.filter()` or `.map()`. This caveat is unlikely to come up when using the options API, because all reactive state is accessed from `this` and guaranteed to already be proxies.
+Оригинальный и обёрнутый в Proxy объект в большинстве случаев будут вести себя одинаково, но имейте в виду, что они дадут неверный результат в операциях, включающих строгое сравнение, таких как `.filter()` или `.map()`. Эта особенность вряд ли возникнет при использовании Options API, так как свойства реактивного состояния вызываются из `this` и гарантированно используют Proxy.
 
-However, when using the composition API to explicitly create reactive objects, the best practice is to never hold a reference to the original raw object and only work with the reactive version:
+Тем не менее, при использовании composition API для явного создания реактивных объектов, лучшей практикой считается никогда не сохранять ссылку на оригинальный объект и работать только с реактивной версией.
 
 ```js
 const obj = reactive({
   count: 0
-}) // no reference to original
+}) // нет ссылки на оригинал
 ```
 
-## Watchers
+## Наблюдатели
 
-Every component instance has a corresponding watcher instance, which records any properties "touched" during the component’s render as dependencies. Later on when a dependency’s setter is triggered, it notifies the watcher, which in turn causes the component to re-render.
+У каждого экземпляра компонента есть соответствущий наблюдатель, который вносит в зависимости любые свойства, используемые в момент отрисовки. Позже, при срабатывании сеттера зависимости, он уведомит наблюдателя, что, в свою очередь, приведёт к перерисовке компонента.
 
 <div class="reactivecontent">
   <common-codepen-snippet title="Second Reactivity with Proxies in Vue 3 Explainer" slug="GRJZddR" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
 </div>
 
-When you pass an object to a component instance as data, Vue converts it to a proxy. This proxy enables Vue to perform dependency-tracking and change-notification when properties are accessed or modified. Each property is considered a dependency.
+Когда вы передаёте объект данных в экземпляр компонента, Vue превращает его в Proxy. Этот Proxy позволяет Vue следить за изменениями и уведомлять о них при обращении или редактировании свойств объекта. Каждое свойство считается зависимостью.
 
-After the first render, a component would have tracked a list of dependencies &mdash; the properties it accessed during the render. Conversely, the component becomes a subscriber to each of these properties. When a proxy intercepts a set operation, the property will notify all of its subscribed components to re-render.
+После первой отрисовки у компонента будет список отслеживаемых зависимостей, полученный из свойств, вызванных в момент отрисовки. И наоборот, компонент подписывается на каждое из этих свойств. Когда прокси перехватывает операцию обновления, все подписанные на свойство компоненты будут уведомлены и перерисованы.
 
 <!-- [//]: # 'TODO: Insert diagram' -->
 
-> If you are using Vue 2.x and below, you may be interested in some of the change detection caveats that exist for those versions, [explored in more detail here](change-detection.md).
+> Если вы используете Vue 2.x или ниже вам могут быть интересны некоторые оговорки для этих версий, о которых можно [подробнее узнать здесь](change-detection.md).
