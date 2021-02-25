@@ -96,7 +96,7 @@
   ```
 
   ```js
-  const app = Vue.createApp({
+  const app = createApp({
     ...
     methods: {
       transitionComplete (el) {

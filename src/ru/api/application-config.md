@@ -3,7 +3,7 @@
 Каждое приложение Vue предоставляет доступ к объекту `config`, который содержит настройки конфигурации для этого приложения:
 
 ```js
-const app = Vue.createApp({})
+const app = createApp({})
 
 console.log(app.config)
 ```
@@ -73,7 +73,7 @@ app.component('child-component', {
 Vue.prototype.$http = () => {}
 
 // Сейчас
-const app = Vue.createApp({})
+const app = createApp({})
 app.config.globalProperties.$http = () => {}
 ```
 
@@ -107,7 +107,7 @@ app.config.isCustomElement = tag => tag.startsWith('ion-')
 - **Использование:**
 
 ```js
-const app = Vue.createApp({
+const app = createApp({
   mounted() {
     console.log(this.$options.hello)
   }
