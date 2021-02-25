@@ -529,6 +529,24 @@ render() {
 
 Подобно тегу `<template>`, тег `<component>` требуется в шаблонах только в качестве заполнителя для синтаксиса и его требуется опустить при миграции на `render`-функции.
 
+### Пользовательские директивы
+
+Пользовательские директивы могут применяться к VNode с помощью [`withDirectives`](../api/global-api.md#withdirectives):
+
+```js
+const { h, resolveDirective, withDirectives } = Vue
+// ...
+// <div v-pin:top.animate="200"></div>
+render () {
+  const pin = resolveDirective('pin')
+  return withDirectives(h('div'), [
+    [pin, 200, 'top', { animate: true }]
+  ])
+}
+```
+
+Функция [`resolveDirective`](../api/global-api.md#resolvedirective) это та же самая функция, которая под капотом используется в шаблонах для разрешения директив по имени. Это необходимо только в случаях, когда нет прямого доступа к объекту с определением директивы.
+
 ## JSX
 
 При создании множества `render`-функций, может быть мучительно писать подобное:
