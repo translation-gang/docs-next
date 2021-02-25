@@ -142,7 +142,7 @@ export default {
 </script>
 ```
 
-Обратите внимание, [refs](../api/refs-api.md#ref) возвращаемые из `setup` будут [автоматически разворачиваться](reactivity-fundamentals.md#ref-unwrapping) при обращениях в шаблоне, поэтому в шаблонах указывать `.value` не потребуется.
+Обратите внимание, [refs](../api/refs-api.md#ref) возвращаемые из `setup` будут [автоматически неглубоко разворачиваться](reactivity-fundamentals.md#ref-unwrapping) при обращениях в шаблоне, поэтому в шаблонах указывать `.value` не потребуется.
 
 ## Использование в render-функциях
 
