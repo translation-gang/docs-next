@@ -203,9 +203,14 @@ const sidebar = {
         '/guide/migration/v-model',
         '/guide/migration/v-if-v-for',
         '/guide/migration/v-bind',
+        '/guide/migration/vnode-lifecycle-events',
         '/guide/migration/watch'
       ]
     }
+  ],
+  ssr: [
+    ['/guide/ssr/introduction', 'Introduction'],
+    '/guide/ssr/getting-started'
   ],
   contributing: [
     {
@@ -428,6 +433,10 @@ const sidebarRU = {
         '/ru/guide/migration/watch'
       ]
     }
+  ],
+  ssr: [
+    ['/ru/guide/ssr/introduction', 'Введение'],
+    '/ru/guide/ssr/getting-started'
   ],
   contributing: [
     {
@@ -797,6 +806,7 @@ module.exports = {
           collapsable: false,
           '/ru/guide/migration/': sidebarRU.migration,
           '/ru/guide/contributing/': sidebarRU.contributing,
+          '/guide/ssr/': sidebarRU.ssr,
           '/ru/guide/': sidebarRU.guide,
           '/ru/community/': sidebarRU.guide,
           '/ru/cookbook/': sidebarRU.cookbook,
