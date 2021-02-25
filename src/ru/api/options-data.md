@@ -21,7 +21,7 @@
   const data = { a: 1 }
 
   // Объект добавляется к экземпляру компонента
-  const vm = Vue.createApp({
+  const vm = createApp({
     data() {
       return data
     }
@@ -64,7 +64,7 @@
 - **Пример:**
 
   ```js
-  const app = Vue.createApp({})
+  const app = createApp({})
 
   // простой синтаксис
   app.component('props-demo-simple', {
@@ -112,7 +112,7 @@
 - **Пример:**
 
   ```js
-  const app = Vue.createApp({
+  const app = createApp({
     data() {
       return { a: 1 }
     },
@@ -158,7 +158,7 @@
 - **Пример:**
 
   ```js
-  const app = Vue.createApp({
+  const app = createApp({
     data() {
       return { a: 1 }
     },
@@ -188,7 +188,7 @@
 - **Пример:**
 
   ```js
-  const app = Vue.createApp({
+  const app = createApp({
     data() {
       return {
         a: 1,
@@ -269,7 +269,7 @@
 - **Использование:**
 
   ```js
-  const app = Vue.createApp({})
+  const app = createApp({})
 
   // Синтаксис массивом
   app.component('todo-item', {
