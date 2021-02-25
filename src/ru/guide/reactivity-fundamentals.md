@@ -1,29 +1,29 @@
-# Reactivity Fundamentals
+# Основы реактивности
 
-## Declaring Reactive State
+## Объявление реактивного состояния
 
-To create a reactive state from a JavaScript object, we can use a `reactive` method:
+Реактивное состояния из объекта JavaScript создаётся с помощью метода `reactive`:
 
 ```js
 import { reactive } from 'vue'
 
-// reactive state
+// реактивное состояние
 const state = reactive({
   count: 0
 })
 ```
 
-`reactive` is the equivalent of the `Vue.observable()` API in Vue 2.x, renamed to avoid confusion with RxJS observables. Here, the returned state is a reactive object. The reactive conversion is "deep" - it affects all nested properties of the passed object.
+Метод `reactive` — эквивалент `Vue.observable()` API во Vue 2.x, переименованный чтобы избежать путаницы с observables RxJS. Здесь возвращаемое состояние будет являться реактивным объектом. Реактивное преобразование «глубокое» — оно будет влиять на все вложенные свойства переданного объекта.
 
-The essential use case for reactive state in Vue is that we can use it during render. Thanks to dependency tracking, the view automatically updates when reactive state changes.
+Основной сценарий использования реактивного состояния во Vue — использование во время отрисовки. Благодаря отслеживанию зависимостей, представление автоматически будет обновляться при изменениях реактивного состояния.
 
-This is the very essence of Vue's reactivity system. When you return an object from `data()` in a component, it is internally made reactive by `reactive()`. The template is compiled into a [render function](render-function.md) that makes use of these reactive properties.
+Это сама суть системы реактивности Vue. Когда в компоненте возвращается объект из `data()`, то под капотом он уже становится реактивным с помощью `reactive()`. Шаблон компилируется в [render-функцию](render-function.md), которая использует эти реактивные свойства.
 
-You can learn more about `reactive` in the [Basic Reactivity API's](../api/basic-reactivity.md) section
+Подробнее о методе `reactive` можно узнать в разделе [Основы API реактивности](../api/basic-reactivity.md).
 
-## Creating Standalone Reactive Values as `refs`
+## Создание автономных ссылок на реактивные значения
 
-Imagine the case where we have a standalone primitive value (for example, a string) and we want to make it reactive. Of course, we could make an object with a single property equal to our string, and pass it to `reactive`. Vue has a method that will do the same for us - it's a `ref`:
+Представьте случай, когда есть отдельное примитивное значение (например, строка) и необходимо сделать её реактивной. Конечно, можно сделать объект с одним свойством, значением которого будет эта строка, а затем передать его в `reactive`. Для этого у Vue уже есть метод, который сделает то же самое — `ref`:
 
 ```js
 import { ref } from 'vue'
@@ -31,7 +31,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref` will return a reactive and mutable object that serves as a reactive **ref**erence to the internal value it is holding - that's where the name comes from. This object contains the only one property named `value`:
+`ref` вернёт реактивный объект, который можно изменять и который служит реактивной ссылкой (**ref** от слова reference) для внутреннего значения, которое он хранит — откуда и происходит его имя. Этот объект содержит только одно свойство с именем `value`:
 
 ```js
 import { ref } from 'vue'
@@ -43,16 +43,16 @@ count.value++
 console.log(count.value) // 1
 ```
 
-### Ref Unwrapping
+### Разворачивание ref-ссылок
 
-When a ref is returned as a property on the render context (the object returned from [setup()](composition-api-setup.md)) and accessed in the template, it automatically shallow unwraps the inner value. Only the nested ref will require `.value` in the template:
+Когда ref-ссылка возвращается в качестве свойства для контекста отрисовки (объект, возвращаемый из [setup()](composition-api-setup.md)) и доступ к свойству осуществляется в шаблоне, то ссылка будет  автоматически разворачиваться во внутреннее значение. Только для вложенных ref-ссылок потребуется указывать `.value` в шаблоне:
 
 ```vue
 <template>
   <div>
     <span>{{ count }}</span>
-    <button @click="count ++">Increment count</button>
-    <button @click="nested.count.value ++">Nested Increment count</button>
+    <button @click="count ++">Увеличить счётчик</button>
+    <button @click="nested.count.value ++">Увеличить вложенный счётчик</button>
   </div>
 </template>
 
@@ -74,7 +74,7 @@ When a ref is returned as a property on the render context (the object returned 
 ```
 
 :::tip Совет
-If you don't need to access the actual object instance, you can wrap it in a `reactive`:
+Если доступ к реальному экземпляру объекта не требуется, то можно обернуть его в метод `reactive`:
 
 ```js
 nested: reactive({
@@ -83,9 +83,9 @@ nested: reactive({
 ```
 :::
 
-### Access in Reactive Objects
+### Доступ в реактивных объектах
 
-When a `ref` is accessed or mutated as a property of a reactive object, it automatically unwraps to the inner value so it behaves like a normal property:
+При доступе к `ref` или мутировании как свойства реактивного объекта, автоматически она будет разворачиваться во внутреннее значение и вести себя как обычное свойство:
 
 ```js
 const count = ref(0)
@@ -99,7 +99,7 @@ state.count = 1
 console.log(count.value) // 1
 ```
 
-If a new ref is assigned to a property linked to an existing ref, it will replace the old ref:
+Если новая ссылка присваивается к свойству, связанному с существующей ссылкой, то она просто заменит собой старую ссылку:
 
 ```js
 const otherCount = ref(2)
@@ -109,21 +109,21 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-Ref unwrapping only happens when nested inside a reactive `Object`. There is no unwrapping performed when the ref is accessed from an `Array` or a native collection type like [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
+Разворачивание ссылки происходит только в том случае, если она вложена в реактивный `Object`. Никакого разворачивания не будет выполняться, когда ссылка предоставляет доступ к `Array` или нативной коллекции, например [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
 
 ```js
-const books = reactive([ref('Vue 3 Guide')])
-// need .value here
+const books = reactive([ref('Руководство по Vue 3')])
+// здесь потребуется указывать .value
 console.log(books[0].value)
 
 const map = reactive(new Map([['count', ref(0)]]))
-// need .value here
+// здесь потребуется указывать .value
 console.log(map.get('count').value)
 ```
 
-## Destructuring Reactive State
+## Деструктурирование реактивного состояния
 
-When we want to use a few properties of the large reactive object, it could be tempting to use [ES6 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to get properties we want:
+При необходимости использовать лишь несколько свойств из большого реактивного объекта, может возникнуть соблазн использовать [деструктурирование из ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) для получения нужных свойств:
 
 ```js
 import { reactive } from 'vue'
@@ -139,7 +139,7 @@ const book = reactive({
 let { author, title } = book
 ```
 
-Unfortunately, with such a destructuring the reactivity for both properties would be lost. For such a case, we need to convert our reactive object to a set of refs. These refs will retain the reactive connection to the source object:
+К сожалению, при таком деструктурировании реактивность обоих свойств будет потеряна. Для таких случаев необходимо сначала преобразовать реактивный объект в набор ссылок. Такие ссылки сохранят реактивную связь с исходным объектом:
 
 ```js
 import { reactive, toRefs } from 'vue'
@@ -154,15 +154,15 @@ const book = reactive({
 
 let { author, title } = toRefs(book)
 
-title.value = 'Vue 3 Detailed Guide' // we need to use .value as title is a ref now
+title.value = 'Vue 3 Detailed Guide' // нужно .value потому что title теперь ссылка
 console.log(book.title) // 'Vue 3 Detailed Guide'
 ```
 
-You can learn more about `refs` in the [Refs API](../api/refs-api.md#ref) section
+Подробнее о `refs` можно узнать в разделе [API реактивных ссылок](../api/refs-api.md#ref).
 
-## Prevent Mutating Reactive Objects with `readonly`
+## Предотвращение изменений реактивных объектов с помощью `readonly`
 
-Sometimes we want to track changes of the reactive object (`ref` or `reactive`) but we also want prevent changing it from a certain place of the application. For example, when we have a [provided](component-provide-inject.md) reactive object, we want to prevent mutating it where it's injected. To do so, we can create a readonly proxy to the original object:
+Иногда требуется отслеживать изменения реактивного объекта (`ref` или `reactive`), но необходимо запретить его изменения из определённого места приложения. Например, если используем [внедряемый через provide](component-provide-inject.md) реактивный объект и хотим предотвратить попытки изменений там, где он будет внедряться. Для таких случаев можно создать прокси «только для чтения» исходного объекта:
 
 ```js
 import { reactive, readonly } from 'vue'
@@ -171,9 +171,9 @@ const original = reactive({ count: 0 })
 
 const copy = readonly(original)
 
-// mutating original will trigger watchers relying on the copy
+// изменение оригинала вызовет наблюдатели, полагающиеся на копию
 original.count++
 
-// mutating the copy will fail and result in a warning
+// изменение копии приведёт к неудаче и отображению предупреждения
 copy.count++ // warning: "Set operation on key 'count' failed: target is readonly."
 ```
