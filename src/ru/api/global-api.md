@@ -4,12 +4,26 @@ sidebarDepth: 1
 
 # Глобальное API
 
+При использовании сборки с CDN доступ к функциям глобального API можно получить через глобальный объект `Vue`, например:
+
+```js
+const { createApp, h, nextTick } = Vue
+```
+
+При использовании ES-модулей, их можно импортировать напрямую:
+
+```js
+import { createApp, h, nextTick } from 'vue'
+```
+
+Глобальные функции для работы с реактивностью, такие как `reactive` и `ref`, задокументированы отдельно. Подробнее о них можно изучить в разделе [Reactivity API](reactivity-api.md).
+
 ## createApp
 
 Возвращает экземпляр приложения, который предоставляет контекст приложения. Всё дерево компонентов, смонтированных экземпляром приложения, имеет один и тот же контекст.
 
 ```js
-const app = Vue.createApp({})
+const app = createApp({})
 ```
 
 После `createApp` можно цепочкой вызывать другие методы, их перечень можно найти в [API приложения](application-api.md)
@@ -19,7 +33,7 @@ const app = Vue.createApp({})
 Первым аргументом функция получает объект настроек корневого компонента:
 
 ```js
-const app = Vue.createApp({
+const app = createApp({
   data() {
     return {
       ...
@@ -34,7 +48,7 @@ const app = Vue.createApp({
 Вторым аргументом можно передать корневые входные параметры приложения:
 
 ```js
-const app = Vue.createApp(
+const app = createApp(
   {
     props: ['username']
   },
@@ -68,7 +82,7 @@ export type CreateAppFunction<HostElement> = (
 
 ```js
 render() {
-  return Vue.h('h1', {}, 'Какой-то заголовок')
+  return h('h1', {}, 'Какой-то заголовок')
 }
 ```
 
@@ -229,7 +243,7 @@ const AsyncComp = defineAsyncComponent({
 Возвращает `Component` или `undefined` если не был найден.
 
 ```js
-const app = Vue.createApp({})
+const app = createApp({})
 app.component('MyComponent', {
   /* ... */
 })
@@ -294,7 +308,7 @@ render () {
 Возвращает `Directive` или `undefined` если не была найдена.
 
 ```js
-const app = Vue.createApp({})
+const app = createApp({})
 app.directive('highlight', {})
 ```
 
