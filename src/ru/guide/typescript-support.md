@@ -102,6 +102,18 @@ const Component = defineComponent({
 })
 ```
 
+При использовании [однофайловых компонентов](single-file-component.md) это обычно записывается как:
+
+```vue
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  // вывод типов работает
+})
+</script>
+```
+
 ## Использование с Options API
 
 TypeScript умеет определять большинство типов без их явного определения. Например, если есть компонент со свойством `count`, то получите ошибку при попытке вызывать метод для строк на этом свойстве:
