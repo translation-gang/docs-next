@@ -430,6 +430,7 @@ const sidebarRU = {
         '/ru/guide/migration/v-model',
         '/ru/guide/migration/v-if-v-for',
         '/ru/guide/migration/v-bind',
+        '/ru/guide/migration/vnode-lifecycle-events',
         '/ru/guide/migration/watch'
       ]
     }
@@ -620,7 +621,7 @@ module.exports = {
                   },
                   {
                     text: 'Vue Test Utils',
-                    link: 'https://vuejs.github.io/vue-test-utils-next-docs/guide/introduction.html'
+                    link: 'https://next.vue-test-utils.vuejs.org/v2/guide/introduction.html'
                   },
                   {
                     text: 'Devtools',
@@ -670,6 +671,7 @@ module.exports = {
           collapsable: false,
           '/guide/migration/': sidebar.migration,
           '/guide/contributing/': sidebar.contributing,
+          '/guide/ssr/': sidebar.ssr,
           '/guide/': sidebar.guide,
           '/community/': sidebar.guide,
           '/cookbook/': sidebar.cookbook,
@@ -756,7 +758,7 @@ module.exports = {
                   },
                   {
                     text: 'Vue Test Utils',
-                    link: 'https://vuejs.github.io/vue-test-utils-next-docs/guide/introduction.html'
+                    link: 'https://next.vue-test-utils.vuejs.org/v2/guide/introduction.html'
                   },
                   {
                     text: 'Devtools',
@@ -806,7 +808,7 @@ module.exports = {
           collapsable: false,
           '/ru/guide/migration/': sidebarRU.migration,
           '/ru/guide/contributing/': sidebarRU.contributing,
-          '/guide/ssr/': sidebarRU.ssr,
+          '/ru/guide/ssr/': sidebarRU.ssr,
           '/ru/guide/': sidebarRU.guide,
           '/ru/community/': sidebarRU.guide,
           '/ru/cookbook/': sidebarRU.cookbook,
