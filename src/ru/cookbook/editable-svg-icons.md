@@ -18,7 +18,7 @@
 
 Вот репозиторий с примером для начала работы, где можно увидеть готовую настройку: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/)
 
-![Сайт документации](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/screendocs.jpg 'Пример документации')
+![Сайт документации](/images/editable-svg-icons.jpg 'Пример документации')
 
 Теперь создадим компонент базовой иконки (`IconBase.vue`), который использует слот:
 
@@ -108,7 +108,7 @@ export default {
 </p>
 ```
 
-<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/Screen%20Shot%202018-01-01%20at%204.51.40%20PM.png" width="450" />
+<img src="/images/editable-svg-icons-sizes.png" width="450" />
 
 ## Анимируемые иконки
 
