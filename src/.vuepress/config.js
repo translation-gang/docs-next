@@ -368,7 +368,7 @@ const sidebarRU = {
     '/ru/api/special-attributes',
     '/ru/api/built-in-components.md',
     {
-      title: 'Reactivity API',
+      title: 'API реактивности',
       path: '/ru/api/reactivity-api',
       collapsable: false,
       children: [
