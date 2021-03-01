@@ -15,7 +15,7 @@
 
 - **Использование:**
 
-  Watch a reactive property or a computed function on the component instance for changes. The callback gets called with the new value and the old value for the given property. We can only pass top-level `data`, `prop`, or `computed` property name as a string. For more complex expressions or nested properties, use a function instead.
+  Отслеживание изменений реактивного свойства или функции вычисляемого свойства на экземпляре компонента. Коллбэк будет вызываться с новым и старым значением данного свойства. Можно указывать в виде строки только имена свойств верхнего уровня для `data`, `props` или `computed`. Для более комплексных выражений или вложенных свойств следует использовать функцию.
 
 - **Пример:**
 
@@ -32,34 +32,34 @@
       }
     },
     created() {
-      // top-level property name
+      // имя свойства верхнего уровня
       this.$watch('a', (newVal, oldVal) => {
-        // do something
+        // сделать что-нибудь
       })
 
-      // function for watching a single nested property
+      // функция для отслеживания одного вложенного свойства
       this.$watch(
         () => this.c.d,
         (newVal, oldVal) => {
-          // do something
+          // сделать что-нибудь
         }
       )
 
-      // function for watching a complex expression
+      // функция для отслеживания сложного выражения
       this.$watch(
-        // every time the expression `this.a + this.b` yields a different result,
-        // the handler will be called. It's as if we were watching a computed
-        // property without defining the computed property itself
+        // каждый раз, когда выражение `this.a + this.b` даёт другой
+        // результат — будет вызываться коллбэк. Это похоже на отслеживание
+        // вычисляемого свойства, но без необходимости его объявлять
         () => this.a + this.b,
         (newVal, oldVal) => {
-          // do something
+          // сделать что-нибудь
         }
       )
     }
   })
   ```
 
-  When watched value is an object or array, any changes to its properties or elements won't trigger the watcher because they reference the same object/array:
+  Если отслеживаемое значение является объектом или массивом, то любые изменения свойств или элементов в них не будут вызывать коллбэк, потому что они ссылаются на один и тот же объект/массив:
 
   ```js
   const app = createApp({
@@ -73,16 +73,16 @@
     },
     created() {
       this.$watch('article', () => {
-        console.log('Article changed!')
+        console.log('Заметка обновилась!')
       })
 
       this.$watch('comments', () => {
-        console.log('Comments changed!')
+        console.log('Комментарии обновились!')
       })
     },
     methods: {
-      // These methods won't trigger a watcher because we changed only a property of object/array,
-      // not the object/array itself
+      // Такие методы НЕ ВЫЗОВУТ коллбэк метода-наблюдателя, потому что
+      // изменится только свойство объекта/массива, но не объект/массив целиком
       changeArticleText() {
         this.article.text = 'Vue 3 is awesome'
       },
@@ -90,7 +90,8 @@
         this.comments.push('New comment')
       },
 
-      // These methods will trigger a watcher because we replaced object/array completely
+      // Такие методы ВЫЗОВУТ коллбэк метода-наблюдателя, потому что
+      // заменяется объект/массив целиком
       changeWholeArticle() {
         this.article = { text: 'Vue 3 is awesome' }
       },
@@ -101,7 +102,7 @@
   })
   ```
 
-  `$watch` returns an unwatch function that stops firing the callback:
+  Метод `$watch` возвращает функцию для остановки отслеживания:
 
   ```js
   const app = createApp({
@@ -115,37 +116,40 @@
   const vm = app.mount('#app')
 
   const unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+
+  // ... позднее, останавливаем дальнейшее отслеживание
   unwatch()
   ```
 
 - **Опция: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for array mutations.
+  Для отслеживания изменения вложенных значений внутри объектов нужно передавать `deep: true` в аргументе опций. Обратите внимание, опция не требуется для отслеживания мутаций массива.
 
   ```js
   vm.$watch('someObject', callback, {
     deep: true
   })
+
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // коллбэк будет вызван
   ```
 
 - **Опция: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  При передаче `immediate: true` в опциях, коллбэк будет вызываться незамедлительно с текущим значением отслеживаемого выражения:
 
   ```js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+
+  // `callback` будет вызван незамедлительно с текущим значением `a`
   ```
 
-  Note that with `immediate` option you won't be able to unwatch the given property on the first callback call.
+  Обратите внимание, при использовании опции `immediate` нет возможности остановить отслеживание при первом вызове коллбэка.
 
   ```js
-  // This will cause an error
+  // Подобное приведёт к ошибке
   const unwatch = vm.$watch(
     'value',
     function() {
@@ -156,7 +160,7 @@
   )
   ```
 
-  If you still want to call an unwatch function inside the callback, you should check its availability first:
+  При необходимости останавливать отслеживание в коллбэке следует сначала проверять его доступность:
 
   ```js
   let unwatch = null
@@ -175,23 +179,23 @@
 
 - **Опция: flush**
 
-  The `flush` option allows for greater control over the timing of the callback. It can be set to `'pre'`, `'post'` or `'sync'`.
+  Опция `flush` позволяет точнее контролировать время вызова коллбэка. Значением может быть `'pre'`, `'post'` или `'sync'`.
 
-  The default value is `'pre'`, which specifies that the callback should be invoked before rendering. This allows the callback to update other values before the template runs.
+  Значение по умолчанию `'pre'`. Это значит, что коллбэк должен быть вызван перед отрисовкой. Это позволяет в коллбэке обновить другие значения перед обновлением шаблона.
 
-  The value `'post'` can be used to defer the callback until after rendering. This should be used if the callback needs access to the updated DOM or child components via `$refs`.
+  Значение `'post'` можно использовать для отложенного вызова коллбэка по окончанию отрисовки. Его следует использовать, если в коллбэке требуется доступ к обновлённому DOM или дочерним компонентам через `$refs`.
 
-  If `flush` is set to `'sync'`, the callback will be called synchronously, as soon as the value changes.
+  При установке опции `flush` в значение `'sync'`, коллбэк будет вызываться синхронно, как только значение изменится.
 
-  For both `'pre'` and `'post'`, the callback is buffered using a queue. The callback will only be added to the queue once, even if the watched value changes multiple times. The interim values will be skipped and won't be passed to the callback.
+  Для значений `'pre'` и `'post'` коллбэк будет буферизироваться с использованием очереди. Он будет добавлен в очередь только один раз, даже если отслеживаемое значение изменилось несколько раз. Промежуточные значения будут пропущены и не будут переданы в коллбэк.
 
-  Buffering the callback not only improves performance but also helps to ensure data consistency. The watchers won't be triggered until the code performing the data updates has finished.
+  Буферизация коллбэка не только улучшает производительность, но и помогает обеспечить консистентность данных. Методы-наблюдатели не будут вызываться до тех пор, пока код занимающийся обновлением данных не завершится.
 
-  `'sync'` watchers should be used sparingly, as they don't have these benefits.
+  Значение `'sync'` нужно применять очень аккуратно, потому что у него нет этих преимуществ.
 
-  For more information about `flush` see [Effect Flush Timing](../guide/reactivity-computed-watchers.md#effect-flush-timing).
+  Дополнительную информацию об опции `flush` можно изучить в разделе [Синхронизация времени очистки эффектов](../guide/reactivity-computed-watchers.md#синхронизация-времени-очистки-эффектов).
 
-- **См. также:** [Watchers](../guide/computed.md#watchers)
+- **См. также:** [Методы-наблюдатели](../guide/computed.md#методы-наблюдатели)
 
 ## $emit
 
@@ -200,11 +204,11 @@
   - `{string} eventName`
   - `...args (опционально)`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Генерирует событие на текущем экземпляре. Любые дополнительные аргументы будут переданы в коллбэк функции прослушивания.
 
 - **Примеры:**
 
-  Using `$emit` with only an event name:
+  Использование `$emit` только с указанием имени события:
 
   ```html
   <div id="emit-example-simple">
@@ -216,7 +220,7 @@
   const app = createApp({
     methods: {
       sayHi() {
-        console.log('Hi!')
+        console.log('Привет!')
       }
     }
   })
@@ -225,7 +229,7 @@
     emits: ['welcome'],
     template: `
       <button v-on:click="$emit('welcome')">
-        Click me to be welcomed
+        Кликни для приветствия
       </button>
     `
   })
@@ -233,7 +237,7 @@
   app.mount('#emit-example-simple')
   ```
 
-  Using `$emit` with additional arguments:
+  Использование `$emit` с дополнительными аргументами:
 
   ```html
   <div id="emit-example-argument">
@@ -254,14 +258,14 @@
     emits: ['advise'],
     data() {
       return {
-        adviceText: 'Some advice'
+        adviceText: 'Какой-то совет'
       }
     },
     template: `
       <div>
         <input type="text" v-model="adviceText">
         <button v-on:click="$emit('advice', adviceText)">
-          Click me for sending advice
+          Кликни для получения какого-нибудь совета
         </button>
       </div>
     `
@@ -271,14 +275,14 @@
   ```
 
 - **См. также:**
-  - [`emits` option](options-data.md#emits)
-  - [Emitting a Value With an Event](../guide/component-basics.md#emitting-a-value-with-an-event)
+  - [Опция `emits`](options-data.md#emits)
+  - [Компоненты — Передача данных вместе с событием](../guide/component-basics.md#передача-данных-вместе-с-событием)
 
 ## $forceUpdate
 
 - **Использование:**
 
-  Force the component instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Вызывает принудительную перерисовку экземпляра компонента. Обратите внимание, что он не затрагивает все дочерние компоненты, а только сам экземпляр и дочерние компоненты со вставленным содержимым в слот.
 
 ## $nextTick
 
@@ -288,7 +292,7 @@
 
 - **Использование:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Откладывает вызов коллбэка до следующего цикла обновления DOM. Используйте его сразу после изменения данных, чтобы дождаться обновления DOM. Аналогичен глобальному `nextTick`, за исключением того, что контекст `this` автоматически привязывается к экземпляру, вызвавшему этот метод.
 
 - **Пример:**
 
@@ -298,12 +302,12 @@
     methods: {
       // ...
       example() {
-        // modify data
+        // изменение данных
         this.message = 'changed'
-        // DOM is not updated yet
+        // DOM ещё не обновлён
         this.$nextTick(function() {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // теперь DOM обновлён
+          // `this` привязан к текущему экземпляру
           this.doSomethingElse()
         })
       }
