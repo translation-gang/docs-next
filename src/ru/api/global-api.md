@@ -240,7 +240,7 @@ const AsyncComp = defineAsyncComponent({
 
 Позволяет разрешить `component` по его имени, если он доступен в текущем экземпляре приложения.
 
-Возвращает `Component` или `undefined` если не был найден.
+Возвращает `Component` или аргумент `name` если не был найден.
 
 ```js
 const app = createApp({})
