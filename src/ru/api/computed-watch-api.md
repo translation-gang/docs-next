@@ -1,10 +1,10 @@
-# Computed and watch
+# Вычисляемые свойства и методы-наблюдатели
 
 > Этот раздел использует синтаксис [однофайловых компонентов](../guide/single-file-component.md) для примеров кода
 
 ## `computed`
 
-Takes a getter function and returns an immutable reactive [ref](refs-api.md#ref) object for the returned value from the getter.
+Принимает геттер-функцию и возвращает иммутабельную реактивный [ref](refs-api.md#ref) объект для возвращаемого значения из геттера.
 
 ```js
 const count = ref(1)
@@ -12,10 +12,10 @@ const plusOne = computed(() => count.value + 1)
 
 console.log(plusOne.value) // 2
 
-plusOne.value++ // error
+plusOne.value++ // ошибка
 ```
 
-Alternatively, it can take an object with `get` and `set` functions to create a writable ref object.
+Может получать объект с функциями `get` и `set` для создания ref-объекта для чтения/записи.
 
 ```js
 const count = ref(1)
@@ -33,26 +33,26 @@ console.log(count.value) // 0
 **Типы:**
 
 ```ts
-// read-only
+// только для чтения
 function computed<T>(getter: () => T): Readonly<Ref<Readonly<T>>>
 
-// writable
+// чтение/запись
 function computed<T>(options: { get: () => T; set: (value: T) => void }): Ref<T>
 ```
 
 ## `watchEffect`
 
-Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+Немедленно запускает функцию, отслеживая её зависимости с помощью реактивности, а затем повторно вызывает лишь при изменении этих зависимостей.
 
 ```js
 const count = ref(0)
 
 watchEffect(() => console.log(count.value))
-// -> logs 0
+// -> выведет 0
 
 setTimeout(() => {
   count.value++
-  // -> logs 1
+  // -> выведет 1
 }, 100)
 ```
 
@@ -82,24 +82,24 @@ type InvalidateCbRegistrator = (invalidate: () => void) => void
 type StopHandle = () => void
 ```
 
-**См. также**: [`watchEffect` guide](../guide/reactivity-computed-watchers.md#watcheffect)
+**См. также**: [Руководство по `watchEffect`](../guide/reactivity-computed-watchers.md#watcheffect)
 
 ## `watch`
 
-The `watch` API is the exact equivalent of the Options API [this.$watch](instance-methods.md#watch) (and the corresponding [watch](options-data.md#watch) option). `watch` requires watching a specific data source and applies side effects in a separate callback function. It also is lazy by default - i.e. the callback is only called when the watched source has changed.
+API `watch` является точным эквивалентом Options API [this.$watch](instance-methods.md#watch) (и соответствующей опции [watch](options-data.md#watch)). Для `watch` требуется отслеживание конкретного источника данных и применяет побочные эффекты в отдельном коллбэке. Выполнение лениво по умолчанию — т.е. коллбэк вызывается только тогда, когда изменился отслеживаемый источник.
 
-- Compared to [watchEffect](#watcheffect), `watch` allows us to:
+- В сравнении с [watchEffect](#watcheffect), `watch` позволяет:
 
-  - Perform the side effect lazily;
-  - Be more specific about what state should trigger the watcher to re-run;
-  - Access both the previous and current value of the watched state.
+  - Выполнять побочный эффект лениво;
+  - Конкретнее определять какое состояние должно вызывать повторный запуск метода-наблюдателя;
+  - Предоставляет доступ к предыдущему и текущему значениям отслеживаемого состояния.
 
-### Watching a Single Source
+### Отслеживание единственного источника данных
 
-A watcher data source can either be a getter function that returns a value, or directly a [ref](refs-api.md#ref):
+Источником данных для наблюдателя может быть функция геттер, возвращающая значение, или непосредственно реактивная ссылка [ref](refs-api.md#ref):
 
 ```js
-// watching a getter
+// наблюдение за геттер-функцией
 const state = reactive({ count: 0 })
 watch(
   () => state.count,
@@ -108,16 +108,16 @@ watch(
   }
 )
 
-// directly watching a ref
+// наблюдение за ref-ссылкой
 const count = ref(0)
 watch(count, (count, prevCount) => {
   /* ... */
 })
 ```
 
-### Watching Multiple Sources
+### Отслеживание нескольких источников данных
 
-A watcher can also watch multiple sources at the same time using an array:
+Наблюдатель также может отслеживать несколько источников одновременно, используя запись с массивом:
 
 ```js
 watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
@@ -125,14 +125,15 @@ watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
 })
 ```
 
-### Shared Behavior with `watchEffect`
+### Общее поведение с `watchEffect`
 
-`watch` shares behavior with [`watchEffect`](#watcheffect) in terms of [manual stoppage](../guide/reactivity-computed-watchers.md#stopping-the-watcher), [side effect invalidation](../guide/reactivity-computed-watchers.md#side-effect-invalidation) (with `onInvalidate` passed to the callback as the 3rd argument instead), [flush timing](../guide/reactivity-computed-watchers.md#effect-flush-timing) and [debugging](../guide/reactivity-computed-watchers.md#watcher-debugging).
+Общее поведение `watch` и [`watchEffect`](#watcheffect) будет в возможностях [остановки отслеживания](../guide/reactivity-computed-watchers.md#остановка-отслеживания), [аннулировании побочных эффектов](../guide/reactivity-computed-watchers.md#аннулирование-побочных-эффектов) (с передачей коллбэка `onInvalidate` третьим аргументом), [синхронизации времени очистки эффектов](../guide/reactivity-computed-watchers.md#синхронизация-времени-очистки-эффектов) и инструментов [отладки](../guide/reactivity-computed-watchers.md#отладка-наблюдателеи).
+
 
 **Типы:**
 
 ```ts
-// watching single source
+// отслеживание единственного источника данных
 function watch<T>(
   source: WatcherSource<T>,
   callback: (
@@ -143,7 +144,7 @@ function watch<T>(
   options?: WatchOptions
 ): StopHandle
 
-// watching multiple sources
+// отслеживание нескольких источников данных
 function watch<T extends WatcherSource<unknown>[]>(
   sources: T
   callback: (
@@ -160,11 +161,11 @@ type MapSources<T> = {
   [K in keyof T]: T[K] extends WatcherSource<infer V> ? V : never
 }
 
-// see `watchEffect` typing for shared options
+// обратитесь к типам `watchEffect` для общих опций
 interface WatchOptions extends WatchEffectOptions {
-  immediate?: boolean // default: false
+  immediate?: boolean // по умолчанию: false
   deep?: boolean
 }
 ```
 
-**См. также**: [`watch` guide](../guide/reactivity-computed-watchers.md#watch)
+**См. также**: [Руководство по `watch`](../guide/reactivity-computed-watchers.md#watch)
