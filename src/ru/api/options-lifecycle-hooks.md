@@ -1,7 +1,7 @@
 # Хуки жизненного цикла
 
 :::warning Примечание
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means **you should not use an arrow function to define a lifecycle method** (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.fetchTodos` will be undefined.
+Все хуки жизненного цикла автоматически привязывают свой контекст `this` к экземпляру, поэтому есть доступ к локальному состоянию, вычисляемым свойствам и методам. Поэтому **нельзя использовать стрелочные функции при определении хука жизненного цикла** (например, `created: () => this.fetchTodos()`). Причина в том, что стрелочные функции привязываются к родительскому контексту, поэтому `this` не будет экземпляром компонента и `this.fetchTodos` будет неопределён.
 :::
 
 ## beforeCreate
@@ -10,9 +10,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  Вызывается синхронно сразу после инициализации экземпляра, перед установкой наблюдения за данными и механизмов слежения и событий. 
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## created
 
@@ -20,9 +20,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Вызывается синхронно после создания экземпляра. На этом этапе экземпляр закончил обработку опций и настроил: наблюдение за данными, вычисляемые свойства, методы, коллбэки методов-наблюдателей и событий. Однако, фаза монтирования ещё не начата и свойство `$el` на данный момент недоступно.
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## beforeMount
 
@@ -30,11 +30,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Вызывается непосредственно перед начало монтирования: функция `render` будет вызываться в первый раз.
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## mounted
 
@@ -42,22 +42,22 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called after the instance has been mounted, where element, passed to [`app.mount`](application-api.md#mount) is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Вызывается после монтирования экземпляра, где элемент, переданный в [`app.mount`](application-api.md#mount) заменяется вновь созданным `vm.$el`. Если корневой экземпляр примонтирован на элемент документа, то `vm.$el` также будет элементом документа при вызове `mounted`.
 
-  Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](../api/instance-methods.md#nexttick) inside of `mounted`:
+  Обратите внимание, что `mounted` **не гарантирует**, что все дочерние компоненты будут уже примонтированы. Если необходимо подождать пока не будут отрисованы и все дочерние, то можно воспользоваться [vm.$nextTick](../api/instance-methods.md#nexttick) внутри `mounted`:
 
   ```js
   mounted() {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
+      // Код, который будет запущен только после
+      // отрисовки всех представлений
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## beforeUpdate
 
@@ -65,11 +65,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
+  Вызывается при изменении данных, перед обновлением DOM. Это удобное место для получения доступа к существующему DOM перед обновлением, например, чтобы вручную удалить добавленные прослушиватели событий.
 
-  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
+  **Не вызывается при отрисовке на стороне сервера, потому что на стороне сервера выполняется только первоначальная отрисовка.**
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## updated
 
@@ -77,24 +77,24 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Вызывается после того, как обновится виртуальный DOM из-за изменений данных.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](options-data.md#computed) or [watcher](options-data.md#watch) instead.
+  DOM компонента будет уже обновлён к моменту вызова этого хука, поэтому здесь можно выполнять операции связанные с DOM. Тем не менее, старайтесь избегать изменения состояния в этом хуке. Для реагирования на изменения состояния лучше использовать [вычисляемые свойства](options-data.md#computed) или [отслеживание с помощью методов-наблюдателей](options-data.md#watch).
 
-  Note that `updated` does **not** guarantee that all child components have also been re-rendered. If you want to wait until the entire view has been re-rendered, you can use [vm.$nextTick](../api/instance-methods.md#nexttick) inside of `updated`:
+  Обратите внимание, что `updated` **не гарантирует**, что все дочерние компонента также были переотрисованы. Если необходимо подождать пока все не будут повторно отрисованы, можно воспользоваться [vm.$nextTick](../api/instance-methods.md#nexttick) внутри `updated`:
 
   ```js
   updated() {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been re-rendered
+      // Код, который будет запущен только после
+      // переотрисовки всех представлений
     })
   }
   ```
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## activated
 
@@ -102,12 +102,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when a kept-alive component is activated.
+  Вызывается при активации компонента внутри `<keep-alive>`.
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
 - **См. также:**
-  - [Dynamic Components - keep-alive](.../guide/component-dynamic-async.md#dynamic-components-with-keep-alive)
+  - [Динамические компоненты с `keep-alive`](../guide/component-dynamic-async.md#динамические-компоненты-с-keep-alive)
 
 ## deactivated
 
@@ -115,12 +115,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when a kept-alive component is deactivated.
+  Вызывается после деактивации компонента внутри `<keep-alive>`.
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
 - **См. также:**
-  - [Dynamic Components - keep-alive](../guide/component-dynamic-async.md#dynamic-components-with-keep-alive)
+  - [Динамические компоненты с `keep-alive`](../guide/component-dynamic-async.md#динамические-компоненты-с-keep-alive)
 
 ## beforeUnmount
 
@@ -128,11 +128,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called right before a component instance is unmounted. At this stage the instance is still fully functional.
+  Вызывается перед демонтированием экземпляра компонента. На этом этапе экземпляр компонента всё ещё полностью работоспособен.
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## unmounted
 
@@ -140,11 +140,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called after a component instance has been unmounted. When this hook is called, all directives of the component instance have been unbound, all event listeners have been removed, and all child component instance have also been unmounted.
+  Вызывается после того, как экземпляр компонента размонтирован. Когда этот хук вызван, все директивы экземпляра компонента уже отвязаны, все прослушиватели событий удалены и все дочерние экземпляры компонентов размонтированы.
 
-  **This hook is not called during server-side rendering.**
+  **Не вызывается при отрисовке на стороне сервера.**
 
-- **См. также:** [Lifecycle Diagram](../guide/instance.md#lifecycle-diagram)
+- **См. также:** [Диаграмма жизненного цикла](../guide/instance.md#диаграмма-жизненного-цикла)
 
 ## errorCaptured
 
@@ -152,21 +152,21 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+  Вызывается, когда фиксируется ошибка из любого дочернего компонента. Хук получает три аргумента: ошибку, экземпляр компонента, в котором вызвана ошибка, и строку с информацией где была зафиксирована ошибка. Хук может возвращать `false`, чтобы остановить дальнейшее распространение ошибки.
 
   :::tip Совет
-  You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.
+  В этом хуке можно изменять состояние компонента. Однако, важно иметь в шаблоне или render-функции условия, которые оборачивают и отделяют другое содержимое при обнаружении ошибки; иначе компонент может попасть в бесконечный цикл перерисовки.
   :::
 
-  **Error Propagation Rules**
+  **Правила распространения ошибок**
 
-  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - По умолчанию все ошибки по-прежнему отправляются в глобальный обработчик `config.errorHandler`, если он был объявлен, поэтому эти ошибки всё равно можно например отправлять в сервис по сбору аналитики из одного места в коде.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+  - Если существует несколько хуков `errorCaptured` в цепочке наследования компонента или родительской цепочке, то все они будут вызваны с этой же ошибкой.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+  - Если сам хук `errorCaptured` выбрасывает ошибку, то обе ошибки (зафиксированная и выброшенная хуком) отправятся в глобальный обработчик `config.errorHandler`.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+  - Хук `errorCaptured` может возвращать `false` для предотвращения дальнейшего распространения ошибки. По существу это значит — «эта ошибка была обработана и её следует игнорировать», что предотвратит вызов других хуков `errorCaptured` или глобального `config.errorHandler` для этой ошибки.
 
 ## renderTracked
 
@@ -174,14 +174,14 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when virtual DOM re-render is tracked. The hook receives a `debugger event` as an argument. This event tells you what operation tracked the component and the target object and key of that operation.
+  Вызывается при отслеживании перерисовки виртуального DOM. Хук получает в качестве аргумента `debugger event`. Это событие сообщает, какая операция была отслежена в компоненте и целевой объект, а также ключ этой операции.
 
 - **Использование:**
 
   ```html
   <div id="app">
-    <button v-on:click="addToCart">Add to cart</button>
-    <p>Cart({{ cart }})</p>
+    <button v-on:click="addToCart">Добавить в корзину</button>
+    <p>Корзина({{ cart }})</p>
   </div>
   ```
 
@@ -194,7 +194,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     },
     renderTracked({ key, target, type }) {
       console.log({ key, target, type })
-      /* This will be logged when component is rendered for the first time:
+      /* Будет выведено, когда компонент был отрисован в первый раз:
       {
         key: "cart",
         target: {
@@ -220,14 +220,14 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when virtual DOM re-render is triggered.Similarly to [`renderTracked`](#rendertracked), receives a `debugger event` as an argument. This event tells you what operation triggered the re-rendering and the target object and key of that operation.
+  Вызывается при срабатывании перерисовки виртуального DOM. Подобно [`renderTracked`](#rendertracked) в качестве аргумента получает `debugger event`. Это событие сообщает, какая операция вызвала перерисовку, а также целевой объект и ключ этой операции.
 
 - **Использование:**
 
   ```html
   <div id="app">
-    <button v-on:click="addToCart">Add to cart</button>
-    <p>Cart({{ cart }})</p>
+    <button v-on:click="addToCart">Добавить в корзину</button>
+    <p>Корзина({{ cart }})</p>
   </div>
   ```
 
@@ -244,7 +244,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     methods: {
       addToCart() {
         this.cart += 1
-        /* This will cause renderTriggered call
+        /* Это приведёт к вызову renderTriggered
           {
             key: "cart",
             target: {
