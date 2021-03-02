@@ -6,9 +6,9 @@
 
 - **Подробности:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
+  Опция `mixins` принимает массив объектов для примешивания. Эти объекты-примеси могут содержать опции экземпляра, как и обычные объекты экземпляра, и они будут объединены в окончательный набор опций с использованием специальной логики объединения. Например, если хук `created` указан в примеси и есть в компоненте, то будут вызываться обе функции.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Хуки в примесях вызываются в порядке их определения до вызова собственных хуков компонента.
 
 - **Пример:**
 
@@ -30,7 +30,7 @@
   // => 2
   ```
 
-- **См. также:** [Mixins](../guide/mixins.md)
+- **См. также:** [Примеси](../guide/mixins.md)
 
 ## extends
 
@@ -38,16 +38,16 @@
 
 - **Подробности:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor). This is primarily intended to make it easier to extend between single file components.
+  Позволяет декларативно наследоваться от другого компонента (который может быть как обычным объектом опций, так и конструктором). Главным образом предназначается для облегчения наследования между однофайловыми компонентами.
 
-  This is similar to `mixins`.
+  Функциональность аналогична опции `mixins`.
 
 - **Пример:**
 
   ```js
   const CompA = { ... }
 
-  // extend CompA without having to call `Vue.extend` on either
+  // наследуем CompA без необходимости вызова `Vue.extend`
   const CompB = {
     extends: CompA,
     ...
@@ -63,25 +63,25 @@
 
 - **Подробности:**
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's `context` feature.
+  Эта пара опций используется вместе, чтобы позволить компоненту-родителю внедрять зависимости во всего его компонентах-потомках, независимо от того, насколько глубоко в иерархии они находятся, пока располагаются в той же самой родительской цепочке. Если знакомы с React, то это очень похоже на функцию `context`.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  Опция `provide` должна быть объектом или функцией, возвращающей объект. Этот объект содержит свойства, которые будут доступны после внедрения в их потомках. Можно использовать ES2015 Symbols в качестве ключей объекта, но только в окружениях, которые нативно поддерживают `Symbol` и `Reflect.ownKeys`.
 
-  The `inject` option should be either:
+  Опция `inject` должна быть:
 
-  - an array of strings, or
-  - an object where the keys are the local binding name and the value is either:
-    - the key (string or Symbol) to search for in available injections, or
-    - an object where:
-      - the `from` property is the key (string or Symbol) to search for in available injections, and
-      - the `default` property is used as fallback value
+  - массивом строк, или
+  - объектом, где ключами являются локальные имена привязки, а значениями одно из следующих:
+    - ключом (строка или Symbol) для поиска в доступных внедрениях, или
+    - объектом, где:
+      - свойство `from` является ключом (строка или Symbol) для поиска в доступных внедрениях, и
+      - свойство `default`, используемое в качестве запасного значения
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down a reactive object, properties on that object do remain reactive.
+  > Примечание: привязки `provide` и `inject` НЕ РЕАКТИВНЫ. Так сделано специально. Однако, если передать реактивный объект, то его свойства останутся реактивными.
 
 - **Пример:**
 
   ```js
-  // parent component providing 'foo'
+  // родительский компонент предоставляет доступ к 'foo'
   const Provider = {
     provide: {
       foo: 'bar'
@@ -89,7 +89,7 @@
     // ...
   }
 
-  // child component injecting 'foo'
+  // дочерний компонент внедряет 'foo' для использования
   const Child = {
     inject: ['foo'],
     created() {
@@ -99,7 +99,7 @@
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Работа с функциями `provide` и объектом `inject` с использованием ES2015 Symbols:
 
   ```js
   const s = Symbol()
@@ -118,7 +118,7 @@
   }
   ```
 
-  Using an injected value as the default for a prop:
+  Использование внедряемого значения для входного параметра значением по умолчанию:
 
   ```js
   const Child = {
@@ -133,7 +133,7 @@
   }
   ```
 
-  Using an injected value as data entry:
+  Использование внедряемого значения в качестве данных:
 
   ```js
   const Child = {
@@ -146,7 +146,7 @@
   }
   ```
 
-  Injections can be optional with default value:
+  Инъекции можно указывать с собственным значением по умолчанию:
 
   ```js
   const Child = {
@@ -156,7 +156,7 @@
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  Для внедрения значение из свойства под другим именем можно использовать опцию `from` для определения свойства-источника:
 
   ```js
   const Child = {
@@ -169,7 +169,7 @@
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non-primitive values:
+  Как и для значений по умолчанию входных параметров, для не-примитивных значений необходимо использовать фабричную функцию:
 
   ```js
   const Child = {
@@ -188,15 +188,15 @@
 
 - **Тип:** `Function`
 
-The `setup` function is a new component option. It serves as the entry point for using the Composition API inside components.
+Функция `setup` — новая опция компонента. Она будет стартовой точкой для использования Composition API внутри компонентов.
 
-- **Invocation Timing**
+- **Время вызова**
 
-  `setup` is called right after the initial props resolution when a component instance is created. Lifecycle-wise, it is called before the [beforeCreate](options-lifecycle-hooks.md#beforecreate) hook.
+  Функция `setup` вызывается сразу после первичного разрешения входных параметров, когда создаётся экземпляр компонента. В жизненном цикле вызов будет перед хуком [beforeCreate](options-lifecycle-hooks.md#beforecreate).
 
-- **Usage with Templates**
+- **Использование с шаблонами**
 
-  If `setup` returns an object, the properties on the object will be merged on to the render context for the component's template:
+  Если `setup` возвращает объект, его свойства будут объединены в контексте отрисовки для шаблона компонента:
 
   ```html
   <template>
@@ -211,7 +211,7 @@ The `setup` function is a new component option. It serves as the entry point for
         const count = ref(0)
         const object = reactive({ foo: 'bar' })
 
-        // expose to template
+        // предоставляем доступ в шаблоне
         return {
           count,
           object
@@ -221,11 +221,11 @@ The `setup` function is a new component option. It serves as the entry point for
   </script>
   ```
 
-  Note that [refs](refs-api.md#ref) returned from `setup` are automatically unwrapped when accessed in the template so there's no need for `.value` in templates.
+  Обратите внимание, что [refs](refs-api.md#ref) возвращаемые из `setup` автоматически разворачиваются при обращениях в шаблоне, поэтому нет необходимости указывать `.value` в шаблонах.
 
-- **Usage with Render Functions / JSX**
+- **Использование с render-функциями / JSX**
 
-  `setup` can also return a render function, which can directly make use of reactive state declared in the same scope:
+  Функция `setup` также может возвращать render-функцию, которая может напрямую использовать реактивное состояние, объявленное в той же области видимости:
 
   ```js
   import { h, ref, reactive } from 'vue'
@@ -240,9 +240,9 @@ The `setup` function is a new component option. It serves as the entry point for
   }
   ```
 
-- **Arguments**
+- **Аргументы**
 
-  The function receives the resolved props as its first argument:
+  Функция принимает разрешённые входные параметры первым аргументом:
 
   ```js
   export default {
@@ -255,7 +255,7 @@ The `setup` function is a new component option. It serves as the entry point for
   }
   ```
 
-  Note this `props` object is reactive - i.e. it is updated when new props are passed in, and can be observed and reacted upon using `watchEffect` or `watch`:
+  Обратите внимание, что объект `props` является реактивным — т.е. он обновляется при передаче новых значений входных параметров. Это позволяет его отслеживать и реагировать на изменения с помощью `watchEffect` или `watch`:
 
   ```js
   export default {
@@ -264,13 +264,13 @@ The `setup` function is a new component option. It serves as the entry point for
     },
     setup(props) {
       watchEffect(() => {
-        console.log(`name is: ` + props.name)
+        console.log(`Имя: ` + props.name)
       })
     }
   }
   ```
 
-  However, do NOT destructure the `props` object, as it will lose reactivity:
+  **НЕ ИСПОЛЬЗУЙТЕ** деструктуризацию для объекта `props`, потому что это приведёт к потере его реактивности:
 
   ```js
   export default {
@@ -279,15 +279,15 @@ The `setup` function is a new component option. It serves as the entry point for
     },
     setup({ name }) {
       watchEffect(() => {
-        console.log(`name is: ` + name) // Will not be reactive!
+        console.log(`Имя: ` + name) // Реактивности не будет!
       })
     }
   }
   ```
 
-  The `props` object is immutable for userland code during development (will emit warning if user code attempts to mutate it).
+  Объект `props` иммутабелен для пользовательского кода в процессе разработки (будет выведено предупреждение, если пользовательский код попытается его изменять).
 
-  The second argument provides a context object which exposes a selective list of properties that were previously exposed on `this`:
+  Второй аргумент предоставляет объект с контекстом, в котором предоставляется доступ к перечисленному списку свойств, ранее доступных через `this`:
 
   ```js
   const MyComponent = {
@@ -299,23 +299,23 @@ The `setup` function is a new component option. It serves as the entry point for
   }
   ```
 
-  `attrs` and `slots` are proxies to the corresponding values on the internal component instance. This ensures they always expose the latest values even after updates so that we can destructure them without worrying about accessing a stale reference:
+  Свойства `attrs` и `slots` являются прокси для соответствующих значений экземпляра внутреннего компонента. Это гарантирует, что они всегда содержат актуальные значения даже после обновления, чтобы была возможность уничтожать их, не беспокоясь о доступе по устаревшей ссылке:
 
   ```js
   const MyComponent = {
     setup(props, { attrs }) {
-      // a function that may get called at a later stage
+      // функция, которая может вызываться где-то позднее
       function onClick() {
-        console.log(attrs.foo) // guaranteed to be the latest reference
+        console.log(attrs.foo) // гарантированно будет актуальной ссылкой
       }
     }
   }
   ```
 
-  There are a number of reasons for placing `props` as a separate first argument instead of including it in the context:
+  Есть ряд причин почему `props` указывается в качестве отдельного первого аргумента, вместо включения его в контекст:
 
-  - It's much more common for a component to use `props` than the other properties, and very often a component uses only `props`.
+  - Гораздо чаще компонент использует `props`, чем какие-либо другие свойства, и очень часто компонент использует только `props`.
 
-  - Having `props` as a separate argument makes it easier to type it individually without messing up the types of other properties on the context. It also makes it possible to keep a consistent signature across `setup`, `render` and plain functional components with TSX support.
+  - Наличие `props` в качестве отдельного аргумента облегчает их вывод типов, без путаницы с типами других свойств в контексте. Это также позволяет сохранить консистентную сигнатуру между `setup`, `render` и простыми функциональными компонентами с поддержкой TSX.
 
 - **См. также:** [Composition API](composition-api.md)
