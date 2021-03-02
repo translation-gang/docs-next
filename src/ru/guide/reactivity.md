@@ -42,7 +42,7 @@ val1 = 3
 При передаче простого JavaScript-объекта в экземпляр приложения или компонента в опции `data`, Vue обойдёт все его свойства и преобразует их в [Proxy](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy), используя обработчик с геттерами и сеттерами. Эта возможность доступна только в ES6, но есть версия Vue 3 с поддержкой старого подхода на основе `Object.defineProperty` для поддержки браузеров IE. У обеих версий одинаковый API, но версия на Proxy легче и производительнее.
 
 <div class="reactivecontent">
-  <common-codepen-snippet title="Визуальное объяснение Proxy и реактивности во Vue" slug="zYYzjBg" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
+  <common-codepen-snippet title="Визуальное объяснение Proxy и реактивности во Vue" slug="VwmxZXJ" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
 </div>
 
 Это достаточно поверхностное объяснение, которое требует некоторых знаний о [Proxy](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Proxy) для понимания. Давайте немного углубимся. Есть достаточно много обучающих материалов про Proxy, но что действительно нужно знать, так это то, что **Proxy — объект, который содержит в себе другой объект или функцию и позволяет «перехватывать» их.**
