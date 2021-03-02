@@ -1,10 +1,10 @@
-# Refs
+# Реактивные ref-ссылки
 
 > Этот раздел использует синтаксис [однофайловых компонентов](../guide/single-file-component.md) для примеров кода
 
 ## `ref`
 
-Takes an inner value and returns a reactive and mutable ref object. The ref object has a single property `.value` that points to the inner value.
+Получает внутреннее значение и возвращает реактивный и мутируемый ref-объект. В этом ref-объекте есть только одно свойство `.value`, которое указывает на внутреннее значение.
 
 **Пример:**
 
@@ -16,7 +16,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-If an object is assigned as a ref's value, the object is made deeply reactive by the [reactive](basic-reactivity.md#reactive) method.
+Если в объект присваивается значение реактивной ref-ссылки, то объект становится глубоко реактивным с помощью метода [reactive](basic-reactivity.md#reactive).
 
 **Типы:**
 
@@ -28,15 +28,15 @@ interface Ref<T> {
 function ref<T>(value: T): Ref<T>
 ```
 
-Sometimes we may need to specify complex types for a ref's inner value. We can do that succinctly by passing a generics argument when calling `ref` to override the default inference:
+Иногда может потребоваться определить сложный тип для внутреннего значения ref-ссылки. Это реализуется лаконично, с помощью передачи дженерика аргументом при вызове `ref` для переопределения вывода типа по умолчанию:
 
 ```ts
-const foo = ref<string | number>('foo') // foo's type: Ref<string | number>
+const foo = ref<string | number>('foo') // тип foo: Ref<string | number>
 
 foo.value = 123 // ok!
 ```
 
-If the type of the generic is unknown, it's recommended to cast `ref` to `Ref<T>`:
+Если тип дженерика неизвестен, рекомендуется приводить `ref` к `Ref<T>`:
 
 ```ts
 function useState<State extends string>(initial: State) {
@@ -47,17 +47,17 @@ function useState<State extends string>(initial: State) {
 
 ## `unref`
 
-Returns the inner value if the argument is a [`ref`](#ref), otherwise return the argument itself. This is a sugar function for `val = isRef(val) ? val.value : val`.
+Возвращает внутреннее значение, если аргумент является [`ref`](#ref), в противном случае возвращает сам аргумент. Данная функция всего лишь синтаксический сахар для `val = isRef(val) ? val.value : val`.
 
 ```ts
 function useFoo(x: number | Ref<number>) {
-  const unwrapped = unref(x) // unwrapped is guaranteed to be number now
+  const unwrapped = unref(x) // значение unwrapped гарантированно будет числом
 }
 ```
 
 ## `toRef`
 
-Can be used to create a [`ref`](#ref) for a property on a source reactive object. The ref can then be passed around, retaining the reactive connection to its source property.
+Можно использоваться для создания [`ref`](#ref) для свойства на исходном реактивном объекте. После этого ref-ссылку можно передавать, сохраняя реактивную связь с исходным свойством.
 
 ```js
 const state = reactive({
@@ -74,7 +74,7 @@ state.foo++
 console.log(fooRef.value) // 3
 ```
 
-`toRef` is useful when you want to pass the ref of a prop to a composition function:
+`toRef` пригодится, когда требуется передать ref-ссылку из входного параметра в функцию композиции:
 
 ```js
 export default {
@@ -84,11 +84,11 @@ export default {
 }
 ```
 
-`toRef` will return a usable ref even if the source property doesn't currently exist. This makes it especially useful when working with optional props, which wouldn't be picked up by [`toRefs`](#torefs).
+`toRef` возвращает ref-ссылку пригодную для использования, даже если свойство в источнике в настоящее время не существует. Это особенно полезно при работе с необязательными входными параметрами, которые не будут подхвачены [`toRefs`](#torefs).
 
 ## `toRefs`
 
-Converts a reactive object to a plain object where each property of the resulting object is a [`ref`](#ref) pointing to the corresponding property of the original object.
+Преобразует реактивный объект в обычный объект, в котором каждое свойство будет [`ref`](#ref), указывающей на соответствующее свойство исходного объекта.
 
 ```js
 const state = reactive({
@@ -98,7 +98,7 @@ const state = reactive({
 
 const stateAsRefs = toRefs(state)
 /*
-Type of stateAsRefs:
+Тип stateAsRefs:
 
 {
   foo: Ref<number>,
@@ -106,7 +106,7 @@ Type of stateAsRefs:
 }
 */
 
-// The ref and the original property is "linked"
+// Реактивная ref-ссылка и оригинальное свойство "связаны"
 state.foo++
 console.log(stateAsRefs.foo.value) // 2
 
@@ -114,7 +114,7 @@ stateAsRefs.foo.value++
 console.log(state.foo) // 3
 ```
 
-`toRefs` is useful when returning a reactive object from a composition function so that the consuming component can destructure/spread the returned object without losing reactivity:
+`toRefs` полезен при возвращении реактивного объекта из функции композиции, чтобы использующий компонент мог использовать деструктуризацию/оператор разложения к возвращаемому объекту без потери реактивности:
 
 ```js
 function useFeatureX() {
@@ -123,15 +123,15 @@ function useFeatureX() {
     bar: 2
   })
 
-  // logic operating on state
+  // логика, работающая с состоянием
 
-  // convert to refs when returning
+  // при возвращении преобразуем к refs
   return toRefs(state)
 }
 
 export default {
   setup() {
-    // can destructure without losing reactivity
+    // теперь можно использовать деструктуризацию без потери реактивности
     const { foo, bar } = useFeatureX()
 
     return {
@@ -142,17 +142,17 @@ export default {
 }
 ```
 
-`toRefs` will only generate refs for properties that are included in the source object. To create a ref for a specific property use [`toRef`](#toref) instead.
+`toRefs` будет генерировать ref-ссылки только для свойств, включённых в исходный объект. Для создания ref-ссылки для конкретного свойства следует использовать [`toRef`](#toref).
 
 ## `isRef`
 
-Checks if a value is a ref object.
+Проверяет является ли значение ref-объектом.
 
 ## `customRef`
 
-Creates a customized ref with explicit control over its dependency tracking and updates triggering. It expects a factory function, which receives `track` and `trigger` functions as arguments and should return an object with `get` and `set`.
+Создаёт пользовательскую ref-ссылку с возможностью явно контролировать отслеживание зависимостей и управлять вызовом обновлений. Ожидает фабричную функцию, которая получает в качестве аргументов функции `track` и `trigger`, и должна возвращать объект с `get` и `set`.
 
-- Example using a custom ref to implement debounce with `v-model`:
+- Пример использования пользовательской ref-ссылки для реализации debounce вместе с `v-model`:
 
   ```html
   <input v-model="text" />
@@ -203,37 +203,37 @@ type CustomRefFactory<T> = (
 
 ## `shallowRef`
 
-Creates a ref that tracks its own `.value` mutation but doesn't make its value reactive.
+Создаёт ref-ссылку, которая отслеживает изменения своего `.value`, но не делает это значение реактивным.
 
 ```js
 const foo = shallowRef({})
-// mutating the ref's value is reactive
+// изменение значения ref-ссылки реактивно
 foo.value = {}
-// but the value will not be converted.
+// но значение не преобразуется в реактивное.
 isReactive(foo.value) // false
 ```
 
-**См. также**: [Creating Standalone Reactive Values as `refs`](../guide/reactivity-fundamentals.md#creating-standalone-reactive-values-as-refs)
+**См. также**: [Создание автономных ссылок на реактивные значения](../guide/reactivity-fundamentals.md#создание-автономных-ссылок-на-реактивные-значения)
 
 ## `triggerRef`
 
-Execute any effects tied to a  [`shallowRef`](#shallowref) manually.
+Выполняет любые эффекты, привязанные вручную к [`shallowRef`](#shallowref).
 
 ```js
 const shallow = shallowRef({
-  greet: 'Hello, world'
+  greet: 'Привет, мир'
 })
 
-// Logs "Hello, world" once for the first run-through
+// Выведет "Привет, мир" один раз при первом проходе
 watchEffect(() => {
   console.log(shallow.value.greet)
 })
 
-// This won't trigger the effect because the ref is shallow
-shallow.value.greet = 'Hello, universe'
+// Это не вызовет эффект, потому что ref-ссылка неглубокая
+shallow.value.greet = 'Привет, вселенная'
 
-// Logs "Hello, universe"
+// Выведет "Привет, вселенная"
 triggerRef(shallow)
 ```
 
-**См. также:** [Computed and Watch - watchEffect](computed-watch-api.md#watcheffect)
+**См. также:** [Вычисляемые свойства и методы-наблюдатели — watchEffect](computed-watch-api.md#watcheffect)
