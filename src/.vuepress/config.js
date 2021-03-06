@@ -456,11 +456,11 @@ const sidebarRU = {
 
 module.exports = {
   locales: {
-    '/': {
-      lang: 'en-US',
-      title: 'Vue.js',
-      description: 'Vue.js - The Progressive JavaScript Framework',
-    },
+    // '/': {
+    //   lang: 'en-US',
+    //   title: 'Vue.js',
+    //   description: 'Vue.js - The Progressive JavaScript Framework',
+    // },
     '/ru/': {
       lang: 'ru',
       title: 'Vue.js',
@@ -545,142 +545,142 @@ module.exports = {
       placement: 'vuejsorg'
     },
     locales: {
-      '/': {
-        label: 'English',
-        selectText: 'Languages',
-        editLinkText: 'Edit this on GitHub!',
-        lastUpdated: 'Last updated',
-        nav: [
-          {
-            text: 'Docs',
-            ariaLabel: 'Documentation Menu',
-            items: [{
-                text: 'Guide',
-                link: '/guide/introduction'
-              },
-              {
-                text: 'Style Guide',
-                link: '/style-guide/'
-              },
-              {
-                text: 'Cookbook',
-                link: '/cookbook/'
-              },
-              {
-                text: 'Examples',
-                link: '/examples/markdown'
-              },
-              {
-                text: 'Contribute',
-                link: '/guide/contributing/writing-guide'
-              },
-              {
-                text: 'Migration Guide',
-                link: '/guide/migration/introduction'
-              }
-            ]
-          },
-          {
-            text: 'API Reference',
-            link: '/api/'
-          },
-          {
-            text: 'Ecosystem',
-            items: [{
-                text: 'Community',
-                ariaLabel: 'Community Menu',
-                items: [{
-                    text: 'Team',
-                    link: '/community/team/'
-                  },
-                  {
-                    text: 'Partners',
-                    link: '/community/partners'
-                  },
-                  {
-                    text: 'Join',
-                    link: '/community/join/'
-                  },
-                  {
-                    text: 'Themes',
-                    link: '/community/themes/'
-                  }
-                ]
-              },
-              {
-                text: 'Official Projects',
-                items: [{
-                    text: 'Vue Router',
-                    link: 'https://next.router.vuejs.org/'
-                  },
-                  {
-                    text: 'Vuex',
-                    link: 'https://next.vuex.vuejs.org/'
-                  },
-                  {
-                    text: 'Vue CLI',
-                    link: 'https://cli.vuejs.org/'
-                  },
-                  {
-                    text: 'Vue Test Utils',
-                    link: 'https://next.vue-test-utils.vuejs.org/v2/guide/introduction.html'
-                  },
-                  {
-                    text: 'Devtools',
-                    link: 'https://github.com/vuejs/vue-devtools'
-                  },
-                  {
-                    text: 'Weekly news',
-                    link: 'https://news.vuejs.org/'
-                  },
-                  {
-                    text: 'Blog',
-                    link: 'https://blog.vuejs.org/'
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            text: 'Support Vue',
-            link: '/support-vuejs/',
-            items: [{
-                text: 'One-time Donations',
-                link: '/support-vuejs/#one-time-donations'
-              },
-              {
-                text: 'Recurring Pledges',
-                link: '/support-vuejs/#recurring-pledges'
-              },
-              {
-                text: 'T-Shirt Shop',
-                link: 'https://vue.threadless.com/'
-              }
-            ]
-          },
-          {
-            text: 'Translations',
-            link: '#',
-            items: [
-              {
-                text: '中文',
-                link: 'https://v3.cn.vuejs.org/'
-              }
-            ]
-          }
-        ],
-        sidebar: {
-          collapsable: false,
-          '/guide/migration/': sidebar.migration,
-          '/guide/contributing/': sidebar.contributing,
-          '/guide/ssr/': sidebar.ssr,
-          '/guide/': sidebar.guide,
-          '/community/': sidebar.guide,
-          '/cookbook/': sidebar.cookbook,
-          '/api/': sidebar.api,
-          '/examples/': sidebar.examples
-        },
-      },
+      // '/': {
+      //   label: 'English',
+      //   selectText: 'Languages',
+      //   editLinkText: 'Edit this on GitHub!',
+      //   lastUpdated: 'Last updated',
+      //   nav: [
+      //     {
+      //       text: 'Docs',
+      //       ariaLabel: 'Documentation Menu',
+      //       items: [{
+      //           text: 'Guide',
+      //           link: '/guide/introduction'
+      //         },
+      //         {
+      //           text: 'Style Guide',
+      //           link: '/style-guide/'
+      //         },
+      //         {
+      //           text: 'Cookbook',
+      //           link: '/cookbook/'
+      //         },
+      //         {
+      //           text: 'Examples',
+      //           link: '/examples/markdown'
+      //         },
+      //         {
+      //           text: 'Contribute',
+      //           link: '/guide/contributing/writing-guide'
+      //         },
+      //         {
+      //           text: 'Migration Guide',
+      //           link: '/guide/migration/introduction'
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       text: 'API Reference',
+      //       link: '/api/'
+      //     },
+      //     {
+      //       text: 'Ecosystem',
+      //       items: [{
+      //           text: 'Community',
+      //           ariaLabel: 'Community Menu',
+      //           items: [{
+      //               text: 'Team',
+      //               link: '/community/team/'
+      //             },
+      //             {
+      //               text: 'Partners',
+      //               link: '/community/partners'
+      //             },
+      //             {
+      //               text: 'Join',
+      //               link: '/community/join/'
+      //             },
+      //             {
+      //               text: 'Themes',
+      //               link: '/community/themes/'
+      //             }
+      //           ]
+      //         },
+      //         {
+      //           text: 'Official Projects',
+      //           items: [{
+      //               text: 'Vue Router',
+      //               link: 'https://next.router.vuejs.org/'
+      //             },
+      //             {
+      //               text: 'Vuex',
+      //               link: 'https://next.vuex.vuejs.org/'
+      //             },
+      //             {
+      //               text: 'Vue CLI',
+      //               link: 'https://cli.vuejs.org/'
+      //             },
+      //             {
+      //               text: 'Vue Test Utils',
+      //               link: 'https://next.vue-test-utils.vuejs.org/v2/guide/introduction.html'
+      //             },
+      //             {
+      //               text: 'Devtools',
+      //               link: 'https://github.com/vuejs/vue-devtools'
+      //             },
+      //             {
+      //               text: 'Weekly news',
+      //               link: 'https://news.vuejs.org/'
+      //             },
+      //             {
+      //               text: 'Blog',
+      //               link: 'https://blog.vuejs.org/'
+      //             }
+      //           ]
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       text: 'Support Vue',
+      //       link: '/support-vuejs/',
+      //       items: [{
+      //           text: 'One-time Donations',
+      //           link: '/support-vuejs/#one-time-donations'
+      //         },
+      //         {
+      //           text: 'Recurring Pledges',
+      //           link: '/support-vuejs/#recurring-pledges'
+      //         },
+      //         {
+      //           text: 'T-Shirt Shop',
+      //           link: 'https://vue.threadless.com/'
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       text: 'Translations',
+      //       link: '#',
+      //       items: [
+      //         {
+      //           text: '中文',
+      //           link: 'https://v3.cn.vuejs.org/'
+      //         }
+      //       ]
+      //     }
+      //   ],
+      //   sidebar: {
+      //     collapsable: false,
+      //     '/guide/migration/': sidebar.migration,
+      //     '/guide/contributing/': sidebar.contributing,
+      //     '/guide/ssr/': sidebar.ssr,
+      //     '/guide/': sidebar.guide,
+      //     '/community/': sidebar.guide,
+      //     '/cookbook/': sidebar.cookbook,
+      //     '/api/': sidebar.api,
+      //     '/examples/': sidebar.examples
+      //   },
+      // },
       '/ru/': {
         label: 'Русский',
         selectText: 'Переводы',
@@ -799,6 +799,10 @@ module.exports = {
             text: 'Переводы',
             link: '#',
             items: [
+              {
+                text: 'English',
+                link: 'https://v3.vuejs.org/'
+              },
               {
                 text: '中文',
                 link: 'https://v3.cn.vuejs.org/'
