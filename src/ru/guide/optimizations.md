@@ -7,7 +7,7 @@
 Сейчас, когда знаем как методы-наблюдатели обновляют компоненты, может возникнуть вопрос: каким образом эти изменения попадают в конечном итоге в DOM?! Возможно, ранее вы уже слышали о виртуальном DOM, многие фреймворки, включая и Vue, используют эту парадигму чтобы убедиться что интерфейсы эффективно отражают все изменения, выполненные в JavaScript.
 
 <div class="reactivecontent">
-  <common-codepen-snippet title="How does the Virtual DOM work?" slug="RwwQapa" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
+  <common-codepen-snippet title="Как работает виртуальный DOM?" slug="KKNJKbw" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
 </div>
 
 Копия DOM в JavaScript, называемая виртуальным DOM, создаётся из-за того, что работа с DOM через JavaScript является дорогостоящими вычислительными операциями. В тоже время как выполнение обновлений в JavaScript дёшево, поиск требуемых DOM-узлов и их обновление с помощью JavaScript затратно. Поэтому набирается список предстоящих изменений и применяется к DOM одновременно.
