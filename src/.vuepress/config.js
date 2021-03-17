@@ -194,10 +194,12 @@ const sidebar = {
         '/guide/migration/key-attribute',
         '/guide/migration/keycode-modifiers',
         '/guide/migration/listeners-removed',
+        '/guide/migration/mount-changes',
         '/guide/migration/props-data',
         '/guide/migration/props-default-this',
         '/guide/migration/render-function-api',
         '/guide/migration/slots-unification',
+        '/guide/migration/suspense',
         '/guide/migration/transition',
         '/guide/migration/transition-group',
         '/guide/migration/v-on-native-modifier-removed',
@@ -623,7 +625,7 @@ module.exports = {
       //             },
       //             {
       //               text: 'Vue Test Utils',
-      //               link: 'https://next.vue-test-utils.vuejs.org/v2/guide/introduction.html'
+      //               link: 'https://next.vue-test-utils.vuejs.org/guide/'
       //             },
       //             {
       //               text: 'Devtools',
@@ -760,7 +762,7 @@ module.exports = {
                   },
                   {
                     text: 'Vue Test Utils',
-                    link: 'https://next.vue-test-utils.vuejs.org/v2/guide/introduction.html'
+                    link: 'https://next.vue-test-utils.vuejs.org/guide/'
                   },
                   {
                     text: 'Devtools',
@@ -829,6 +831,21 @@ module.exports = {
     }
   },
   plugins: [
+    [
+      '@vuepress/last-updated',
+      {
+        transformer(timestamp) {
+          const date = new Date(timestamp)
+
+          const digits = [
+            date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(),
+            date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()
+          ].map(num => String(num).padStart(2, '0'))
+
+          return '{0}-{1}-{2}, {3}:{4}:{5} UTC'.replace(/{(\d)}/g, (_, num) => digits[num])
+        }
+      }
+    ],
     [
       '@vuepress/pwa',
       {
