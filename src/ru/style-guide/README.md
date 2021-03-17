@@ -1562,6 +1562,9 @@ app.component('TodoItem', {
       required: true
     }
   },
+
+  emits: ['input'],
+
   template: `
     <input
       :value="todo.text"
@@ -1579,6 +1582,9 @@ app.component('TodoItem', {
       required: true
     }
   },
+
+  emits: ['delete'],
+  
   template: `
     <span>
       {{ todo.text }}
