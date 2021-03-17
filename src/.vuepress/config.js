@@ -428,6 +428,7 @@ const sidebarRU = {
         '/ru/guide/migration/props-default-this',
         '/ru/guide/migration/render-function-api',
         '/ru/guide/migration/slots-unification',
+        '/ru/guide/migration/suspense',
         '/ru/guide/migration/transition',
         '/ru/guide/migration/transition-group',
         '/ru/guide/migration/v-on-native-modifier-removed',
@@ -812,6 +813,10 @@ module.exports = {
               {
                 text: '中文',
                 link: 'https://v3.cn.vuejs.org/'
+              },
+              {
+                text: 'Другие переводы',
+                link: '/ru/guide/contributing/translations#community-translations'
               }
             ]
           }
