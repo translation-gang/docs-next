@@ -424,6 +424,7 @@ const sidebarRU = {
         '/ru/guide/migration/key-attribute',
         '/ru/guide/migration/keycode-modifiers',
         '/ru/guide/migration/listeners-removed',
+        '/ru/guide/migration/mount-changes',
         '/ru/guide/migration/props-data',
         '/ru/guide/migration/props-default-this',
         '/ru/guide/migration/render-function-api',
