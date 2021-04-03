@@ -548,7 +548,6 @@ module.exports = {
       custom: 'CKYD62QM',
       placement: 'vuejsorg'
     },
-    topBanner: true,
     locales: {
       // '/': {
       //   label: 'English',
