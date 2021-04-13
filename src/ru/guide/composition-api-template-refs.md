@@ -2,7 +2,7 @@
 
 > Этот раздел использует синтаксис [однофайловых компонентов](single-file-component.md) для примеров кода
 
-> Подразумевается, что вы уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
+> Подразумевается, что уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
 
 При использовании Composition API, концепции [реактивных ссылок](reactivity-fundamentals.md#creating-standalone-reactive-values-as-refs) и [ссылок на элементы шаблона](component-template-refs.md) унифицированы. Для того, чтобы получить ссылку на элемент в шаблоне или экземпляр компонента, необходимо объявить ссылку ref как обычно и вернуть её из [setup()](composition-api-setup.md):
 
