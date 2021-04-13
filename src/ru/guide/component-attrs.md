@@ -118,7 +118,7 @@ app.component('date-picker', {
 ```
 
 ```js
-// НЕ ЗАРАБОТАЕТ, будет выведено предупреждение
+// НЕПРАВИЛЬНО, будет выведено предупреждение
 app.component('custom-layout', {
   template: `
     <header>...</header>
@@ -127,7 +127,7 @@ app.component('custom-layout', {
   `
 })
 
-// ХОРОШО, $attrs передаются на элемент <main>
+// ПРАВИЛЬНО, $attrs передаются на элемент <main>
 app.component('custom-layout', {
   template: `
     <header>...</header>
