@@ -153,6 +153,54 @@ const Component = defineComponent({
 })
 ```
 
+### Расширение типов для `globalProperties`
+
+Vue 3 предоставляет [объект `globalProperties`](../api/application-config.md#globalproperties), который позволяет добавлять глобальные свойства, доступные в любом экземпляре компонента. Например, может потребоваться внедрить глобальный объект или функцию в [плагине](plugins.md#создание-плагина).
+
+```ts
+import axios from 'axios'
+import { createApp } from 'vue'
+
+const app = createApp({})
+
+// Пользовательское определение
+app.config.globalProperties.$http = axios
+
+// Плагин для валидации некоторых данных
+export default {
+  install(app, options) {
+    app.config.globalProperties.$validate = (data: object, rule: object) => {
+      // проверки, что объект соответствует определённым правилам
+    }
+  }
+}
+```
+
+Чтобы TypeScript узнал о новых свойствах нужно воспользоваться [расширением модуля](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+Для примера выше потребовалось бы добавить следующее объявление типа:
+
+```ts
+import axios from 'axios'
+
+declare module '@vue/runtime-core' {
+  export interface ComponentCustomProperties {
+    $http: typeof axios
+    $validate: (data: object, rule: object) => boolean
+  }
+}
+```
+
+Объявление типа можно указать в этом же файле или в общем файле `*.d.ts` всего проекта (например, в `src/typings`, чтобы автоматически загружаться TypeScript). Разработчикам библиотек и плагинов нужно указать этот файл в свойстве `types` в файле `package.json`.
+
+:::warning Убедитесь, что файл декларации является модулем TypeScript
+Чтобы воспользоваться преимуществами расширения модуля, нужно убедиться что в файле есть хотя бы один `import` или `export` верхнего уровня, даже если это будет просто `export {}`.
+
+В [TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html) любой файл, содержащий `import` или `export` верхнего уровня, рассматривается как модуль. Если объявление типов выполняется вне модуля, то оно будет перезаписывать исходные типы, а не расширять их.
+:::
+
+Подробнее о типе `ComponentCustomProperties` смотрите в его [определении в `@vue/runtime-core`](https://github.com/vuejs/vue-next/blob/2587f36fe311359e2e34f40e8e47d2eebfab7f42/packages/runtime-core/src/componentOptions.ts#L64-L80) и [модульных тестах TypeScript](https://github.com/vuejs/vue-next/blob/master/test-dts/componentTypeExtensions.test-d.tsx).
+
 ### Аннотация возвращаемых типов
 
 Из-за цикличной природы файлов деклараций Vue, TypeScript может испытывать трудности с выводом типа вычисляемых свойств. По этой причине может потребоваться аннотировать возвращаемый тип вычисляемых свойств.
@@ -170,7 +218,7 @@ const Component = defineComponent({
     // требуется аннотация
     greeting(): string {
       return this.message + '!'
-    }
+    },
 
     // при наличии сеттера, геттер должен быть аннотирован
     greetingUppercased: {
@@ -179,8 +227,8 @@ const Component = defineComponent({
       },
       set(newValue: string) {
         this.message = newValue.toUpperCase();
-      },
-    },
+      }
+    }
   }
 })
 ```

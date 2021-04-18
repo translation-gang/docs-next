@@ -188,4 +188,4 @@ this.$emit('update:title', newValue)
 
 - [Использование `v-model` на компонентах](../component-basics.md#using-v-model-on-components)
 - [Аргументы `v-model`](../component-custom-events.md#v-model-arguments)
-- [Обработка модификаторов `v-model`](../component-custom-events.md#v-model-arguments)
+- [Обработка модификаторов `v-model`](../component-custom-events.md#handling-v-model-modifiers)

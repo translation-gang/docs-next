@@ -2,7 +2,7 @@
 
 > Этот раздел использует синтаксис [однофайловых компонентов](single-file-component.md) для примеров кода
 
-> Подразумевается, что вы уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
+> Подразумевается, что уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
 
 ## Аргументы
 
