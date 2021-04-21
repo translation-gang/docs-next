@@ -38,7 +38,7 @@ sidebar: auto
 
 **Имена компонентов должны всегда состоять из нескольких слов, за исключением корневого компонента `App` и встроенных компонентов самого Vue, например, `<transition>` или `<component>`.**
 
-Это [предотвращает конфликты](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) с существующими или будущими HTML-элементами, поскольку все HTML-элементы именуются одним словом.
+Это [предотвращает конфликты](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) с существующими или будущими HTML-элементами, поскольку все HTML-элементы именуются одним словом.
 
 <div class="style-example style-example-bad">
 <h4>Плохо</h4>

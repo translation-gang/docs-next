@@ -17,7 +17,7 @@ It is common for components to need to perform some kind of asynchronous request
 
 The `<suspense>` component provides an alternative, allowing for the waiting to be handled further up the component tree rather than in each individual component.
 
-A common use case involves [async components](/guide/component-dynamic-async.html#async-components):
+A common use case involves [async components](../component-dynamic-async.md#async-components):
 
 ```vue{2-4,6,17}
 <template>
@@ -79,7 +79,7 @@ The events could be used, for example, to show a loading indicator in front of t
 
 ## Combining with Other Components
 
-It is common to want to use `<suspense>` in combination with the [`<transition>`](/api/built-in-components.html#transition) and [`<keep-alive>`](/api/built-in-components.html#keep-alive) components. The nesting order of these components is important to get them all working correctly.
+It is common to want to use `<suspense>` in combination with the [`<transition>`](../../api/built-in-components.md#transition) and [`<keep-alive>`](../../api/built-in-components.md#keep-alive) components. The nesting order of these components is important to get them all working correctly.
 
 In addition, these components are often used in conjunction with the `<router-view>` component from [Vue Router](https://next.router.vuejs.org/).
 
