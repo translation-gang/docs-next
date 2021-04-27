@@ -1,25 +1,25 @@
 # Анимация списков
 
-До сих пор управляли переходами для:
+На данный момент разобрались как управлять переходами для:
 
 - Одиночных элементов
 - Множества элементов, когда единовременно отображается только 1 элемент
 
-Но как насчёт ситуации, когда есть целый список элементов, который нужно отображать одновременно, например с помощью `v-for`? В этом случае, надо использовать компонент `<transition-group>`. Прежде чем перейдём к примеру, нужно отметить несколько важных моментов о нём:
+Но что если есть целый список элементов, которые нужно отображать одновременно, например через `v-for`? В этом случае, надо использовать компонент `<transition-group>`. Прежде чем перейти к примеру, перечислим несколько важных моментов о нём:
 
-- По умолчанию он не отрисовывает элемент обёртку, но можно указать какой элемент должен быть отрисован с помощью атрибута `tag`.
-- [Режимы переходов](transitions-enterleave.md#transition-modes) недоступны, так как больше не переключаются туда-сюда взаимоисключающие элементы.
-- У каждого элемента внутри `<transition-group>` **всегда должно быть** уникальное значение атрибута `key`.
+- По умолчанию он не отрисовывает элемент-обёртку, но с помощью атрибута `tag` можно указать какой элемент должен быть отрисован.
+- [Режимы переходов](transitions-enterleave.md#режимы-переходов) недоступны, потому что больше не переключаются взаимоисключающие элементы.
+- Каждый элемент внутри `<transition-group>` **всегда должен быть** с уникальным значением атрибута `key`.
 - CSS-классы переходов будут применяться к внутренним элементам, а не к самой группе/контейнеру.
 
 ## Анимации добавления и удаления элементов списка
 
-Рассмотрим небольшой пример с анимацией добавления и удаления элементов списка, использующий те же CSS-классы что использовались ранее:
+Рассмотрим небольшой пример с анимацией добавления и удаления элементов списка, используя те же CSS-классы что и ранее:
 
 ```html
 <div id="list-demo">
-  <button @click="add">Add</button>
-  <button @click="remove">Remove</button>
+  <button @click="add">Добавить</button>
+  <button @click="remove">Удалить</button>
   <transition-group name="list" tag="p">
     <span v-for="item in items" :key="item" class="list-item">
       {{ item }}
@@ -68,21 +68,21 @@ Vue.createApp(Demo).mount('#list-demo')
 }
 ```
 
-<common-codepen-snippet title="Transition List" slug="e1cea580e91d6952eb0ae17bfb7c379d" tab="js,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Анимация списков" slug="e1cea580e91d6952eb0ae17bfb7c379d" tab="js,result" :editable="false" :preview="false" />
 
 В примере есть одна проблема. При добавлении или удалении элемента, окружающие его элементы будут резко прыгать на новое место, вместо плавного перемещения. Исправим эту недоработку чуть позднее.
 
 ## Анимация перемещения элементов списка
 
-У компонента `<transition-group>` есть ещё один козырь в рукаве. Он может анимировать не только появление и удаление элементов, но и их перемещение. Происходит это путём добавления **класса `v-move`**, который применяется при изменении позиции элементов. Как и с другими классами, его префикс устанавливается в соответствии с значением атрибута `name`, но его можно и определить вручную с помощью атрибута `move-class`.
+У компонента `<transition-group>` есть ещё один козырь в рукаве. Он может анимировать не только появление и удаление элементов, но и их перемещение. Происходит это путём добавления **класса `v-move`**, который применяется при изменении позиции элементов. Как и с другими классами, его префикс определяется значением атрибута `name`, но его можно переопределить с помощью атрибута `move-class`.
 
-Им удобно устанавливать тайминги перехода и функцию плавности, как показано ниже:
+Его удобно использовать для таймингов перехода и функции плавности, как показано ниже:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
 
 <div id="flip-list-demo">
-  <button @click="shuffle">Shuffle</button>
+  <button @click="shuffle">Перемешать</button>
   <transition-group name="flip-list" tag="ul">
     <li v-for="item in items" :key="item">
       {{ item }}
@@ -114,19 +114,19 @@ Vue.createApp(Demo).mount('#flip-list-demo')
 }
 ```
 
-<common-codepen-snippet title="Transition-group example" slug="049211673d3c185fde6b6eceb8baebec" tab="html,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Пример использования Transition-group" slug="049211673d3c185fde6b6eceb8baebec" tab="html,result" :editable="false" :preview="false" />
 
-Хоть это и выглядит как магия, но «под капотом» Vue использует анимационную технику под названием [FLIP](https://aerotwist.com/blog/flip-your-animations/), которая позволяет плавно перемещать элементы с их старой позиции на новую применяя CSS-трансформации.
+Хоть это и выглядит как магия, но «под капотом» Vue использует анимационную технику под названием [FLIP](https://aerotwist.com/blog/flip-your-animations/), которая позволяет плавно перемещать элементы со старой позиции на новую с помощью CSS-трансформаций.
 
-Теперь можно совместить эту технику с предыдущим примером, чтобы добавить анимации на любые изменения списка!
+Можно теперь совместить эту технику с предыдущим примером, чтобы добавить анимации на любые изменения списка!
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="list-complete-demo" class="demo">
-  <button @click="shuffle">Shuffle</button>
-  <button @click="add">Add</button>
-  <button @click="remove">Remove</button>
+  <button @click="shuffle">Перемешать</button>
+  <button @click="add">Добавить</button>
+  <button @click="remove">Удалить</button>
   <transition-group name="list-complete" tag="p">
     <span v-for="item in items" :key="item" class="list-complete-item">
       {{ item }}
@@ -180,19 +180,19 @@ Vue.createApp(Demo).mount('#list-complete-demo')
 }
 ```
 
-<common-codepen-snippet title="Transition-group example" slug="373b4429eb5769ae2e6d097fd954fd08" tab="js,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Пример с Transition-group" slug="373b4429eb5769ae2e6d097fd954fd08" tab="js,result" :editable="false" :preview="false" />
 
 :::tip Совет
 Запомните, что FLIP-анимации не работают с элементами `display: inline`. В таких случаях можно воспользоваться `display: inline-block` или расположить элементы внутри flex-контейнера.
 :::
 
-FLIP-анимации не ограничены одной осью. Элементы в многомерных массивах [также можно анимировать](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions):
+FLIP-анимации не ограничиваются изменениями по одной оси. Элементы в многомерных массивах [также можно анимировать](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions):
 
 <!-- TODO: example -->
 
 ## Упругая анимация элементов списка
 
-Управляя JavaScript-переходами через data-атрибуты, можно также организовать упругую анимацию списка:
+Управление JavaScript-переходами через data-атрибуты позволяет организовать упругую анимацию списка:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
@@ -267,15 +267,15 @@ const Demo = {
 Vue.createApp(Demo).mount('#demo')
 ```
 
-<common-codepen-snippet title="Staggered Lists" slug="c2fc5107bd3025ceadea049b3ee44ec0" tab="js,result" :editable="false" :preview="false" />
+<common-codepen-snippet title="Упругая анимация элементов списка" slug="c2fc5107bd3025ceadea049b3ee44ec0" tab="js,result" :editable="false" :preview="false" />
 
 ## Переиспользование анимаций переходов
 
-Анимации переходов можно переиспользовать благодаря компонентной системе Vue. Всё что нужно сделать — поместить компонент `<transition>` или `<transition-group>` в корне компонента, а затем передавать ему любые дочерние компоненты для отображения.
+Благодаря компонентной системе Vue анимации переходов можно переиспользовать. Всё что нужно сделать — расположить компонент `<transition>` или `<transition-group>` в корне компонента, а затем передавать ему любые дочерние компоненты для отображения.
 
 <!-- TODO: refactor to Vue 3 -->
 
-Пример такого шаблонного компонента для переиспользования:
+Пример такого компонента для переиспользования:
 
 ```js
 Vue.component('my-special-transition', {
@@ -300,7 +300,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-Особенно хорошо для этой цели подходят [функциональные компоненты](render-function.md):
+Также для этой цели подходят [функциональные компоненты](render-function.md):
 
 ```js
 Vue.component('my-special-transition', {
@@ -327,7 +327,7 @@ Vue.component('my-special-transition', {
 
 ## Динамические переходы
 
-Да, даже переходы во Vue могут зависеть от данных! Самый простой пример — привязка атрибута `name` к свойству.
+Да, переходы во Vue тоже могут зависеть от данных! Самый простой пример — привязка атрибута `name` к динамическому свойству.
 
 ```html
 <transition :name="transitionName">
@@ -335,17 +335,17 @@ Vue.component('my-special-transition', {
 </transition>
 ```
 
-Это удобно, когда заранее определены CSS-переходы или анимации, используя принятые во Vue соглашения об именовании классов, и хочется переключаться между ними.
+Это удобно, когда заранее определены CSS-переходы или анимации, используя принятые во Vue соглашения об именовании классов, и хочется между ними переключаться.
 
-На самом деле, динамическую привязку можно использовать для любого атрибута перехода. И речь не только об атрибутах. Ведь хуки это просто методы и у них есть доступ ко всем данных в текущем контексте. А значит, в зависимости от состояния компонента, JavaScript-переходы могут вести себя по-разному.
+Динамическую привязку можно использовать для любого атрибута `<transition>`. И речь не только об атрибутах. Ведь хуки это просто методы и у них есть доступ ко всем данных в текущем контексте. А значит можно реализовать, чтобы JavaScript-переходы вели себя по-разному, в зависимости от состояния компонента.
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="dynamic-fade-demo" class="demo">
-  Fade In:
+  Появление:
   <input type="range" v-model="fadeInDuration" min="0" :max="maxFadeDuration" />
-  Fade Out:
+  Исчезновение:
   <input
     type="range"
     v-model="fadeOutDuration"
@@ -358,12 +358,12 @@ Vue.component('my-special-transition', {
     @enter="enter"
     @leave="leave"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">привет</p>
   </transition>
   <button v-if="stop" @click="stop = false; show = false">
-    Start animating
+    Начать анимацию
   </button>
-  <button v-else @click="stop = true">Stop it!</button>
+  <button v-else @click="stop = true">Остановить!</button>
 </div>
 ```
 
@@ -421,4 +421,4 @@ app.mount('#dynamic-fade-demo')
 
 <!-- TODO: example -->
 
-Наконец, ещё больше возможностей для создания динамических переходов будет, если создать компоненты, которые по входным параметрам будут определять каким образом должны работать анимации переходов. Звучит избито, но всё ограничивается лишь полётом воображения.
+Будет ещё больше возможностей для создания динамических переходов, если создать компоненты, которые по входным параметрам будут определять каким образом должна работать анимация перехода. Звучит избито, но всё ограничивается лишь воображением.
