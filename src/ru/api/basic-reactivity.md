@@ -90,11 +90,11 @@ console.log(copy.count) // 123
 
 ## `isProxy`
 
-Проверяет, является ли объект прокси, созданной с помощью [`reactive`](#reactive) или [`readonly`](#readonly).
+Проверяет, является ли объект прокси, созданным с помощью [`reactive`](#reactive) или [`readonly`](#readonly).
 
 ## `isReactive`
 
-Проверяет, является ли объект реактивной прокси, созданной с помощью [`reactive`](#reactive).
+Проверяет, является ли объект реактивным прокси, созданным с помощью [`reactive`](#reactive).
 
 ```js
 import { reactive, isReactive } from 'vue'
@@ -109,7 +109,7 @@ export default {
 }
 ```
 
-Возвращает `true`, если прокси создавалась с помощью [`readonly`](#readonly), но оборачивается другой прокси, созданной с помощью [`reactive`](#reactive).
+Возвращает `true`, если прокси создавался с помощью [`readonly`](#readonly), но оборачивается другим прокси, созданным с помощью [`reactive`](#reactive).
 
 ```js{9-17}
 import { reactive, isReactive, readonly } from 'vue'
@@ -120,13 +120,13 @@ export default {
       name: 'John'
     })
 
-    // прокси только для чтения, созданная из обычного объекта
+    // прокси только для чтения, созданный из обычного объекта
     const plain = readonly({
       name: 'Mary'
     })
     console.log(isReactive(plain)) // -> false
 
-    // прокси только для чтения, созданная из реактивной прокси
+    // прокси только для чтения, созданный из реактивного прокси
     const stateCopy = readonly(state)
     console.log(isReactive(stateCopy)) // -> true
   }
@@ -135,7 +135,7 @@ export default {
 
 ## `isReadonly`
 
-Проверяет, является ли объект прокси только для чтения, созданной с помощью [`readonly`](#readonly).
+Проверяет, является ли объект прокси только для чтения, созданным с помощью [`readonly`](#readonly).
 
 ## `toRaw`
 
