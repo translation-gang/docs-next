@@ -205,7 +205,7 @@ const myDirective = app.directive('my-directive')
 import { createApp } from 'vue'
 
 const app = createApp({})
-// выполните необходимые приготовления
+// необходимые приготовления
 app.mount('#my-app')
 ```
 
@@ -275,7 +275,7 @@ app.provide('user', 'administrator')
 import { createApp } from 'vue'
 
 const app = createApp({})
-// выполните необходимые приготовления
+// необходимые приготовления
 app.mount('#my-app')
 
 // приложение будет демонтировано через 5 секунд после монтирования
