@@ -144,7 +144,7 @@ const myDirective = app.directive('my-directive')
   {
     mounted(el) {
       el.focus()
-   }
+    }
   }
   ```
 
