@@ -19,7 +19,7 @@ function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
 ```
 
 :::tip Примечание
-`reactive` разворачивает вложенные [ref-ссылки](refs-api.md#ref), при этом сохраняет их реактивность
+`reactive` разворачивает вложенные [ref-ссылки](refs-api.md#ref) и при этом сохраняет их реактивность
 
 ```ts
 const count = ref(1)
