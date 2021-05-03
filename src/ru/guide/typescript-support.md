@@ -1,12 +1,12 @@
 # Поддержка TypeScript
 
-> [Vue CLI](https://cli.vuejs.org/ru/) предоставляет поддержку TypeScript из коробки.
+> [Vue CLI](https://cli.vuejs.org/ru/) предоставляет встроенную поддержку TypeScript из коробки.
 
-## Официальные декларации в npm-пакетах
+## Официальные декларации типов в npm-пакетах
 
-Статическая система типов может помочь предотвратить многие возможные ошибки по мере роста приложения, поэтому Vue 3 написан на TypeScript. Это значит, что для использования TypeScript с Vue не требуется никаких дополнительных инструментов — он уже поставляется с отличной поддержкой.
+Статическая система типов может помочь предотвратить многие потенциальные ошибки по мере роста приложения, поэтому Vue 3 написан на TypeScript. А значит, для использования TypeScript во Vue не нужны никакие дополнительные инструменты — он уже поставляется с отличной поддержкой.
 
-## Рекомендованная конфигурация
+## Рекомендуемая конфигурация
 
 ```js
 // tsconfig.json
@@ -14,7 +14,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    // включает более строгий вывод о свойствах данных в `this`
+    // использование более строгого вывода типов для свойств данных в `this`
     "strict": true,
     "jsx": "preserve",
     "moduleResolution": "node"
@@ -22,13 +22,13 @@
 }
 ```
 
-Обратите внимание, что необходимо включать `strict: true` (или хотя бы `noImplicitThis: true`, который является частью флага `strict`) для проверки `this` в методах компонента, потому что иначе он всегда будет рассматриваться как тип `any`.
+Обратите внимание, требуется включать `strict: true` (или хотя бы `noImplicitThis: true`, который является частью флага `strict`), чтобы проверять `this` в методах компонента, иначе он всегда будет интерпретироваться как тип `any`.
 
 Подробнее можно изучить в [документации настроек компилятора TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html).
 
 ## Конфигурация Webpack
 
-При использовании пользовательской конфигурации Webpack необходимо настроить `ts-loader` для парсинга блоков `<script lang="ts">` во `.vue` файлах:
+При использовании пользовательской конфигурации Webpack `ts-loader` необходимо настроить для парсинга блоков `<script lang="ts">` во `.vue` файлах:
 
 ```js{10}
 // webpack.config.js
@@ -51,11 +51,11 @@ module.exports = {
       ...
 ```
 
-## Инструментарий для разработки
+## Инструменты для разработки
 
-### Создание проекта
+### Создание нового проекта
 
-[Vue CLI](https://github.com/vuejs/vue-cli) может создавать новые проекты, которые будут использовать TypeScript:
+[Vue CLI](https://github.com/vuejs/vue-cli) умеет генерировать новые проекты, которые будут использовать TypeScript:
 
 ```bash
 # 1. Устанавливаем Vue CLI, если ещё не установлен
@@ -64,11 +64,12 @@ npm install --global @vue/cli
 # 2. Создаём новый проект, затем выбираем опцию "Manually select features"
 vue create my-project-name
 
-# Если есть проект Vue CLI без TypeScript, то добавляем плагин для Vue CLI:
+# В существующий проект Vue CLI без TypeScript
+# можно добавить его поддержку с помощью плагина для Vue CLI:
 vue add typescript
 ```
 
-Убедитесь, что в секции `script` компонента в качестве языка указан TypeScript:
+Убедитесь, что для секции `script` компонента в качестве языка указан TypeScript:
 
 ```html
 <script lang="ts">
@@ -76,7 +77,7 @@ vue add typescript
 </script>
 ```
 
-Или при желании совмещать использование TypeScript с [JSX `render`-функцией](/render-function.md#jsx):
+Или при желании совмещать использование TypeScript с [JSX `render`-функцией](render-function.md#jsx):
 
 ```html
 <script lang="tsx">
@@ -84,39 +85,39 @@ vue add typescript
 </script>
 ```
 
-### Поддержка редакторов
+### Поддержка в редакторах
 
-Для разработки приложений Vue на TypeScript настоятельно рекомендуем использовать [Visual Studio Code](https://code.visualstudio.com/), которая предоставляет отличную поддержку TypeScript из коробки. Если используете [однофайловые компоненты](single-file-component.md) (SFC), то установите [расширение Vetur](https://github.com/vuejs/vetur), которое добавит вывод типов TypeScript внутри SFC и множество других замечательных возможностей.
+Для разработки приложений Vue на TypeScript настоятельно рекомендуем использовать [Visual Studio Code](https://code.visualstudio.com/), обеспечивающее отличную поддержку TypeScript из коробки. При использовании [однофайловых компонентов](single-file-component.md) (SFC) также установите [расширение Vetur](https://github.com/vuejs/vetur), которое добавит вывод типов TypeScript в них и множество других отличных возможностей.
 
-[WebStorm](https://www.jetbrains.com/webstorm/) также предоставляет готовую поддержку как для TypeScript, так и для Vue.
+[WebStorm](https://www.jetbrains.com/webstorm/) также предоставляет встроенную поддержку как для TypeScript, так и для Vue.
 
-## Определение компонентов Vue
+## Объявление компонентов Vue
 
-Для корректного вывода типов TypeScript внутри опций компонентов Vue необходимо определять компоненты с помощью глобального метода `defineComponent`:
+Чтобы TypeScript правильно определял типы внутри опций компонентов Vue необходимо объявлять компоненты с помощью глобального метода `defineComponent`:
 
 ```ts
 import { defineComponent } from 'vue'
 
 const Component = defineComponent({
-  // вывод типов работает
+  // вывод типов будет работать
 })
 ```
 
-При использовании [однофайловых компонентов](single-file-component.md) это обычно записывается как:
+При использовании [однофайловых компонентов](single-file-component.md) это будет выглядеть так:
 
 ```vue
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  // вывод типов работает
+  // вывод типов будет работать
 })
 </script>
 ```
 
 ## Использование с Options API
 
-TypeScript умеет определять большинство типов без их явного определения. Например, если есть компонент со свойством `count`, то получите ошибку при попытке вызывать метод для строк на этом свойстве:
+TypeScript умеет определять большинство типов без их явного определения. Например, если есть компонент со свойством `count`, то будет выведена ошибка при попытке вызывать строковый метод на этом свойстве:
 
 ```ts
 const Component = defineComponent({
@@ -131,7 +132,7 @@ const Component = defineComponent({
 })
 ```
 
-Для сложных типов или интерфейсов можно привести его в соответствие с помощью [type assertion](https://www.typescriptlang.org/docs/handbook/basic-types.html#type-assertions):
+Сложные типы или интерфейсы можно приводить с использованием [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
 
 ```ts
 interface Book {
@@ -144,8 +145,8 @@ const Component = defineComponent({
   data() {
     return {
       book: {
-        title: 'Vue 3 Guide',
-        author: 'Vue Team',
+        title: 'Руководство по Vue 3',
+        author: 'Команда Vue',
         year: 2020
       } as Book
     }
@@ -155,7 +156,7 @@ const Component = defineComponent({
 
 ### Расширение типов для `globalProperties`
 
-Vue 3 предоставляет [объект `globalProperties`](../api/application-config.md#globalproperties), который позволяет добавлять глобальные свойства, доступные в любом экземпляре компонента. Например, может потребоваться внедрить глобальный объект или функцию в [плагине](plugins.md#создание-плагина).
+Для добавления глобальных свойств, доступных в любом экземпляре компонента, Vue 3 предоставляет [объект `globalProperties`](../api/application-config.md#globalproperties). Например, для [плагина](plugins.md#создание-плагина) может потребоваться внедрить глобальный объект или функцию.
 
 ```ts
 import axios from 'axios'
@@ -163,20 +164,20 @@ import { createApp } from 'vue'
 
 const app = createApp({})
 
-// Пользовательское определение
+// Пользовательское объявление глобального свойства
 app.config.globalProperties.$http = axios
 
 // Плагин для валидации некоторых данных
 export default {
   install(app, options) {
     app.config.globalProperties.$validate = (data: object, rule: object) => {
-      // проверки, что объект соответствует определённым правилам
+      // проверка, что объект соответствует определённым правилам
     }
   }
 }
 ```
 
-Чтобы TypeScript узнал о новых свойствах нужно воспользоваться [расширением модуля](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Сообщить TypeScript об этих новых свойствах можно используя [расширение модуля](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 Для примера выше потребовалось бы добавить следующее объявление типа:
 
@@ -191,12 +192,12 @@ declare module '@vue/runtime-core' {
 }
 ```
 
-Объявление типа можно указать в этом же файле или в общем файле `*.d.ts` всего проекта (например, в `src/typings`, чтобы автоматически загружаться TypeScript). Разработчикам библиотек и плагинов нужно указать этот файл в свойстве `types` в файле `package.json`.
+Объявление типа можно указать в этом же файле или в общем файле `*.d.ts` всего проекта (например, в `src/typings`, чтобы он автоматически загружался TypeScript). Разработчикам библиотек и плагинов нужно указать этот файл в файле `package.json` в свойстве `types`.
 
 :::warning Убедитесь, что файл декларации является модулем TypeScript
-Чтобы воспользоваться преимуществами расширения модуля, нужно убедиться что в файле есть хотя бы один `import` или `export` верхнего уровня, даже если это будет просто `export {}`.
+Чтобы воспользоваться преимуществами расширения модуля, нужно убедиться что в файле будет хотя бы один `import` или `export` корневого уровня, даже если это будет просто `export {}`.
 
-В [TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html) любой файл, содержащий `import` или `export` верхнего уровня, рассматривается как модуль. Если объявление типов выполняется вне модуля, то оно будет перезаписывать исходные типы, а не расширять их.
+Любой файл с `import` или `export` корневого уровня рассматривается как модуль в [TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html). Если объявление типов сделано вне модуля, то они перезапишут исходные типы, а не расширят их.
 :::
 
 Подробнее о типе `ComponentCustomProperties` смотрите в его [определении в `@vue/runtime-core`](https://github.com/vuejs/vue-next/blob/2587f36fe311359e2e34f40e8e47d2eebfab7f42/packages/runtime-core/src/componentOptions.ts#L64-L80) и [модульных тестах TypeScript](https://github.com/vuejs/vue-next/blob/master/test-dts/componentTypeExtensions.test-d.tsx).
@@ -211,16 +212,16 @@ import { defineComponent } from 'vue'
 const Component = defineComponent({
   data() {
     return {
-      message: 'Hello!'
+      message: 'Привет'
     }
   },
   computed: {
-    // требуется аннотация
+    // требуется аннотация типа
     greeting(): string {
       return this.message + '!'
     },
 
-    // при наличии сеттера, геттер должен быть аннотирован
+    // при использовании сеттера, нужна аннотация для геттера
     greetingUppercased: {
       get(): string {
         return this.greeting.toUpperCase();
@@ -235,7 +236,7 @@ const Component = defineComponent({
 
 ### Аннотация входных параметров
 
-Vue валидирует входные параметры по указанному `type` в runtime. Чтобы передать эти типы в TypeScript необходимо привести конструктор с помощью `PropType`:
+Входные параметры по указанному `type` проверяются во время выполнения. Чтобы передать эти типы в TypeScript потребуется приводить конструктор с помощью `PropType`:
 
 ```ts
 import { defineComponent, PropType } from 'vue'
@@ -262,7 +263,7 @@ const Component = defineComponent({
 ```
 
 :::warning ВНИМАНИЕ
-Ввиду [ограничений](https://github.com/microsoft/TypeScript/issues/38845) TypeScript, когда дело доходит до вывода типов выражений функций, необходимо быть осторожным со значениями `validators` и `default` для объектов и массивов:
+Ввиду [ограничений](https://github.com/microsoft/TypeScript/issues/38845) TypeScript, когда дело доходит до вывода типов выражений функций, необходимо быть осторожным со значениями `validator` и `default` для объектов и массивов:
 :::
 
 ```ts
@@ -277,7 +278,7 @@ const Component = defineComponent({
   props: {
     bookA: {
       type: Object as PropType<Book>,
-      // Убедитесь, что используете стрелочные функции
+      // Убедитесь, что используете стрелочную функцию
       default: () => ({
         title: 'Выражение со стрелочной функцией'
       }),
@@ -285,7 +286,7 @@ const Component = defineComponent({
     },
     bookB: {
       type: Object as PropType<Book>,
-      // Или явно укажите этот параметр
+      // Или явно указывайте this параметром
       default(this: void) {
         return {
           title: 'Выражение с функцией'
@@ -301,23 +302,23 @@ const Component = defineComponent({
 
 ### Аннотация событий
 
-Возможно указать тип данных, передаваемых сгенерированным событием. Кроме того, все необъявленные в `emits` события при вызове будут выкидывать ошибку:
+Можно объявить тип данных, передаваемых вместе с событием. Кроме того, все необъявленные в `emits` события при вызове будут выбрасывать ошибку:
 
 ```ts
 const Component = defineComponent({
   emits: {
     addBook(payload: { bookName: string }) {
-      // выполнение валидации в runtime
+      // валидации во время выполнения
       return payload.bookName.length > 0
     }
   },
   methods: {
     onSubmit() {
       this.$emit('addBook', {
-        bookName: 123 // Ошибка!
+        bookName: 123 // Ошибка типа!
       })
 
-      this.$emit('non-declared-event') // Ошибка!
+      this.$emit('non-declared-event') // Ошибка типа!
     }
   }
 })
@@ -325,7 +326,7 @@ const Component = defineComponent({
 
 ## Использование с Composition API
 
-Для функции `setup()` нет необходимости указывать типы параметру `props`, так как это будет выводить типы из опции компонента `props`.
+В функции `setup()` не требуется указывать типы для параметра `props`, так как они будут выводиться из опции `props` компонента.
 
 ```ts
 import { defineComponent } from 'vue'
@@ -339,15 +340,15 @@ const Component = defineComponent({
   },
 
   setup(props) {
-    const result = props.message.split('') // корректно, тип 'message' будет строка
-    const filtered = props.message.filter(p => p.value) // произойдёт ошибка: Property 'filter' does not exist on type 'string'
+    const result = props.message.split('') // ОК, потому что 'message' строка
+    const filtered = props.message.filter(p => p.value) // ОШИБКА: Property 'filter' does not exist on type 'string'
   }
 })
 ```
 
-### Типы `refs`
+### Типизация `refs`
 
-Ref-ссылки получают вывод типа из исходного значения:
+Ref-ссылки выводят тип из исходного значения:
 
 ```ts
 import { defineComponent, ref } from 'vue'
@@ -366,14 +367,14 @@ const Component = defineComponent({
 ```ts
 const year = ref<string | number>('2020') // тип year: Ref<string | number>
 
-year.value = 2020 // ok!
+year.value = 2020 // ОК!
 ```
 
 :::tip Примечание
-Если тип generic неизвестен, рекомендуется приводить `ref` к `Ref<T>`.
+Если generic тип неизвестен, рекомендуется приводить `ref` к `Ref<T>`.
 :::
 
-### Типы `reactive`
+### Типизация `reactive`
 
 При типизации свойства `reactive` можно использовать интерфейсы:
 
@@ -388,18 +389,18 @@ interface Book {
 export default defineComponent({
   name: 'HelloWorld',
   setup() {
-    const book = reactive<Book>({ title: 'Vue 3 Guide' })
+    const book = reactive<Book>({ title: 'Руководство по Vue 3' })
     // ИЛИ
-    const book: Book = reactive({ title: 'Vue 3 Guide' })
+    const book: Book = reactive({ title: 'Руководство по Vue 3' })
     // ИЛИ
-    const book = reactive({ title: 'Vue 3 Guide' }) as Book
+    const book = reactive({ title: 'Руководство по Vue 3' }) as Book
   }
 })
 ```
 
-### Типы `computed`
+### Типизация `computed`
 
-Вычисляемые свойства будут автоматически получать тип из возвращаемого значения:
+Вычисляемые свойства автоматически выводят тип из возвращаемого значения:
 
 ```ts
 import { defineComponent, ref, computed } from 'vue'
