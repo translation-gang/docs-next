@@ -305,7 +305,7 @@ console.log(obj.count === 0) // true
 Функция `render` концептуально очень похожа на свойство `computed`. Vue не отслеживает каким именно образом зависимости используются, он только знает, что они использовались в какой-то момент во время работы функции. Если какое-либо из этих свойств изменится впоследствии, то это вызовет повторный запуск эффекта и перезапуск функции `render` для генерации нового дерева из VNode. После чего оно будет использовано для внесения необходимых изменений в DOM.
 
 <div class="reactivecontent">
-  <common-codepen-snippet title="Второе объяснение реактивности с прокси во Vue 3" slug="GRJZddR" tab="result" theme="light" :height="500" :team="false" user="sdras" name="Sarah Drasner" :editable="false" :preview="false" />
+  <common-codepen-snippet title="Второе объяснение реактивности с прокси во Vue 3" slug="wvgqyJK" tab="result" theme="light" :height="500" :editable="false" :preview="false" />
 </div>
 
 > При использовании Vue 2.x или более ранних версий, есть дополнительные особенности отслеживания изменений, которые подробнее рассмотрены [здесь](change-detection.md).
