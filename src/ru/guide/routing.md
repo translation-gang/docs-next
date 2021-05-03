@@ -2,11 +2,11 @@
 
 ## Официальный роутер
 
-Для большинства одностраничных приложений (SPA) рекомендуется использовать официально поддерживаемую [библиотеку Vue-router](https://github.com/vuejs/vue-router-next). Подробная информация по её использованию содержится в [документации библиотеки](https://next.router.vuejs.org/).
+Для большинства одностраничных приложений (SPA) рекомендуется использовать официально поддерживаемую [библиотеку vue-router](https://github.com/vuejs/vue-router-next). Более подробную информацию можно найти в [документации библиотеки](https://next.router.vuejs.org/).
 
-## Простой роутер с нуля
+## Создание простой маршрутизации с нуля
 
-Если вам достаточно простейшего роутера и вы не хотите задействовать полновесную внешнюю библиотеку, может оказаться достаточно просто динамической отрисовки компонента уровня страницы:
+Если нужна только очень простая маршрутизация и не хочется для этого использовать полнофункциональную библиотеку, то её можно реализовать динамической отрисовкой компонента на уровне страницы, например так:
 
 ```js
 const { createApp, h } = Vue
@@ -24,6 +24,7 @@ const SimpleRouter = {
   data: () => ({
     currentRoute: window.location.pathname
   }),
+
   computed: {
     CurrentComponent() {
       return routes[this.currentRoute] || NotFoundComponent
@@ -38,8 +39,8 @@ const SimpleRouter = {
 createApp(SimpleRouter).mount('#app')
 ```
 
-В сочетании с [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API) можно создать простейший, но вполне рабочий клиентский роутер. Для практического примера, смотрите [это демонстрационное приложение](https://github.com/phanan/vue-3.0-simple-routing-example).
+В сочетании с [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API) можно создать очень простой, но рабочий маршрутизатор на стороне клиента. Чтобы увидеть на практике, посмотрите на [пример этого приложения](https://github.com/phanan/vue-3.0-simple-routing-example).
 
 ## Интеграция сторонних роутеров
 
-Если вы предпочитаете использовать сторонний роутер, как например [Page.js](https://github.com/visionmedia/page.js) или [Director](https://github.com/flatiron/director), интеграция [тоже довольна проста](https://github.com/phanan/vue-3.0-simple-routing-example/compare/master...pagejs). Вот [полный пример](https://github.com/phanan/vue-3.0-simple-routing-example/tree/pagejs) для Page.js.
+Если предпочитаете использовать сторонний роутер, например [Page.js](https://github.com/visionmedia/page.js) или [Director](https://github.com/flatiron/director), то интеграция [будет такой же простой](https://github.com/phanan/vue-3.0-simple-routing-example/compare/master...pagejs). Вот [полный пример](https://github.com/phanan/vue-3.0-simple-routing-example/tree/pagejs) с использованием Page.js.
