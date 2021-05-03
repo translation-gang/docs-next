@@ -449,7 +449,13 @@ const sidebarRU = {
   ],
   ssr: [
     ['/ru/guide/ssr/introduction', 'Введение'],
-    '/ru/guide/ssr/getting-started'
+    '/ru/guide/ssr/getting-started',
+    '/ru/guide/ssr/universal',
+    '/ru/guide/ssr/structure',
+    '/ru/guide/ssr/build-config',
+    '/ru/guide/ssr/server',
+    '/ru/guide/ssr/routing',
+    '/ru/guide/ssr/hydration'
   ],
   contributing: [
     {
