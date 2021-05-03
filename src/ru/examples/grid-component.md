@@ -1,5 +1,5 @@
-# Grid Component
+# Компонент таблицы
 
-> This is an example of creating a reusable grid component and using it with external data.
+> Это пример создания переиспользуемого компонента таблицы и использования его с внешними данными.
 
-<common-codepen-snippet title="Vue 3 Grid Component Example" slug="BaKbowJ" tab="js,result" />
+<common-codepen-snippet title="Пример компонента таблицы во Vue 3" slug="BaKbowJ" tab="js,result" />
