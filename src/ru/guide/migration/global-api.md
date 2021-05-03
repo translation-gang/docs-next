@@ -75,16 +75,16 @@ const app = createApp({})
 
 Экземпляр приложения представляет собой подмножество от глобального API Vue 2. Главное правило заключается в том, что _любое API, которое глобально изменяет поведение Vue теперь переносится в экземпляр приложения_. Ниже таблица соответствий глобального API Vue 2 и соответствующих API экземпляра:
 
-| Глобальное API в 2.x       | API экземпляра (`app`) в 3.x                                                                    |
-| -------------------------- | ----------------------------------------------------------------------------------------------- |
-| Vue.config                 | app.config                                                                                      |
-| Vue.config.productionTip   | _удалено_ ([см. ниже](#config-productiontip-removed))                                           |
-| Vue.config.ignoredElements | app.config.isCustomElement ([см. ниже](#config-ignoredelements-is-now-config-iscustomelement))  |
-| Vue.component              | app.component                                                                                   |
-| Vue.directive              | app.directive                                                                                   |
-| Vue.mixin                  | app.mixin                                                                                       |
-| Vue.use                    | app.use ([см. ниже](#a-note-for-plugin-authors))                                                |
-| Vue.prototype              | app.config.globalProperties ([см. ниже](#vue-prototype-replaced-by-config-globalproperties))    |
+| Глобальное API в 2.x       | API экземпляра (`app`) в 3.x                                                                   |
+|----------------------------|------------------------------------------------------------------------------------------------|
+| Vue.config                 | app.config                                                                                     |
+| Vue.config.productionTip   | _удалено_ ([см. ниже](#config-productiontip-removed))                                          |
+| Vue.config.ignoredElements | app.config.isCustomElement ([см. ниже](#config-ignoredelements-is-now-config-iscustomelement)) |
+| Vue.component              | app.component                                                                                  |
+| Vue.directive              | app.directive                                                                                  |
+| Vue.mixin                  | app.mixin                                                                                      |
+| Vue.use                    | app.use ([см. ниже](#a-note-for-plugin-authors))                                               |
+| Vue.prototype              | app.config.globalProperties ([см. ниже](#vue-prototype-replaced-by-config-globalproperties))   |
 
 Все другие глобальные API, которые глобально не изменяют поведение, теперь доступны именованными экспортами, как описывается в разделе [Treeshaking глобального API](global-api-treeshaking.md).
 

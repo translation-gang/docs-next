@@ -1,5 +1,5 @@
-# Wrapper Component Example
+# Пример компонента-обёртки
 
-> In this example we are integrating a 3rd party jQuery plugin (select2) by wrapping it inside a custom component.
+> В этом примере интегрируется сторонний jQuery-плагин (select2) с помощью создания обёртки вокруг него в виде пользовательского компонента.
 
-<common-codepen-snippet title="Vue 3 Wrapper Component Example" slug="eYZpwOB" tab="js,result" />
+<common-codepen-snippet title="Пример компонента-обёртки на Vue 3" slug="eYZpwOB" tab="js,result" />

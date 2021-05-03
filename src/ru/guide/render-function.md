@@ -137,7 +137,7 @@ return h('h1', {}, this.blogTitle)
 // @returns {VNode}
 h(
   // {String | Object | Function} тег
-  // Имя HTML-тега, компонента или асинхронного компонента.
+  // Имя HTML-тега, компонента, асинхронного или функционального компонента.
   // Использование функции, возвращающей null, будет отрисовывать комментарий.
   //
   // Обязательный параметр
@@ -550,6 +550,49 @@ render () {
 
 Функция [`resolveDirective`](../api/global-api.md#resolvedirective) используется в шаблонах под капотом, чтобы разрешить директиву по имени. Это нужно лишь в случаях, когда нет прямого доступа к объекту с объявлением директивы.
 
+### Встроенные компоненты
+
+[Встроенные компоненты](../api/built-in-components.md), такие как `<keep-alive>`, `<transition>`, `<transition-group>` и `<teleport>` по умолчанию не регистрируются глобально. Это позволяет системе сборки выполнять tree-shaking, чтобы добавлять эти компоненты в сборку только в случае, если они используются. Но это также означает, что не выйдет получить к ним доступ с помощью `resolveComponent` или `resolveDynamicComponent`.
+
+Шаблоны имеют специальную обработку для этих компонентов, автоматически импортируя их при использовании. Но при создании собственных `render` функций импортировать потребуется их самостоятельно:
+
+```js
+const { h, KeepAlive, Teleport, Transition, TransitionGroup } = Vue
+
+// ...
+
+render () {
+  return h(Transition, { mode: 'out-in' }, /* ... */)
+}
+```
+
+## Возвращаемые значения render-функций
+
+Во всех примерах, рассматривавшихся ранее, функция `render` возвращала один корневой узел VNode. Но могут быть и другие варианты.
+
+Если вернуть строку, то будет создана текстовая VNode без какого-либо элемента-обёртки:
+
+```js
+render() {
+  return 'Привет мир!'
+}
+```
+
+Также можно вернуть массив дочерних узлов, не оборачивая их в корневой узел. В таком случае будет создан фрагмент:
+
+```js
+// Аналогично шаблону `Пример<br>мир!`
+render() {
+  return [
+    'Привет',
+    h('br'),
+    'мир!'
+  ]
+}
+```
+
+Если компоненту не нужно ничего отображать (например, потому что ещё загружаются данные), то можно просто вернуть `null`. Тогда в DOM будет создан узел комментария.
+
 ## JSX
 
 При создании множества `render`-функций может быть мучительно писать подобное:
@@ -591,6 +634,31 @@ app.mount('#demo')
 ```
 
 Подробнее о том, как JSX преобразуется в JavaScript смотрите в [документации плагина](https://github.com/vuejs/jsx-next#installation).
+
+## Функциональные компоненты
+
+Functional components are an alternative form of component that don't have any state of their own. They are rendered without creating a component instance, bypassing the usual component lifecycle.
+
+To create a functional component we use a plain function, rather than an options object. The function is effectively the `render` function for the component. As there is no `this` reference for a functional component, Vue will pass in the `props` as the first argument:
+
+```js
+const FunctionalComponent = (props, context) => {
+  // ...
+}
+```
+
+The second argument, `context`, contains three properties: `attrs`, `emit`, and `slots`. These are equivalent to the instance properties [`$attrs`](../api/instance-properties.md#attrs), [`$emit`](../api/instance-methods.md#emit), and [`$slots`](../api/instance-properties.md#slots) respectively.
+
+Most of the usual configuration options for components are not available for functional components. However, it is possible to define [`props`](../api/options-data.md#props) and [`emits`](../api/options-data.md#emits) by adding them as properties:
+
+```js
+FunctionalComponent.props = ['value']
+FunctionalComponent.emits = ['click']
+```
+
+If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
+
+Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h`, it will be treated as a functional component.
 
 ## Компиляция шаблона
 

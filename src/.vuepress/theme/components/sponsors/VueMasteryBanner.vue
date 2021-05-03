@@ -1,15 +1,14 @@
 <template>
-  <div id="vm-banner" class="vuemastery-banner hide" role="banner">
-    <div class="vuemastery-planet"></div>
-    <a class="vuemastery-banner--link" href="https://www.vuemastery.com/black-friday-2020" target="_blank">
+<div id="vm-banner" class="vuemastery-banner hide" role="banner">
+  <a href="https://www.vuemastery.com/free-weekend" target="_blank">
+    <div class="vuemastery-banner--wrapper">
       <img class="vuemastery-banner--logo" src="/images/vuemastery/logo-vuemastery.svg" alt="vuemastery" />
-      <div class="vuemastery-banner--wrapper">
-        <p><span>Vue Mastery's Black Friday Sale:</span>Save 50% off a year of Vue courses</p>
-        <button class="vuemastery-button">Get discount</button>
-      </div>
-    </a>
-    <div @click.prevent="$emit('close-banner')" class="vuemastery-banner--close"></div>
-  </div>
+      <p><span>Save 35% off</span> a year of Vue courses</p>
+      <button class="vuemastery-button">Get access</button>
+    </div>
+    <div id="vm-close" class="vuemastery-banner--close" @click.prevent="$emit('close-banner')"></div>
+  </a>
+</div>
 </template>
 
 <script>

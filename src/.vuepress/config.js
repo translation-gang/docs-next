@@ -213,7 +213,13 @@ const sidebar = {
   ],
   ssr: [
     ['/guide/ssr/introduction', 'Introduction'],
-    '/guide/ssr/getting-started'
+    '/guide/ssr/getting-started',
+    '/guide/ssr/universal',
+    '/guide/ssr/structure',
+    '/guide/ssr/build-config',
+    '/guide/ssr/server',
+    '/guide/ssr/routing',
+    '/guide/ssr/hydration'
   ],
   contributing: [
     {
@@ -443,7 +449,13 @@ const sidebarRU = {
   ],
   ssr: [
     ['/ru/guide/ssr/introduction', 'Введение'],
-    '/ru/guide/ssr/getting-started'
+    '/ru/guide/ssr/getting-started',
+    '/ru/guide/ssr/universal',
+    '/ru/guide/ssr/structure',
+    '/ru/guide/ssr/build-config',
+    '/ru/guide/ssr/server',
+    '/ru/guide/ssr/routing',
+    '/ru/guide/ssr/hydration'
   ],
   contributing: [
     {
@@ -808,12 +820,16 @@ module.exports = {
                 link: 'https://v3.vuejs.org/'
               },
               {
+                text: '中文',
+                link: 'https://v3.cn.vuejs.org/'
+              },
+              {
                 text: '한국어',
                 link: 'https://v3.ko.vuejs.org/'
               },
               {
-                text: '中文',
-                link: 'https://v3.cn.vuejs.org/'
+                text: '日本語',
+                link: 'https://v3.ja.vuejs.org/'
               },
               {
                 text: 'Другие переводы',

@@ -314,3 +314,27 @@ setTimeout(() => app.unmount(), 5000)
   ```
 
 - **См. также:** [Плагины](../guide/plugins.md)
+
+## version
+
+- **Использование:**
+
+  Возвращает номер установленной версии Vue в виде строки. Это полезно для сторонних [плагинов](../guide/plugins.md), в которых могут использоваться разные стратегии для разных версий.
+
+- **Пример:**
+
+  ```js
+  export default {
+    install(app) {
+      const version = Number(app.version.split('.')[0])
+      
+      if (version < 3) {
+        console.warn('Для этого плагина требуется Vue 3')
+      }
+      
+      // ...
+    }
+  }
+  ```
+
+- **См. также**: [Глобальное API — version](global-api.md#version)
