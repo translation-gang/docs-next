@@ -8,19 +8,19 @@
 
 В таблице ниже указано, как нужно именовать хуки жизненного цикла внутри [setup()](composition-api-setup.md):
 
-| Options API       | Хук внутри `setup`         |
-| ----------------- | -------------------------- |
-| `beforeCreate`    | Не нужен\*                 |
-| `created`         | Не нужен\*                 |
-| `beforeMount`     | `onBeforeMount`            |
-| `mounted`         | `onMounted`                |
-| `beforeUpdate`    | `onBeforeUpdate`           |
-| `updated`         | `onUpdated`                |
-| `beforeUnmount`   | `onBeforeUnmount`          |
-| `unmounted`       | `onUnmounted`              |
-| `errorCaptured`   | `onErrorCaptured`          |
-| `renderTracked`   | `onRenderTracked`          |
-| `renderTriggered` | `onRenderTriggered`        |
+| Options API       | Хук внутри `setup`  |
+|-------------------|---------------------|
+| `beforeCreate`    | Не нужен\*          |
+| `created`         | Не нужен\*          |
+| `beforeMount`     | `onBeforeMount`     |
+| `mounted`         | `onMounted`         |
+| `beforeUpdate`    | `onBeforeUpdate`    |
+| `updated`         | `onUpdated`         |
+| `beforeUnmount`   | `onBeforeUnmount`   |
+| `unmounted`       | `onUnmounted`       |
+| `errorCaptured`   | `onErrorCaptured`   |
+| `renderTracked`   | `onRenderTracked`   |
+| `renderTriggered` | `onRenderTriggered` |
 
 :::tip Совет
 Поскольку `setup` запускается приблизительно как и хуки `beforeCreate` и `created`, то и не требуется их явно определять. Другими словами, любой код для этих хуков можно указать непосредственно в функции `setup`.
