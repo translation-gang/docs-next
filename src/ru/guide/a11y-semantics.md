@@ -21,7 +21,7 @@
 </form>
 ```
 
-<common-codepen-snippet title="Простая форма" slug="YzwpPYZ" :height="368" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Простая форма" slug="dyNzzWZ" :height="368" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 Обратите внимание, можно добавить `autocomplete='on'` к самому элементу формы, и этот атрибут применится ко всем полям формы. Каждому полю можно задать свои [значения атрибута autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
@@ -34,7 +34,7 @@
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
-<common-codepen-snippet title="Метка формы" slug="wvMrGqz" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Метки в форме" slug="XWpaaaj" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 Если посмотреть элемент через инструменты разработки (например, DevTools в браузере Chrome) и перейти на вкладку Accessibility внутри раздела Elements, то можно увидеть, что имя поле извлекается из связанной с ним метки:
 
@@ -68,7 +68,7 @@
 />
 ```
 
-<common-codepen-snippet title="Form ARIA label" slug="jOWGqgz" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Определение ARIA меток в форме" slug="NWdvvYQ" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 Можно убедиться самостоятельно что имя элемента изменилось с помощью инструментов разработки Chrome DevTools:
 
@@ -100,7 +100,7 @@
 </form>
 ```
 
-<common-codepen-snippet title="Form ARIA labelledby" slug="ZEQXOLP" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Определение меток ARIA labelledby в форме" slug="MWJvvBe" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 ![В инструментах разработки Chrome показывается имя поля, указанное в атрибуте aria-labelledby](/images/AccessibleARIAlabelledbyDevTools.png)
 
@@ -132,7 +132,7 @@
 </form>
 ```
 
-<common-codepen-snippet title="Form ARIA describedby" slug="JjGrKyY" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Определение меток ARIA describedby в форме" slug="gOgxxQE" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 Через Chrome DevTools можно увидеть применённое описание:
 
@@ -144,7 +144,7 @@
 
 Одна из проблем в том, что по умолчанию подсказки полей не соответствуют [критериям цветового контраста](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html). Попытка исправить цветовой контраст может сделать подсказку похожей на уже заполненное поле. Посмотрите на следующий пример: подсказка поля Last Name соответствует критериям цветового контраста, хотя она не отличается от введённого значения:
 
-<common-codepen-snippet title="Form Placeholder" slug="PoZJzeQ" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Подсказки полей в формах" slug="ExZvvMw" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 Поэтому будет лучше всего перенести всю необходимую информацию для заполнения за пределы полей формы.
 
@@ -178,7 +178,7 @@
 </fieldset>
 ```
 
-<common-codepen-snippet title="Form Instructions" slug="GRoMqYy" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Инструкции в формах" slug="WNREEqv" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 ### Скрытие содержимого
 
@@ -212,7 +212,7 @@
 }
 ```
 
-<common-codepen-snippet title="Form Search" slug="qBbpQwB" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Поиск в формах" slug="QWdMqWy" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 #### aria-hidden="true"
 
@@ -240,7 +240,7 @@
 </form>
 ```
 
-<common-codepen-snippet title="Form Buttons" slug="PoZEXoj" :height="467" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Кнопки в формах" slug="JjEyrYZ" :height="467" tab="js,result" theme="light" :preview="false" :editable="false" />
 
 #### Функциональные изображения
 
@@ -276,4 +276,4 @@
 </form>
 ```
 
-<common-codepen-snippet title="Функциональные изображения" slug="NWxXeqY" :height="265" tab="js,result" :team="false" user="mlama007" name="Maria" theme="light" :preview="false" :editable="false" />
+<common-codepen-snippet title="Функциональные изображения" slug="jOyLGqM" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
