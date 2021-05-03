@@ -527,3 +527,21 @@ export default {
 - **Подробности:**
 
   Имя CSS-модуля. По умолчанию `'$style'`.
+
+## version
+
+Возвращает номер установленной версии Vue в виде строки.
+
+```js
+const version = Number(Vue.version.split('.')[0])
+
+if (version === 3) {
+  // Vue 3
+} else if (version === 2) {
+  // Vue 2
+} else {
+  // Неподдерживаемая версия Vue
+}
+```
+
+**См. также**: [API приложения — version](application-api.md#version)
