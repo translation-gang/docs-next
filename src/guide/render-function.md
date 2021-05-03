@@ -136,9 +136,9 @@ The `h()` function is a utility to create VNodes. It could perhaps more accurate
 ```js
 // @returns {VNode}
 h(
-  // {String | Object | Function } tag
-  // An HTML tag name, a component or an async component.
-  // Using function returning null would render a comment.
+  // {String | Object | Function} tag
+  // An HTML tag name, a component, an async component, or a
+  // functional component.
   //
   // Required.
   'div',
@@ -354,7 +354,7 @@ For the `.passive`, `.capture`, and `.once` event modifiers, they can be concate
 
 For example:
 
-```javascript
+```js
 render() {
   return h('input', {
     onClickCapture: this.doThisInCapturingMode,
@@ -551,6 +551,49 @@ render () {
 
 [`resolveDirective`](/api/global-api.html#resolvedirective) is the same function that templates use internally to resolve directives by name. That is only necessary if you don't already have direct access to the directive's definition object.
 
+### Built-in Components
+
+[Built-in components](/api/built-in-components.html) such as `<keep-alive>`, `<transition>`, `<transition-group>`, and `<teleport>` are not registered globally by default. This allows bundlers to perform tree-shaking, so that the components are only included in the build if they are used. However, that also means we can't access them using `resolveComponent` or `resolveDynamicComponent`.
+
+Templates have special handling for those components, automatically importing them when they are used. When we're writing our own `render` functions, we need to import them ourselves:
+
+```js
+const { h, KeepAlive, Teleport, Transition, TransitionGroup } = Vue
+
+// ...
+
+render () {
+  return h(Transition, { mode: 'out-in' }, /* ... */)
+}
+```
+
+## Return Values for Render Functions
+
+In all of the examples we've seen so far, the `render` function has returned a single root VNode. However, there are alternatives.
+
+Returning a string will create a text VNode, without any wrapping element:
+
+```js
+render() {
+  return 'Hello world!'
+}
+```
+
+We can also return an array of children, without wrapping them in a root node. This creates a fragment:
+
+```js
+// Equivalent to a template of `Hello<br>world!`
+render() {
+  return [
+    'Hello',
+    h('br'),
+    'world!'
+  ]
+}
+```
+
+If a component needs to render nothing, perhaps because data is still loading, it can just return `null`. This will be rendered as a comment node in the DOM.
+
 ## JSX
 
 If we're writing a lot of `render` functions, it might feel painful to write something like this:
@@ -592,6 +635,31 @@ app.mount('#demo')
 ```
 
 For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx-next#installation).
+
+## Functional Components
+
+Functional components are an alternative form of component that don't have any state of their own. They are rendered without creating a component instance, bypassing the usual component lifecycle.
+
+To create a functional component we use a plain function, rather than an options object. The function is effectively the `render` function for the component. As there is no `this` reference for a functional component, Vue will pass in the `props` as the first argument:
+
+```js
+const FunctionalComponent = (props, context) => {
+  // ...
+}
+```
+
+The second argument, `context`, contains three properties: `attrs`, `emit`, and `slots`. These are equivalent to the instance properties [`$attrs`](/api/instance-properties.html#attrs), [`$emit`](/api/instance-methods.html#emit), and [`$slots`](/api/instance-properties.html#slots) respectively.
+
+Most of the usual configuration options for components are not available for functional components. However, it is possible to define [`props`](/api/options-data.html#props) and [`emits`](/api/options-data.html#emits) by adding them as properties:
+
+```js
+FunctionalComponent.props = ['value']
+FunctionalComponent.emits = ['click']
+```
+
+If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
+
+Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h`, it will be treated as a functional component.
 
 ## Template Compilation
 

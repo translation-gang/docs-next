@@ -300,7 +300,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-Также для этой цели подходят [функциональные компоненты](render-function.md):
+Также для этой цели подходят [функциональные компоненты](render-function.md#функциональные-компоненты):
 
 ```js
 Vue.component('my-special-transition', {

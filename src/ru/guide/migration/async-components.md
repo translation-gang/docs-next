@@ -20,14 +20,14 @@ badges:
 Ранее асинхронные компоненты создавались путём определения функции, которая возвращает Promise, например так:
 
 ```js
-const asyncPage = () => import('./NextPage.vue')
+const asyncModal = () => import('./Modal.vue')
 ```
 
 Или, при использовании продвинутого синтаксиса с опциями:
 
 ```js
-const asyncPage = {
-  component: () => import('./NextPage.vue'),
+const asyncModal = {
+  component: () => import('./Modal.vue'),
   delay: 200,
   timeout: 3000,
   error: ErrorComponent,
@@ -45,11 +45,11 @@ import ErrorComponent from './components/ErrorComponent.vue'
 import LoadingComponent from './components/LoadingComponent.vue'
 
 // Асинхронный компонент без опций
-const asyncPage = defineAsyncComponent(() => import('./NextPage.vue'))
+const asyncModal = defineAsyncComponent(() => import('./Modal.vue'))
 
 // Асинхронный компонент с дополнительными опциями
-const asyncPageWithOptions = defineAsyncComponent({
-  loader: () => import('./NextPage.vue'),
+const asyncModalWithOptions = defineAsyncComponent({
+  loader: () => import('./Modal.vue'),
   delay: 200,
   timeout: 3000,
   errorComponent: ErrorComponent,
@@ -57,13 +57,17 @@ const asyncPageWithOptions = defineAsyncComponent({
 })
 ```
 
+:::tip Примечание
+Vue Router поддерживает аналогичный механизм асинхронной загрузки компонентов маршрута, также именуемый *ленивой загрузкой*. Несмотря на сходство, эта функция отличается от поддержки асинхронных компонентов во Vue. Поэтому **не нужно использовать** `defineAsyncComponent` при настройке компонентов маршрута во Vue Router. Подробнее об этом можно прочитать в разделе [Lazy Loading Routes](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) документации Vue Router.
+:::
+
 Другое изменение заключается в том, что опция `component` теперь переименована в `loader` для более точного указания на то, что определение компонента не может предоставляться напрямую.
 
 ```js{4}
 import { defineAsyncComponent } from 'vue'
 
-const asyncPageWithOptions = defineAsyncComponent({
-  loader: () => import('./NextPage.vue'),
+const asyncModalWithOptions = defineAsyncComponent({
+  loader: () => import('./Modal.vue'),
   delay: 200,
   timeout: 3000,
   errorComponent: ErrorComponent,

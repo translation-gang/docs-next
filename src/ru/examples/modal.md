@@ -1,5 +1,5 @@
-# Modal Component
+# Компонент модального окна
 
-> Features used: component, prop passing, content insertion, transitions.
+> Используемые функции: компонент, передача входных параметров, вставка содержимого, анимированные переходы.
 
-<common-codepen-snippet title="Vue 3 Modal Component" slug="mdPoyvv" tab="js,result" />
+<common-codepen-snippet title="Компонент модального окна на Vue 3" slug="mdPoyvv" tab="js,result" />
