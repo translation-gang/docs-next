@@ -516,7 +516,7 @@ components/
 
 PascalCase лучше всего работает с автодополнением в редакторах кода, поскольку он согласуется с тем, как мы ссылаемся на компоненты в JS(X) и шаблонах. Тем не менее, смешанные имена файлов иногда могут создавать проблемы для нечувствительных к регистру файловых систем, поэтому kebab-case также вполне приемлем.
 
-<div class="style-example example-bad"><h4>Плохо</h4>
+<div class="style-example style-example-bad"><h4>Плохо</h4>
 
 ```
 components/
@@ -529,7 +529,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good"><h4>Хорошо</h4>
+<div class="style-example style-example-good"><h4>Хорошо</h4>
 
 ```
 components/
@@ -580,7 +580,7 @@ components/
   ```
 :::
 
-<div class="style-example example-bad"><h4>Плохо</h4>
+<div class="style-example style-example-bad"><h4>Плохо</h4>
 
 ```
 components/
@@ -590,7 +590,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good"><h4>Хорошо</h4>
+<div class="style-example style-example-good"><h4>Хорошо</h4>
 
 ```
 components/
@@ -620,7 +620,7 @@ components/
 
 Это не означает, что компонент используется только на одной странице, но означает что он будет использоваться только один раз _на странице_. Эти компоненты никогда не принимают каких-либо входных параметров, поскольку они специфичны для вашего приложения, а не их контекста в вашем приложении. Если вы обнаружите необходимость добавления входных параметров, это хороший признак того, что на самом деле этот компонент для многократного использования, который используется только один раз на странице _в данный момент_.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```
@@ -630,7 +630,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```
@@ -675,7 +675,7 @@ components/
 * Множеству подкаталогов, что увеличивает время необходимое на изучение списка компонентов в боковой панели редактора.
 :::
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```
@@ -692,7 +692,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```
@@ -759,7 +759,7 @@ components/
 * Рефакторинг становится более сложным, потому что поиска с заменой часто будет недостаточно, чтобы обновить относительные ссылки на перемещённый компонент.
 :::
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```
@@ -773,7 +773,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```
@@ -795,7 +795,7 @@ components/
 
 К сожалению, HTML не разрешает пользовательским элементам быть самозакрывающимися — только [официальные «void» элементы](https://www.w3.org/TR/html/syntax.html#void-elements). Вот почему эта стратегия возможна только тогда, когда компилятор шаблонов Vue может достичь шаблона перед DOM, а затем предоставить DOM-совместимый HTML.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -809,7 +809,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -837,7 +837,7 @@ PascalCase имеет следующие преимущества перед keb
 
 Также обратите внимание, что если вы уже вложили значительные силы в kebab-case, консистентность с соглашениями HTML и возможность использования такого же написания во всех ваших проектах, то это может быть более важным, чем преимущества, перечисленные выше. В этих случаях **допускается использовать kebab-case повсюду.**
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -856,7 +856,7 @@ PascalCase имеет следующие преимущества перед keb
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -890,7 +890,7 @@ PascalCase имеет следующие преимущества перед keb
 * Эти приложения всегда включают в себе множество шаблонов внутри DOM, где [kebab-case **должен быть** использован](#стиль-именования-компонентов-в-шаблонах-настоятельно-рекомендуется).
 :::
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```js
@@ -918,7 +918,7 @@ export default {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```js
@@ -951,7 +951,7 @@ export default {
 
 Автодополнение в редакторах уменьшают сложность написания более длинных имён, а ясность, которую они предоставляют неоценима. Малоизвестных аббревиатур, в частности, следует избегать.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```
@@ -961,7 +961,7 @@ components/
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```
@@ -977,7 +977,7 @@ components/
 
 Мы просто придерживаемся соглашений каждого языка. Для JavaScript использовать camelCase является более естественным. Для HTML — kebab-case.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```js
@@ -991,7 +991,7 @@ props: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```js
@@ -1011,7 +1011,7 @@ props: {
 
 В JavaScript написание объектов с несколькими свойствами в несколько строк считается хорошей практикой, потому что при таком написании её гораздо легче читать. Наши шаблоны и [JSX](../guide/render-function.md#jsx) стоит рассматривать также.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -1023,7 +1023,7 @@ props: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -1048,7 +1048,7 @@ props: {
 
 Сложные выражения в ваших шаблонах делают их менее декларативными. Мы должны стремиться к описанию _что_ должно отобразиться, а не _как_ мы вычисляем это значение. Вычисляемые свойства и методы также упрощают переиспользование кода.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -1060,7 +1060,7 @@ props: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -1102,7 +1102,7 @@ computed: {
   Небольшие, сфокусированные вычисляемые свойства создают меньше предположений о том, как информация будет использована, поэтому при изменениях требований потребуется меньше рефакторинга.
 :::
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```js
@@ -1118,7 +1118,7 @@ computed: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```js
@@ -1142,7 +1142,7 @@ computed: {
 
 Хотя значения атрибутов без каких-либо пробелов не требуют иметь кавычки в HTML, эта практика зачастую приводит к _избеганию_ использования пробелов, делая значения атрибутов менее читабельными.
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -1154,7 +1154,7 @@ computed: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -1170,7 +1170,7 @@ computed: {
 
 **Сокращённую запись директив (`:` для `v-bind:`, `@` для `v-on:` и `#` для `v-slot`) следует использовать всегда или никогда.**
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -1198,7 +1198,7 @@ computed: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -1347,7 +1347,7 @@ computed: {
 
 Когда компоненты кажутся неразборчивыми и становятся трудными для чтения, то добавление пустых строк между многострочными свойствами может облегчить их беглое изучение просматривая взглядом. В некоторых редакторах, таких как Vim, параметры форматирования подобные этому также могут облегчить навигацию с клавиатуры.
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```js
@@ -1407,7 +1407,7 @@ computed: {
 
 **[Однофайловые компоненты](../guide/single-file-component.md) должны всегда использовать один порядок для корневых тегов секций `<script>`, `<template>` и `<style>`, заканчиваясь `<style>`, потому что всегда требуется хотя бы одна из двух других.**
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -1429,7 +1429,7 @@ computed: {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -1471,7 +1471,7 @@ computed: {
 Проблема в том, что большое количество [селекторов атрибутов элементов](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (например, `button[data-v-f3f3eg9]`) будет значительно медленнее [селекторов классов](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (например, `.btn-close[data-v-f3f3eg9]`), поэтому селекторы классов должны быть предпочтительными всегда, когда это возможно.
 :::
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```html
@@ -1487,7 +1487,7 @@ button {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```html
@@ -1511,7 +1511,7 @@ button {
 
 Проблема в том, что есть также множество _простых_ случаев, когда эти шаблоны могут показаться удобнее. Остерегайтесь: не соблазняйтесь кажущейся простоте (чтобы понять поток вашего состояния) для краткосрочной выгоды (написания чуть меньшего количества кода).
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```js
@@ -1551,7 +1551,7 @@ app.component('TodoItem', {
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```js
@@ -1605,7 +1605,7 @@ app.component('TodoItem', {
 
 Vuex — [официальная flux-подобная реализация](../guide/state-management.md#%D0%9E%D1%84%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F-Flux-%D0%BF%D0%BE%D0%B4%D0%BE%D0%B1%D0%BD%D0%B0%D1%8F-%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B0) для Vue, и предлагает не только централизованное место для управления состоянием, а также инструменты организации, отслеживания и отладки изменений состояния. Она хорошо интегрируется в экосистему Vue (включая полную поддержку [Vue DevTools](../guide/installation.md#%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0-%D0%B8-Vue)).
 
-<div class="style-example example-bad">
+<div class="style-example style-example-bad">
 <h4>Плохо</h4>
 
 ```js
@@ -1632,7 +1632,7 @@ const app = createApp({
 ```
 </div>
 
-<div class="style-example example-good">
+<div class="style-example style-example-good">
 <h4>Хорошо</h4>
 
 ```js
