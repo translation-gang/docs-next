@@ -2,11 +2,11 @@
 
 ## Формы
 
-При создании формы можно использовать следующие элементы: `<form>`, `<label>`, `<input>`, `<textarea>` и `<button>`.
+При создании форм можно использовать следующие элементы: `<form>`, `<label>`, `<input>`, `<textarea>` и `<button>`.
 
-Как правило, метки размещаются сверху или слева от полей формы:
+Как правило, метки к полям формы размещаются сверху или слева:
 
-```html
+```html{3}
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
   <div v-for="item in formItems" :key="item.id" class="form-item">
     <label :for="item.id">{{ item.label }}: </label>
@@ -17,48 +17,48 @@
       v-model="item.value"
     />
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit">Отправить</button>
 </form>
 ```
 
 <common-codepen-snippet title="Простая форма" slug="dyNzzWZ" :height="368" tab="js,result" theme="light" :preview="false" :editable="false" />
 
-Обратите внимание, можно добавить `autocomplete='on'` к самому элементу формы, и этот атрибут применится ко всем полям формы. Каждому полю можно задать свои [значения атрибута autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
+Обратите внимание, атрибут `autocomplete="on"` можно добавить к элементу формы, и он применится ко всем полям формы. Каждому полю можно задать и своё [значение атрибута autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
 ### Метки
 
-Добавляйте метки для описания полей формы, а также создания связи между элементами с атрибутами `for` и `id`:
+Добавляйте метки для описания полей формы и для создания связи между элементами с атрибутами `for` и `id`:
 
 ```html
-<label for="name">Name</label>
+<label for="name">Имя</label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
 <common-codepen-snippet title="Метки в форме" slug="XWpaaaj" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
-Если посмотреть элемент через инструменты разработки (например, DevTools в браузере Chrome) и перейти на вкладку Accessibility внутри раздела Elements, то можно увидеть, что имя поле извлекается из связанной с ним метки:
+Если изучить элемент через инструменты разработчика в браузере и перейти на вкладку Accessibility в разделе Elements, то можно увидеть, что поле получает имя из его метки:
 
 ![В инструментах разработки Chrome показывается имя поле, указанное в метке](/images/AccessibleLabelChromeDevTools.png)
 
 :::warning ВНИМАНИЕ:
-Часто можно встретить случаи, когда поле ввода находится внутри элемента с меткой:
+Часто встречаются случаи, когда поле ввода находится внутри элемента с меткой:
 
 ```html
 <label>
-  Name:
+  Имя:
   <input type="text" name="name" id="name" v-model="name" />
 </label>
 ```
 
-Однако явное указание меткам соответствующего идентификатора лучше поддерживается вспомогательными технологиями.
+Явное указание метки с соответствующим идентификатором лучше поддерживается вспомогательными технологиями.
 :::
 
 #### aria-label
 
 Указать имя поля для использования вспомогательными технологиями можно с помощью атрибута [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute).
 
-```html
-<label for="name">Name</label>
+```html{7}
+<label for="name">Имя</label>
 <input
   type="text"
   name="name"
@@ -70,24 +70,24 @@
 
 <common-codepen-snippet title="Определение ARIA меток в форме" slug="NWdvvYQ" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
-Можно убедиться самостоятельно что имя элемента изменилось с помощью инструментов разработки Chrome DevTools:
+Можно самостоятельно убедиться что имя элемента изменилось с помощью инструментов разработчика браузера:
 
 ![В инструментах разработки Chrome показывается имя поля, заданное в aria-label](/images/AccessibleARIAlabelDevTools.png)
 
 #### aria-labelledby
 
-Использование атрибута [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) похоже на `aria-label`, за исключением того, что текст метки показывается на экране. Он создаёт связь между элементами с атрибутом `id`, допускается указать несколько `id`:
+Использование атрибута [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) похоже на `aria-label`, за исключением того, что текст метки показывается на экране. Он создаёт связь между элементами с атрибутом `id`, при этом допускается указать несколько `id`:
 
-```html
+```html{15}
 <form
   class="demo"
   action="/dataCollectionLocation"
   method="post"
   autocomplete="on"
 >
-  <h1 id="billing">Billing</h1>
+  <h1 id="billing">Оплата</h1>
   <div class="form-item">
-    <label for="name">Name:</label>
+    <label for="name">Имя:</label>
     <input
       type="text"
       name="name"
@@ -96,7 +96,7 @@
       aria-labelledby="billing name"
     />
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit">Отправить</button>
 </form>
 ```
 
@@ -108,16 +108,16 @@
 
 Атрибут [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) используется аналогично `aria-labelledby`, но предоставляет дополнительную информацию, которая может потребоваться пользователю. Его можно использовать для описания ограничений ввода:
 
-```html
+```html{16}
 <form
   class="demo"
   action="/dataCollectionLocation"
   method="post"
   autocomplete="on"
 >
-  <h1 id="billing">Billing</h1>
+  <h1 id="billing">Оплата</h1>
   <div class="form-item">
-    <label for="name">Full Name:</label>
+    <label for="name">Имя и фамилия:</label>
     <input
       type="text"
       name="name"
@@ -126,37 +126,37 @@
       aria-labelledby="billing name"
       aria-describedby="nameDescription"
     />
-    <p id="nameDescription">Please provide first and last name.</p>
+    <p id="nameDescription">Пожалуйста укажите имя и фамилию.</p>
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit">Отправить</button>
 </form>
 ```
 
 <common-codepen-snippet title="Определение меток ARIA describedby в форме" slug="gOgxxQE" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
-Через Chrome DevTools можно увидеть применённое описание:
+В инструментах разработчика браузера можно увидеть изменённое описание:
 
 ![В инструментах разработки Chrome показывается имя из атрибута aria-labelledby вместе с описанием, полученным из атрибута aria-describedby](/images/AccessibleARIAdescribedby.png)
 
-### Подсказка поля
+### Подсказка внутри поля
 
-Старайтесь ограничить использования подсказок полей, так как они могут запутать пользователя.
+Старайтесь ограничить использование подсказок внутри поля, так как они могут запутать многих пользователей.
 
-Одна из проблем в том, что по умолчанию подсказки полей не соответствуют [критериям цветового контраста](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html). Попытка исправить цветовой контраст может сделать подсказку похожей на уже заполненное поле. Посмотрите на следующий пример: подсказка поля Last Name соответствует критериям цветового контраста, хотя она не отличается от введённого значения:
+Одна из проблем подсказок внутри поля в том, что по умолчанию они не соответствуют [критериям цветового контраста](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html). Попытка исправить цветовой контраст может сделать подсказку похожей на уже заполненное поле. Посмотрите на следующий пример: подсказка поля Last Name соответствует критериям цветового контраста, хотя она не отличима от поля с подставленным значением:
 
 <common-codepen-snippet title="Подсказки полей в формах" slug="ExZvvMw" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" />
 
-Поэтому будет лучше всего перенести всю необходимую информацию для заполнения за пределы полей формы.
+Всю необходимую информацию для заполнения лучше всего указывать вне полей формы.
 
 ### Инструкции
 
 При добавлении инструкций для заполнения к полям формы убедитесь, что они правильно связаны между собой.
 Можно указать дополнительные инструкции в виде идентификаторов в атрибуте [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute). Это делает дизайн более гибким.
 
-```html
+```html{3,8,10}
 <fieldset>
-  <legend>Using aria-labelledby</legend>
-  <label id="date-label" for="date">Current Date:</label>
+  <legend>Использование aria-labelledby</legend>
+  <label id="date-label" for="date">Текущая дата:</label>
   <input
     type="date"
     name="date"
@@ -167,12 +167,12 @@
 </fieldset>
 ```
 
-В качестве альтернативы можно привязать инструкции к полю с помощью атрибута [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute):
+Также можно привязать инструкции к полю с помощью атрибута [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute):
 
-```html
+```html{4,5}
 <fieldset>
-  <legend>Using aria-describedby</legend>
-  <label id="dob" for="dob">Date of Birth:</label>
+  <legend>Использование aria-describedby</legend>
+  <label id="dob" for="dob">Дата рождения:</label>
   <input type="date" name="dob" id="dob" aria-describedby="dob-instructions" />
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>
@@ -184,19 +184,19 @@
 
 Обычно не рекомендуется визуально скрывать метки, даже если для поля ввода задано имя. Тем не менее, если смысл поля понятен из контекста, то метку можно скрыть.
 
-Рассмотрим следующее поле поиска:
+Рассмотрим поле поиска:
 
 ```html
 <form role="search">
-  <label for="search" class="hidden-visually">Search: </label>
+  <label for="search" class="hidden-visually">Поиск: </label>
   <input type="text" name="search" id="search" v-model="search" />
-  <button type="submit">Search</button>
+  <button type="submit">Поиск</button>
 </form>
 ```
 
-В данном случае можно скрыть метку, поскольку кнопка поиска поможет пользователю определить назначение поля.
+В данном случае можно скрыть метку, потому что кнопка поиска визуально поможет определить назначение поля.
 
-С помощью CSS-класса визуально скрываем элемент, но оставляем их доступными для вспомогательных технологий:
+Можно использовать CSS, чтобы визуально скрывать элементы, но оставить их доступными для вспомогательных технологий:
 
 ```css
 .hidden-visually {
@@ -216,27 +216,27 @@
 
 #### aria-hidden="true"
 
-Добавление `aria-hidden="true"` скроет элемент от обнаружения вспомогательными технологиями, но оставит его визуально доступным для остальных пользователей. Не используйте его на фокусируемых элементах, а добавляйте только для декоративных, дублирующихся или не отображаемых на экране элементов.
+Добавление `aria-hidden="true"` скрывает элемент от обнаружения вспомогательными технологиями, но оставит его визуально доступным для остальных пользователей. Не стоит использовать его на фокусируемых элементах, а применять только для декоративных, дублирующихся или не отображаемых на экране элементов.
 
 ```html
-<p>This is not hidden from screen readers.</p>
-<p aria-hidden="true">This is hidden from screen readers.</p>
+<p>Это ВИДИМО для устройств чтения с экрана.</p>
+<p aria-hidden="true">Это СКРЫТО от устройств чтения с экрана.</p>
 ```
 
 ### Кнопки
 
-При использовании кнопок внутри формы, следует указывать их тип, чтобы избежать отправку формы.
-Для создания кнопок также можно использовать обычное поле ввода:
+При использовании кнопок внутри формы, следует указывать их тип, чтобы предотвратить отправку формы.
+Для создания кнопок можно также использовать и обычное поле ввода:
 
 ```html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
   <!-- Кнопки -->
-  <button type="button">Cancel</button>
-  <button type="submit">Submit</button>
+  <button type="button">Отменить</button>
+  <button type="submit">Сохранить</button>
 
-  <!-- Кнопки как поля ввода -->
-  <input type="button" value="Cancel" />
-  <input type="submit" value="Submit" />
+  <!-- Поля ввода в виде кнопок -->
+  <input type="button" value="Отменить" />
+  <input type="submit" value="Сохранить" />
 </form>
 ```
 
@@ -244,34 +244,34 @@
 
 #### Функциональные изображения
 
-Для создания функциональных изображений можно использовать перечисленную ниже технику.
+Для создания функциональных изображений можно использовать указанную ниже технику.
 
 - Поля ввода
 
   - Изображение будет работать как кнопка отправки формы
 
-  ```html
+  ```html{4-9}
   <form role="search">
-    <label for="search" class="hidden-visually">Search: </label>
+    <label for="search" class="hidden-visually">Поиск: </label>
     <input type="text" name="search" id="search" v-model="search" />
     <input
       type="image"
       class="btnImg"
       src="https://img.icons8.com/search"
-      alt="Search"
+      alt="Поиск"
     />
   </form>
   ```
 
 - Иконки
 
-```html
+```html{5}
 <form role="search">
-  <label for="searchIcon" class="hidden-visually">Search: </label>
+  <label for="searchIcon" class="hidden-visually">Поиск: </label>
   <input type="text" name="searchIcon" id="searchIcon" v-model="searchIcon" />
   <button type="submit">
     <i class="fas fa-search" aria-hidden="true"></i>
-    <span class="hidden-visually">Search</span>
+    <span class="hidden-visually">Поиск</span>
   </button>
 </form>
 ```
