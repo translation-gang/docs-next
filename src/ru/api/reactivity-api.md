@@ -1,7 +1,7 @@
-# Reactivity API
+# API реактивности
 
-Reactivity API разделяется на несколько категорий:
+ API реактивности разделяется на несколько категорий:
 
-- [Basic Reactivity APIs](basic-reactivity.md)
-- [Refs](refs-api.md)
-- [Computed and watch](computed-watch-api.md)
+- [Основное API реактивности](basic-reactivity.md)
+- [Реактивные ref-ссылки](refs-api.md)
+- [Вычисляемые свойства и методы-наблюдатели](computed-watch-api.md)
