@@ -11,5 +11,5 @@ API Vue.js разделяется на несколько категорий:
 - [Директивы](directives.md)
 - [Специальные атрибуты](special-attributes.md)
 - [Встроенные компоненты](built-in-components.md)
-- [Reactivity API](reactivity-api.md)
+- [API реактивности](reactivity-api.md)
 - [Composition API](composition-api.md)
