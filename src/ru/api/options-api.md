@@ -2,7 +2,7 @@
 
 Options API состоит из нескольких категорий:
 
-- [Локальное состояние (data)](options-data.md)
+- [Локальное состояние](options-data.md)
 - [DOM](options-dom.md)
 - [Хуки жизненного цикла](options-lifecycle-hooks.md)
 - [Доступные ресурсы](options-assets.md)
