@@ -3,7 +3,7 @@ badges:
   - new
 ---
 
-# Suspense <MigrationBadges :badges="$frontmatter.badges" />
+# Добавлен компонент suspense <MigrationBadges :badges="$frontmatter.badges" />
 
 :::warning Экспериментальная возможность
 Suspense — новая экспериментальная возможность и её API может измениться в любой момент. Она задокументирована здесь, чтобы сообщество могло оставлять свои отзывы о текущей реализации.
