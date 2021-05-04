@@ -472,11 +472,11 @@ const sidebarRU = {
 
 module.exports = {
   locales: {
-    // '/': {
-    //   lang: 'en-US',
-    //   title: 'Vue.js',
-    //   description: 'Vue.js - The Progressive JavaScript Framework',
-    // },
+    '/': {
+      lang: 'en-US',
+      title: 'Vue.js',
+      description: 'Vue.js - The Progressive JavaScript Framework',
+    },
     '/ru/': {
       lang: 'ru',
       title: 'Vue.js',
