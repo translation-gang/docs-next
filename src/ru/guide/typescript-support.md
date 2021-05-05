@@ -415,7 +415,7 @@ setup() {
 }
 ```
 
-Обратите внимание, что необходимо воспользоваться [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) или любым другим способом, чтобы проверять, что `modal.value` не будет undefined.
+Обратите внимание, что необходимо воспользоваться оператором [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) или любым другим способом, чтобы проверять, что `modal.value` не будет undefined.
 
 ### Типизация `refs`
 
