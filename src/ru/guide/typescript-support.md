@@ -224,10 +224,10 @@ const Component = defineComponent({
     // при использовании сеттера, нужна аннотация для геттера
     greetingUppercased: {
       get(): string {
-        return this.greeting.toUpperCase();
+        return this.greeting.toUpperCase()
       },
       set(newValue: string) {
-        this.message = newValue.toUpperCase();
+        this.message = newValue.toUpperCase()
       }
     }
   }
@@ -345,6 +345,77 @@ const Component = defineComponent({
   }
 })
 ```
+
+### Типизация ссылок на элементы шаблона
+
+Иногда может потребоваться аннотировать ссылку в шаблоне на дочерний компонент, чтобы вызвать его публичный метод. Например, есть дочерний компонент `MyModal` с методом, который открывает модальное окно:
+
+```ts
+import { defineComponent, ref } from 'vue'
+
+const MyModal = defineComponent({
+  setup() {
+    const isContentShown = ref(false)
+    const open = () => (isContentShown.value = true)
+
+    return {
+      isContentShown,
+      open
+    }
+  }
+})
+```
+
+И вызвать этот метод из родительского компонента через ссылку на элемент шаблона:
+
+```ts
+import { defineComponent, ref } from 'vue'
+
+const MyModal = defineComponent({
+  setup() {
+    const isContentShown = ref(false)
+    const open = () => (isContentShown.value = true)
+
+    return {
+      isContentShown,
+      open
+    }
+  }
+})
+
+const app = defineComponent({
+  components: {
+    MyModal
+  },
+  template: `
+    <button @click="openModal">Открыть из родительского</button>
+    <my-modal ref="modal" />
+  `,
+  setup() {
+    const modal = ref()
+    const openModal = () => {
+      modal.value.open()
+    }
+
+    return { modal, openModal }
+  }
+})
+```
+
+Хоть это будет работать, но не будет никакой информации о типе `MyModal` и его доступных методах. Чтобы исправить это, нужно при создании ref-ссылки использовать `InstanceType`:
+
+```ts
+setup() {
+  const modal = ref<InstanceType<typeof MyModal>>()
+  const openModal = () => {
+    modal.value?.open()
+  }
+
+  return { modal, openModal }
+}
+```
+
+Обратите внимание, что необходимо воспользоваться [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) или любой другой техникой, чтобы проверять, что `modal.value` не является undefined.
 
 ### Типизация `refs`
 
