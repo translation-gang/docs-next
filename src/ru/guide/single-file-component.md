@@ -75,7 +75,7 @@
 Сначала необходимо установить Rollup и несколько зависимостей для него:
 
 ```bash
-npm install --save-dev rollup @rollup/plugin-commonjs rollup-plugin-vue 
+npm install --save-dev rollup @rollup/plugin-commonjs rollup-plugin-vue
 ```
 
 Это минимальный набор плагинов rollup, необходимых для компиляции `esm` модулей. Можно также добавить [rollup-plugin-babel](https://github.com/rollup/plugins/tree/master/packages/babel) для транспиляции кода и [node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve), если используются зависимости, которые должны поставляться в итоговой сборке библиотеки.
@@ -100,7 +100,7 @@ export default {
   // файл, который будет содержать все экспортируемые компоненты/функции
   input: 'src/index.js',
   // массив выходных форматов
-  output: [ 
+  output: [
     {
       file: pkg.module, // название создаваемой esm библиотеки
       format: 'esm', // выбранный формат

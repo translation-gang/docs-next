@@ -327,11 +327,11 @@ setTimeout(() => app.unmount(), 5000)
   export default {
     install(app) {
       const version = Number(app.version.split('.')[0])
-      
+
       if (version < 3) {
         console.warn('Для этого плагина требуется Vue 3')
       }
-      
+
       // ...
     }
   }

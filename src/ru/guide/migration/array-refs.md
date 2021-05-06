@@ -1,7 +1,7 @@
 ---
 title: Массив ref-ссылок при использовании с v-for
 badges:
-- breaking
+  - breaking
 ---
 
 # {{ $frontmatter.title }} <MigrationBadges :badges="$frontmatter.badges" />

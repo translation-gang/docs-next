@@ -98,7 +98,7 @@ const createEffect = fn => {
 
 Отследить переназначение локальных переменных в предыдущих примерах не получится, такого механизма просто нет в JavaScript. Можно лишь отслеживать изменения свойств объектов.
 
-Поэтому, когда возвращается простой объект JavaScript из функции `data` компонента, Vue обернёт его в [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) с обработчиками для `get` и `set`. Прокси были представлены в ES6 и позволяют Vue 3 избавиться от ограничений системы реактивности, которые существовали в предыдущих версиях Vue. 
+Поэтому, когда возвращается простой объект JavaScript из функции `data` компонента, Vue обернёт его в [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) с обработчиками для `get` и `set`. Прокси были представлены в ES6 и позволяют Vue 3 избавиться от ограничений системы реактивности, которые существовали в предыдущих версиях Vue.
 
 <div class="reactivecontent">
   <common-codepen-snippet title="Визуальное объяснение Proxy и реактивности во Vue" slug="VwmxZXJ" tab="result" theme="light" :height="500" :editable="false" :preview="false" />

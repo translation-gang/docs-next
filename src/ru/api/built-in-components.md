@@ -14,7 +14,7 @@ const { KeepAlive, Teleport, Transition, TransitionGroup } = Vue
 import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 ```
 
-Компоненты `<component>` и `<slot>` являются синтаксическим сахаром в шаблонах. Они не являются настоящими компонентами и их нельзя импортировать, как компоненты выше. 
+Компоненты `<component>` и `<slot>` являются синтаксическим сахаром в шаблонах. Они не являются настоящими компонентами и их нельзя импортировать, как компоненты выше.
 
 ## component
 
@@ -46,13 +46,13 @@ import { KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
   ```js
   const { Transition, TransitionGroup } = Vue
-  
+
   const Component = {
     components: {
       Transition,
       TransitionGroup
     },
-    
+
     template: `
       <component :is="isGroup ? 'TransitionGroup' : 'Transition'">
         ...
