@@ -1,26 +1,26 @@
-# Getting Started
+# Начало работы
 
-> This guide is currently under active development
+> Данное руководство находится в стадии активной разработки
 
-## Installation
+## Установка
 
-In order to create a server-side rendered application, we need to install the `@vue/server-renderer` package:
+Для создания приложения с отрисовкой на стороне сервера сначала потребуется установить пакет `@vue/server-renderer`:
 
 ```bash
 npm install @vue/server-renderer
-## OR
+## ИЛИ
 yarn add @vue/server-renderer
 ```
 
-#### Notes
+#### Примечания
 
-- It's recommended to use Node.js version 10+.
-- `@vue/server-renderer` and `vue` must have matching versions.
-- `@vue/server-renderer` relies on some Node.js native modules and therefore can only be used in Node.js. We may provide a simpler build that can be run in other JavaScript runtimes in the future.
+- Рекомендуется использовать Node.js версии 10+.
+- Версии `@vue/server-renderer` и `vue` должны совпадать.
+- `@vue/server-renderer` полагается на некоторые встроенные модули Node.js и поэтому может использоваться только в Node.js. Возможно, в будущем появится более простая сборка, которая сможет быть запущена в других средах выполнения JavaScript.
 
-## Rendering a Vue Application
+## Отрисовка приложения Vue
 
-Unlike a client-only Vue application, which is created using `createApp`, an SSR application needs to be created using `createSSRApp`:
+В отличие от клиентского приложения Vue, которое создаётся с помощью `createApp`, приложение с SSR должно создаваться с использованием `createSSRApp`:
 
 ```js
 const { createSSRApp } = require('vue')
@@ -28,14 +28,14 @@ const { createSSRApp } = require('vue')
 const app = createSSRApp({
   data() {
     return {
-      user: 'John Doe'
+      user: 'Василий Пупкин'
     }
   },
-  template: `<div>Current user is: {{ user }}</div>`
+  template: `<div>Текущий пользователь: {{ user }}</div>`
 })
 ```
 
-Now, we can use the `renderToString` function to render our application instance to a string. This function returns a Promise which resolves to the rendered HTML.
+Теперь, можно использовать функцию `renderToString` для рендеринга экземпляра приложения в строку. Эта функция возвращает Promise, который разрешается отрендеренным HTML.
 
 ```js{2,13}
 const { createSSRApp } = require('vue')
@@ -44,22 +44,22 @@ const { renderToString } = require('@vue/server-renderer')
 const app = createSSRApp({
   data() {
     return {
-      user: 'John Doe'
+      user: 'Василий Пупкин'
     }
   },
-  template: `<div>Current user is: {{ user }}</div>`
+  template: `<div>Текущий пользователь: {{ user }}</div>`
 })
 
 const appContent = await renderToString(app)
 ```
 
-## Integrating with a Server
+## Интеграция с сервером
 
-To run an application, in this example we will use [Express](https://expressjs.com/):
+Для запуска приложения в данном случае будет использоваться [Express](https://expressjs.com/):
 
 ```bash
 npm install express
-## OR
+## ИЛИ
 yarn add express
 ```
 
@@ -74,17 +74,17 @@ server.get('*', async (req, res) => {
   const app = createSSRApp({
     data() {
       return {
-        user: 'John Doe'
+        user: 'Василий Пупкин'
       }
     },
-    template: `<div>Current user is: {{ user }}</div>`
+    template: `<div>Текущий пользователь: {{ user }}</div>`
   })
 
   const appContent = await renderToString(app)
   const html = `
   <html>
     <body>
-      <h1>My First Heading</h1>
+      <h1>Мой первый заголовок</h1>
       <div id="app">${appContent}</div>
     </body>
   </html>
@@ -96,4 +96,4 @@ server.get('*', async (req, res) => {
 server.listen(8080)
 ```
 
-Now, when running this Node.js script, we can see a static HTML page on `localhost:8080`. However, this code is not _hydrated_: Vue hasn't yet taken over the static HTML sent by the server to turn it into dynamic DOM that can react to client-side data changes. This will be covered in the [Client Side Hydration](hydration.html) section.
+Теперь, при запуске этого скрипта Node.js, получим статичную HTML-страницу по адресу `localhost:8080`. Но этот код ещё не _гидратирован_: Vue ещё не взял на себя управления статическим HTML, отправленным сервером, чтобы превратить его в динамический DOM, который может реагировать на изменения данных на стороне клиента. Это будет рассмотрено далее, в разделе [гидратация клиентской части](hydration.md).
