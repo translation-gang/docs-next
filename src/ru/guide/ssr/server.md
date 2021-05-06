@@ -1,8 +1,8 @@
-# Server Configuration
+# Конфигурация сервера
 
-The [code structure](./structure.html) and [webpack configuration](./build-config.html) we've described also require some changes to our Express server code.
+Для описанных ранее [структуры кода](structure.md) и [конфигурации webpack](build-config.md) также требуются некоторые изменения в коде сервера Express.
 
-- we need to create an application with a built `app.js` from the resulting bundle. A path to it can be found using the webpack manifest:
+- необходимо создать приложение с собранным `app.js` из итоговой сборки. Путь к нему можно найти с помощью манифеста webpack:
 
   ```js
   // server.js
@@ -13,7 +13,7 @@ The [code structure](./structure.html) and [webpack configuration](./build-confi
   const createApp = require(appPath).default
   ```
 
-- we have to define correct paths to all the assets:
+- требуется определить правильные пути ко всем используемым ресурсам:
 
   ```js
   // server.js
@@ -21,7 +21,10 @@ The [code structure](./structure.html) and [webpack configuration](./build-confi
     '/img',
     express.static(path.join(__dirname, './dist/client', 'img'))
   )
-  server.use('/js', express.static(path.join(__dirname, './dist/client', 'js')))
+  server.use(
+    '/js',
+    express.static(path.join(__dirname, './dist/client', 'js'))
+  )
   server.use(
     '/css',
     express.static(path.join(__dirname, './dist/client', 'css'))
@@ -32,7 +35,7 @@ The [code structure](./structure.html) and [webpack configuration](./build-confi
   )
   ```
 
-- we need to replace the `index.html` content with our server-side rendered application content:
+- нужно заменять содержимое `index.html` на содержимое приложения с отрисовкой на стороне сервера:
 
   ```js
   // server.js
@@ -55,7 +58,7 @@ The [code structure](./structure.html) and [webpack configuration](./build-confi
   })
   ```
 
-Below you can find a full code for our Express server:
+Ниже представлен полный код сервера Express:
 
 ```js
 const path = require('path')
@@ -72,10 +75,7 @@ const createApp = require(appPath).default
 server.use('/img', express.static(path.join(__dirname, './dist/client', 'img')))
 server.use('/js', express.static(path.join(__dirname, './dist/client', 'js')))
 server.use('/css', express.static(path.join(__dirname, './dist/client', 'css')))
-server.use(
-  '/favicon.ico',
-  express.static(path.join(__dirname, './dist/client', 'favicon.ico'))
-)
+server.use('/favicon.ico', express.static(path.join(__dirname, './dist/client', 'favicon.ico')))
 
 server.get('*', async (req, res) => {
   const { app } = await createApp()
@@ -95,7 +95,7 @@ server.get('*', async (req, res) => {
   })
 })
 
-console.log('You can navigate to http://localhost:8080')
+console.log('Можно перейти по адресу http://localhost:8080')
 
 server.listen(8080)
 ```
