@@ -111,7 +111,7 @@ props: {
   status: {
     type: String,
     required: true,
-    
+
     validator: value => {
       return [
         'syncing',
@@ -1602,7 +1602,7 @@ app.component('TodoItem', {
   },
 
   emits: ['delete'],
-  
+
   template: `
     <span>
       {{ todo.text }}
@@ -1728,7 +1728,7 @@ $color-priority-d: #3f536d;
   &-bad {
     background: $color-bgr-bad;
     border-color: darken($color-bgr-bad, 20%);
-    
+
     h4 {
       color: darken($color-bgr-bad, 50%);
     }
@@ -1739,7 +1739,7 @@ $color-priority-d: #3f536d;
   &-good {
     background: $color-bgr-good;
     border-color: darken($color-bgr-good, 20%);
-    
+
     h4 {
       color: darken($color-bgr-good, 50%);
     }
@@ -1755,7 +1755,7 @@ h3 {
   a.header-anchor {
     // as we have too many h3 elements on this page, set the anchor to be always visible
     // to make them stand out more from paragraph texts.
-    opacity: 1; 
+    opacity: 1;
   }
   sup {
     text-transform: uppercase;

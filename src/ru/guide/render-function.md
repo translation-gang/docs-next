@@ -484,15 +484,15 @@ render() {
     {
       // Если хотим просто передать функцию слота
       header: this.$slots.header,
-      
+
       // Если требуется как-то управлять слотом,
       // тогда нужно обернуть его в новую функцию
       default: (props) => {
         const children = this.$slots.default ? this.$slots.default(props) : []
-        
+
         return children.concat(h('div', 'Extra child'))
       }
-    } 
+    }
   )
 }
 ```

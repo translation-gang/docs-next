@@ -1,3 +1,3 @@
-# Meet the Team
+# Команда
 
 <community-team-index/>

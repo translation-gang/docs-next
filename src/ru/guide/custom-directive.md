@@ -81,7 +81,7 @@ directives: {
 
 ```js
 const app = Vue.createApp({})
-  
+
 app.directive('pin', {
   mounted(el, binding) {
     el.style.position = 'fixed'

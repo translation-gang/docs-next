@@ -71,7 +71,7 @@ stop()
 ```js
 watchEffect(onInvalidate => {
   const token = performAsyncOperation(id.value)
-  
+
   onInvalidate(() => {
     // id был изменён или наблюдатель остановлен.
     // аннулирование выполняемой асинхронной операции
@@ -233,9 +233,9 @@ numbers.push(5) // Выведет в консоль: [1,2,3,4,5] [1,2,3,4]
 При необходимости отслеживать изменения свойств в глубоко вложенном объекте или массиве нужно установить опцию `deep` в значение `true`:
 
 ```js
-const state = reactive({ 
-  id: 1, 
-  attributes: { 
+const state = reactive({
+  id: 1,
+  attributes: {
     name: "",
   },
 });
@@ -282,7 +282,7 @@ watch(
   () => _.cloneDeep(state),
   (state, prevState) => {
     console.log(
-      state.attributes.name, 
+      state.attributes.name,
       prevState.attributes.name
     );
   }

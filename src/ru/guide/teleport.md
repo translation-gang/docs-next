@@ -36,7 +36,7 @@ app.component('modal-button', {
 
     <div v-if="modalOpen" class="modal">
       <div>
-        Информация в модальном окне! 
+        Информация в модальном окне!
         <button type="button" @click="modalOpen = false">
           Закрыть
         </button>
@@ -67,7 +67,7 @@ app.component('modal-button', {
     <teleport to="body">
       <div v-if="modalOpen" class="modal">
         <div>
-          Я телепортированное модальное окно! 
+          Я телепортированное модальное окно!
           (Мой родитель "body")
           <button type="button" @click="modalOpen = false">
             Закрыть

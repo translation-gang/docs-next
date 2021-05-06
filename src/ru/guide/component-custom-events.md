@@ -154,7 +154,7 @@ app.component('my-component', {
   emits: ['update:modelValue'],
   template: `
     <input
-      type="text" 
+      type="text"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)">
   `,
@@ -220,7 +220,7 @@ app.component('my-component', {
   emits: ['update:description'],
   template: `
     <input
-      type="text" 
+      type="text"
       :value="description"
       @input="$emit('update:description', $event.target.value)">
   `,

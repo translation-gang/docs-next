@@ -134,7 +134,7 @@ export default {
 
       watchEffect(() => {
         console.log(root.value) // => <div></div>
-      }, 
+      },
       {
         flush: 'post'
       })

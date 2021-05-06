@@ -132,7 +132,7 @@ export default {
    "dist/",
  ],
  ```
- 
+
 Таким образом уточняем следующее:
 
 - каким образом собирать пакет
@@ -143,7 +143,7 @@ export default {
 
 Можно одновременно собирать и `umd` и `cjs` модули, достаточно добавить несколько строк конфигурации в `rollup.config.js` и `package.json`
 
-##### rollup.config.js 
+##### rollup.config.js
 
 ```js
 output: [

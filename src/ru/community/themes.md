@@ -1,3 +1,3 @@
-# Themes
+# Темы
 
 <community-themes-index/>
