@@ -4,32 +4,32 @@
 
 ## `setup`
 
-Опция компонента, которая выполняется **перед созданием** компонента, после разрешения входных параметров `props`, и служит точкой входа для Composition API.
+Опция компонента, которая является стартовой точкой для Composition API и выполняется **перед созданием** компонента, после разрешения входных параметров `props`.
 
 - **Аргументы:**
 
   - `{Data} props` — входные параметры
   - `{SetupContext} context` — контекст
 
-- **Типы**:
+- **Типизация:**
 
-```ts
-interface Data {
-  [key: string]: unknown
-}
+  ```ts
+  interface Data {
+    [key: string]: unknown
+  }
 
-interface SetupContext {
-  attrs: Data
-  slots: Slots
-  emit: (event: string, ...args: unknown[]) => void
-}
+  interface SetupContext {
+    attrs: Data
+    slots: Slots
+    emit: (event: string, ...args: unknown[]) => void
+  }
 
-function setup(props: Data, context: SetupContext): Data
-```
+  function setup(props: Data, context: SetupContext): Data
+  ```
 
-:::tip Совет
-Для получения автодополнения типов для аргументов, передаваемых в `setup()`, необходимо использовать [defineComponent](global-api.md#definecomponent).
-:::
+  :::tip Совет
+  Необходимо использовать [defineComponent](global-api.md#definecomponent) чтобы получить вывод типов для аргументов, передаваемых в `setup()`.
+  :::
 
 - **Пример**
 
@@ -47,7 +47,7 @@ function setup(props: Data, context: SetupContext): Data
     export default {
       setup() {
         const readersNumber = ref(0)
-        const book = reactive({ title: 'Vue 3 Guide' })
+        const book = reactive({ title: 'Руководство по Vue 3' })
 
         // объявление для шаблона
         return {
@@ -69,7 +69,8 @@ function setup(props: Data, context: SetupContext): Data
   export default {
     setup() {
       const readersNumber = ref(0)
-      const book = reactive({ title: 'Vue 3 Guide' })
+      const book = reactive({ title: 'Руководство по Vue 3' })
+
       // Обратите внимание, здесь потребуется явно объявлять значение ref
       return () => h('div', [readersNumber.value, book.title])
     }
@@ -80,9 +81,9 @@ function setup(props: Data, context: SetupContext): Data
 
 ## Хуки жизненного цикла
 
-Хуки жизненного цикла можно регистрировать через явно импортируемые `onX` функции:
+Хуки жизненного цикла можно регистрировать через явно импортируемые функции `onX`:
 
-```js
+```js{1,5,8,11}
 import { onMounted, onUpdated, onUnmounted } from 'vue'
 
 const MyComponent = {
@@ -100,11 +101,11 @@ const MyComponent = {
 }
 ```
 
-Функции хуков жизненного цикла могут использоваться только синхронно в [`setup()`](#setup), так как они полагаются на внутреннее локальное состояние для обнаружения текущего активного экземпляра (экземпляра компонента чей `setup()` сейчас вызывается). Вызов их без текущего активного экземпляра будет приводить к ошибке.
+Функции хуков жизненного цикла могут использоваться только синхронно внутри [`setup()`](#setup), поскольку они полагаются на внутреннее локальное состояние для определения текущего активного экземпляра (экземпляра компонента чей `setup()` сейчас вызывается). Их вызов без текущего активного экземпляра приведёт к ошибке.
 
 Контекст экземпляра компонента также устанавливается во время синхронного выполнения хуков жизненного цикла. В результате, методы-наблюдатели и вычисляемые свойства созданные синхронно внутри хуков жизненного цикла будут также автоматически уничтожаться при размонтировании компонента.
 
-- **Сопоставление между Options API и Composition API**
+- **Соответствие между хуками Options API и Composition API**
 
   - ~~`beforeCreate`~~ -> используйте `setup()`
   - ~~`created`~~ -> используйте `setup()`
@@ -122,46 +123,46 @@ const MyComponent = {
 
 ## Provide / Inject
 
-Функции `provide` и `inject` предоставляют возможность инъекции зависимостей. Могут быть вызваны только во время [`setup()`](#setup) с текущим активным экземпляром.
+Функции `provide` и `inject` предоставляют возможность внедрения зависимостей. Они могут быть вызваны только во время [`setup()`](#setup) с текущим активным экземпляром.
 
-- **Типы**:
+- **Типизация:**
 
-```ts
-interface InjectionKey<T> extends Symbol {}
+  ```ts
+  interface InjectionKey<T> extends Symbol {}
 
-function provide<T>(key: InjectionKey<T> | string, value: T): void
+  function provide<T>(key: InjectionKey<T> | string, value: T): void
 
-// без значения по умолчанию
-function inject<T>(key: InjectionKey<T> | string): T | undefined
+  // без значения по умолчанию
+  function inject<T>(key: InjectionKey<T> | string): T | undefined
 
-// со значением по умолчанию
-function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
+  // со значением по умолчанию
+  function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
 
-// с функцией-фабрикой
-function inject<T>(
-  key: InjectionKey<T> | string,
-  defaultValue: () => T,
-  treatDefaultAsFactory: true
-): T
-```
+  // с функцией-фабрикой
+  function inject<T>(
+    key: InjectionKey<T> | string,
+    defaultValue: () => T,
+    treatDefaultAsFactory: true
+  ): T
+  ```
 
-Vue предоставляет интерфейс `InjectionKey` — общий тип, расширяющий `Symbol`. Может использоваться для синхронизации типа внедряемого значения между провайдером и потребителем:
+  Vue предоставляет интерфейс `InjectionKey` — общий тип, расширяющий `Symbol`. Его можно использовать для синхронизации типа внедряемого значения между провайдером и получателем:
 
-```ts
-import { InjectionKey, provide, inject } from 'vue'
+  ```ts
+  import { InjectionKey, provide, inject } from 'vue'
 
-const key: InjectionKey<string> = Symbol()
+  const key: InjectionKey<string> = Symbol()
 
-provide(key, 'foo') // указание не-строчного значения приведёт к ошибке
+  provide(key, 'foo') // указание не-строчного значения приведёт к ОШИБКЕ
 
-const foo = inject(key) // тип foo: string | undefined
-```
+  const foo = inject(key) // тип foo: string | undefined
+  ```
 
-При использовании строковых ключей или не-типизированных Symbol, тип внедряемого значения необходимо явно объявить:
+  При использовании строковых ключей или не-типизированных Symbol, тип внедряемого значения необходимо объявить явно:
 
-```ts
-const foo = inject<string>('foo') // string | undefined
-```
+  ```ts
+  const foo = inject<string>('foo') // string | undefined
+  ```
 
 - **См. также**:
   - [Provide / Inject](../guide/component-provide-inject.md)
@@ -169,9 +170,9 @@ const foo = inject<string>('foo') // string | undefined
 
 ## `getCurrentInstance`
 
-Метод `getCurrentInstance` позволяет получить доступ к внутреннему экземпляру компонента, что может быть полезно для продвинутых пользователей или разработчиков библиотек.
+Метод `getCurrentInstance` позволяет получить доступ к внутреннему экземпляру компонента, что пригодится для продвинутых пользователей или разработчиков библиотек.
 
-```ts
+```ts{1,5,7}
 import { getCurrentInstance } from 'vue'
 
 const MyComponent = {
@@ -183,9 +184,9 @@ const MyComponent = {
 }
 ```
 
-Метод `getCurrentInstance` **работает только** во время [setup](#setup) или [хуков жизненного цикла](#lifecycle-hooks)
+Метод `getCurrentInstance` **работает только** во время [setup](#setup) или [хуков жизненного цикла](#хуки-жизненного-цикла)
 
-> При использовании вне [setup](#setup) или [хуков жизненного цикла](#lifecycle-hooks) вызывайте `getCurrentInstance()` в `setup` и используйте вместо него экземпляр.
+> При использовании вне [setup](#setup) или [хуков жизненного цикла](#хуки-жизненного-цикла) вызывайте `getCurrentInstance()` в `setup` и используйте вместо него экземпляр.
 
 ```ts
 const MyComponent = {
