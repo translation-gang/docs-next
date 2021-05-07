@@ -472,12 +472,12 @@ const sidebarRU = {
 
 module.exports = {
   locales: {
+    // '/': {
+    //   lang: 'en-US',
+    //   title: 'Vue.js',
+    //   description: 'Vue.js - The Progressive JavaScript Framework',
+    // },
     '/': {
-      lang: 'en-US',
-      title: 'Vue.js',
-      description: 'Vue.js - The Progressive JavaScript Framework',
-    },
-    '/ru/': {
       lang: 'ru',
       title: 'Vue.js',
       description: 'Vue.js - Прогрессивный JavaScript-фреймворк'
@@ -545,7 +545,7 @@ module.exports = {
   ],
   themeConfig: {
     logo: '/logo.png',
-    repo: 'vuejs/docs-next',
+    repo: 'translation-gang/docs-next',
     editLinks: false,
     docsDir: 'src',
     sidebarDepth: 2,
@@ -697,7 +697,7 @@ module.exports = {
       //     '/examples/': sidebar.examples
       //   },
       // },
-      '/ru/': {
+      '/': {
         label: 'Русский',
         selectText: 'Переводы',
         editLinkText: 'Изменить эту страницу на GitHub',
@@ -874,8 +874,8 @@ module.exports = {
         serviceWorker: true,
         updatePopup: {
           '/': {
-            message: 'New content is available.',
-            buttonText: 'Refresh'
+            message: 'Доступен новый контент.',
+            buttonText: 'Обновить'
           }
         }
       }
