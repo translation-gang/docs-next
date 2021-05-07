@@ -49,7 +49,7 @@
 - [SFC Синтаксический сахар для Composition API (`<script setup>`)](https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md) <Badge text="экспериментально" type="warning" />
 - [SFC CSS-переменные на основе состояния (`v-bind` in `<style>`)](https://github.com/vuejs/rfcs/blob/style-vars-2/active-rfcs/0000-sfc-style-variables.md) <Badge text="экспериментально" type="warning" />
 - [SFC `<style scoped>` теперь могут содержать глобальные правила или правила только для содержимого слотов](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
-- [Suspense](suspense.md) <Badge text="experimental" type="warning" />
+- [Добавлен компонент suspense](suspense.md) <Badge text="experimental" type="warning" />
 
 ## Кардинальные изменения
 
