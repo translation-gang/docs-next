@@ -1,16 +1,16 @@
-# Build Configuration
+# Конфигурация сборки
 
-The webpack config for an SSR project will be similar to a client-only project. If you're not familiar with configuring webpack, you can find more information in the documentation for [Vue CLI](https://cli.vuejs.org/guide/webpack.html#working-with-webpack) or [configuring Vue Loader manually](https://vue-loader.vuejs.org/guide/#manual-setup).
+Конфигурация webpack для проекта с SSR будет аналогична конфигурации проекта только для клиентской стороны. Если ещё не знакомы с настройкой webpack, более подробную информацию можно найти в документации [Vue CLI](https://cli.vuejs.org/ru/guide/webpack.html) или [настроить Vue Loader вручную](https://vue-loader.vuejs.org/ru/guide/#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D1%80%D1%83%D1%87%D0%BD%D1%83%D1%8E).
 
-## Key Differences with Client-Only Builds
+## Ключевые отличия от сборки только для клиента
 
-1. We need to create a [webpack manifest](https://webpack.js.org/concepts/manifest/) for our server-side code. This is a JSON file that webpack keeps to track how all the modules map to the output bundles.
+1. Необходимо создать [манифест webpack](https://webpack.js.org/concepts/manifest/) для серверной части кода. Это JSON-файл, который webpack держит для отслеживания того, как все модули сопоставляются с получившимися сборками.
 
-2. We should [externalize application dependencies](https://webpack.js.org/configuration/externals/). This makes the server build much faster and generates a smaller bundle file. When doing this, we have to exclude dependencies that need to be processed by webpack (like `.css`. or `.vue` files).
+2. Требуется [экстернализация зависимостей приложения](https://webpack.js.org/configuration/externals/). Это делает сборку сервера намного быстрее и создаёт меньший по размеру файл. При этом необходимо исключить зависимости, которые должны быть обработаны webpack (например, файлы `.css`. или `.vue`).
 
-3. We need to change webpack [target](https://webpack.js.org/concepts/targets/) to Node.js. This allows webpack to handle dynamic imports in a Node-appropriate fashion, and also tells `vue-loader` to emit server-oriented code when compiling Vue components.
+3. Нужно изменить [target](https://webpack.js.org/concepts/targets/) в webpack на Node.js. Это позволяет webpack обрабатывать динамические импорты в соответствии с подходом в Node, а также укажет `vue-loader` выдавать серверно-ориентированный код при компиляции компонентов Vue.
 
-4. When building a server entry, we would need to define an environment variable to indicate we are working with SSR. It might be helpful to add a few `scripts` to the project's `package.json`:
+4. При создании серверной точки входа, необходимо определить переменную окружения, чтобы указать что работаем с SSR. Может быть полезно добавить несколько строк в `scripts` в `package.json` проекта:
 
 ```json
 "scripts": {
@@ -20,9 +20,9 @@ The webpack config for an SSR project will be similar to a client-only project. 
 }
 ```
 
-## Example Configuration
+## Пример конфигурации
 
-Below is a sample `vue.config.js` that adds SSR rendering to a Vue CLI project, but it can be adapted for any webpack build.
+Ниже приведён пример `vue.config.js`, который добавляет SSR в проект Vue CLI, но его можно адаптировать для любой сборки webpack.
 
 ```js
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
@@ -31,15 +31,15 @@ const webpack = require('webpack')
 
 module.exports = {
   chainWebpack: webpackConfig => {
-    // We need to disable cache loader, otherwise the client build
-    // will used cached components from the server build
+    // Необходимо отключить cache-loader, иначе в сборке для клиента
+    // будут использовать кэшированные компоненты из сборки для сервера
     webpackConfig.module.rule('vue').uses.delete('cache-loader')
     webpackConfig.module.rule('js').uses.delete('cache-loader')
     webpackConfig.module.rule('ts').uses.delete('cache-loader')
     webpackConfig.module.rule('tsx').uses.delete('cache-loader')
 
     if (!process.env.SSR) {
-      // Point entry to your app's client entry file
+      // Указываем точку входа клиентской части приложения
       webpackConfig
         .entry('app')
         .clear()
@@ -47,17 +47,17 @@ module.exports = {
       return
     }
 
-    // Point entry to your app's server entry file
+    // Указываем точку входа серверной части приложения
     webpackConfig
       .entry('app')
       .clear()
       .add('./src/entry-server.js')
 
-    // This allows webpack to handle dynamic imports in a Node-appropriate
-    // fashion, and also tells `vue-loader` to emit server-oriented code when
-    // compiling Vue components.
+    // Это позволяет webpack обрабатывать динамические импорты в соответствии
+    // с подходом в Node, а также указывает `vue-loader` выдавать
+    // серверно-ориентированный код при компиляции компонентов Vue.
     webpackConfig.target('node')
-    // This tells the server bundle to use Node-style exports
+    // Это указывает сборке для сервера использовать экспорты в стиле Node
     webpackConfig.output.libraryTarget('commonjs2')
 
     webpackConfig
@@ -66,11 +66,11 @@ module.exports = {
 
     // https://webpack.js.org/configuration/externals/#function
     // https://github.com/liady/webpack-node-externals
-    // Externalize app dependencies. This makes the server build much faster
-    // and generates a smaller bundle file.
+    // Экстернализация зависимостей приложения. Это сделает сборку для сервера
+    // гораздо быстрее и создаст более легкий файл итоговой сборки.
 
-    // Do not externalize dependencies that need to be processed by webpack.
-    // You should also whitelist deps that modify `global` (e.g. polyfills)
+    // Нужно не экстернализировать зависимости, которые должны быть обработаны webpack.
+    // Также следует внести в белый список зависимости, которые изменяют `global` (например, полифилы)
     webpackConfig.externals(nodeExternals({ allowlist: /\.(css|vue)$/ }))
 
     webpackConfig.optimization.splitChunks(false).minimize(false)
@@ -89,18 +89,18 @@ module.exports = {
 }
 ```
 
-## Externals Caveats
+## Предостережения для externals
 
-Notice that in the `externals` option we are whitelisting CSS files. This is because CSS imported from dependencies should still be handled by webpack. If you are importing any other types of files that also rely on webpack (e.g. `*.vue`, `*.sass`), you should add them to the whitelist as well.
+Обратите внимание, что в опции `externals` в белый список добавлены CSS-файлы. Это связано с тем, что CSS импортируемый из зависимостей, всё равно должен обрабатываться webpack. Если импортируете файлы других типов, которые также полагаются на webpack (например, `*.vue`, `*.sass`), их также следует добавить в белый список.
 
-If you are using `runInNewContext: 'once'` or `runInNewContext: true`, then you also need to whitelist polyfills that modify `global`, e.g. `babel-polyfill`. This is because when using the new context mode, **code inside a server bundle has its own `global` object.** Since you don't really need it on the server, it's actually easier to just import it in the client entry.
+При использовании `runInNewContext: 'once'` или `runInNewContext: true` также необходимо добавить в белый список полифилы, которые изменяют `global`, например, `babel-polyfill`. Это требуется для того, что при использовании режима нового контекста **код внутри сборки для сервера будет иметь свой собственный объект `global`.** Поскольку на сервере он не нужен, проще просто импортировать его в файл клиентской точки входа.
 
-## Generating `clientManifest`
+## Генерация `clientManifest`
 
-In addition to the server bundle, we can also generate a client build manifest. With the client manifest and the server bundle, the renderer now has information of both the server _and_ client builds. This way it can automatically infer and inject [preload / prefetch directives](https://css-tricks.com/prefetching-preloading-prebrowsing/), `<link>` and `<script>` tags into the rendered HTML.
+В дополнение к серверной сборке также можно сгенерировать манифест клиентской сборки. Благодаря клиентскому манифесту и серверной сборке, рендерер будет иметь информацию как о серверной _так и_ о клиентской сборках. Благодаря этому он сможет автоматически определять и внедрять [директивы для preload / prefetch](https://css-tricks.com/prefetching-preloading-prebrowsing/), теги `<link>` и `<script>` в создаваемый HTML.
 
-The benefits are two-fold:
+Выгода здесь двойная:
 
-1. It can replace `html-webpack-plugin` for injecting the correct asset URLs when there are hashes in your generated filenames.
+1. Он может заменить `html-webpack-plugin` для внедрения корректных URL для ресурсов, когда в генерируемых именах файлов присутствуют хэши.
 
-2. When rendering a bundle that leverages webpack's on-demand code splitting features, we can ensure the optimal chunks are preloaded / prefetched, and also intelligently inject `<script>` tags for needed async chunks to avoid waterfall requests on the client, thus improving TTI (time-to-interactive).
+2. При генерации сборки, которая использует возможности webpack по разделению кода, можно обеспечить preload / prefetch необзодимых фрагментов, а также интеллектуально внедрять теги `<script>` для требуемых асинхронных фрагментов, чтобы избежать водопада запросов на клиенте, тем самым улучшая TTI (time-to-interactive).
