@@ -876,6 +876,10 @@ module.exports = {
           '/': {
             message: 'Доступен новый контент.',
             buttonText: 'Обновить'
+          },
+          '/ru/': {
+            message: 'Доступен новый контент.',
+            buttonText: 'Обновить'
           }
         }
       }
