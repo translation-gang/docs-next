@@ -78,13 +78,13 @@ const app = createApp({})
 | Глобальное API в 2.x       | API экземпляра (`app`) в 3.x                                                                   |
 |----------------------------|------------------------------------------------------------------------------------------------|
 | Vue.config                 | app.config                                                                                     |
-| Vue.config.productionTip   | _удалено_ ([см. ниже](#config-productiontip-removed))                                          |
-| Vue.config.ignoredElements | app.config.isCustomElement ([см. ниже](#config-ignoredelements-is-now-config-iscustomelement)) |
+| Vue.config.productionTip   | _удалено_ ([см. ниже](#удалено-своиство-config-productiontip))                                          |
+| Vue.config.ignoredElements | app.config.isCustomElement ([см. ниже](#своиство-config-ignoredelements-теперь-config-iscustomelement)) |
 | Vue.component              | app.component                                                                                  |
 | Vue.directive              | app.directive                                                                                  |
 | Vue.mixin                  | app.mixin                                                                                      |
-| Vue.use                    | app.use ([см. ниже](#a-note-for-plugin-authors))                                               |
-| Vue.prototype              | app.config.globalProperties ([см. ниже](#vue-prototype-replaced-by-config-globalproperties))   |
+| Vue.use                    | app.use ([см. ниже](#примечание-для-разработчиков-плагинов))                                               |
+| Vue.prototype              | app.config.globalProperties ([см. ниже](#своиство-vue-prototype-заменено-на-config-globalproperties))   |
 
 Все другие глобальные API, которые глобально не изменяют поведение, теперь доступны именованными экспортами, как описывается в разделе [Treeshaking глобального API](global-api-treeshaking.md).
 

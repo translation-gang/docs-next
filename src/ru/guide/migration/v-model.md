@@ -186,6 +186,6 @@ this.$emit('update:title', newValue)
 
 Более подробную информацию о новом синтаксисе `v-model` можно получить здесь:
 
-- [Использование `v-model` на компонентах](../component-basics.md#using-v-model-on-components)
-- [Аргументы `v-model`](../component-custom-events.md#v-model-arguments)
-- [Обработка модификаторов `v-model`](../component-custom-events.md#handling-v-model-modifiers)
+- [Использование `v-model` на компонентах](../component-basics.md#использование-v-model-на-компонентах)
+- [Аргументы `v-model`](../component-custom-events.md#аргументы-v-model)
+- [Обработка модификаторов `v-model`](../component-custom-events.md#обработка-модификаторов-v-model)

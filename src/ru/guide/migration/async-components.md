@@ -94,4 +94,4 @@ const asyncComponent = defineAsyncComponent(
 
 Подробная информация об использовании асинхронных компонентов:
 
-- [Руководство: Динамические и асинхронные компоненты](../component-dynamic-async.md#dynamic-components-with-keep-alive)
+- [Руководство: Динамические и асинхронные компоненты](../component-dynamic-async.md#динамические-компоненты-с-keep-alive)
