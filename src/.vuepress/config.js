@@ -1,3 +1,5 @@
+var lightFormat = require('date-fns/lightFormat')
+
 const sidebar = {
   cookbook: [
     {
@@ -859,12 +861,7 @@ module.exports = {
         transformer(timestamp) {
           const date = new Date(timestamp)
 
-          const digits = [
-            date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(),
-            date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()
-          ].map(num => String(num).padStart(2, '0'))
-
-          return '{0}-{1}-{2}, {3}:{4}:{5} UTC'.replace(/{(\d)}/g, (_, num) => digits[num])
+          return lightFormat(date, 'dd.MM.yyyy, HH:mm:ss')
         }
       }
     ],
