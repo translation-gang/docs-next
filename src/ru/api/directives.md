@@ -6,7 +6,7 @@
 
 - **Подробности:**
 
-  Обновляет свойство элемента [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent). При необходимости обновления лишь части `textContent` лучше воспользоваться [интерполяцией с фигурными скобками](../guide/template-syntax.md#текст).
+  Обновляет свойство элемента [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent). При необходимости обновления лишь части содержимого `textContent` лучше использовать [интерполяцию с фигурными скобками](../guide/template-syntax.md#текст).
 
 - **Пример:**
 
