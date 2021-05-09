@@ -546,7 +546,7 @@ module.exports = {
   themeConfig: {
     logo: '/logo.png',
     repo: 'translation-gang/docs-next',
-    editLinks: false,
+    editLinks: true,
     docsDir: 'src',
     sidebarDepth: 2,
     smoothScroll: false,
