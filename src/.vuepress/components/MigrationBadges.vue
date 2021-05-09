@@ -1,9 +1,9 @@
 <script>
 const validBadges = {
-  new: 'new',
-  breaking: 'breaking',
-  removed: 'removed',
-  updated: 'updated'
+  new: 'добавлено',
+  breaking: 'кардинальное изменение',
+  removed: 'удалено',
+  updated: 'обновлено'
 }
 
 export default {
