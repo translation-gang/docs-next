@@ -703,8 +703,8 @@ module.exports = {
       '/': {
         label: 'Русский',
         selectText: 'Переводы',
-        editLinkText: 'Исправить эту страницу на GitHub',
-        lastUpdated: 'Последнее обновление',
+        editLinkText: 'Исправьте эту страницу на GitHub',
+        lastUpdated: 'Последнее обновление страницы',
         nav: [
           {
             text: 'Документация',
