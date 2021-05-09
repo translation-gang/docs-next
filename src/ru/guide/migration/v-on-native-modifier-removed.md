@@ -34,7 +34,7 @@ badges:
 />
 ```
 
-`MyComponent.vue`
+Содержимое `MyComponent.vue`:
 
 ```html
 <script>

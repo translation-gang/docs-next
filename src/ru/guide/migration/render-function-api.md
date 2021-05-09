@@ -146,7 +146,7 @@ Vue.component('button-counter', {
   }
   template: `
     <button @click="count++">
-      Clicked {{ count }} times.
+      Счётчик кликов — {{ count }}.
     </button>
   `
 })
