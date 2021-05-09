@@ -57,7 +57,7 @@ Vue.createApp({
 
 <common-codepen-snippet title="v-for с массивом и индексом" slug="wvaEdBP" tab="js,result" :preview="false" />
 
-Вместо `in` разделителем можно использовать `of`, как в итераторах JavaScript:
+Можно использовать `of` в качестве разделителя вместо `in`, как в итераторах JavaScript:
 
 ```html
 <div v-for="item of items"></div>
