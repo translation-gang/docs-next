@@ -56,6 +56,7 @@ Vue.config.ignoredElements = ['plastic-button']
 
   ```js
   const app = Vue.createApp({})
+
   app.config.isCustomElement = tag => tag === 'plastic-button'
   ```
 
@@ -129,7 +130,7 @@ Vue использовал специальный атрибут `is` для с�
 <!-- НЕПРАВИЛЬНО, ничего не будет отрисовано -->
 <tr v-is="blog-post-row"></tr>
 
-<!-- Правильно -->
+<!-- ОК -->
 <tr v-is="'blog-post-row'"></tr>
 ```
 

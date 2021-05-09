@@ -48,8 +48,8 @@ badges:
 <div v-else>Нет</div>
 
 <!-- Vue 3.x (альтернатива: убедиться в уникальности атрибутов key) -->
-<div v-if="condition" key="a">Да</div>
-<div v-else key="b">Нет</div>
+<div v-if="condition" key="yes">Да</div>
+<div v-else key="no">Нет</div>
 ```
 
 ## Использование с `<template v-for>`

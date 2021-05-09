@@ -22,7 +22,7 @@ badges:
 Пример:
 
 ```html
-<p v-highlight="'yellow'">Highlight this text bright yellow</p>
+<p v-highlight="'yellow'">Выделить этот текст ярко-жёлтым</p>
 ```
 
 ```js
@@ -65,7 +65,7 @@ const MyDirective = {
 Используя обновлённое API теперь предыдущий пример будет выглядеть так:
 
 ```html
-<p v-highlight="'yellow'">Highlight this text bright yellow</p>
+<p v-highlight="'yellow'">Выделить этот текст ярко-жёлтым</p>
 ```
 
 ```js

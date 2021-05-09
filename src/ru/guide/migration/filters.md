@@ -17,7 +17,7 @@ badges:
 
 ```vue
 <template>
-  <h1>Bank Account Balance</h1>
+  <h1>Остаток на банковском счёте</h1>
   <p>{{ accountBalance | currencyUSD }}</p>
 </template>
 
@@ -48,7 +48,7 @@ badges:
 
 ```vue
 <template>
-  <h1>Bank Account Balance</h1>
+  <h1>Остаток на банковском счёте</h1>
   <p>{{ accountInUSD }}</p>
 </template>
 
@@ -94,7 +94,7 @@ app.config.globalProperties.$filters = {
 
 ```html{3}
 <template>
-  <h1>Bank Account Balance</h1>
+  <h1>Остаток на банковском счёте</h1>
   <p>{{ $filters.currencyUSD(accountBalance) }}</p>
 </template>
 ```

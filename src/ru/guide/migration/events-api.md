@@ -67,6 +67,7 @@ export default {
 ```js
 // eventHub.js
 import emitter from 'tiny-emitter/instance'
+
 export default {
   $on: (...args) => emitter.on(...args),
   $once: (...args) => emitter.once(...args),

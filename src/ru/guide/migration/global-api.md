@@ -104,6 +104,7 @@ Vue.config.ignoredElements = ['my-el', /^ion-/]
 
 // теперь
 const app = createApp({})
+
 app.config.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
@@ -128,6 +129,7 @@ Vue.prototype.$http = () => {}
 ```js
 // теперь - Vue 3
 const app = createApp({})
+
 app.config.globalProperties.$http = () => {}
 ```
 
