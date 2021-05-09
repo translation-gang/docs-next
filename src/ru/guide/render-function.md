@@ -637,9 +637,9 @@ app.mount('#demo')
 
 ## Функциональные компоненты
 
-Functional components are an alternative form of component that don't have any state of their own. They are rendered without creating a component instance, bypassing the usual component lifecycle.
+Функциональные компоненты — альтернативная форма компонентов без собственного состояния. Они отрисовываются без создания экземпляра компонента, минуя обычный жизненный цикл компонента.
 
-To create a functional component we use a plain function, rather than an options object. The function is effectively the `render` function for the component. As there is no `this` reference for a functional component, Vue will pass in the `props` as the first argument:
+Для создания функционального компонента нужно использовать простую функцию, а не объект с опциями компонента. Она фактически является `render`-функцией компонента. И так как у функционального компонента нет `this`, то `props` будут передаваться первым аргументом:
 
 ```js
 const FunctionalComponent = (props, context) => {
@@ -647,18 +647,18 @@ const FunctionalComponent = (props, context) => {
 }
 ```
 
-The second argument, `context`, contains three properties: `attrs`, `emit`, and `slots`. These are equivalent to the instance properties [`$attrs`](../api/instance-properties.md#attrs), [`$emit`](../api/instance-methods.md#emit), and [`$slots`](../api/instance-properties.md#slots) respectively.
+Вторым аргументом передаётся `context`, содержащий три свойства: `attrs`, `emit` и `slots`. Они эквивалентны свойствам экземпляра [`$attrs`](../api/instance-properties.md#attrs), [`$emit`](../api/instance-methods.md#emit) и [`$slots`](../api/instance-properties.md#slots).
 
-Most of the usual configuration options for components are not available for functional components. However, it is possible to define [`props`](../api/options-data.md#props) and [`emits`](../api/options-data.md#emits) by adding them as properties:
+В функциональных компонентах большинство обычных опций конфигурации компонентов недоступны. Но можно определять [`props`](../api/options-data.md#props) и [`emits`](../api/options-data.md#emits), добавив их в качестве свойств:
 
 ```js
 FunctionalComponent.props = ['value']
 FunctionalComponent.emits = ['click']
 ```
 
-If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
+Если не указана опция `props`, то передаваемый в функцию объект `props` будет содержать все атрибуты, как и `attrs`. Также имена входных параметров не будут нормализоваться в camelCase.
 
-Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h`, it will be treated as a functional component.
+Функциональные компоненты можно регистрировать и использовать так же, как и обычные компоненты. Если передавать функцию в качестве первого аргумента в `h`, то она будет рассматриваться как функциональный компонент.
 
 ## Компиляция шаблона
 
