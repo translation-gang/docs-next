@@ -1,4 +1,5 @@
-var lightFormat = require('date-fns/lightFormat')
+var formatDistanceToNow = require('date-fns/formatDistanceToNow')
+var locales = require('date-fns/locale')
 
 const sidebar = {
   cookbook: [
@@ -861,7 +862,7 @@ module.exports = {
         transformer(timestamp) {
           const date = new Date(timestamp)
 
-          return lightFormat(date, 'dd.MM.yyyy, HH:mm:ss')
+          return formatDistanceToNow(date, { locale: locales.ru }) + ' назад'
         }
       }
     ],
