@@ -132,8 +132,8 @@
 
   ```html
   <div v-for="(item, index) in items"></div>
-  <div v-for="(value, key) in object"></div>
-  <div v-for="(value, key, index) in object"></div>
+  <div v-for="(value, name) in object"></div>
+  <div v-for="(value, name, index) in object"></div>
   ```
 
   По умолчанию `v-for` будет обновлять элементы «на месте», не перемещая их. Если необходимо переупорядочивать элементы при изменениях, то потребуется указывать специальный атрибут `key`:
