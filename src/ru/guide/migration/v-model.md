@@ -144,7 +144,7 @@ this.$emit('update:title', newValue)
 <ChildComponent v-model.capitalize="pageTitle" />
 ```
 
-Подробнее о пользовательских модификаторах `v-model` можно прочитать в разделе [пользовательских событий](../component-custom-events.md#handling-v-model-modifiers).
+Подробнее о пользовательских модификаторах `v-model` можно прочитать в разделе [пользовательских событий](../component-custom-events.md#обработка-модификаторов-v-model).
 
 ## Стратегия миграции
 
