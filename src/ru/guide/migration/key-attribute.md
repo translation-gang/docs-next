@@ -28,7 +28,7 @@ badges:
 <div v-else key="no">Нет</div>
 ```
 
-Пример выше будет работать и во Vue 3.x. Но теперь перестаём рекомендовать указывать атрибут `key` на ветках `v-if`/`v-else`/`v-else-if`, поскольку уникальные `key` теперь будут автоматически генерироваться на ветках с условиями если не были указаны вручную.
+Пример выше будет работать и во Vue 3.x. Но теперь перестаём рекомендовать указывать атрибут `key` на ветках `v-if`/`v-else`/`v-else-if`, поскольку уникальные `key` теперь будут генерироваться автоматически на ветках с условиями, если не указаны вручную.
 
 ```html
 <!-- Vue 3.x -->
@@ -59,8 +59,8 @@ badges:
 ```html
 <!-- Vue 2.x -->
 <template v-for="item in list">
-  <div :key="item.id">...</div>
-  <span :key="item.id">...</span>
+  <div :key="'heading-' + item.id">...</div>
+  <span :key="'content-' + item.id">...</span>
 </template>
 ```
 
@@ -79,8 +79,8 @@ badges:
 ```html
 <!-- Vue 2.x -->
 <template v-for="item in list">
-  <div v-if="item.isVisible" :key="item.id">...</div>
-  <span v-else :key="item.id">...</span>
+  <div v-if="item.isVisible" :key="'heading-' + item.id">...</div>
+  <span v-else :key="'content-' + item.id">...</span>
 </template>
 
 <!-- Vue 3.x -->

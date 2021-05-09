@@ -16,8 +16,8 @@ badges:
 
 ```html
 <my-component
-  v-on:close="handleComponentEvent"
-  v-on:click.native="handleNativeClickEvent"
+  @close="handleComponentEvent"
+  @click.native="handleNativeClickEvent"
 />
 ```
 
@@ -29,8 +29,8 @@ badges:
 
 ```html
 <my-component
-  v-on:close="handleComponentEvent"
-  v-on:click="handleNativeClickEvent"
+  @close="handleComponentEvent"
+  @click="handleNativeClickEvent"
 />
 ```
 

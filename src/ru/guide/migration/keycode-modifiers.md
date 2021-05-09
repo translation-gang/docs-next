@@ -18,10 +18,10 @@ badges:
 
 ```html
 <!-- версия с keyCode -->
-<input v-on:keyup.13="submit" />
+<input @keyup.13="submit" />
 
 <!-- версия с псевдонимом -->
-<input v-on:keyup.enter="submit" />
+<input @keyup.enter="submit" />
 ```
 
 Кроме того, можно было определять собственные псевдонимы через глобальную опцию `config.keyCodes`.
@@ -34,19 +34,19 @@ Vue.config.keyCodes = {
 
 ```html
 <!-- версия с keyCode -->
-<input v-on:keyup.112="showHelpText" />
+<input @keyup.112="showHelpText" />
 
 <!-- версия с пользовательским псевдонимом -->
-<input v-on:keyup.f1="showHelpText" />
+<input @keyup.f1="showHelpText" />
 ```
 
 ## Синтаксис в 3.x
 
-Так как [`KeyboardEvent.keyCode` был объявлен устаревшим](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) для Vue 3 больше нет смысла продолжать его поддержку. Теперь рекомендуется указывать имя в kebab-case для любой клавиши, которую требуется использовать в качестве модификатора.
+Поскольку [`KeyboardEvent.keyCode` объявлен устаревшим](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode), то и Vue 3 больше нет смысла продолжать его поддержку. Теперь рекомендуется указывать имя в kebab-case для любой клавиши, которую требуется использовать в качестве модификатора.
 
 ```html
-<!-- Vue 3 и модификатор клавиши на v-on -->
-<input v-on:keyup.delete="confirmDelete" />
+<!-- Vue 3 и модификатор клавиши -->
+<input @keyup.delete="confirmDelete" />
 ```
 
 Из этого следует, что опция `config.keyCodes` теперь больше не нужна и также не будет поддерживаться.

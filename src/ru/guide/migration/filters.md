@@ -79,7 +79,7 @@ badges:
 
 Можно сделать такие фильтры доступными для всех компонентов через [globalProperties](../../api/application-config.md#globalproperties):
 
-```js
+```js{4,8}
 // main.js
 const app = createApp(App)
 
@@ -90,9 +90,9 @@ app.config.globalProperties.$filters = {
 }
 ```
 
-Тогда потребуется исправить все шаблоны, используя объект `$filters`:
+В таком случае потребуется исправить все шаблоны на использование объекта `$filters`:
 
-```html
+```html{3}
 <template>
   <h1>Bank Account Balance</h1>
   <p>{{ $filters.currencyUSD(accountBalance) }}</p>

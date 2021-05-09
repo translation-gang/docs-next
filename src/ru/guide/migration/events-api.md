@@ -23,17 +23,17 @@ export default eventHub
 
 ```js
 // ChildComponent.vue
-import eventHub from './eventHub'
+import eventHub from './eventHub.js'
 
 export default {
   mounted() {
-    // добавление слушателя в eventHub
+    // добавление слушателя в шину событий
     eventHub.$on('custom-event', () => {
       console.log('Вызвано пользовательское событие!')
     })
   },
   beforeDestroy() {
-    // удаление слушателя из eventHub
+    // удаление слушателя из шины событий
     eventHub.$off('custom-event')
   }
 }
@@ -41,7 +41,7 @@ export default {
 
 ```js
 // ParentComponent.vue
-import eventHub from './eventHub'
+import eventHub from './eventHub.js'
 
 export default {
   methods: {
@@ -54,7 +54,7 @@ export default {
 
 ## Что изменилось в 3.x
 
-Были полностью удалены методы экземпляра `$on`, `$off` и `$once`. Метод `$emit` всё ещё является частью существующего API, так как он используется для запуска обработчиков событий, декларативно прикреплённых родительским компонентом.
+Из экземпляра полностью удалены методы `$on`, `$off` и `$once`. Метод `$emit` всё ещё является частью существующего API, так как он используется для запуска обработчиков событий, декларативно прикреплённых к родительским компонентам.
 
 ## Стратегия миграции
 
@@ -65,7 +65,7 @@ export default {
 Например:
 
 ```js
-//eventHub.js
+// eventHub.js
 import emitter from 'tiny-emitter/instance'
 export default {
   $on: (...args) => emitter.on(...args),
