@@ -862,7 +862,7 @@ module.exports = {
         transformer(timestamp) {
           const date = new Date(timestamp)
 
-          return formatDistanceToNow(date, { locale: locales.ru }) + ' назад'
+          return formatDistanceToNow(date, { addSuffix: true, locale: locales.ru })
         }
       }
     ],
