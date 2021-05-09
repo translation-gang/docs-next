@@ -56,7 +56,7 @@ export default {
     // БУДУТ РАБОТАТЬ ТОЛЬКО ДО ПЕРВОГО `await`
     const data = await loadData()
 
-    // Это будет неявно обернуто в Promise,
+    // Это будет неявно обёрнуто в Promise,
     // потому что функция является `async`
     return {
       // ...

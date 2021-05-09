@@ -25,7 +25,7 @@ function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
 const count = ref(1)
 const obj = reactive({ count })
 
-// ссылка будет развернута
+// ссылка будет развёрнута
 console.log(obj.count === count.value) // true
 
 // изменения будут обновлять `obj.count`
