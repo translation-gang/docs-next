@@ -700,7 +700,7 @@ module.exports = {
       '/': {
         label: 'Русский',
         selectText: 'Переводы',
-        editLinkText: 'Изменить эту страницу на GitHub',
+        editLinkText: 'Исправить эту страницу на GitHub',
         lastUpdated: 'Последнее обновление',
         nav: [
           {
