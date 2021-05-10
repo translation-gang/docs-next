@@ -12,9 +12,9 @@
 
 Создадим сначала каталог для всех иконок и назовём каждую в едином стиле, чтобы облегчить их поиск:
 
-> `components/icons/IconBox.vue`
-> `components/icons/IconCalendar.vue`
-> `components/icons/IconEnvelope.vue`
+- `components/icons/IconBox.vue`
+- `components/icons/IconCalendar.vue`
+- `components/icons/IconEnvelope.vue`
 
 Вот репозиторий с примером для начала работы, где можно увидеть готовую настройку: [https://github.com/sdras/vue-sample-svg-icons/](https://github.com/sdras/vue-sample-svg-icons/)
 
