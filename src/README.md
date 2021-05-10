@@ -5,7 +5,7 @@ heroText: Vue.js
 tagline: Прогрессивный<br> JavaScript-фреймворк
 actionButtons:
   - text: Почему Vue.js?
-    link: /ru/
+    link: '/#'
     extraClass: vuemastery-trigger primary
     icon: fa fa-play-circle
   - text: Начать знакомство
