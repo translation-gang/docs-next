@@ -1,6 +1,6 @@
 export const labels = {
   language: 'Локализация',
-  github: 'Репозиторий в GitHub',
+  github: 'Репозиторий с переводом в GitHub',
   lastCommit: 'Последний коммит',
   last90Days: 'Коммитов за последние 90 дней',
   loadDetails: 'Загрузить',
