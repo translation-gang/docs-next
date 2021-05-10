@@ -8,8 +8,8 @@
         <th>{{ labels.last90Days }}</th>
       </tr>
     </thead>
-    <tbody>
-      <tr v-for="({ lang, owner, repo, url, count, date }, index) in merged">
+    <tbody style="text-align: center;">
+      <tr v-for="({ lang, owner, repo, url, count, date }, index) in merged" :key="lang">
         <td>
           <a v-if="url" :href="url" target="_blank">
             {{ lang }} <OutboundLink />
@@ -27,7 +27,7 @@
           </td>
         </template>
         <template v-else>
-          <td>{{ date }}</td>
+          <td>{{ formatDate(date) }}</td>
           <td>
             {{ count }}{{ count === 100 ? '+' : '' }}
             <template v-if="typeof count === 'number'">
@@ -175,6 +175,16 @@ export default {
 
       // GitHub limits request rates, so we store the stats in sessionStorage
       sessionStorage.setItem('translation-stats', JSON.stringify(data))
+    },
+
+    formatDate(date) {
+      if (!date) {
+        return '-'
+      }
+
+      const [year, month, day] = date.split('-')
+
+      return `${day}.${month}.${year}`
     }
   }
 }
