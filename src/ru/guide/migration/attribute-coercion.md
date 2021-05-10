@@ -60,16 +60,16 @@ badges:
 
 | Выражение           | `foo` <sup>обычный</sup>    | `draggable` <sup>перечисляемый</sup> |
 | ------------------- | -------------------------- | ------------------------------------- |
-| `:attr="null"`      | /                          | / <sup>†</sup>                        |
+| `:attr="null"`      | /                          | / <sup>*</sup>                        |
 | `:attr="undefined"` | /                          | /                                     |
 | `:attr="true"`      | `foo="true"`               | `draggable="true"`                    |
-| `:attr="false"`     | `foo="false"` <sup>†</sup> | `draggable="false"`                   |
-| `:attr="0"`         | `foo="0"`                  | `draggable="0"` <sup>†</sup>          |
-| `attr=""`           | `foo=""`                   | `draggable=""` <sup>†</sup>           |
-| `attr="foo"`        | `foo="foo"`                | `draggable="foo"` <sup>†</sup>        |
-| `attr`              | `foo=""`                   | `draggable=""` <sup>†</sup>           |
+| `:attr="false"`     | `foo="false"` <sup>*</sup> | `draggable="false"`                   |
+| `:attr="0"`         | `foo="0"`                  | `draggable="0"` <sup>*</sup>          |
+| `attr=""`           | `foo=""`                   | `draggable=""` <sup>*</sup>           |
+| `attr="foo"`        | `foo="foo"`                | `draggable="foo"` <sup>*</sup>        |
+| `attr`              | `foo=""`                   | `draggable=""` <sup>*</sup>           |
 
-<small>†: поведение изменилось</small>
+<small>*: поведение изменилось</small>
 
 Приведение для булевых атрибутов осталось без изменений.
 
