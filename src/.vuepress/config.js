@@ -801,12 +801,12 @@ module.exports = {
             text: 'Поддержать Vue',
             link: '/ru/support-vuejs/',
             items: [{
-                text: 'Единоразовые пожертвования',
-                link: '/ru/support-vuejs/#one-time-donations'
+                text: 'Однократное пожертвование',
+                link: '/ru/support-vuejs/#однократное-пожертвование'
               },
               {
-                text: 'Повторяющиеся взносы',
-                link: '/ru/support-vuejs/#recurring-pledges'
+                text: 'Регулярные пожертвования',
+                link: '/ru/support-vuejs/#регулярные-пожертвования'
               },
               {
                 text: 'Магазин футболок',
