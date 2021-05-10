@@ -1,31 +1,33 @@
-# v3.vuejs.org
+# Русская версия документации для Vue 3
 
-This site is built with [VuePress](https://vuepress.vuejs.org/). Site content is written in Markdown format located in `src`.
+# https://v3.ru.vuejs.org/
+
+Этот сайт создан с помощью [VuePress](https://vuepress.vuejs.org/). Содержимое указывается в markdown файлах в каталоге `src`. Русская локализация находится в `src/ru`
 
 ## Writing
 
-See the [Vue Docs Writing Guide](https://v3.vuejs.org/guide/writing-guide.html) for our rules and recommendations on writing and maintaining documentation.
+See the [Vue Docs Writing Guide](https://v3.ru.vuejs.org/ru/guide/writing-guide.html) for our rules and recommendations on writing and maintaining documentation.
 
-## Developing
+## Разработка
 
-1. Clone repository
+1. Склонировать репозиторий
 
 ```bash
 git clone git@github.com:translation-gang/docs-next.git
 ```
 
-2. Install dependencies
+2. Установить зависимости
 
 ```bash
-yarn # or npm install
+yarn # ИЛИ npm install
 ```
 
-3. Start local development environment
+3. Запустить сервер для локальной разработки
 
 ```bash
-yarn serve # or npm run serve
+yarn serve # ИЛИ npm run serve
 ```
 
-## Deploying
+## Публикация
 
-The site is automatically deployed when commits land in `master`, via [Netlify](https://www.netlify.com/).
+Сайт автоматически публикуется при коммитах в ветку `master` с помощью [Netlify](https://www.netlify.com/).
