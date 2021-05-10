@@ -802,11 +802,11 @@ module.exports = {
             link: '/ru/support-vuejs/',
             items: [{
                 text: 'Единоразовые пожертвования',
-                link: '/support-vuejs/#one-time-donations'
+                link: '/ru/support-vuejs/#one-time-donations'
               },
               {
                 text: 'Повторяющиеся взносы',
-                link: '/support-vuejs/#recurring-pledges'
+                link: '/ru/support-vuejs/#recurring-pledges'
               },
               {
                 text: 'Магазин футболок',
