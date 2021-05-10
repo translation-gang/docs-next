@@ -4,9 +4,9 @@
 
 Этот сайт создан с помощью [VuePress](https://vuepress.vuejs.org/). Содержимое указывается в markdown файлах в каталоге `src`. Русская локализация находится в `src/ru`
 
-## Writing
+## Написание
 
-See the [Vue Docs Writing Guide](https://v3.ru.vuejs.org/ru/guide/writing-guide.html) for our rules and recommendations on writing and maintaining documentation.
+См. руководство [по написанию документации Vue](https://v3.ru.vuejs.org/ru/guide/writing-guide.html) где перечислены правила и рекомендации по написанию и поддержки документации.
 
 ## Разработка
 
