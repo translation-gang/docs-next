@@ -109,7 +109,7 @@ this.$emit('update:title', newValue)
 
 ### Аргументы `v-model`
 
-Чтобы изменить имя свойства, вместо использования опции `model` компонента теперь можно передавать _аргумент_ в директиву `v-model`:
+Чтобы изменить имя свойства, вместо использования опции `model` в компоненте, теперь можно передавать _аргумент_ в директиву `v-model`:
 
 ```html
 <ChildComponent v-model:title="pageTitle" />
@@ -124,7 +124,10 @@ this.$emit('update:title', newValue)
 Это также служит заменой модификатору `.sync` и позволяет указать несколько `v-model` на пользовательском компоненте.
 
 ```html
-<ChildComponent v-model:title="pageTitle" v-model:content="pageContent" />
+<ChildComponent
+  v-model:title="pageTitle"
+  v-model:content="pageContent"
+/>
 
 <!-- будет сокращённой версией для: -->
 
@@ -138,7 +141,7 @@ this.$emit('update:title', newValue)
 
 ### Модификаторы `v-model`
 
-В дополнение к жёстко заданным модификаторам `v-model` в версии 2.x, таким как `.trim`, версия 3.x теперь поддерживает создание пользовательских модификаторов:
+Кроме жёстко заданных модификаторов `v-model` в версии 2.x, таких как `.trim`, в версии 3.x теперь поддерживается создание пользовательских модификаторов:
 
 ```html
 <ChildComponent v-model.capitalize="pageTitle" />
@@ -150,7 +153,7 @@ this.$emit('update:title', newValue)
 
 Рекомендуется:
 
-- проверить кодовую базу на использование `.sync` и заменить на `v-model`:
+- проверить кодовую базу на использование `.sync` и заменить их на `v-model`:
 
   ```html
   <ChildComponent :title.sync="pageTitle" />
@@ -160,13 +163,13 @@ this.$emit('update:title', newValue)
   <ChildComponent v-model:title="pageTitle" />
   ```
 
-- для всех `v-model` без аргументов убедитесь что изменили входной параметр и имя события на `modelValue` и `update:modelValue` соответственно
+- для всех `v-model` без аргументов убедитесь, что изменили входной параметр и имя события на `modelValue` и `update:modelValue` соответственно
 
   ```html
   <ChildComponent v-model="pageTitle" />
   ```
 
-  ```js
+  ```js{5,7,10}
   // ChildComponent.vue
 
   export default {
