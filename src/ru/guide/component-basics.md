@@ -54,7 +54,7 @@ app.mount('#components-demo')
 </div>
 ```
 
-<common-codepen-snippet title="Основы компонентов: переиспользование компонентов" slug="rNVqYvM" tab="html,result" :preview="false" />
+<common-codepen-snippet title="Основы компонентов: переиспользование компонентов" slug="rNVqYvM" tab="result" :preview="false" />
 
 Обратите внимание, при нажатиях на кнопки, каждая изменяет свой собственный `count`. Всё потому, что каждый раз при использовании компонента будет создаваться его **новый экземпляр**.
 
@@ -111,7 +111,7 @@ app.mount('#blog-post-demo')
 </div>
 ```
 
-<common-codepen-snippet title="Основы компонентов: передача входных параметров" slug="PoqyOaX" tab="html,result" :preview="false" />
+<common-codepen-snippet title="Основы компонентов: передача входных параметров" slug="PoqyOaX" tab="result" :preview="false" />
 
 Скорее всего в типичном приложении наверняка будет массив записей в свойстве `data`:
 
@@ -227,7 +227,7 @@ app.component('blog-post', {
 
 Благодаря прослушиванию события `@enlarge-text="postFontSize += 0.1"` в родительском компоненте, получится отследить его и обновить `postFontSize` новым значением.
 
-<common-codepen-snippet title="Основы компонентов: прослушивание событий" slug="KKpGyrp" tab="html,result" :preview="false" />
+<common-codepen-snippet title="Основы компонентов: прослушивание событий" slug="KKpGyrp" tab="result" :preview="false" />
 
 Все генерируемые компонентом события можно указать в опции `emits`:
 

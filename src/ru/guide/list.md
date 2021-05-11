@@ -223,7 +223,7 @@ methods: {
 
 Результат:
 
-<common-codepen-snippet title="v-for with a range" slug="NWqLjNY" tab="html,result" :preview="false" />
+<common-codepen-snippet title="v-for with a range" slug="NWqLjNY" tab="html,result" />
 
 ### `v-for` и `<template>`
 

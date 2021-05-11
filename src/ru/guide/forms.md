@@ -157,7 +157,7 @@ Vue.createApp({
 <span>Выбраны: {{ selected }}</span>
 ```
 
-<common-codepen-snippet title="Работа с формами: выпадающий список с привязкой к массиву" slug="gOpBXPz" tab="html,result" :preview="false" />
+<common-codepen-snippet title="Работа с формами: выпадающий список с привязкой к массиву" slug="gOpBXPz" tab="result" :preview="false" />
 
 Динамическое отображение списка опций с помощью `v-for`:
 
