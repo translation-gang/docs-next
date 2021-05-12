@@ -9,7 +9,8 @@ const sidebar = {
       children: [
         '/cookbook/',
         '/cookbook/editable-svg-icons',
-        '/cookbook/debugging-in-vscode'
+        '/cookbook/debugging-in-vscode',
+        '/cookbook/automatic-global-registration-of-base-components'
       ]
     }
   ],
@@ -245,7 +246,8 @@ const sidebarRU = {
       children: [
         '/ru/cookbook/',
         '/ru/cookbook/editable-svg-icons',
-        '/ru/cookbook/debugging-in-vscode'
+        '/ru/cookbook/debugging-in-vscode',
+        '/ru/cookbook/automatic-global-registration-of-base-components'
       ]
     }
   ],
