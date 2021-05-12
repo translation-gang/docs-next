@@ -1,7 +1,7 @@
 <template>
   <div class="newsletter">
     <div class="inner">
-      <h3><label for="member_email">Subscribe to our Weekly Newsletter</label></h3>
+      <h3><label for="member_email">Подпишитесь на нашу еженедельную рассылку (на английском)</label></h3>
       <form
         class="newsletter-form"
         id="revue-form"
@@ -17,18 +17,18 @@
           name="member[email]"
           id="member_email"
           required
-          placeholder="Email address"
+          placeholder="Адрес электронной почты"
         >
         <input
           class="button newsletter-button"
           type="submit"
-          value="Subscribe"
+          value="Подписаться"
           name="member[subscribe]"
           id="member_submit"
         >
       </form>
       <p>
-        You can read the previous issues and listen to our podcast at <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
+        Предыдущие выпуски и подкаст можно найти на сайте <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
       </p>
     </div>
   </div>
