@@ -28,7 +28,7 @@
         >
       </form>
       <p>
-        Вы можете прочитать предыдущие выпуски и послушать наш подкаст на сайте <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
+        Предыдущие выпуски и подкаст можно найти на сайте <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a>.
       </p>
     </div>
   </div>
