@@ -118,6 +118,8 @@ const MyComponent = {
   - `errorCaptured` -> `onErrorCaptured`
   - `renderTracked` -> `onRenderTracked`
   - `renderTriggered` -> `onRenderTriggered`
+  - `activated` -> `onActivated`
+  - `deactivated` -> `onDeactivated`
 
 - **См. также**: [Composition API. Хуки жизненного цикла](../guide/composition-api-lifecycle-hooks.md)
 

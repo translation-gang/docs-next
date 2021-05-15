@@ -21,6 +21,8 @@
 | `errorCaptured`   | `onErrorCaptured`   |
 | `renderTracked`   | `onRenderTracked`   |
 | `renderTriggered` | `onRenderTriggered` |
+| `activated`       | `onActivated`       |
+| `deactivated`     | `onDeactivated`     |
 
 :::tip Совет
 Поскольку `setup` запускается приблизительно как и хуки `beforeCreate` и `created`, то и не требуется их явно определять. Другими словами, любой код для этих хуков можно указать непосредственно в функции `setup`.
