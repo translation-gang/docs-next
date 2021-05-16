@@ -132,7 +132,7 @@ const Component = defineComponent({
 })
 ```
 
-Сложные типы или интерфейсы можно приводить с использованием [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
+К сложным типам или интерфейсам можно приводить с использованием [type assertion](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
 
 ```ts
 interface Book {
