@@ -52,8 +52,8 @@ Vue.directive('highlight', {
 
 ```js
 const MyDirective = {
-  created() {}, // новый
-  beforeMount(el, binding, vnode, prevVnode) {},
+  created(el, binding, vnode, prevVnode) {}, // новый
+  beforeMount() {},
   mounted() {},
   beforeUpdate() {}, // новый
   updated() {},
