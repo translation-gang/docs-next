@@ -158,7 +158,7 @@ const Component = defineComponent({
 
 Для добавления глобальных свойств, доступных в любом экземпляре компонента, Vue 3 предоставляет [объект `globalProperties`](../api/application-config.md#globalproperties). Например, для [плагина](plugins.md#создание-плагина) может потребоваться внедрить глобальный объект или функцию.
 
-```ts
+```ts{7,12}
 import axios from 'axios'
 import { createApp } from 'vue'
 
