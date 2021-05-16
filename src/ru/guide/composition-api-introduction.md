@@ -118,7 +118,7 @@ export default {
 import { fetchUserRepositories } from '@/api/repositories'
 
 // в компоненте
-setup (props) {
+setup(props) {
   let repositories = []
   const getUserRepositories = async () => {
     repositories = await fetchUserRepositories(props.user)
@@ -175,7 +175,7 @@ import { fetchUserRepositories } from '@/api/repositories'
 import { ref } from 'vue'
 
 // в компоненте
-setup (props) {
+setup(props) {
   const repositories = ref([])
   const getUserRepositories = async () => {
     repositories.value = await fetchUserRepositories(props.user)
@@ -203,7 +203,7 @@ export default {
       required: true
     }
   },
-  setup (props) {
+  setup(props) {
     const repositories = ref([])
     const getUserRepositories = async () => {
       repositories.value = await fetchUserRepositories(props.user)
@@ -254,7 +254,7 @@ import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted } from 'vue'
 
 // в компоненте
-setup (props) {
+setup(props) {
   const repositories = ref([])
   const getUserRepositories = async () => {
     repositories.value = await fetchUserRepositories(props.user)
@@ -319,7 +319,7 @@ import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch, toRefs } from 'vue'
 
 // в компоненте
-setup (props) {
+setup(props) {
   // `toRefs` создаёт реактивную ссылку для входного параметра `user`
   const { user } = toRefs(props)
 
@@ -370,7 +370,7 @@ import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch, toRefs, computed } from 'vue'
 
 // в компоненте
-setup (props) {
+setup(props) {
   // `toRefs` создаёт реактивную ссылку для входного параметра `user`
   const { user } = toRefs(props)
 
@@ -463,7 +463,7 @@ export default {
       required: true
     }
   },
-  setup (props) {
+  setup(props) {
     const { user } = toRefs(props)
 
     const { repositories, getUserRepositories } = useUserRepositories(user)

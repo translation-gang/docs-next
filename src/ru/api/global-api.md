@@ -497,7 +497,7 @@ export default {
 import { h, useCssModule } from 'vue'
 
 export default {
-  setup () {
+  setup() {
     const style = useCssModule()
 
     return () => h('div', {
