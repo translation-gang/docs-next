@@ -130,7 +130,7 @@ export default {
     },
     setup(props) {
       const readersNumber = ref(0)
-      const book = reactive({ title: 'Vue 3 Guide' })
+      const book = reactive({ title: 'Руководство Vue 3' })
 
       // всё объявленное будет доступно в шаблоне
       return {
@@ -156,7 +156,7 @@ import { h, ref, reactive } from 'vue'
 export default {
   setup() {
     const readersNumber = ref(0)
-    const book = reactive({ title: 'Vue 3 Guide' })
+    const book = reactive({ title: 'Руководство Vue 3' })
     // Обратите внимание, здесь потребуется явно объявить значение ref
     return () => h('div', [readersNumber.value, book.title])
   }
