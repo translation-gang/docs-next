@@ -142,7 +142,7 @@ data() {
 ```js
 props: ['size'],
 computed: {
-  normalizedSize: function () {
+  normalizedSize() {
     return this.size.trim().toLowerCase()
   }
 }
@@ -180,22 +180,22 @@ app.component('my-component', {
       type: Object,
       // Для объектов или массивов значения по умолчанию
       // должны возвращаться из функции
-      default: function() {
-        return { message: 'hello' }
+      default() {
+        return { message: 'привет' }
       }
     },
     // Пользовательская функция для валидации
     propF: {
-      validator: function(value) {
+      validator(value) {
         // Значение должно соответствовать одной из этих строк
-        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+        return ['success', 'warning', 'danger'].includes(value)
       }
     },
     // Функция с значением по умолчанию
     propG: {
       type: Function,
       // В отличие от объекта или массива по умолчанию, это не фабричная функция — это функция, служащая в качестве значения по умолчанию
-      default: function() {
+      default() {
         return 'Функция по умолчанию'
       }
     }
