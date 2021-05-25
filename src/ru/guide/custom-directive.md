@@ -133,7 +133,7 @@ app.mount('#dynamic-arguments-example')
 <div id="dynamicexample">
   <h2>Scroll down the page</h2>
   <input type="range" min="0" max="500" v-model="pinPadding">
-  <p v-pin:[direction]="pinPadding">Зафиксировать в {{ pinPadding + 'px' }} от {{ direction }} страницы</p>
+  <p v-pin:[direction]="pinPadding">Зафиксировать в {{ pinPadding + 'px' }} от {{ direction || 'top' }} страницы</p>
 </div>
 ```
 
