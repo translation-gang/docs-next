@@ -37,4 +37,5 @@ badges:
 
 ## См. также
 
-- [Переименованы некоторые классы transition](transition.md)
+- [Переименованы некоторые классы `<transition>`](transition.md)
+- [Использование `<transition>` корневым элементом](transition-as-root.md)

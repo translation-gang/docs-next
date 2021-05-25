@@ -63,4 +63,5 @@ badges:
 
 ## См. также
 
+- [Использование `<transition>` корневым элементом](transition-as-root.md)
 - [`<transition-group>` теперь не имеет корневого элемента по умолчанию](transition-group.md)

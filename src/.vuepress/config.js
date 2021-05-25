@@ -443,6 +443,7 @@ const sidebarRU = {
         '/ru/guide/migration/slots-unification',
         '/ru/guide/migration/suspense',
         '/ru/guide/migration/transition',
+        '/ru/guide/migration/transition-as-root',
         '/ru/guide/migration/transition-group',
         '/ru/guide/migration/v-on-native-modifier-removed',
         '/ru/guide/migration/v-model',
