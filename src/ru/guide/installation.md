@@ -19,6 +19,8 @@ Vue.js изначально разрабатывался быть инкреме
 
 > На данный момент в бета-тестировании — интеграция с Vuex и Router в разработке
 
+<VideoLesson href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3?friend=vuejs" title="Узнайте как устанавливать Vue Devtools на Vue School">Узнайте как устанавливать и использовать Vue Devtools в бесплатном уроке Vue School</VideoLesson>
+
 При использовании Vue рекомендуем установить расширение [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) для браузера, которое позволит легче проверять и отлаживать приложения на Vue в удобном интерфейсе.
 
 [Расширение для Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)

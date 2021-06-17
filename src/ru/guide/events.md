@@ -1,5 +1,7 @@
 # Обработка событий
 
+<VideoLesson href="https://vueschool.io/lessons/user-events-in-vue-3?friend=vuejs" title="Узнайте как обрабатывать события на Vue School">Узнайте как обрабатывать события в бесплатном уроке Vue School</VideoLesson>
+
 ## Прослушивание событий
 
 Можно использовать директиву `v-on`, которую обычно сокращают до символа `@`, чтобы прослушивать события DOM и запускать какой-нибудь JavaScript-код по их наступлению. Используется как `v-on:click="methodName"` или в сокращённом виде `@click="methodName"`.

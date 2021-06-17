@@ -4,6 +4,8 @@
 
 ## Связывание CSS-классов
 
+<VideoLesson href="https://vueschool.io/lessons/dynamic-css-classes-with-vue-3?friend=vuejs" title="Бесплатный урок по динамическим классам во Vue.js">Посмотрите бесплатный видеоурок на Vue School</VideoLesson>
+
 ### Объектный синтаксис
 
 Для динамической установки или удаления CSS-классов в директиву `:class` (сокращение для `v-bind:class`) можно передавать объект:
