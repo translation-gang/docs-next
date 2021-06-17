@@ -348,7 +348,7 @@ const sidebarRU = {
     {
       title: 'Масштабирование',
       collapsable: false,
-      children: ['/ru/guide/routing', '/ru/guide/state-management', '/ru/guide/ssr']
+      children: ['/ru/guide/routing', '/ru/guide/state-management', '/ru/guide/ssr', '/ru/guide/security']
     },
     {
       title: 'Доступность',
