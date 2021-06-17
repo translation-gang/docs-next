@@ -75,16 +75,17 @@ const app = createApp({})
 
 Экземпляр приложения представляет собой подмножество от глобального API Vue 2. Главное правило заключается в том, что _любое API, которое глобально изменяет поведение Vue теперь переносится в экземпляр приложения_. Ниже таблица соответствий глобального API Vue 2 и соответствующих API экземпляра:
 
-| Глобальное API в 2.x       | API экземпляра (`app`) в 3.x                                                                   |
-|----------------------------|------------------------------------------------------------------------------------------------|
-| Vue.config                 | app.config                                                                                     |
-| Vue.config.productionTip   | _удалено_ ([см. ниже](#удалено-своиство-config-productiontip))                                          |
-| Vue.config.ignoredElements | app.config.isCustomElement ([см. ниже](#своиство-config-ignoredelements-теперь-config-iscustomelement)) |
-| Vue.component              | app.component                                                                                  |
-| Vue.directive              | app.directive                                                                                  |
-| Vue.mixin                  | app.mixin                                                                                      |
-| Vue.use                    | app.use ([см. ниже](#примечание-для-разработчиков-плагинов))                                               |
-| Vue.prototype              | app.config.globalProperties ([см. ниже](#своиство-vue-prototype-заменено-на-config-globalproperties))   |
+| Глобальное API в 2.x       | API экземпляра (`app`) в 3.x                                                                                                            |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Vue.config                 | app.config                                                                                                                              |
+| Vue.config.productionTip   | _удалено_ ([см. ниже](#удалено-своиство-config-productiontip))                                                                          |
+| Vue.config.ignoredElements | app.config.compilerOptions.isCustomElement ([см. ниже](#своиство-config-ignoredelements-теперь-config-compileroptions-iscustomelement)) |
+| Vue.component              | app.component                                                                                                                           |
+| Vue.directive              | app.directive                                                                                                                           |
+| Vue.mixin                  | app.mixin                                                                                                                               |
+| Vue.use                    | app.use ([см. ниже](#примечание-для-разработчиков-плагинов))                                                                            |
+| Vue.prototype              | app.config.globalProperties ([см. ниже](#своиство-vue-prototype-заменено-на-config-globalproperties))                                   |
+| Vue.extend                 | _удалён_ ([см. ниже](#удален-метод-vue-extend))                                                                                         |
 
 Все другие глобальные API, которые глобально не изменяют поведение, теперь доступны именованными экспортами, как описывается в разделе [Treeshaking глобального API](global-api-treeshaking.md).
 
@@ -94,7 +95,9 @@ const app = createApp({})
 
 Так как сборки в виде ES-модулей используются с системами сборки, и в большинстве случаев CLI или шаблон конфигурируют переменную окружения сборки, то эти предупреждения теперь больше не будут показываться.
 
-### Свойство `config.ignoredElements` теперь `config.isCustomElement`
+[Флаг сборки для миграции: `CONFIG_PRODUCTION_TIP`](migration-build.md#конфигурация-совместимости)
+
+### Свойство `config.ignoredElements` теперь `config.compilerOptions.isCustomElement`
 
 Эта опция конфигурации добавлена для поддержки нативных пользовательских элементов, поэтому переименование лучше отражает что она делает. Новая опция ожидает функцию, что обеспечивает большую гибкость, нежели старый подход со строками и RegExp:
 
@@ -105,15 +108,17 @@ Vue.config.ignoredElements = ['my-el', /^ion-/]
 // теперь
 const app = createApp({})
 
-app.config.isCustomElement = tag => tag.startsWith('ion-')
+app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
 ```
 
 :::tip Внимание
 В 3.х, проверка, является ли элемент компонентом или нет, была перенесена на этап компиляции шаблона, поэтому данная опция конфигурации используется только при компиляции шаблонов на лету. При использовании только-runtime сборки, опция `isCustomElement` должна передаваться в `@vue/compiler-dom` в настройках сборки — например, через [опцию `compilerOptions` в vue-loader](https://vue-loader.vuejs.org/ru/options.html#compileroptions).
 
-- Если `config.isCustomElement` указан при использовании только-runtime сборки, то будет выведено предупреждение о необходимости передавать опцию в настройках сборки;
+- Если `config.compilerOptions.isCustomElement` указан при использовании только-runtime сборки, то будет выведено предупреждение о необходимости передавать опцию в настройках сборки;
 - Это будет новая опция верхнего уровня в конфигурации Vue CLI.
 :::
+
+[Флаг сборки для миграции: `CONFIG_IGNORED_ELEMENTS`](migration-build.md#конфигурация-совместимости)
 
 ### Свойство `Vue.prototype` заменено на `config.globalProperties`
 
@@ -134,6 +139,58 @@ app.config.globalProperties.$http = () => {}
 ```
 
 Использование `provide` (обсуждается [ниже](#provide-inject)) также следует рассматривать как альтернативу `globalProperties`.
+
+[Флаги сборки для миграции: `GLOBAL_PROTOTYPE`](migration-build.md#конфигурация-совместимости)
+
+### Удалён метод `Vue.extend`
+
+Во Vue 2.x метод `Vue.extend` использовался для создания «подкласса» базового конструктора Vue с аргументом, который должен быть объектом, содержащим опции компонента. Во Vue 3.x больше нет концепции конструкторов компонентов. Монтируемый компонент всегда должен использовать глобальный API `createApp`:
+
+```js
+// раньше - Vue 2
+// создание конструктора
+const Profile = Vue.extend({
+  template: '<p>{{ firstName }} {{ lastName }} — {{ alias }}</p>',
+  data() {
+    return {
+      firstName: 'Walter',
+      lastName: 'White',
+      alias: 'Heisenberg'
+    }
+  }
+})
+
+// создание экземпляра Profile и его монтирование на элементе
+new Profile().$mount('#mount-point')
+```
+
+```js
+// сейчас - Vue 3
+const Profile = {
+  template: '<p>{{ firstName }} {{ lastName }} — {{ alias }}</p>',
+  data() {
+    return {
+      firstName: 'Walter',
+      lastName: 'White',
+      alias: 'Heisenberg'
+    }
+  }
+}
+
+Vue.createApp(Profile).mount('#mount-point')
+```
+
+#### Выведение типов
+
+Во Vue 2 метод `Vue.extend` также использовался с TypeScript для выведения типов опций компонента. Во Vue 3 можно использовать глобальный API `defineComponent` вместо `Vue.extend` для этих же целей.
+
+Обратите внимание, что хотя возвращаемый тип `defineComponent` является типом, подобным конструктору, он используется только для вывода TSX. Во время выполнения `defineComponent` по большей части ничего не делает и возвращает объект опций как есть.
+
+#### Наследование компонентов
+
+Во Vue 3 рекомендуется отдавать предпочтение композиции через [Composition API](../../api/composition-api.md) вместо наследования или примесей. Если по какой-то причине всё ещё требуется наследование компонентов, то можно воспользоваться [опцией `extends`](../../api/options-composition.md#extends) вместо `Vue.extend`.
+
+[Флаги сборки для миграции: `GLOBAL_EXTEND`](migration-build.md#конфигурация-совместимости)
 
 ### Примечание для разработчиков плагинов
 
@@ -187,6 +244,8 @@ app.directive('focus', {
 //  “button-counter” и директиву “focus”, не загрязняя глобальное окружение
 app.mount('#app')
 ```
+
+[Флаги сборки для миграции: `GLOBAL_MOUNT`](migration-build.md#конфигурация-совместимости)
 
 ## Provide / Inject
 
