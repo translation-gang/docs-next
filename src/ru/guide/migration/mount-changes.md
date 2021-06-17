@@ -89,6 +89,10 @@ app.mount('#app')
 </body>
 ```
 
+## Стратегия миграции
+
+[Флаг сборки для миграции: `GLOBAL_MOUNT_CONTAINER`](migration-build.md#конфигурация-совместимости)
+
 ## См. также
 
 - [`mount` API](../../api/application-api.md#mount)

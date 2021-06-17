@@ -185,6 +185,11 @@ this.$emit('update:title', newValue)
   }
   ```
 
+[Флаги сборки для миграции:](migration-build.md#конфигурация-совместимости)
+
+- `COMPONENT_V_MODEL`
+- `COMPILER_V_BIND_SYNC`
+
 ## Дальнейшие шаги
 
 Более подробную информацию о новом синтаксисе `v-model` можно получить здесь:

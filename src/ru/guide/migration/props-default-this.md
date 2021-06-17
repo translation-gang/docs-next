@@ -30,3 +30,7 @@ export default {
   }
 }
 ```
+
+## Стратегия миграции
+
+[Флаг сборки для миграции: `PROPS_DEFAULT_THIS`](migration-build.md#конфигурация-совместимости)

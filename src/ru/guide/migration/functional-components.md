@@ -119,3 +119,4 @@ export default {
 
 - [Руководство по миграции: изменён API render-функций](render-function-api.md)
 - [Руководство: Render-функции](../render-function.md)
+- [Флаг сборки для миграции: `COMPONENT_FUNCTIONAL`](migration-build.md#конфигурация-совместимости)

@@ -137,3 +137,8 @@ badges:
     </tr>
   </tbody>
 </table>
+
+[Флаги сборки для миграции:](migration-build.md#конфигурация-совместимости)
+
+- `ATTR_FALSE_VALUE`
+- `ATTR_ENUMERATED_COERSION`

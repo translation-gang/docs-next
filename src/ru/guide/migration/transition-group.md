@@ -35,6 +35,10 @@ badges:
 </transition-group>
 ```
 
+## Стратегия миграции
+
+[Флаг сборки для миграции: `TRANSITION_GROUP_ROOT`](migration-build.md#конфигурация-совместимости)
+
 ## См. также
 
 - [Переименованы некоторые классы `<transition>`](transition.md)

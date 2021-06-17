@@ -66,6 +66,8 @@ export default {
 
 Удалить все случаи использования `$listeners`.
 
+[Флаг сборки для миграции: `INSTANCE_LISTENERS`](migration-build.md#конфигурация-совместимости)
+
 ## См. также
 
 - [Соответствующий RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md)

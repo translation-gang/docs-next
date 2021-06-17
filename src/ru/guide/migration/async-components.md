@@ -95,3 +95,4 @@ const asyncComponent = defineAsyncComponent(
 Подробная информация об использовании асинхронных компонентов:
 
 - [Руководство: Динамические и асинхронные компоненты](../component-dynamic-async.md#динамические-компоненты-с-keep-alive)
+- [Флаг сборки для миграции: `COMPONENT_ASYNC`](migration-build.md#конфигурация-совместимости)

@@ -49,6 +49,8 @@ badges:
 - удалить все экземпляры модификатора `.native`.
 - убедитесь, что все компоненты документируют свои события с помощью опции `emits`.
 
+[Флаг сборки для миграции: `COMPILER_V_ON_NATIVE`](migration-build.md#конфигурация-совместимости)
+
 ## См. также
 
 - [Соответствующий RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0031-attr-fallthrough.md#v-on-listener-fallthrough)

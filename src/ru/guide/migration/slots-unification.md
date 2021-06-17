@@ -63,3 +63,5 @@ this.$slots.header()
 
 1. Заменить все использования `this.$scopedSlots` на `this.$slots` для версий 3.x.
 2. Заменить все использования `this.$slots.mySlot` на `this.$slots.mySlot()`
+
+[Флаг сборки для миграции: `INSTANCE_SCOPED_SLOTS`](migration-build.md#конфигурация-совместимости)
