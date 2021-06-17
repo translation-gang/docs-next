@@ -414,6 +414,7 @@ const sidebarRU = {
   ],
   migration: [
     '/ru/guide/migration/introduction',
+    '/ru/guide/migration/migration-build',
     {
       title: 'Подробности',
       collapsable: false,
