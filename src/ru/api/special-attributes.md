@@ -56,17 +56,27 @@
 
 - **Ожидает:** `string | Object (объект опций компонента)`
 
-Используется для [динамических компонентов](../guide/component-dynamic-async.md).
+  Используется для [динамических компонентов](../guide/component-dynamic-async.md).
 
-Например:
+  Например:
 
-```html
-<!-- компонент меняется в соответствии с изменением currentView -->
-<component :is="currentView"></component>
-```
+  ```html
+  <!-- компонент меняется в соответствии с изменением currentView -->
+  <component :is="currentView"></component>
+  ```
 
-Подробнее можно изучить по ссылкам ниже.
+- **Использование на нативных элементах** <Badge text="3.1.0+" />
+
+  Когда атрибут `is` используется на нативном HTML-элементе, то он интерпретируется как [пользовательский встроенный элемент](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example). Это нативная возможность веб-платформы.
+
+  Но есть случаи, когда может потребоваться, чтобы Vue заменил нативный элемент на компонент Vue, как например в разделе [особенностей парсинга DOM-шаблона](../guide/component-basics.md#особенности-парсинга-dom-шаблона). В таком случае можно добавить значению атрибута `is` префикс `vue:`, чтобы Vue вместо элемента отрисовал компонент Vue:
+
+  ```html
+  <table>
+    <tr is="vue:my-row-component"></tr>
+  </table>
+  ```
 
 - **См. также:**
   - [Динамические компоненты](../guide/component-dynamic-async.md)
-  - [Особенности парсинга DOM-шаблона](../guide/component-basics.md#особенности-парсинга-dom-шаблона)
+  - [RFC объясняющий необходимость изменения](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0027-custom-elements-interop.md#customized-built-in-elements)
