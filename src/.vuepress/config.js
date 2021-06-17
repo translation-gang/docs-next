@@ -109,7 +109,7 @@ const sidebar = {
     {
       title: 'Scaling Up',
       collapsable: false,
-      children: ['/guide/routing', '/guide/state-management', '/guide/ssr']
+      children: ['/guide/routing', '/guide/state-management', '/guide/ssr', '/guide/security']
     },
     {
       title: 'Accessibility',
@@ -175,6 +175,7 @@ const sidebar = {
   ],
   migration: [
     '/guide/migration/introduction',
+    '/guide/migration/migration-build',
     {
       title: 'Details',
       collapsable: false,
