@@ -1,6 +1,6 @@
 # Партнёры Vue
 
-Vue Partners are premium shops that provide first-class Vue consulting and development. If your company is interested in being listed as a partner, please contact us at [partners@vuejs.org](mailto:partners@vuejs.org).
+Партнёры Vue — магазины премиум-класса, предоставляющие первоклассный консалтинг и разработку на Vue. Если ваша компания заинтересована в том, чтобы быть включённой в список партнёров, пожалуйста зарегистрируйте свой интерес [здесь](https://airtable.com/shrCQhat57SApJI2l).
 
 ## Активные партнёры
 
