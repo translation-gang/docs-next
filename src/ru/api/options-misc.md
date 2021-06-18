@@ -42,7 +42,7 @@
 
 - **См. также:** [Отключение наследования атрибутов](../guide/component-attrs.md#отключение-наследования-атрибутов)
 
-## compilerOptions <Badge text="3.1+" />
+## compilerOptions <Badge text="3.1.0+" />
 
 - **Тип:** `Object`
 
