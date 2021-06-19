@@ -34,10 +34,10 @@ badges:
 
 | Выражение           | `foo` <sup>обычный</sup> | `draggable` <sup>перечисляемый</sup> |
 | ------------------- | ----------------------- | ------------------------------------- |
-| `:attr="null"`      | /                       | `draggable="false"`                   |
-| `:attr="undefined"` | /                       | /                                     |
+| `:attr="null"`      | -                       | `draggable="false"`                   |
+| `:attr="undefined"` | -                       | -                                     |
 | `:attr="true"`      | `foo="true"`            | `draggable="true"`                    |
-| `:attr="false"`     | /                       | `draggable="false"`                   |
+| `:attr="false"`     | -                       | `draggable="false"`                   |
 | `:attr="0"`         | `foo="0"`               | `draggable="true"`                    |
 | `attr=""`           | `foo=""`                | `draggable="true"`                    |
 | `attr="foo"`        | `foo="foo"`             | `draggable="true"`                    |
@@ -60,8 +60,8 @@ badges:
 
 | Выражение           | `foo` <sup>обычный</sup>    | `draggable` <sup>перечисляемый</sup> |
 | ------------------- | -------------------------- | ------------------------------------- |
-| `:attr="null"`      | /                          | / <sup>*</sup>                        |
-| `:attr="undefined"` | /                          | /                                     |
+| `:attr="null"`      | -                          | - <sup>*</sup>                        |
+| `:attr="undefined"` | -                          | -                                     |
 | `:attr="true"`      | `foo="true"`               | `draggable="true"`                    |
 | `:attr="false"`     | `foo="false"` <sup>*</sup> | `draggable="false"`                   |
 | `:attr="0"`         | `foo="0"`                  | `draggable="0"` <sup>*</sup>          |
