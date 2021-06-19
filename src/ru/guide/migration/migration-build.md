@@ -38,17 +38,17 @@
 
 ### Подготовка
 
-- If you are still using the [deprecated named / scoped slot syntax](https://vuejs.org/v2/guide/components-slots.html#Deprecated-Syntax), update it to the latest syntax first (which is already supported in 2.6).
+- При использовании [устаревшего синтаксиса именованных слотов / слотов с ограниченной областью видимости](https://ru.vuejs.org/v2/guide/components-slots.html#%D0%A3%D1%81%D1%82%D0%B0%D1%80%D0%B5%D0%B2%D1%88%D0%B8%D0%B9-%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81), сначала обновите его до нового синтаксиса (который уже поддерживается в версии 2.6).
 
 ### Установка
 
-1. Upgrade tooling if applicable.
+1. Обновите инструментарий, если это возможно.
 
-   - If using custom webpack setup: Upgrade `vue-loader` to `^16.0.0`.
-   - If using `vue-cli`: upgrade to the latest `@vue/cli-service` with `vue upgrade`
-   - (Alternative) migrate to [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2). [[Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
+   - При использовании пользовательской настройки webpack: Обновите `vue-loader` до версии `^16.0.0`.
+   - При использовании `vue-cli`: обновите `@vue/cli-service` до последней версии с помощью команды `vue upgrade`
+   - (Альтернатива) Мигрируйте на [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2). [[Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
 
-2. In `package.json`, update `vue` to 3.1, install `@vue/compat` of the same version, and replace `vue-template-compiler` (if present) with `@vue/compiler-sfc`:
+2. В файле `package.json`, обновите `vue` до 3.1. Установите `@vue/compat` такой же версии, замените `vue-template-compiler` (если присутствует) на `@vue/compiler-sfc`:
 
    ```diff
    "dependencies": {
@@ -65,7 +65,7 @@
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/14f6f1879b43f8610add60342661bf915f5c4b20)
 
-3. In the build setup, alias `vue` to `@vue/compat` and enable compat mode via Vue compiler options.
+3. В конфигурации сборки установите псевдоним для `vue` на `@vue/compat` и включите режим совместимости через опции компилятора Vue.
 
     **Примеры конфигураций**
 
@@ -155,11 +155,11 @@
 
     </details>
 
-4. At this point, your application may encounter some compile-time errors / warnings (e.g. use of filters). Fix them first. If all compiler warnings are gone, you can also set the compiler to Vue 3 mode.
+4. На этом этапе приложение может столкнуться с некоторыми ошибками / предупреждениями на этапе компиляции (например, при использование фильтров). Исправьте их в первую очередь. Когда все предупреждения компилятора исчезнут, можно переключить компилятор в режим Vue 3.
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
 
-5. After fixing the errors, the app should be able to run if it is not subject to the [limitations](#known-limitations) mentioned above.
+5. After fixing the errors, the app should be able to run if it is not subject to the [limitations](#известные-ограничения) mentioned above.
 
    You will likely see a LOT of warnings from both the command line and the browser console. Here are some general tips:
 
