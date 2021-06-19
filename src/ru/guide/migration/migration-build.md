@@ -155,45 +155,45 @@
 
     </details>
 
-4. На этом этапе приложение может столкнуться с некоторыми ошибками / предупреждениями на этапе компиляции (например, при использование фильтров). Исправьте их в первую очередь. Когда все предупреждения компилятора исчезнут, можно переключить компилятор в режим Vue 3.
+4. На этом этапе приложение может столкнуться с некоторыми ошибками / предупреждениями на этапе компиляции (например, при использовании фильтров). Исправьте их в первую очередь. Когда все предупреждения компилятора исчезнут, можно переключить компилятор в режим Vue 3.
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
 
-5. After fixing the errors, the app should be able to run if it is not subject to the [limitations](#известные-ограничения) mentioned above.
+5. После исправления ошибок приложение должно запускаться, если на него не распространяются [известные ограничения](#известные-ограничения), упомянутые выше.
 
-   You will likely see a LOT of warnings from both the command line and the browser console. Here are some general tips:
+   Скорее всего увидите МНОЖЕСТВО предупреждений, как в командной строке, так и в консоли браузера. Вот несколько общих советов:
 
-   - You can filter for specific warnings in the browser console. It's a good idea to use the filter and focus on fixing one item at a time. You can also use negated filters like `-GLOBAL_MOUNT`.
+   - Можно отфильтровать конкретные предупреждения в консоли браузера. Хорошая идея — воспользоваться фильтром и сосредоточиться на исправлении одного типа ошибки за раз. Также можно использовать отрицание в фильтрах, например `-GLOBAL_MOUNT`.
 
-   - You can suppress specific deprecations via [compat configuration](#compat-configuration).
+   - Можно отключить вывод конкретных предупреждений об ошибках через [конфигурации совместимости](#конфигурация-совместимости).
 
-   - Some warnings may be caused by a dependency that you use (e.g. `vue-router`). You can check this from the warning's component trace or stack trace (expanded on click). Focus on fixing the warnings that originate from your own source code first.
+   - Некоторые предупреждения могут быть вызваны зависимостью, которую используете (например, `vue-router`). Это можно проверить по трассировке предупреждения компонента или трассировке стека (разворачивается по клику). Для начала лучше сосредоточиться на исправлении предупреждений, вызванных собственным исходным кодом.
 
-   - If you are using `vue-router`, note `<transition>` and `<keep-alive>` will not work with `<router-view>` until you upgrade to `vue-router` v4.
+   - Если используете `vue-router`, обратите внимание, что `<transition>` и `<keep-alive>` не будут работать с `<router-view>`, пока не обновите `vue-router` до версии v4.
 
-6. Update [`<transition>` class names](transition.html). This is the only feature that does not have a runtime warning. You can do a project-wide search for `.*-enter` and `.*-leave` CSS class names.
+6. Обновите [имена классов `<transition>`](transition.md). Это единственная функция, которая не имеет предупреждения во время выполнения. Можно выполнить поиск по всему проекту для имён CSS-классов `.*-enter` и `.*-leave`.
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/d300103ba622ae26ac26a82cd688e0f70b6c1d8f)
 
-7. Update app entry to use [new global mounting API](global-api.html#a-new-global-api-createapp).
+7. Обновите точку входа приложения для использования [нового глобального API монтирования](global-api.md#новыи-глобальныи-api-createapp).
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/a6e0c9ac7b1f4131908a4b1e43641f608593f714)
 
-8. [Upgrade `vuex` to v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
+8. [Обновите `vuex` до версии v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/5bfd4c61ee50f358cd5daebaa584f2c3f91e0205)
 
-9. [Upgrade `vue-router` to v4](https://next.router.vuejs.org/guide/migration/index.html). If you also use `vuex-router-sync`, you can replace it with a store getter.
+9. [Обновите `vue-router` до версии v4](https://next.router.vuejs.org/guide/migration/index.html). Если также используется `vuex-router-sync`, то можно его заменить на геттер.
 
-   After the upgrade, to use `<transition>` and `<keep-alive>` with `<router-view>` requires using the new [scoped-slot based syntax](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition).
+   После обновления, для использования `<transition>` и `<keep-alive>` вместе с `<router-view>` необходимо использовать новый [синтаксис для слотов с ограниченной областью видимости](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition).
 
    [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/758961e73ac4089890079d4ce14996741cf9344b)
 
-10. Pick off individual warnings. Note some features have conflicting behavior between Vue 2 and Vue 3 - for example, the render function API, or the functional component vs. async component change. To migrate to Vue 3 API without affecting the rest of the application, you can opt-in to Vue 3 behavior on a per-component basis with the [`compatConfig` option](#per-component-config).
+10. Выберите отдельные предупреждения. Обратите внимание, что некоторые функции имеют несовместимое поведение между Vue 2 и Vue 3 — например, API render-функций, или изменения функциональных компонентов vs. асинхронных компонентов. Для миграции на API Vue 3, не затрагивая остальные части приложения, можно выбрать поведение Vue 3 для конкретного компонента с помощью [опции `compatConfig`](#конфигурация-для-компонента).
 
     [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/d0c7d3ae789be71b8fd56ce79cb4cb1f921f893b)
 
-11. When all warnings are fixed, you can remove the migration build and switch to Vue 3 proper. Note you may not be able to do so if you still have dependencies that rely on Vue 2 behavior.
+11. Когда все предупреждения будут исправлены, можно удалить сборку для миграции и перейти на обычную сборку Vue 3. Обратите внимание, что этого ещё нельзя будет сделать, если есть зависимости, которые полагаются на поведение Vue 2.
 
     [Пример коммита](https://github.com/vuejs/vue-hackernews-2.0/commit/9beb45490bc5f938c9e87b4ac1357cfb799565bd)
 
@@ -201,25 +201,25 @@
 
 ### Глобальная конфигурация
 
-Compat features can be disabled individually:
+Совместимость возможностей можно отключать по отдельности:
 
 ```js
 import { configureCompat } from 'vue'
 
-// disable compat for certain features
+// отключение совместимости для отдельных возможностей
 configureCompat({
   FEATURE_ID_A: false,
   FEATURE_ID_B: false
 })
 ```
 
-Alternatively, the entire application can default to Vue 3 behavior, with only certain compat features enabled:
+В качестве альтернативы, всё приложение может по умолчанию использовать поведение Vue 3, включая совместимость лишь для определённых функций:
 
 ```js
 import { configureCompat } from 'vue'
 
-// default everything to Vue 3 behavior, and only enable compat
-// for certain features
+// по умолчанию всё поведение как во Vue 3 behavior,
+// и только включение совместимости для определённых функций
 configureCompat({
   MODE: 3,
   FEATURE_ID_A: true,
@@ -229,13 +229,13 @@ configureCompat({
 
 ### Конфигурация для компонента
 
-A component can use the `compatConfig` option, which expects the same options as the global `configureCompat` method:
+Компонент может использовать опцию `compatConfig`, которая ожидает такие же параметры, что и глобальный метод `configureCompat`:
 
 ```js
 export default {
   compatConfig: {
-    MODE: 3, // opt-in to Vue 3 behavior for this component only
-    FEATURE_ID_A: true // features can also be toggled at component level
+    MODE: 3, // выбор поведения Vue 3 только для этого компонента
+    FEATURE_ID_A: true // возможности также можно переключать на уровне компонента
   }
   // ...
 }
@@ -243,7 +243,7 @@ export default {
 
 ### Конфигурация компиляции
 
-Features that start with `COMPILER_` are compiler-specific: if you are using the full build (with in-browser compiler), they can be configured at runtime. However if using a build setup, they must be configured via the `compilerOptions` in the build config instead (see example configs above).
+Возможности, именующиеся с `COMPILER_` специфичны для компилятора: при использовании полной сборки (с компиляцией шаблонов в браузере), они могут быть настроены во время выполнения. Однако при использовании шага сборки они должны быть настроены через `compilerOptions` в конфигурации сборки (см. примеры конфигураций выше).
 
 ## Перечень возможностей
 
