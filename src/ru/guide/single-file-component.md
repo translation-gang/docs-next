@@ -15,7 +15,7 @@
 
 Вот пример такого файла, который называется `Hello.vue`:
 
-<a href="https://codepen.io/team/Vue/pen/3de13b5cd0133df4ecf307b6cf2c5f94" target="_blank" rel="noopener noreferrer"><img src="/images/sfc.png" width="403" alt="Пример однофайлового компонента (кликните для просмотра кода)" style="display: block; margin: 15px auto; max-width: 100%"></a>
+<div style="padding: 10px 0 30px"><a href="https://codepen.io/team/Vue/pen/3de13b5cd0133df4ecf307b6cf2c5f94" target="_blank" rel="noopener noreferrer" title="Кликните для просмотра кода"><img src="/images/sfc.png" width="292" alt="Пример однофайлового компонента (кликните для просмотра кода)" style="border-radius: 5px; box-shadow: 0 13px 20px rgb(0 0 0 / 50%); margin: 0 auto; display: block;"></a></div>
 
 С однофайловыми компонентами получили:
 
@@ -25,7 +25,7 @@
 
 Как говорилось ранее, можно также использовать препроцессоры, такие как Pug, Babel (с модулями ES2015) и Stylus для создания более понятных и функциональных компонентов.
 
-<a href="https://codesandbox.io/s/vue-single-file-component-with-pre-processors-mr3ik?file=/src/App.vue" target="_blank" rel="noopener noreferrer"><img src="/images/sfc-with-preprocessors.png" width="563" alt="Пример однофайлового компонента с использованием пре-процессоров (кликните для просмотра кода)" style="display: block; margin: 15px auto; max-width: 100%"></a>
+<div style="padding: 10px 0 30px"><a href="https://codesandbox.io/s/vue-single-file-component-with-pre-processors-mr3ik?file=/src/App.vue" target="_blank" rel="noopener noreferrer" title="Кликните для просмотра кода"><img src="/images/sfc-with-preprocessors.png" width="452" alt="Пример однофайлового компонента с использованием пре-процессоров (кликните для просмотра кода)" style="border-radius: 5px; box-shadow: 0 13px 20px rgb(0 0 0 / 50%); margin: 0 auto; display: block;"></a></div>
 
 Перечисленные варианты даны лишь для примера. С тем же успехом можно использовать TypeScript, SCSS, PostCSS, или любые другие пре- или постпроцессоры. При использовании Webpack вместе с `vue-loader` также получаете и прекрасную поддержку CSS-модулей.
 
