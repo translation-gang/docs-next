@@ -133,7 +133,7 @@ export default {
       const root = ref(null)
 
       watchEffect(() => {
-        console.log(root.value) // => <div></div>
+        console.log(root.value) // => <div>Это корневой элемент</div>
       },
       {
         flush: 'post'
