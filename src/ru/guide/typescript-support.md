@@ -488,3 +488,36 @@ export default defineComponent({
   }
 })
 ```
+
+### Типизация обработчиков событий
+
+Работая с нативными событиями DOM может быть полезным типизировать аргумент, передаваемый в обработчик события. Например:
+
+```vue
+<template>
+  <input type="text" @change="handleChange" />
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    // `evt` будет с типом `any`
+    const handleChange = evt => {
+      console.log(evt.target.value) // TypeScript здесь выбросит ошибку
+    }
+
+    return { handleChange }
+  }
+})
+</script>
+```
+
+Как можно увидеть, без правильной типизации аргумента `evt`, TypeScript станет выбрасывать ошибку при попытке получить доступ к значению элемента `<input>`. Решением этой проблемы будет приведение к правильному типу `target` события:
+
+```ts
+const handleChange = (evt: Event) => {
+  console.log((evt.target as HTMLInputElement).value)
+}
+```
