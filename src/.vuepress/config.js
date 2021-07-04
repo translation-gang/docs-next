@@ -827,19 +827,23 @@ module.exports = {
             items: [
               {
                 text: 'English',
-                link: 'https://v3.vuejs.org/'
+                link: 'https://v3.vuejs.org/',
+                isTranslation: true
               },
               {
                 text: '中文',
-                link: 'https://v3.cn.vuejs.org/'
+                link: 'https://v3.cn.vuejs.org/',
+                isTranslation: true
               },
               {
                 text: '한국어',
-                link: 'https://v3.ko.vuejs.org/'
+                link: 'https://v3.ko.vuejs.org/',
+                isTranslation: true
               },
               {
                 text: '日本語',
-                link: 'https://v3.ja.vuejs.org/'
+                link: 'https://v3.ja.vuejs.org/',
+                isTranslation: true
               },
               {
                 text: 'Другие переводы',
