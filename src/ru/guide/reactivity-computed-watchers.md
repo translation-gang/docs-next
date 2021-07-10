@@ -97,7 +97,7 @@ watchEffect(async (onInvalidate) => {
 
 Система реактивности Vue буферизирует аннулированные эффекты и выполняет их очистку асинхронно. Это сделано для избежания повторяющихся вызовов, когда в одном «тике» происходит много изменений состояния. Внутренняя функция компонента `update` также является эффектом. При добавлении пользовательского эффекта в очередь, по умолчанию он будет вызываться **перед** всеми эффектами `update` компонента:
 
-```html
+```vue
 <template>
   <div>{{ count }}</div>
 </template>
@@ -203,15 +203,15 @@ watch(count, (count, prevCount) => {
 Можно отслеживать также и несколько источников одновременно, используя синтаксис наблюдателя с массивом:
 
 ```js
-const firstName = ref('');
-const lastName = ref('');
+const firstName = ref('')
+const lastName = ref('')
 
 watch([firstName, lastName], (newValues, prevValues) => {
-  console.log(newValues, prevValues);
+  console.log(newValues, prevValues)
 })
 
-firstName.value = "John"; // выведет в консоль: ["John",""] ["", ""]
-lastName.value = "Smith"; // выведет в консоль: ["John", "Smith"] ["John", ""]
+firstName.value = 'John' // выведет в консоль: ["John", ""] ["", ""]
+lastName.value = 'Smith' // выведет в консоль: ["John", "Smith"] ["John", ""]
 ```
 
 ### Отслеживание реактивных объектов
@@ -224,8 +224,9 @@ const numbers = reactive([1, 2, 3, 4])
 watch(
   () => [...numbers],
   (numbers, prevNumbers) => {
-    console.log(numbers, prevNumbers);
-  })
+    console.log(numbers, prevNumbers)
+  }
+)
 
 numbers.push(5) // Выведет в консоль: [1,2,3,4,5] [1,2,3,4]
 ```
@@ -236,47 +237,47 @@ numbers.push(5) // Выведет в консоль: [1,2,3,4,5] [1,2,3,4]
 const state = reactive({
   id: 1,
   attributes: {
-    name: "",
-  },
-});
-
-watch(
-  () => state,
-  (state, prevState) => {
-    console.log(
-      "без опции deep ",
-      state.attributes.name,
-      prevState.attributes.name
-    );
+    name: '',
   }
-);
+})
 
 watch(
   () => state,
   (state, prevState) => {
     console.log(
-      "с опцией deep ",
+      'без опции deep ',
       state.attributes.name,
       prevState.attributes.name
-    );
+    )
+  }
+)
+
+watch(
+  () => state,
+  (state, prevState) => {
+    console.log(
+      'с опцией deep ',
+      state.attributes.name,
+      prevState.attributes.name
+    )
   },
   { deep: true }
-);
+)
 
-state.attributes.name = "Alex"; // выведет в консоль: "с опцией deep " "Alex" "Alex"
+state.attributes.name = 'Alex' // выведет в консоль: "с опцией deep " "Alex" "Alex"
 ```
 
 Однако, при отслеживании реактивного объекта или массива будет всегда возвращаться одна ссылка на текущее значение этого объекта как для текущего, так и для предыдущего состояния. Для полноценного отслеживания глубоко вложенных объектов или массивов, может потребоваться создавать глубокую копию значений. Это можно сделать например с помощью утилиты [lodash.cloneDeep](https://lodash.com/docs/4.17.15#cloneDeep)
 
 ```js
-import _ from 'lodash';
+import _ from 'lodash'
 
 const state = reactive({
   id: 1,
   attributes: {
-    name: "",
-  },
-});
+    name: '',
+  }
+})
 
 watch(
   () => _.cloneDeep(state),
@@ -284,11 +285,11 @@ watch(
     console.log(
       state.attributes.name,
       prevState.attributes.name
-    );
+    )
   }
-);
+)
 
-state.attributes.name = "Alex"; // Выведет в консоль: "Alex" ""
+state.attributes.name = 'Alex' // Выведет в консоль: "Alex" ""
 ```
 
 ### Общее поведение с `watchEffect`
