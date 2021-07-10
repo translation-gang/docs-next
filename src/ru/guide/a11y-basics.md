@@ -47,10 +47,10 @@
 export default {
   watch: {
     $route() {
-      this.$refs.skipLink.focus();
+      this.$refs.skipLink.focus()
     }
   }
-};
+}
 </script>
 ```
 
