@@ -314,7 +314,7 @@ export default {
 | V_ON_KEYCODE_MODIFIER        | ✔   | `v-on` больше не поддерживает модификаторы keyCode                               | [ссылка](keycode-modifiers.md)                                                     |
 | CUSTOM_DIR                   | ✔   | Имена хуков пользовательских директив изменены                                   | [ссылка](custom-directives.md)                                                     |
 | ATTR_FALSE_VALUE             | ✔   | Атрибут больше не удаляется при привязке булево значения `false`                 | [ссылка](attribute-coercion.md)                                                    |
-| ATTR_ENUMERATED_COERSION     | ✔   | Перечисляемые атрибуты больше не являются особым случаем                         | [ссылка](attribute-coercion.md)                                                    |
+| ATTR_ENUMERATED_COERCION     | ✔   | Перечисляемые атрибуты больше не являются особым случаем                         | [ссылка](attribute-coercion.md)                                                    |
 | TRANSITION_GROUP_ROOT        | ✔   | `<transition-group>` не отрисовывает корневой элемент по умолчанию               | [ссылка](transition-group.md)                                                      |
 | COMPONENT_ASYNC              | ✔   | API асинхронных компонентов изменено (теперь требуется `defineAsyncComponent`)   | [ссылка](async-components.md)                                                      |
 | COMPONENT_FUNCTIONAL         | ✔   | API функциональных компонентов изменено (должны быть обычными функциями)         | [ссылка](functional-components.md)                                                 |

@@ -141,4 +141,4 @@ badges:
 [Флаги сборки для миграции:](migration-build.md#конфигурация-совместимости)
 
 - `ATTR_FALSE_VALUE`
-- `ATTR_ENUMERATED_COERSION`
+- `ATTR_ENUMERATED_COERCION`
