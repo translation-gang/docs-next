@@ -97,7 +97,7 @@ vue upgrade --next
 Используя npm:
 
 ```bash
-$ npm init @vitejs/app <project-name>
+$ npm init vite <project-name> -- --template vue
 $ cd <project-name>
 $ npm install
 $ npm run dev
@@ -106,16 +106,10 @@ $ npm run dev
 или используя Yarn:
 
 ```bash
-$ yarn create @vitejs/app <project-name>
+$ yarn create vite <project-name> --template vue
 $ cd <project-name>
 $ yarn
 $ yarn dev
-```
-
-Если в имени пользователя присутствует пробел (например, «Mike Baker»), Vite не сможет успешно выполниться. В таких случаях используйте команду:
-
-```bash
-$ create-vite-app <project-name>
 ```
 
 ## Объяснение различий сборок
