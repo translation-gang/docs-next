@@ -12,7 +12,7 @@
 
 **Ресурсы:**
 
-- [Capacitor + Vue.js Guide](https://capacitorjs.com/solution/vue)
+- [Руководство по Capacitor + Vue.js](https://capacitorjs.com/solution/vue)
 
 ### NativeScript
 
@@ -20,4 +20,4 @@
 
 **Ресурсы:**
 
-- [NativeScript + Vue.js Guide](https://nativescript-vue.org/)
+- [Руководство по NativeScript + Vue.js](https://nativescript-vue.org/)
