@@ -92,7 +92,7 @@ touch rollup.config.js
 
 ```js
 // импорт используемых плагинов
-import commonjs from 'rollup-plugin-commonjs'
+import commonjs from '@rollup/plugin-commonjs'
 import VuePlugin from 'rollup-plugin-vue'
 import pkg from './package.json' // импорт package.json для переиспользования имени
 
