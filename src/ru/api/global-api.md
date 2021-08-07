@@ -200,7 +200,7 @@ import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent({
   // Функция-фабрика
-  loader: () => import('./Foo.vue')
+  loader: () => import('./Foo.vue'),
   // Компонент загрузки, используемый во время загрузки асинхронного компонента
   loadingComponent: LoadingComponent,
   // Компонент ошибки, используемый в случае неудачи при загрузке
