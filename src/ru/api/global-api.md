@@ -476,10 +476,13 @@ export default {
   inheritAttrs: false,
 
   render() {
-    const props = mergeProps({
-      // Класс будет объединён с любым другим классом из $attrs
-      class: 'active'
-    }, this.$attrs)
+    const props = mergeProps(
+      {
+        // Класс будет объединён с любым другим классом из $attrs
+        class: 'active'
+      },
+      this.$attrs
+    )
 
     return h('div', props)
   }
@@ -502,9 +505,14 @@ export default {
   setup() {
     const style = useCssModule()
 
-    return () => h('div', {
-      class: style.success
-    }, 'Задача выполнена!')
+    return () =>
+      h(
+        'div',
+        {
+          class: style.success
+        },
+        'Задача выполнена!'
+      )
   }
 }
 </script>
