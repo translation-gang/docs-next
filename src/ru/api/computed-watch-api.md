@@ -34,10 +34,31 @@ console.log(count.value) // 0
 
 ```ts
 // только для чтения
-function computed<T>(getter: () => T): Readonly<Ref<Readonly<T>>>
+function computed<T>(
+  getter: () => T,
+  debuggerOptions?: DebuggerOptions
+): Readonly<Ref<Readonly<T>>>
 
 // чтение/запись
-function computed<T>(options: { get: () => T; set: (value: T) => void }): Ref<T>
+function computed<T>(
+  options: {
+    get: () => T
+    set: (value: T) => void
+  },
+  debuggerOptions?: DebuggerOptions
+): Ref<T>
+
+interface DebuggerOptions {
+  onTrack?: (event: DebuggerEvent) => void
+  onTrigger?: (event: DebuggerEvent) => void
+}
+
+interface DebuggerEvent {
+  effect: ReactiveEffect
+  target: any
+  type: OperationTypes
+  key: string | symbol | undefined
+}
 ```
 
 ## `watchEffect`
@@ -84,9 +105,17 @@ type StopHandle = () => void
 
 **См. также**: [Руководство по `watchEffect`](../guide/reactivity-computed-watchers.md#watcheffect)
 
+## `watchPostEffect` <Badge text="3.2+" />
+
+Псевдоним для `watchEffect` с опцией `flush: 'post'`.
+
+## `watchSyncEffect` <Badge text="3.2+" />
+
+Псевдоним для `watchEffect` с опцией `flush: 'sync'`.
+
 ## `watch`
 
-API `watch` является точным эквивалентом [this.$watch](instance-methods.md#watch) Options API (и соответствующей опции [watch](options-data.md#watch)). Для `watch` требуется отслеживание конкретного источника данных и применяет побочные эффекты в отдельном коллбэке. По умолчанию она также является «ленивой» — коллбэк вызывается только тогда, когда наблюдаемый источник изменился.
+API `watch` является точным эквивалентом [this.\$watch](instance-methods.md#watch) Options API (и соответствующей опции [watch](options-data.md#watch)). Для `watch` требуется отслеживание конкретного источника данных и применяет побочные эффекты в отдельном коллбэке. По умолчанию она также является «ленивой» — коллбэк вызывается только тогда, когда наблюдаемый источник изменился.
 
 - В сравнении с [watchEffect](#watcheffect), `watch` позволяет:
 
