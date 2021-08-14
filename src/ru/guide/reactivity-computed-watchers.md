@@ -85,8 +85,10 @@ watchEffect(onInvalidate => {
 ```js
 const data = ref(null)
 
-watchEffect(async (onInvalidate) => {
-  onInvalidate(() => { /* ... */ }) // регистрируем функцию перед разрешением Promise
+watchEffect(async onInvalidate => {
+  onInvalidate(() => {
+    /* ... */
+  }) // регистрируем функцию перед разрешением Promise
   data.value = await fetchData(props.id)
 })
 ```
@@ -103,19 +105,19 @@ watchEffect(async (onInvalidate) => {
 </template>
 
 <script>
-  export default {
-    setup() {
-      const count = ref(0)
+export default {
+  setup() {
+    const count = ref(0)
 
-      watchEffect(() => {
-        console.log(count.value)
-      })
+    watchEffect(() => {
+      console.log(count.value)
+    })
 
-      return {
-        count
-      }
+    return {
+      count
     }
   }
+}
 </script>
 ```
 
@@ -244,22 +246,14 @@ const state = reactive({
 watch(
   () => state,
   (state, prevState) => {
-    console.log(
-      'без опции deep ',
-      state.attributes.name,
-      prevState.attributes.name
-    )
+    console.log('без опции deep ', state.attributes.name, prevState.attributes.name)
   }
 )
 
 watch(
   () => state,
   (state, prevState) => {
-    console.log(
-      'с опцией deep ',
-      state.attributes.name,
-      prevState.attributes.name
-    )
+    console.log('с опцией deep ', state.attributes.name, prevState.attributes.name)
   },
   { deep: true }
 )
@@ -282,10 +276,7 @@ const state = reactive({
 watch(
   () => _.cloneDeep(state),
   (state, prevState) => {
-    console.log(
-      state.attributes.name,
-      prevState.attributes.name
-    )
+    console.log(state.attributes.name, prevState.attributes.name)
   }
 )
 
