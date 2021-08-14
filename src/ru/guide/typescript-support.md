@@ -87,7 +87,7 @@ vue add typescript
 
 ### Поддержка в редакторах
 
-Для разработки приложений Vue на TypeScript настоятельно рекомендуем использовать [Visual Studio Code](https://code.visualstudio.com/), обеспечивающее отличную поддержку TypeScript из коробки. При использовании [однофайловых компонентов](single-file-component.md) (SFC) также установите [расширение Vetur](https://github.com/vuejs/vetur), которое добавит вывод типов TypeScript в них и множество других отличных возможностей.
+Для разработки приложений Vue на TypeScript настоятельно рекомендуем использовать [Visual Studio Code](https://code.visualstudio.com/), обеспечивающее отличную поддержку TypeScript из коробки. При использовании [однофайловых компонентов](single-file-component.md) (SFC) также установите [расширение Volar](https://github.com/johnsoncodehk/volar), которое добавит вывод типов TypeScript в них и множество других отличных возможностей.
 
 [WebStorm](https://www.jetbrains.com/webstorm/) также предоставляет встроенную поддержку как для TypeScript, так и для Vue.
 
