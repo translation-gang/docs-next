@@ -351,6 +351,7 @@ const sidebarRU = {
       title: 'Продвинутые руководства',
       collapsable: false,
       children: [
+        '/ru/guide/web-components',
         {
           title: 'Реактивность',
           children: [
@@ -377,7 +378,12 @@ const sidebarRU = {
     {
       title: 'Масштабирование',
       collapsable: false,
-      children: ['/ru/guide/routing', '/ru/guide/state-management', '/ru/guide/ssr', '/ru/guide/security']
+      children: [
+        '/ru/guide/routing',
+        '/ru/guide/state-management',
+        '/ru/guide/ssr',
+        '/ru/guide/security'
+      ]
     },
     {
       title: 'Доступность',
@@ -419,10 +425,33 @@ const sidebarRU = {
       children: [
         '/ru/api/basic-reactivity',
         '/ru/api/refs-api',
-        '/ru/api/computed-watch-api'
+        '/ru/api/computed-watch-api',
+        '/ru/api/effect-scope',
       ]
     },
-    '/ru/api/composition-api'
+    '/ru/api/composition-api',
+    {
+      title: 'Однофайловые компоненты',
+      collapsable: false,
+      children: [
+        {
+          title: 'Спецификация',
+          path: '/ru/api/sfc-spec'
+        },
+        {
+          title: 'Инструментарий',
+          path: '/ru/api/sfc-tooling'
+        },
+        {
+          title: '<script setup>',
+          path: '/ru/api/sfc-script-setup'
+        },
+        {
+          title: 'Возможности <style>',
+          path: '/ru/api/sfc-style'
+        }
+      ]
+    }
   ],
   examples: [
     {
