@@ -562,7 +562,7 @@ export default {
 </style>
 ```
 
-Дополнительную информацию об использовании CSS-модулей можно изучить в разделе [Vue Loader — CSS модули](https://vue-loader.vuejs.org/ru/guide/css-modules.html).
+Дополнительную информацию об использовании CSS-модулей можно изучить в разделе [Возможности стилей SFC: `<style module>`](sfc-style.md#style-module).
 
 ### Аргументы
 
