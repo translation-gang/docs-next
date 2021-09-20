@@ -16,7 +16,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-Если в объект присваивается значение реактивной ref-ссылки, то объект становится глубоко реактивным с помощью метода [reactive](basic-reactivity.md#reactive).
+Если свойству value ref-ссылки передается объект, то объект становится глубоко реактивным с помощью метода [reactive](basic-reactivity.md#reactive).
 
 **Типизация:**
 
