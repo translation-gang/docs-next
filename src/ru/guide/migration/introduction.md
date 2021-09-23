@@ -53,8 +53,8 @@
 - [Добавлены фрагменты](fragments.md)
 - [Добавлена опция emits в компонентах](../component-custom-events.md)
 - [`createRenderer` API из `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) для создания пользовательских рендеров
-- [SFC Синтаксический сахар для Composition API (`<script setup>`)](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md) <Badge text="экспериментально" type="warning" />
-- [SFC CSS-переменные на основе состояния (`v-bind` in `<style>`)](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0043-sfc-style-variables.md) <Badge text="экспериментально" type="warning" />
+- [SFC Синтаксический сахар для Composition API (`<script setup>`)](../../api/sfc-script-setup.md)
+- [SFC CSS-переменные на основе состояния (`v-bind` в `<style>`)](../../api/sfc-style.md#state-driven-dynamic-css)
 - [SFC `<style scoped>` теперь могут содержать глобальные правила или правила только для содержимого слотов](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 - [Добавлен компонент suspense](suspense.md) <Badge text="экспериментально" type="warning" />
 
@@ -165,7 +165,7 @@ Vuex 4.0 предоставляет поддержку Vue 3 с тем же са
 
 ### Поддержка IDE
 
-Рекомендуется использовать [VSCode](https://code.visualstudio.com/) с нашим официальным расширением [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), которое обеспечивает IDE всестороннюю поддержку Vue 3.
+Рекомендуется использовать [VSCode](https://code.visualstudio.com/) с нашим официальным расширением [Volar](https://github.com/johnsoncodehk/volar), которое обеспечивает IDE всестороннюю поддержку Vue 3.
 
 ### Другие проекты
 
