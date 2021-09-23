@@ -97,7 +97,12 @@ vue upgrade --next
 Используя npm:
 
 ```bash
-$ npm init vite <project-name> -- --template vue
+# npm 6.x
+$ npm init vite@latest <project-name> --template vue
+
+# npm 7+, НУЖНО дополнительное двойное тире:
+$ npm init vite@latest <project-name> -- --template vue
+
 $ cd <project-name>
 $ npm install
 $ npm run dev
