@@ -53,8 +53,8 @@ Some of the new features to keep an eye on in Vue 3 include:
 - [Fragments](/guide/migration/fragments.html)
 - [Emits Component Option](/guide/component-custom-events.html)
 - [`createRenderer` API from `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) to create custom renderers
-- [SFC Composition API Syntax Sugar (`<script setup>`)](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md) <Badge text="experimental" type="warning" />
-- [SFC State-driven CSS Variables (`v-bind` in `<style>`)](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0043-sfc-style-variables.md) <Badge text="experimental" type="warning" />
+- [SFC Composition API Syntax Sugar (`<script setup>`)](/api/sfc-script-setup.html)
+- [SFC State-driven CSS Variables (`v-bind` in `<style>`)](/api/sfc-style.html#state-driven-dynamic-css)
 - [SFC `<style scoped>` can now include global rules or rules that target only slotted content](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 - [Suspense](/guide/migration/suspense.html) <Badge text="experimental" type="warning" />
 
@@ -93,7 +93,7 @@ The following consists a list of breaking changes from 2.x:
 ### Custom Elements
 
 - [Custom element checks are now performed during template compilation](/guide/migration/custom-elements-interop.html)
-- [Special `is` prop usage is restricted to the reserved `<component>` tag only](/guide/migration/custom-elements-interop.html#customized-built-in-elements)
+- [Special `is` attribute usage is restricted to the reserved `<component>` tag only](/guide/migration/custom-elements-interop.html#customized-built-in-elements)
 
 ### Other Minor Changes
 
@@ -166,7 +166,7 @@ We are working on a new version of the Devtools with a new UI and refactored int
 
 ### IDE Support
 
-It is recommended to use [VSCode](https://code.visualstudio.com/) with our official extension [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), which provides comprehensive IDE support for Vue 3.
+It is recommended to use [VSCode](https://code.visualstudio.com/) with our official extension [Volar](https://github.com/johnsoncodehk/volar), which provides comprehensive IDE support for Vue 3.
 
 ### Other Projects
 

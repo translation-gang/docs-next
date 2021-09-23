@@ -14,6 +14,14 @@ By default, Vue will attempt to resolve a non-native HTML tag as a registered Vu
 
 If you are using Vue with a build setup, the option should be passed via build configs since it is a compile-time option.
 
+#### Example In-Browser Config
+
+```js
+// Only works if using in-browser compilation.
+// If using build tools, see config examples below.
+app.config.compilerOptions.isCustomElement = tag => tag.includes('-')
+```
+
 #### Example Vite Config
 
 ```js
@@ -44,7 +52,7 @@ module.exports = {
       .rule('vue')
       .use('vue-loader')
       .tap(options => ({
-        ...options
+        ...options,
         compilerOptions: {
           // treat any tag that starts with ion- as custom elements
           isCustomElement: tag => tag.startsWith('ion-')
@@ -200,7 +208,7 @@ It is recommended to export the individual element constructors to give your use
 ```js
 import { defineCustomElement } from 'vue'
 import Foo from './MyFoo.ce.vue'
-import Bar from './MyBar.ce.bar'
+import Bar from './MyBar.ce.vue'
 
 const MyFoo = defineCustomElement(Foo)
 const MyBar = defineCustomElement(Bar)
