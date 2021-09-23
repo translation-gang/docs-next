@@ -85,9 +85,9 @@ badges:
 | `draggable`                        | `draggable` &rarr; `false`           |
 | `spellcheck`                       | `spellcheck` &rarr; `true`           |
 
-Чтобы сохранить старое поведение, так как будут приводиться значения `false` к `'false'`, во Vue 3.x разработчикам необходимо доработать привязки `v-bind` таким образом, чтобы разрешались значением `false` или `'false'` для `contenteditable` и `spellcheck`.
+Так как больше не выполняется приведение `null` к `'false'` «перечисляемых атрибутов» в 3.x, в случае с `contenteditable` и `spellcheck`, разработчикам потребуется изменить те выражения `v-bind`, которые раньше разрешались в `null`, чтобы теперь они разрешались в `false` или `'false'`, для сохранения поведения как в 2.x.
 
-Во Vue 2.x, для перечисляемых атрибутов недействительные значения приводились к `'true'`. Обычно такое поведение не требовалось и вряд ли на него можно было рассчитывать в больших масштабах. Во Vue 3.x `true` или `'true'` должны быть явно определены.
+Во Vue 2.x, недействительные значения перечисляемых атрибутов приводились к `'true'`. Обычно такое поведение не требовалось и вряд ли на него можно было полагаться в больших масштабах. Поэтому во Vue 3.x `true` или `'true'` должны быть явно определены.
 
 ### Приведение `false` к `'false'` вместо удаления атрибута
 
@@ -107,7 +107,7 @@ badges:
   <tbody>
     <tr>
       <td rowspan="3">2.x «Перечисляемые атрибуты»<br><small>напр., <code>contenteditable</code>, <code>draggable</code> и <code>spellcheck</code>.</small></td>
-      <td><code>undefined</code>, <code>false</code></td>
+      <td><code>undefined</code></td>
       <td><code>undefined</code>, <code>null</code></td>
       <td><i>удалён</i></td>
     </tr>
@@ -120,7 +120,7 @@ badges:
       <td><code>"true"</code></td>
     </tr>
     <tr>
-      <td><code>null</code>, <code>'false'</code></td>
+      <td><code>null</code>, <code>false</code>, <code>'false'</code></td>
       <td><code>false</code>, <code>'false'</code></td>
       <td><code>"false"</code></td>
     </tr>
