@@ -5,3 +5,4 @@
 - [Основное API реактивности](basic-reactivity.md)
 - [Реактивные ref-ссылки](refs-api.md)
 - [Вычисляемые свойства и методы-наблюдатели](computed-watch-api.md)
+- [API области видимости эффектов](effect-scope.md)
