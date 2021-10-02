@@ -41,6 +41,7 @@
     attrs: Data
     slots: Slots
     emit: (event: string, ...args: unknown[]) => void
+    expose: (exposed?: Record<string, any>) => void
   }
 
   function setup(props: Data, context: SetupContext): Data
@@ -90,8 +91,33 @@
       const readersNumber = ref(0)
       const book = reactive({ title: 'Руководство по Vue 3' })
 
-      // Обратите внимание, здесь потребуется явно объявлять значение ref
+      // Обратите внимание, здесь потребуется явно использовать значение ref
       return () => h('div', [readersNumber.value, book.title])
+    }
+  }
+  ```
+
+  Если возвращать render-функцию, то не получится вернуть и другие свойства. Поэтому если потребуется объявить свойства, чтобы можно было получать доступ к ним извне, например, через `ref` из родителя, то можно воспользоваться `expose`:
+
+  ```js
+  // MyBook.vue
+
+  import { h } from 'vue'
+
+  export default {
+    setup(props, { expose }) {
+      const reset = () => {
+        // Какая-то логика для сброса
+      }
+
+      // Если необходимо объявить несколько свойств, то все они
+      // должны быть указаны в объекте, передаваемом в expose.
+      // expose может вызываться только один раз.
+      expose({
+        reset
+      })
+
+      return () => h('div')
     }
   }
   ```
