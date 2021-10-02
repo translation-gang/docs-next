@@ -1283,6 +1283,7 @@ computed: {
     - `inheritAttrs`
     - `props`
     - `emits`
+    - `expose`
 
 6. **Composition API** (точка входа при использовании Composition API)
     - `setup`
