@@ -53,9 +53,9 @@
 - [Добавлены фрагменты](fragments.md)
 - [Добавлена опция emits в компонентах](../component-custom-events.md)
 - [`createRenderer` API из `@vue/runtime-core`](https://github.com/vuejs/vue-next/tree/master/packages/runtime-core) для создания пользовательских рендеров
-- [SFC Синтаксический сахар для Composition API (`<script setup>`)](../../api/sfc-script-setup.md)
-- [SFC CSS-переменные на основе состояния (`v-bind` в `<style>`)](../../api/sfc-style.md#state-driven-dynamic-css)
-- [SFC `<style scoped>` теперь могут содержать глобальные правила или правила только для содержимого слотов](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
+- [Однофайловые компоненты: синтаксический сахар Composition API (`<script setup>`)](../../api/sfc-script-setup.md)
+- [Однофайловые компоненты: CSS-переменные на основе состояния (`v-bind` в `<style>`)](../../api/sfc-style.md#state-driven-dynamic-css)
+- [Однофайловые компоненты: `<style scoped>` теперь могут содержать глобальные правила или правила только для содержимого слотов](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0023-scoped-styles-changes.md)
 - [Добавлен компонент suspense](suspense.md) <Badge text="экспериментально" type="warning" />
 
 ## Кардинальные изменения
