@@ -36,12 +36,16 @@ const app = createApp({})
 const app = createApp({
   data() {
     return {
-      ...
+      // ...
     }
   },
-  methods: {...},
-  computed: {...}
-  ...
+  methods: {
+    // ...
+  },
+  computed: {
+    // ...
+  }
+  // ...
 })
 ```
 
@@ -284,6 +288,7 @@ document.body.appendChild(
 
 ```js
 const app = createApp({})
+
 app.component('MyComponent', {
   /* ... */
 })
@@ -291,6 +296,7 @@ app.component('MyComponent', {
 
 ```js
 import { resolveComponent } from 'vue'
+
 render() {
   const MyComponent = resolveComponent('MyComponent')
 }
@@ -320,6 +326,7 @@ render() {
 
 ```js
 import { resolveDynamicComponent } from 'vue'
+
 render () {
   const MyComponent = resolveDynamicComponent('MyComponent')
 }
@@ -349,11 +356,13 @@ render () {
 
 ```js
 const app = createApp({})
+
 app.directive('highlight', {})
 ```
 
 ```js
 import { resolveDirective } from 'vue'
+
 render () {
   const highlightDirective = resolveDirective('highlight')
 }
@@ -381,6 +390,7 @@ render () {
 
 ```js
 import { withDirectives, resolveDirective } from 'vue'
+
 const foo = resolveDirective('foo')
 const bar = resolveDirective('bar')
 
@@ -454,6 +464,7 @@ return withDirectives(h('div'), [
 
 ```ts
 import { createRenderer } from 'vue'
+
 const { render, createApp } = createRenderer<Node, Element>({
   patchProp,
   ...nodeOps
