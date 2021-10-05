@@ -140,4 +140,4 @@ app.component('child-component', {
 </div>
 ```
 
-Подробнее опции компонента `<teleport>` можно изучить в [справочнике API](../api/built-in-components.md#teleport).
+Подробнее опции компонента `<teleport>` можно прочитать в [справочнике API](../api/built-in-components.md#teleport).

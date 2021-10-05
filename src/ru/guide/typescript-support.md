@@ -24,7 +24,7 @@
 
 Обратите внимание, требуется включать `strict: true` (или хотя бы `noImplicitThis: true`, который является частью флага `strict`), чтобы проверять `this` в методах компонента, иначе он всегда будет интерпретироваться как тип `any`.
 
-Подробнее можно изучить в [документации настроек компилятора TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html).
+Подробнее можно прочитать в [документации настроек компилятора TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html).
 
 ## Конфигурация Webpack
 

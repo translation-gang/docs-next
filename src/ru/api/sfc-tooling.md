@@ -39,7 +39,7 @@ npm install -g @vue/cli
 vue create hello-vue
 ```
 
-- Подробнее о Vue CLI можно изучить в [документации Vue CLI](https://cli.vuejs.org/ru/guide/installation.html).
+- Подробнее о Vue CLI можно прочитать в [документации Vue CLI](https://cli.vuejs.org/ru/guide/installation.html).
 
 ### Vite или Vue CLI?
 
