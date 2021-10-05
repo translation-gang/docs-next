@@ -147,7 +147,7 @@ const Component = defineComponent({
       book: {
         title: 'Руководство по Vue 3',
         author: 'Команда Vue',
-        year: 2020
+        year: 2021
       } as Book
     }
   }
@@ -430,7 +430,7 @@ import { defineComponent, ref } from 'vue'
 
 const Component = defineComponent({
   setup() {
-    const year = ref(2020)
+    const year = ref(2021)
 
     const result = year.value.split('') // => Property 'split' does not exist on type 'number'
   }
@@ -440,9 +440,9 @@ const Component = defineComponent({
 Иногда может потребоваться указать сложный тип для внутреннего значения ref-ссылки. Это можно сделать передав общий аргумент при вызове ссылки для переопределения вывода типа по умолчанию:
 
 ```ts
-const year = ref<string | number>('2020') // тип year: Ref<string | number>
+const year = ref<string | number>('2021') // тип year: Ref<string | number>
 
-year.value = 2020 // ОК!
+year.value = 2021 // ОК!
 ```
 
 :::tip Примечание

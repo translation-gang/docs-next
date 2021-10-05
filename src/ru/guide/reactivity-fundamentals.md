@@ -130,7 +130,7 @@ import { reactive } from 'vue'
 
 const book = reactive({
   author: 'Команда Vue',
-  year: '2020',
+  year: '2021',
   title: 'Руководство Vue 3',
   description: 'Вы его читаете прямо сейчас ;)',
   price: 'free'
@@ -146,7 +146,7 @@ import { reactive, toRefs } from 'vue'
 
 const book = reactive({
   author: 'Команда Vue',
-  year: '2020',
+  year: '2021',
   title: 'Руководство Vue 3',
   description: 'Вы его читаете прямо сейчас ;)',
   price: 'free'

@@ -96,7 +96,7 @@
     </template>
 
     <template v-slot:footer>
-      <p>Copyright 2020 Evan You</p>
+      <p>Copyright 2021 Evan You</p>
     </template>
   </blog-post>
   ```
