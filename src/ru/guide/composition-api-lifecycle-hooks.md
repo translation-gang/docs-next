@@ -1,5 +1,7 @@
 # Хуки жизненного цикла
 
+> В разделе в примерах кода используется синтаксис [однофайловых компонентов](single-file-component.md)
+
 > Подразумевается, что уже изучили и разобрались с разделами [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
 
 <VideoLesson href="https://www.vuemastery.com/courses/vue-3-essentials/lifecycle-hooks" title="Посмотрите бесплатное видео о том как работать с хуками жизненного цикла">Посмотрите бесплатное видео о том как работать с хуками жизненного цикла на Vue Mastery</VideoLesson>

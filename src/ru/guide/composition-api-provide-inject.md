@@ -1,5 +1,7 @@
 # Provide / Inject
 
+> В разделе в примерах кода используется синтаксис [однофайловых компонентов](single-file-component.md)
+
 > Подразумевается, что уже изучили и разобрались с разделами [Provide / Inject](component-provide-inject.md), [Введение в Composition API](composition-api-introduction.md) и [Основы реактивности](reactivity-fundamentals.md). Если нет — прочитайте их сначала.
 
 Можно использовать [provide / inject](component-provide-inject.md) и вместе с Composition API. Они могут быть вызваны во время [`setup()`](composition-api-setup.md) с текущим активным экземпляром.
