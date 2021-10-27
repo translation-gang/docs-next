@@ -223,12 +223,16 @@ Vue.createApp(ListRendering).mount('#list-rendering')
 Компонент во Vue — по сути экземпляр с предустановленными опциями. Его регистрация также проста: нужно создать объект компонента, как это уже делали с объектами `App`, и указать его в родительской опции `components`:
 
 ```js
-// Создаём приложение Vue
-const app = Vue.createApp(...)
-
-// Определяем новый компонент с именем todo-item
-app.component('todo-item', {
+const TodoItem = {
   template: `<li>Это одна из задач</li>`
+}
+
+// Создаём Vue-приложение
+const app = Vue.createApp({
+  components: {
+    TodoItem // Регистрируем новый компонент
+  },
+  ... // Остальные свойства для компонента
 })
 
 // Монтируем приложение Vue
