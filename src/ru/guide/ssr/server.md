@@ -2,13 +2,14 @@
 
 Для [структуры кода](structure.md) и [конфигурации webpack](build-config.md), описанных ранее, также потребуются и некоторые изменения в коде сервера Express.
 
-- необходимо создать приложение с собранным `app.js` из итоговой сборки. Путь к нему можно найти с помощью манифеста webpack:
+- необходимо создать приложение с собранным `entry-server.js` из итоговой сборки. Путь к нему можно найти с помощью манифеста webpack:
 
   ```js
   // server.js
   const path = require('path')
   const manifest = require('./dist/server/ssr-manifest.json')
 
+  // Имя 'app.js' получается из имени точки входа с добавленным суффиксом `.js`
   const appPath = path.join(__dirname, './dist', 'server', manifest['app.js'])
   const createApp = require(appPath).default
   ```
@@ -78,7 +79,7 @@ server.use('/css', express.static(path.join(__dirname, './dist/client', 'css')))
 server.use('/favicon.ico', express.static(path.join(__dirname, './dist/client', 'favicon.ico')))
 
 server.get('*', async (req, res) => {
-  const { app } = await createApp()
+  const { app } = createApp()
 
   const appContent = await renderToString(app)
 
