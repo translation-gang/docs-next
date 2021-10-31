@@ -40,7 +40,7 @@ Vue.js — фреймворк для создания приложений, вы
 
 Это руководство будет очень подробным и предполагает знакомство как с самим Vue.js, так и достаточные знания по Node.js и webpack.
 
-<!-- [//]: # 'If you prefer a higher-level solution that provides a smooth out-of-the-box experience, you should probably give [Nuxt.js](https://nuxtjs.org/) a try. It's built upon the same Vue stack but abstracts away a lot of the boilerplate, and provides some extra features such as static site generation. However, it may not suit your use case if you need more direct control of your app's structure. Regardless, it would still be beneficial to read through this guide to understand better how things work together.' -->
+Если предпочитаете более высокоуровневые решения, обеспечивающие плавную работу из коробки, то стоит попробовать [Nuxt.js](https://nuxtjs.org/). Он построен на том же стеке Vue, но абстрагирован от многих кодовых элементов и предоставляет некоторые дополнительные возможности, такие как генерация статических сайтов. Однако он может не подойти, если нужен более прямой контроль над структурой приложения. В любом случае, будет полезно ознакомиться с его руководством, чтобы лучше понять, как всё работает вместе.
 
 <!-- [//]: # 'TODO: As you read along, it would be helpful to refer to the official [HackerNews Demo](https://github.com/vuejs/vue-hackernews-2.0/), which makes use of most of the techniques covered in this guide' -->
 
