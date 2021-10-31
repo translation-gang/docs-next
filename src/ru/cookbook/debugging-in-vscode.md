@@ -6,10 +6,7 @@
 
 ## Подготовка
 
-Убедитесь что установлена VS Code и выбранный браузер, а также последняя версия расширения отладчика:
-
-- [Debugger для Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
-- [Debugger для Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
+Убедитесь что установлена VS Code и выбранный браузер.
 
 Разверните проект с помощью [vue-cli](https://github.com/vuejs/vue-cli), следуя инструкциям по установке в [руководстве Vue CLI](https://cli.vuejs.org/ru/). Перейдите в каталог новосозданного приложения и откройте VS Code.
 
