@@ -10,6 +10,8 @@
 - [Vue на Repl.it](https://replit.com/@templates/VueJS-with-Vite)
 - [Vue на Codepen](https://codepen.io/pen/editor/vue)
 - [Vue на StackBlitz](https://stackblitz.com/fork/vue)
+- [Vue на Components.studio](https://components.studio/create/vue3)
+- [Vue на WebComponents.dev](https://webcomponents.dev/create/cevue)
 
 Также рекомендуем использовать онлайн-песочницы чтобы приложить пример неработающего кода к сообщениям об ошибках.
 
