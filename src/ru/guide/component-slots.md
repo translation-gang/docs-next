@@ -2,6 +2,8 @@
 
 > Подразумевается, что уже изучили и разобрались с разделом [Основы компонентов](component-basics.md). Если нет — прочитайте его сначала.
 
+<VideoLesson href="https://vueschool.io/lessons/vue-3-component-slots?friend=vuejs" title="Бесплатный урок по слотам Vue.js">Изучите основы слотов в бесплатном видеоуроке на Vue School</VideoLesson>
+
 ## Содержимое слота
 
 Vue реализует API распределения контента, вдохновлённое текущим [черновиком спецификации веб-компонентов](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), используя элемент `<slot>` в качестве точек распространения контента.

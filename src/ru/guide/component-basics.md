@@ -1,5 +1,7 @@
 # Основы компонентов
 
+<VideoLesson href="https://vueschool.io/courses/vue-js-3-components-fundamentals?friend=vuejs" title="Бесплатный курс по основам компонентов Vue.js">Изучите основы компонентов с помощью бесплатного видеокурса на Vue School</VideoLesson>
+
 ## Базовый пример
 
 Пример компонента Vue:
