@@ -320,7 +320,7 @@ import { ref, onMounted, watch, toRefs } from 'vue'
 
 // в компоненте
 setup(props) {
-  // `toRefs` создаёт реактивную ссылку для входного параметра `user`
+  // `toRefs` создаёт реактивную ссылку для входного параметра `user` из `props`
   const { user } = toRefs(props)
 
   const repositories = ref([])
