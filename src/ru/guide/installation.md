@@ -117,6 +117,15 @@ $ yarn
 $ yarn dev
 ```
 
+или с помощью pnpm:
+
+```bash
+$ pnpm create vite <project-name> -- --template vue
+$ cd <project-name>
+$ pnpm install
+$ pnpm dev
+```
+
 ## Объяснение различий сборок
 
 В [папке `dist/` npm-пакета](https://cdn.jsdelivr.net/npm/vue@3.0.2/dist/) можно обнаружить несколько различных сборок Vue.js. Рассмотрим подробнее какой файл из `dist` для каких случаев должен использоваться.
