@@ -20,7 +20,7 @@
 
 - Поддержка Internet Explorer 11: [Vue 3 официально отказался от поддержки IE11](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). При необходимости поддерживать IE11 или ниже придётся остаться на Vue 2.
 
-- Отрисовка на стороне сервера (SSR): сборку для миграции можно использовать для SSR, но миграция пользовательской конфигурации SSR задача намного сложнее. В общем, идея заключается в замене `vue-server-renderer` на [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 больше не предоставляет bundle renderer и рекомендуется использовать Vue 3 SSR с [Vite](https://vitejs.dev/guide/ssr.html). Если в проекте используется [Nuxt.js](https://nuxtjs.org/), то лучше дождаться Nuxt 3.
+- Отрисовка на стороне сервера (SSR): сборку для миграции можно использовать для SSR, но миграция пользовательской конфигурации SSR задача намного сложнее. В общем, идея заключается в замене `vue-server-renderer` на [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 больше не предоставляет bundle renderer и рекомендуется использовать Vue 3 SSR с [Vite](https://vitejs.dev/guide/ssr.html). Если в проекте используется [Nuxt.js](https://nuxtjs.org/), то можно попробовать [Nuxt Bridge, слой совместимости Nuxt.js 2 и 3](https://v3.nuxtjs.org/getting-started/bridge/). Для более сложных проектов, лучше дождаться [Nuxt 3 (в настоящее время в бета)](https://v3.nuxtjs.org/getting-started/introduction).
 
 ### Ожидания
 
