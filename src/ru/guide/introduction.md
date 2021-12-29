@@ -220,7 +220,7 @@ Vue.createApp(ListRendering).mount('#list-rendering')
 
 ![Дерево компонентов](/images/components.png)
 
-Компонент во Vue — по сути экземпляр с предустановленными опциями. Его регистрация также проста: нужно создать объект компонента, как это уже делали с объектами `App`, и указать его в родительской опции `components`:
+Компонент во Vue — по сути экземпляр с предустановленными опциями. Его регистрация также проста: нужно создать объект компонента, как это уже делали с объектом `app`, и указать его в родительской опции `components`:
 
 ```js
 const TodoItem = {
@@ -251,10 +251,10 @@ app.mount(...)
 Пока что во всех элементах списка будет один и тот же текст, что не очень-то интересно. Должна быть возможность передавать данные в дочерние компоненты из родительской области видимости. Доработаем компонент, чтобы он принимал [входной параметр](component-basics.md#передача-данных-в-дочерние-компоненты-через-входные-параметры):
 
 ```js
-app.component('todo-item', {
+const TodoItem = {
   props: ['todo'],
   template: `<li>{{ todo.text }}</li>`
-})
+}
 ```
 
 Теперь можно передавать свой текст для каждого из компонентов с помощью `v-bind`:
@@ -277,6 +277,11 @@ app.component('todo-item', {
 ```
 
 ```js
+const TodoItem = {
+  props: ['todo'],
+  template: `<li>{{ todo.text }}</li>`
+}
+
 const TodoList = {
   data() {
     return {
@@ -286,15 +291,13 @@ const TodoList = {
         { id: 2, text: 'Whatever else humans are supposed to eat' }
       ]
     }
+  },
+  components: {
+    TodoItem
   }
 }
 
 const app = Vue.createApp(TodoList)
-
-app.component('todo-item', {
-  props: ['todo'],
-  template: `<li>{{ todo.text }}</li>`
-})
 
 app.mount('#todo-list-app')
 ```
