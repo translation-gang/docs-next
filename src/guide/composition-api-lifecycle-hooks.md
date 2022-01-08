@@ -14,6 +14,7 @@ The following table contains how the lifecycle hooks are invoked inside of [setu
 | ----------------- | ------------------- |
 | `beforeCreate`    | Not needed\*        |
 | `created`         | Not needed\*        |
+| `serverPrefetch`  | `onServerPrefetch`  |
 | `beforeMount`     | `onBeforeMount`     |
 | `mounted`         | `onMounted`         |
 | `beforeUpdate`    | `onBeforeUpdate`    |
