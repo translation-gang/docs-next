@@ -10,10 +10,10 @@
 
 ## Разработка
 
-1. Склонировать репозиторий
+1. Клонировать репозиторий
 
 ```bash
-git clone git@github.com:translation-gang/docs-next.git
+git clone https://github.com/translation-gang/docs-next.git
 ```
 
 2. Установить зависимости
