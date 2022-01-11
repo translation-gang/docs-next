@@ -206,7 +206,7 @@ methods: {
 <input @keyup.enter="submit" />
 ```
 
-Можно напрямую использовать любые допустимые имена клавиш, предоставляемые через [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) в качестве модификаторов, указывая их имена в kebab-case.
+Можно напрямую использовать любые допустимые имена клавиш, предоставляемые через [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) в качестве модификаторов, указывая их имена в kebab-case формате.
 
 ```html
 <input @keyup.page-down="onPageDown" />
