@@ -107,7 +107,7 @@ Vue.createApp({
 Также есть и другие хуки, которые будут вызываться на различных этапах жизненного цикла экземпляра, например [`mounted`](../api/options-lifecycle-hooks.md#mounted), [`updated`](../api/options-lifecycle-hooks.md#updated) и [`unmounted`](../api/options-lifecycle-hooks.md#unmounted). Все хуки вызываются с контекстом `this`, указывающим на текущий активный экземпляр, который их вызвал.
 
 :::tip Совет
-Не используйте [стрелочные функции](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions) в свойствах экземпляра и в коллбэках, например `created: () => console.log(this.a)` или `vm.$watch('a', newVal => this.myMethod())`. Так как стрелочные функции не имеют собственного `this`, то `this` в коде будет обрабатываться как любая другая переменная и её поиск будет производиться в области видимости выше, до тех пор пока не будет найдена, часто приводя к ошибкам, таким как `Uncaught TypeError: Cannot read property of undefined` или `Uncaught TypeError: this.myMethod is not a function`.
+Не используйте [стрелочные функции](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions) в свойствах экземпляра и в коллбэках, например `created: () => console.log(this.a)` или `vm.$watch('a', newVal => this.myMethod())`. Так как стрелочные функции не имеют собственного `this`, то `this` в коде будет обрабатываться как любая другая переменная и её поиск будет производиться до тех пор, пока она не будет найдена в области видимости выше, что часто приводит к ошибкам, таким как `Uncaught TypeError: Cannot read property of undefined` или `Uncaught TypeError: this.myMethod is not a function`.
 :::
 
 ## Диаграмма жизненного цикла
